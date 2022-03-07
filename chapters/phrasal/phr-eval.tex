@@ -1,0 +1,95 @@
+\section{Results}
+\label{sec:phr:results}
+At the time of official evaluation, we submitted three lexical
+anchoring parser, and then we submitted another phrasal-anchoring
+model for UCCA parsing during post-evaluation stage, and we leave EDS
+parsing as future work. The following sections are the official
+results and error breakdowns for
+phrasal-anchoring .
+
+\subsection{Results on UCCA}
+\label{ssec:phr:ucca-eval}
+Table \ref{tbl:ucca_results_rank} shows that our span-based CKY model for
+UCCA can achieve 74.00 F1 score on official test set, and ranked
+5th. When adding ELMo~\cite{peters2018deep} into our model, it can further improve almost 3
+points on it.
+\begin{table}[!h]
+  \small
+\centering
+\begin{tabular}{lll}
+\toprule
+MR     & Ours~(P/R/F1) & Top 1/3/5~(F1)  \\ \hline
+UCCA(5)   & 80.83/73.42/\textbf{76.94}   & 81.67/77.80/73.22 \\
+EDS    & N/A                 & 94.47/90.75/89.10 \\ \bottomrule
+\end{tabular}
+\caption{\label{tbl:ucca_results_rank} Official results overview on
+  unified MRP metric, we selected the performance from top 1/3/5
+  system(s) for comparison. It shows our UCCA model for post-evluation
+  can rank 5th}
+\end{table}
+
+
+\subsubsection{Error Breakdown on UCCA}
+\label{ssec:error_breakdown}
+Table \ref{tbl:results_amr}, \ref{tbl:results_dm},
+\ref{tbl:results_psd} and \ref{tbl:results_ucca} shows the detailed
+error breakdown of AMR, DM, PSD and UCCA respectively. Each column in
+the table shows the F1 score of each subcomponent in a graph: top
+nodes, node lables, node properties, node anchors, edge labels, and
+overall F1 score. No anchors for AMR, and no node label and propertis
+for UCCA. We show the results of MRP metric on two datasets. ``all"
+denotes all the examples for that specific MR, while lpps are a set of
+100 sentences from \texttt{The Little Prince}, and annotated in all five
+meaning representations. To better understand the performance, we also
+reported the official results from two baseline models
+TUPA~\cite{Her:Arv:19} and ERG~\cite{Oep:Fli:19}.
+
+According to Table \ref{tbl:results_ucca}, our model with ELMo works
+slightly better than the top 1 model on anchors prediction. It means
+our model is good at predicting the nodes in UCCA and we belive that
+it is also helpful for prediction phrasal anchoring nodes in EDS.
+
+\begin{table}[!h]
+\small
+\centering
+\setlength{\tabcolsep}{2.5pt}
+
+\begin{tabular}{ccccccccc}
+\toprule
+                              & data & tops  & anchors & edge  & attr  & all   \\ \hline
+\multirow{2}{*}{ TUPA
+single }                      & all  & 78.73 & 69.17   & 16.96 & 15.18 & 27.56 \\
+                              & lpps & 86.03 & 76.26   & 28.32 & 24.00 & 40.06 \\
+\multirow{2}{*}{ TUPA
+multi }                       & all  & 84.92 & 65.74   & 12.99 &  9.07 & 23.65 \\
+                              & lpps & 88.89 & 77.76   & 26.45 & 18.32 & 41.04 \\
+\multirow{2}{*}{\cite{Che:Dou:Xu:19}}       & all  & 1.00  & 95.36   & 72.66 & 61.98 & 81.67 \\
+                              & lpps & 1.00  & 96.99   & 73.08 & 48.37 & 82.61 \\ \hline
+\multirow{2}{*}{ Ours(*5)}    & all  & 98.85 & 94.92   & 60.17 & 0.00  & {\bf 74.00} \\
+                              & lpps & 96.00 & 96.75   & 60.20 & 0.00  & 75.17 \\
+\multirow{2}{*}{ Ours + ELMo} & all  & 99.38 & 95.70   & 64.88 & 0.00  & {\bf 76.94} \\
+                              & lpps & 98.00 & 96.84   & 66.63 & 0.00  & 78.77 \\ \bottomrule
+\end{tabular}
+\caption{\label{tbl:results_ucca} Our UCCA parser in post-evaluation ranked 5th according to the original official evaluation results. This table shows the error breakdown when comparing to the model ranked top 1~\cite{Che:Dou:Xu:19} in official results. * denotes the ranking of post-evaluation results }
+\end{table}
+
+However, when predicting the edge and edge attributes, our model
+performs 7-8 points worse than the top 1 model. In UCCA, an edge label
+means the relation between a parent nodes and its children. In our
+UCCA transformation, we assign edge label as the node label of its
+child and then predict with only child span encoding. Thus it actually
+misses important information from the parent node. Hence, in future,
+more improvement can be done to use both child and parent span
+encoding for label prediction, or even using another span-based
+bi-affine classifier for edge prediction, or remote edge recovering.
+
+%
+%\paragraph{Ablations Results}
+%
+%During our developing phrase, we also done extensive ablation studies on our models.
+%
+%For DM, and PSD, we
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

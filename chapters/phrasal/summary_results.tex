@@ -1,0 +1,34 @@
+\subsection{Implementation Summarization}
+\label{ssec:impl_summary}
+
+\begin{table*}[h]
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l|ccc|cc}
+\toprule
+\hline
+                                    & \multicolumn{3}{c}{{\bf Lexicon Anchoring}} & \multicolumn{2}{c}{{\bf Phrase Anachoring}}                              \\ \cline{2-4} \cline{5-6}
+                                    & DM                                          & PSD               & AMR                    & EDS                  & UCCA \\ \hline
+Top                                 & 1                                           & 86.8              & 89.6                   & 90.8                 & 80.3 \\
+Node Label                          & Lemma                                       & Lemma             & Lemma + NeType(143+)   & _lemma_semi_sense    & N/A  \\ \hline
+\multirow{2}{*}{Node                                                                                                                                         \\ Properties} & POS                                         & POS               & constant values        & 19.5                 & N/A                   \\
+                                    & semi(160)_args(25)                          & word_id_sense(25) & polarity, Named entity & carg: constant value & N/A  \\
+Edge Label                          & 95.1                                        & 94.7              & 94.9                   & 70.7                 & 73.2 \\
+Edge Properties                     & 50.3                                        & 61.3              & 55.2                   & 20.1                 & 18.8 \\
+Connectivity                        & 52.8                                        & 55.5              & 54.1                   & 19.2                 & 34.7 \\
+Dataset Size                        & 74.6                                        & 75.1              & 74.8                   & 52.8                 & 67.5 \\ \hline
+\end{tabular}
+\end{center}
+\caption{Performance of our proposed
+  models with respect to precision, recall and $\text{F}_{1}$ on categorizing and forecasting
+  tasks for client and therapist codes}
+\label{tbl:main_rst}
+\end{table*}
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

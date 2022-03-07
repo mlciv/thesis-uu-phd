@@ -1,0 +1,47 @@
+\subsection{Utterance-level Attention}
+\label{ssec:sentence_att}
+While we assume that the history of utterances is available for both
+our tasks, not every utterance is relevant to decide a MISC label.
+%
+For categorization, the relevance of an utterance to the anchor may
+be important. For example, a complex reflection (\REC) may depend on
+the relationship of the current therapist utterance to one or more
+of the previous client utterances. For forecasting, since we do not
+have an utterance to label, several previous utterances may
+be relevant. For example, in the conversation in
+Table~\ref{tbl:example}, both $u_2$ and $u_4$ may be used to
+forecast a complex reflection.
+
+To model such utterance-level attention, we will employ the
+multi-head, multi-hop attention mechanism used in Transformer
+networks~\cite{NIPS2017_7181}. As before, due to space constraints,
+we refer the reader to the original work for details. We will use
+the $(\bm{Q}, \bm{K}, \bm{V})$ notation from the original paper
+here. These matrices represent a query, key and value
+respectively. The multi-head attention is defined as:
+%
+\begin{equation}
+\label{eq:multihead_attention}
+{\small \text{Multihead}(\bm{Q},\bm{K},\bm{V}) = [\text{head}_{1};\cdots; \text{head}_{h}]\bm{W}^{O}}
+\end{equation}
+\begin{equation*}
+ \text{head}_{i} = \text{softmax}\left(\frac{\bm{Q}\bm{W}^{Q}_{i}\left(\bm{K}\bm{W}^{K}_{i}\right)^T}{\sqrt{d_{k}}}\right)\bm{V}\bm{W}^{V}_{i}
+\end{equation*}
+The $\bm{W}_i$'s refer to projection matrices for the three inputs,
+and the final $\bm{W}^o$ projects the concatenated heads into a
+single vector.
+
+The choices of the query, key and value defines the attention
+mechanism. In our work, we compare two variants: {\em anchor-based
+  attention}, and {\em self-attention}. The anchor-based attention
+is defined by $Q = [\bm{v}_{n}]$ and
+$K=V=[\bm{v}_{1} \cdots \bm{v}_{n}]$.  Self-attention is defined by
+setting all three matrices to $[\bm{v}_{1} \cdots \bm{v}_{n}]$.
+%
+For both settings, we use four heads and stacking them for two hops,
+and refer to them as $\self$ and $\anchor$.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"n
+%%% End:

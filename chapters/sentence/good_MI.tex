@@ -1,0 +1,39 @@
+\subsection{Can We Suggest Empathetic Responses?}
+% In therapy, there is no correct answer to what constitutes the best
+% type of response for a specific client statement. However, 
+% We can use examples from sessions that expert human raters
+% identified as better to demonstrate what might be suitable types of
+% utterances to follow a client statement.
+
+Our forecasting models are trained on regular MI sessions, according
+to the label distribution on Table \ref{tbl:misc}, there are both MI
+adherent or non-adherent data. Hence, our models are trained to show
+how the therapist usually respond to a given statement.
+
+To show whether our model can mimic {\em good} MI policies, we
+selected 35 MI sessions from our test set which were rated 5 or
+higher on a 7-point scale empathy or spirit. On these sessions, we
+still achieve a recall@3 of 76.9, suggesting that we can learn good
+MI policies by training on all therapy sessions. These results
+suggest that our models can help train new
+therapists who may be uncertain about how to respond to a client.
+
+%  For Recall@3 metric, our model can still achieve
+% 76.9 comparing to 77.0 in our test set, if we always choose the most
+% frequent label \FA, \GI, \RES, it only can achieve 66.6
+% Recall@3. \footnote{label distribution and the detailed performance
+%   on each of the theraspit codes are in the suppelementary
+%   material}.
+
+% In the field of psychotherapy, one of the major difficulties is that
+% new therapists do not always know how to respond to a client.  It is
+% not always appropriate to respond to every statement with an open
+% question or a reflection (though both are desirable from the
+% perspective of motivational interviewing).  This type of model could
+% be used as scaffolding to help train new psychotherapists to learn the
+% types of responses an expert might give to a specific statement.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

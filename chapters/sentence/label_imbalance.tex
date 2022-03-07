@@ -1,0 +1,47 @@
+
+\paragraph{Label Imbalance}
+\label{ssec:label_imb}
+We always use the same $\alpha$ for all weighted focal loss. Besides
+considering the label frequency, we also consider the performance
+gap between previous reported $\text{F}_{1}$. We
+choose to balance weights $\alpha$ as \{1.0,1.0,0.25\} for \CHANGE,\SUSTAIN
+and \FN respectively, and \{0.5, 1.0, 1.0, 1.0, 0.75, 0.75,1.0,1.0\}
+for \FA, \RES, \REC, \GI, \QUC, \QUO, \MIA, \MIN. As shown in
+Table~\ref{tbl:loss}, we report our ablation studies on cross-entropy
+loss, weighted cross-entropy loss, and focal loss. Besides the fixed
+weights, focal loss offers flexible hyperparameters to weight
+examples in different tasks. Experiments shows
+that except for the model $\mathcal{C}^{T}$, focal loss outperforms
+cross-entropy loss and weighted cross entropy.
+\begin{table}[!h]
+\setlength{\tabcolsep}{3pt}
+\begin{center}{\small
+\begin{tabular}{c|ccc|ccccc}
+\toprule \hline
+\multirow{2}{*}{{\bf Loss}} & \multicolumn{3}{c}{ {\bf Client} } & \multicolumn{5}{c}{ {\bf Therapist} }                    \\\cline{2-4}  \cline{5-9}
+                            & $\text{F}_{1}$                            & \CHANGE & \SUSTAIN & $\text{F}_{1}$ & \RES & \REC & \MIA & \MIN \\ \hline \hline
+$\mathcal{C}^{{\text{ce}}}$ & 47.0                               & 28.4    & 22.0     & 60.9    & 54.3 & 53.8 & 53.7 & 4.8  \\
+$\mathcal{C}^{\text{wce}}$  & 53.5                               & 39.2    & 32.0     & 65.4    & 55.7 & 54.9 & 56.6 & 29.7 \\
+$\mathcal{C}^{\text{fl}}$   & 53.9                               & 39.1    & 33.1     & 65.4    & 55.7 & 54.9 & 56.6 & 29.7 \\ \hline
+$\mathcal{F}^{{\text{ce}}}$ & 42.1                               & 17.7    & 18.5     & 26.8    & 3.3  & 20.8 & 16.3 & 8.3  \\
+$\mathcal{F}^{\text{wce}}$  & 43.1                               & 20.6    & 23.3     & 30.7    & 17.9 & 25.0 & 17.7 & 10.9 \\
+$\mathcal{F}^{\text{fl}}$   & 44.2                               & 24.7    & 22.7     & 31.1    & 19.5 & 24.7 & 15.2 & 12.8 \\ \hline
+\bottomrule
+\end{tabular}}
+\end{center}
+\caption{\label{tbl:loss} Abalation study of different loss function
+  on categorizing and forecasting task. Based on our proposed model for
+  our four settings, we compared our best model with crossentropy
+  loss(ce), $\alpha$ balanced cross-entropy(wce) and focal loss. Here we
+  only report the macro $\text{F}_{1}$ for rare labels and the overall macro
+  $\text{F}_{1}$. $\gamma=1$ is the best for both the model $\mathcal{C}_{C}$ and
+  $\mathcal{F}_{C}$, while $\gamma=0$ is the best for
+  $\mathcal{C}_{T}$ and $\gamma=3$ for $\mathcal{F}_{T}$. Worth to mention,
+  when $\gamma=0$, the focal loss degraded into $\alpha$-balanced crossentropy,
+  that first two rows are the same for therspit model.}
+\end{table}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

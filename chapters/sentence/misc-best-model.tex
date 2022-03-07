@@ -1,0 +1,27 @@
+\subsection{Best Models}
+\label{ssec:models}
+Our goal is to discover the best client and therapist models for the
+two tasks.  We identified the following best configurations using $\text{F}_{1}$
+score on the development set:
+\begin{enumerate}[nosep]
+\item {\bf Categorization}: For client, the best model does not need any
+  word or utterance attention. For the therapist, it uses \GMGRUH
+  for word attention and \anchor for utterance attention. We refer
+  to these models as $\mathcal{C}_C$ and $\mathcal{C}_T$ respectively
+\item {\bf Forecasting}: For both client and  therapist, the best
+  model uses no word attention, and uses \self utterance
+  attention. We refer to these models as $\mathcal{F}_C$ and
+  $\mathcal{F}_T$ respectively.
+\end{enumerate}
+Here, we show the performance of these models against various
+baselines. The appendix gives label-wise precision, recall and $\text{F}_{1}$
+scores.
+
+
+% We compare these models against the other modeling choices below and
+% show the impact of hyperparameter choices in \S\ref{sec:analysis}.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

@@ -1,0 +1,85 @@
+\section{Models for MISC Prediction}
+\label{sec:snt:devices}
+
+% \vs{General comment: For every section, add a label. I added one
+%  above.}
+
+% \vs{Rename the section title to be more descriptive: \eg, ``Modeling
+% an Ongoing Dialogue'' or something else}
+
+Modeling the two tasks defined in \S\ref{sec:task} requires
+addressing four questions:
+\begin{inparaenum}[(1)]
+\item How do we encode a dialogue and its utterances?
+\item Can we discover discriminative words in each utterance?
+\item Can we discover which of the previous utterances are relevant?
+\item How do we handle label imbalance in our data?
+\end{inparaenum}
+%
+Many recent advances in % modeling dialogue with
+neural networks can
+be seen as plug-and-play components. To facilitate the comparative
+study of models, we will describe components that address the
+above questions.  % Then, we
+% will compare the models and their various ablations as a combination
+% of these modules in \S\ref{sec:experiments} and \ref{sec:analysis}
+% respectively.
+%
+In the rest of the paper, we will use \textbf{boldfaced} terms to
+denote vectors and matrices and \module{small caps} to denote
+component names.
+
+
+
+% In this section, for better comparative study on modeling
+% psychotherapy dialogue our tasks, we first introduce thress
+% plug-and-play components to study each of the following questions in
+% our tasks. Then for each task, we will describe the best models and
+% their ablations by representing it with a combinataion of these
+% components in \S\ref{sec:models} and \ref{sec:analysis}.
+%\vs{Don't use vague words like
+%
+%``some''. Be more concrete. Use a number. Here say ``four''. Also,
+%  in other places in the paper.}  important
+%\vs{\replaceWith{components to resolve each of the following
+%    challenges}{design choices we need to address with respect to
+%    modeling dialogue}}:
+% \begin{enumerate}
+% \item How to encode a dialogue and its utterances? (\S\ref{ssec:dialog_rep})
+% \item How to capture important words for our tasks? (\S\ref{ssec:word_att})
+% \item Can relevance between sentences help for our tasks? (\S\ref{ssec:sentence_att})
+% \item How to handling label imbalance in our models ? (\S\ref{ssec:focal_loss})
+% \end{enumerate}
+
+% \vs{We spoke about the transfer learning point above.}
+% \vs{Maybe these could be phrased as questions, and not in-para
+% enum. That way, we could even add a reference to the subsection
+% that discusses that question in parenthesis. The subsection titles
+%  should use the words from the question. That way, it becomes easy
+%  to read.}
+%
+%\begin{figure*}[t]
+%\centering
+%\includegraphics[width=0.3\textwidth]{hgru.png}\quad
+%\includegraphics[width=0.3\textwidth]{gmlstm.png} \quad
+%\includegraphics[width=0.3\textwidth]{multi-head.png} \quad
+%\caption{\label{fig:models} (left) Hierarchical GRU, (middle) word-level Gated match-LSTM, (right) snt-level multi-head multi-hop self-attention. \vs{Do not use pngs if possible. Use pdf or eps}}
+%\end{figure*}
+
+\input{chapters/sentence/misc-dial-rep}
+
+\input{chapters/sentence/misc-word-att}
+
+\input{chapters/sentence/misc-snt-att}
+
+\input{chapters/sentence/misc-pred-training}
+
+\input{chapters/sentence/misc-focal-loss}
+
+
+%\input{mtl_devices}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../thesis-main.ltx"
+%%% End:

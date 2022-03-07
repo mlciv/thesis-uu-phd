@@ -1,0 +1,153 @@
+\section{Task Definitions}
+\label{sec:snt:task}
+
+In this section, we will formally define the two NLP tasks
+corresponding to the vision in \S\ref{sec:background} using the
+conversation in table~\ref{tbl:example} as a running example.
+
+Suppose we have an ongoing MI session with utterances
+$u_1, u_2,\cdots, u_n$: together, the dialogue history $H_n$.  Each
+utterance $u_i$ is associated with its speaker $s_i$, either C
+(client) or T (therapist). Each utterance is also associated with
+the MISC label $l_i$, which is the object of study. We will refer to
+the last utterance $u_n$ as the \emph{anchor}.
+
+We will define two classification tasks over a fixed dialogue
+history with $n$ elements --- \emph{categorization} and
+\emph{forecasting}. As the conversation progresses, the history will
+be updated with a sliding window.  Since the therapist and client
+codes share no overlap, we will design separate models for the two
+speakers, giving us four settings in all.
+
+\begin{table}[tp]
+  \begin{center}
+    \setlength{\tabcolsep}{2pt}
+    {\small
+      \begin{tabular}{crll}
+        \toprule
+        $i$        & $s_{i}$ & $u_{i}$                             & $l_{i}$  \\ \hline
+        1        & T:      & Have you used drugs recently?       & \QUC     \\
+        2        & C:      & I stopped for a year, but relapsed. & \FN      \\
+        3        & T:      & You will suffer if you keep using. & \MIN     \\
+        4        & C:      & Sorry, I just want to quit.         & \CHANGE  \\
+        $\cdots$ &         & $\cdots$                            & $\cdots$ \\ \bottomrule
+      \end{tabular}
+    }
+  \end{center}
+  \caption{\label{tbl:example} An example of ongoing therapy session}
+\end{table}
+
+\Paragraph{Task 1: Categorization}
+%\label{ssec:task_categorizing}
+The goal of this task is to provide real-time feedback to a
+therapist during an ongoing MI session. In the running example, the
+therapist's confrontational response in the third utterance is not
+MI adherent (\MIN); an observer should flag it as such to bring the
+therapist back on track. The client's response, however, shows an
+inclination to change their behavior (\CHANGE). Alerting a therapist
+(especially a novice) can help guide the conversation in a direction
+that encourages it.
+
+In essence, we have the following real-time classification task:
+\emph{Given the dialogue history $H_n$ which includes the speaker
+  information, predict the MISC label $l_n$ for the last utterance
+  $u_n$.}
+
+The key difference from previous work in predicting MISC labels is
+that we are restricting the input to the
+real-time setting. As a result, models can only use the dialogue
+history to predict the label, and in particular, we can not use models
+such as a conditional random field or a bi-directional LSTM that need both past and future inputs. 
+% \jc{I added this for comparing to
+% previous dialogue act classification}
+% \vs{I removed the content because it repeats information from
+% section 3}
+
+% For the client codes, it is similar to the sentiment analysis but it
+% towards more on behavior changes, e.g., the client may feel happy
+% and confident that smoking may help to relax, but this is \misc{NEG}
+% in our cases. For therapist codes, this task can be considered as
+% dialogue intent classification but emphasize professional counseling
+% skills and spirits, such as empathy, support, and evocation.
+
+
+\Paragraph{Task 2: Forecasting}
+% \label{ssec:task_forcasting}
+A real-time therapy observer may be thought of as an expert
+therapist who guides a session with suggestions to the therapist.
+For example, after a client discloses their recent drug use
+relapse, a novice therapist may respond in a confrontational manner
+(which is not recommended, and hence coded \MIN). On the other
+hand, a seasoned therapist may respond with a complex reflection
+(\REC) such as \emph{``Sounds like you really wanted to give up and
+  you're unhappy about the relapse.''}
+Such an expert may also anticipate important cues
+from the client.% , expressing their intention to change or sustain
+% their behavior
+% .
+
+The forecasting task seeks to mimic the intent of such a seasoned therapist:
+\emph{Given a dialogue history $H_n$ and the next speaker's identity
+  $s_{n+1}$, predict the MISC code $l_{n+1}$ of the yet unknown next
+  utterance $u_{n+1}$.}
+
+The MISC forecasting task is a previously unstudied problem. %  We
+% argue that it is possible to learn to anticipate information about
+% future utterances; this forms the basis of chatbot
+% development.
+We argue that forecasting the type of the next utterance, rather than
+selecting or generating its text as has been the focus of several
+recent lines of work~\cite[\eg,][]{schatzmann2005quantitative,ubuntu,DSTC7},
+allows the human in the loop (the therapist) the freedom to
+creatively participate in the conversation within the parameters
+defined by the seasoned observer, and perhaps even rejecting
+suggestions. Such an observer could be especially helpful for
+training therapists~\cite{imel2017technology}.
+%
+The forecasting task is also related to recent work on detecting
+antisocial comments in online
+conversations~\cite{zhang2018conversations} whose goal is to
+provide an early warning for such events.
+
+% Recent work on patient-like conversational agent also
+% helps for psyctherapy training. 
+% We leave this text generation tasks
+% for our future work. \todo{@Mike @Vivke Please help to check this citation and related reference text}
+% Furthermore, from an operational perspective, we can use
+% standard multi-class evaluations instead of addressing the problem
+% of evaluating generated text.
+
+%\begin{numcases}{}
+%\operatorname*{arg\,max}_{l \in L_{C}} p(l_{n+1}=l|H_{n}, s_{n+1}=C) \label{eq:fc}\\
+%\operatorname*{arg\,max}_{l \in L_{T}} p(l_{n+1}=l|H_{n}, s_{n+1}=T) \label{eq:ft}
+%\end{numcases}
+%
+%\subsection{Task Extentions}
+%\label{ssec:task_ext}
+%What's more, as our model annotate current utterance at each turn, we
+%also can incorprate the predicted MISC label $l^{\prime}_{i}$ into our
+%dialogue history, then we have labeled dialogue history
+%$H^{l}_{n}$. For $i < n$, instead of a pair $(u_{i}, s_{i})$, we have a
+%triple $(u_{i}, s_{i}, l^{\prime}_{i})$. Hence, the labeled dialogue
+%history $H^{l}_{n}$ can substitute the unlabeled dialogue history
+%$H_{n}$ for all above 4 settings. We will discuss this extenions to
+%explore how those predicted labels helps in our tasks.
+
+
+%\vs{Needs a good segue into the next para. Maybe a paragraph saying
+%  that we need to monitor an ongoing therapy session, as opposed to
+%  analyze a session after it is done.}
+
+%\vs{Do we need to introduce the symbols $n$ and $T$ here? If they
+%  are not used anywhere, we can leave it dots. Something like
+%  $\{a_1, a_2, \cdots\}$. Also use $\cdots$ or $\ldots$ for ellipses
+%  instead of three dots.}
+
+% \vs{We need to say that the focus of this paper is the NLP question
+%  of whether such online prediction and suggestion is even possible,
+%  not the therapeutic aspects.}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

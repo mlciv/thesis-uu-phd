@@ -1,0 +1,110 @@
+\section{Supplementary Training~(Q2)}
+\label{sec:sgd:sup-training}
+
+\begin{table}[!t]
+\begin{center}{\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{c|ccc|ccc|ccc|ccc|ccc|ccc}
+  \toprule
+  \hline
+                       & \multicolumn{12}{c|}{ \sgdst } & \multicolumn{6}{c}{ \multiwoz }                                                                                                                                                                                                                      \\ \cline{2-19}
+                       & \multicolumn{3}{c|}{ intent }  & \multicolumn{3}{c|}{ req } & \multicolumn{3}{c|}{ cat } & \multicolumn{3}{c|}{ noncat } & \multicolumn{3}{c|}{ cat } & \multicolumn{3}{c}{ noncat }                                                                                                  \\ \cline{2-19}
+                       & all                            & seen                       & unseen                     & all                           & seen                       & unseen & all   & seen  & unseen & all        & seen  & unseen     & all   & seen  & unseen & all        & seen  & unseen      \\ \hline
+  $\Delta_{\textbf{SNLI}}$  & {\bf +0.51}                    & +0.02                      & {\bf +0.68}                & -0.19                         & +0.38                      & -0.38  & -1.63 & -2.87 & -1.23  & -4.7       & -0.1  & -6.25      & +2.05 & +0.6  & --0.7   & {\bf +3.64} & +1.05 & {\bf +4.84} \\ \hline
+  $\Delta_{\textbf{SQuAD}}$ & -1.81                          & -0.17                      & -1.32                      & -0.25                         & -0.01                      & -0.33  & -2.87 & -3.02 & -5.17  & {\bf +1.99} & -1.79 & {\bf +3.25} & +0.04 & -0.71 & +0.41  & {\bf +1.93} & -2.21 & {\bf +4.27} \\ \hline
+  \bottomrule
+\end{tabular}
+}
+\end{center}
+\caption{\label{tbl:sup-training} Relative performance improvement of different supplementary training on \sgdst~and \multiwoz~dataset}
+\end{table}
+
+\begin{table}[!t]
+\begin{center}{\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{c|cc|cc|cc|cc}
+  \toprule
+  \hline
+                       & \multicolumn{8}{c}{ \sgdst } \\ \cline{2-9}
+                       & \multicolumn{2}{c|}{ Intent }  & \multicolumn{2}{c|}{ Req } & \multicolumn{2}{c|}{ Cat } & \multicolumn{2}{c}{ NonCat } \\ \cline{2-9}
+                       & seen                       & unseen                     & seen                       & unseen & seen  & unseen & seen  & unseen     \\ \hline
+  $\Delta_{\textbf{SNLI}}$  & +0.02                      & {\bf +0.68}                & +0.38                      & -0.38  & -2.87 & -1.23  & -0.1  & -6.25      \\ \hline
+  $\Delta_{\textbf{SQuAD}}$ & -0.17                      & -1.32                      & -0.01                      & -0.33  & -3.02 & -5.17  & -1.79 & {\bf +3.25} \\ \hline
+  \bottomrule
+\end{tabular}
+}
+\end{center}
+\caption{\label{tbl:sup-training2} Relative performance improvement of different supplementary training on \sgdst~and \multiwoz~dataset}
+\end{table}
+
+
+
+Besides the pretrain-fintune framework used in \S\ref{sec:models},
+\citet{phang2018sentence} propose to add a supplementary training
+phase on an intermediate task after the pretraining, but before
+finetuning on target task. It shows significant improvement on the
+target tasks. Moreover, large amount pretrained and finetuned
+transformer-based models are publicly accessible, and well-organized in model hubs for
+sharing, training and testing\footnote{e.g.,
+  Huggingface(\url{https://huggingface.co/models}) and
+  ParlAL(\url{https://parl.ai/docs/zoo.html}), etc.}.  Given the new
+task of schema-guided dialog state tracking, in this section, we study
+our four subtasks with different intermediate tasks for supplementary
+training.
+
+\subsection{Intermediate Tasks}
+\label{ssec:intermediate-tasks}
+As described in \S~\ref{ssec:models-overview}, all our 4
+subtasks take a pair of dialog and schema description as input, and
+predict with the summerized sentence-pair~\CLS~representation. While
+\NSL~also requires span-based detection such as question
+answering. Hence, they share the similar problem structure with the
+following sentence-pair encoding tasks.
+
+\Paragraph{Natural Language Inference} Given a hypothesis/premise
+sentence pair, natural language inference is a task to determine
+whether a hypothesis is entailed, contradicted or neutral given
+that premise.
+\Paragraph{Question Answering} Given a passage/question pairs, the
+task is to extract the span-based answer in the passage.
+
+Hence, when finetuning BERT on our subtaks, instead of directly using
+the originally pretrained BERT, we use the BERT
+finetuned on the above two tasks for further finetuning.  Due to better
+peformance of \CE in \S\ref{sec:models}, we directly use the finetuned
+\CE~version of BERT models on SNLI and SQuAD2.0 dataset from
+Huggingface model hub. We add extra speaker tokens [user:] and
+[system:] into the vocabulary for encoding the multi-turn dialog
+histories.
+%
+%\Paragraph{Response Selection} Given a dialog history and a set of
+%candidate response, the task is to select the best response follow the
+%dialog hisotry. We didn't find any public BERT Cross-encoder model
+%finetuned on this task. Hence, we finetuned a cross-encoder model on
+%ConvAI2 dataset with code provided in ParlAI.
+
+\subsection{Results on Supplementary Training}
+\label{ssec:sgd:results-secondary}
+Table \ref{tbl:sup-training} shows the performances gain
+when finetuning 4 subtasks based on models with the above
+SNLI and SQuAD2.0 supplementary training.
+
+We mainly find that SNLI helps on \IC~task, SQuAD2 mainly helps on
+\NSL~task, while neither of them helps much on \CSL~task. Recently,
+\citet{namazifar2020language} also found that when modeling dialog
+understanding as question answering task, it can benefit from a
+supplementary training on SQuAD2 dataset, especially on few-shot
+scenarios, which is a similar findings as our \NSL~task. Result
+difference on \RSI~task is minor, because it is a relatively easy
+task, adding any supplementary training did n't help much. Moreover,
+for \CSL~task, the sequence 2 of the input pair is the slot
+description with a categorical slot value, thus the meaning overlapping between the
+full dialog history and the slot/value is much smaller than SNLI
+tasks. On the other side, \CLS~token in SQuAD BERT is finetuned for
+null predictions via start and end token classifers, which is
+different from the the single CLS classifer in \CSL~task.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../thesis-main.ltx"
+%%% End:

@@ -1,0 +1,29 @@
+
+\paragraph{Model Setup}
+
+We use 300-dimensional Glove embeddings pre-trained on 840B tokens
+from Common Crawl~\cite{pennington2014glove}. We do not update the
+embedding during training. Tokens not covered by Glove are using a
+randomly initialized UNK embedding. We also use character-level deep
+contextualized embedding ELMo 5.5B model by concatenating the
+corresponding ELMo word encoding after the word embedding
+vector. For speaker information, we randomly initialize them with 8
+dimensional vectors and update them during training. We used a
+dropout rate of 0.3 for the embedding layers.
+
+
+We trained all models using Adam~\cite{kingma2014adam} with learning
+rate chosen by cross validation between $[1e^{-4}, 5*1e^{-4}]$,
+gradient norms clipping from at $[1.0, 5.0]$, and minibatch sizes of
+32 or 64. We use the same hidden size for both utterance encoder,
+dialogue encoder and other attention memory hidden size; it has been
+selected from $\{64, 128, 256, 512\}$. We set a smaller dropout 0.2
+for the final two fully connected layers. All the models are trained
+for 100 epochs with early-stoping based on macro $\text{F}_{1}$ over development
+results. 
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

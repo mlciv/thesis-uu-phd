@@ -1,0 +1,52 @@
+
+\subsection{Predicting and Training}
+\label{ssec:inference_and_training}
+
+\Paragraph{Predicting} From up to the bottom, every component will
+produce some of useful representation for inferences in our tasks.
+The dialogue encoding vector $\bm{H}_{n}$, as the final of the
+unidirectional GRU, it is also the contextual utterance encoding
+$\bm{h}_{u_{n}}$ of $u_{n}$. Hence $H_{n}$ can be directly used as a
+representaion of $u_{n}$ for classification in annotating tasks, also
+can be used as a represention of whole dialogue for forecasting
+task. Hence in HGRU setting, we always use $\bm{H}_{n}$ as the base
+option as input for inference.
+
+However, for CON skeleton, the final state $C_{n}$ doest not exactly
+represent the segement $u_{n}$ in the whole concatnated
+dalogue. Hence, we concatenate the hidden state of the start
+position~(0) and end position~(T) of $u_{n}$ into
+$\bm{v}^{seg}_{n}=[h_{u^{0}_{n}};h_{u^{T}_{n}}]$, which is contextual
+utterance encoding in CON mode.
+
+Beside the above $\bm{H}_{n}$ and $\bm{C}_{n}$ contextual utterance
+encoding in dialogue level, our components also produced the original
+utterance encoding $\bm{v}_{n}$ from utterance encoder.  Whats'more,
+in \textbf{CON} mode, we can use history-aware utterance encoding $\bm{v}^{wordatt}_{n}$
+While in HGRU, it produced a self-attentive utterance encoding. We
+denote it as $\bm{v}^{selfatt}_{n}$.
+
+We summarize the option input encodings for inference in Table \ref{tbl:inference}. There are two ways to scoring withthese inputs, one is to score the concatenated those vectors together, denoted as $\text{concat}(A, B)=\text{MLP}([A;B)$; The other one is scoring each of them first and then add the scores up as the final scores, such as $\text{add}(A,B)=\text{MLP}(A)+\text{MLP}(B)$.
+
+
+\begin{table}[t]
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcc}
+\toprule
+Skeleton & Annotating                                                & Forecasting  \\ \hline \hline
+CON      & $\bm{v}^{seg}_{n}$,$\bm{v}^{{wordatt}_{n}}$, $\bm{v}_{n}$ & $\bm{C}_{n}$ \\ \hline
+HGRU     & $\bm{H}_{n}$,$\bm{v}^{selfatt}_{n}$,$\bm{v}_{n}$          & $\bm{H}_{n}$ \\ \bottomrule
+\end{tabular}
+\end{center}
+\caption{\label{tbl:inference_options} Input options for annotating and forecasting tasks based on CON and HGRU skeletons.}
+
+\end{table}
+
+% \vs{What is $t$ here? Do we have one $\alpha$ per label or example?. What
+% about $\gamma$?}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

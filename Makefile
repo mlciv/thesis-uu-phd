@@ -142,6 +142,7 @@ TEXFILES        = abstract.tex			\
 		  chap4.tex			\
 		  chap5.tex			\
 		  chap6.tex			\
+		  chap7.tex			\
 		  appa.tex			\
 		  appb.tex			\
 		  appc.tex			\
@@ -292,7 +293,8 @@ $(THESIS).dvi:	Makefile $(THESIS).bbl $(EPSFILES) $(FIGFILES) $(STYFILES) $(TEXF
 ### unnecessarily, so we suppress that dependency.
 ### $(THESIS).bbl:	$(THESIS).bib $(THESIS).aux
 
-$(THESIS).bbl:	$(THESIS).bib
+$(THESIS).bbl:	$(THESIS).bib proposal.bib sp.bib psyc.bib top.bib semi-top.bib mrp.bib sdp.bib ucca.bib amr.bib ltg.bib sgd.bib scalable-dialog.bib
+### $(THESIS).bbl:	$(THESIS).bib
 	-$(MAKE) $(THESIS).aux
 	-$(BIBTEX) $(THESIS)
 

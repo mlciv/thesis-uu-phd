@@ -1,0 +1,90 @@
+\contentsline {chapter}{\uppercase {Abstract}}{iii}{Doc-Start}
+\contentsline {chapter}{LIST OF FIGURES}{vii}{Doc-Start}
+\contentsline {chapter}{LIST OF TABLES}{viii}{Doc-Start}
+\contentsline {chapter}{\uppercase {Notation and Symbols}}{ix}{Doc-Start}
+\unhbox \voidb@x \\[-1.2ex] \kern -1.5em\contentsline {}{\textbf {CHAPTERS}}{}
+\contentsline {chapter}{\numberline {1.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {Introduction}\global \uuthesis@needtocspacetrue }{1}{chapter.1}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsection}{\numberline {1.1.1}Compositionality in Natural Language}{2}{subsection.1.1.1}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsection}{\numberline {1.1.2}Compositionality in Symbolic Representation}{3}{subsection.1.1.2}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsection}{\numberline {1.1.3}Alignments between Natural Language and Symbolic Representation}{4}{subsection.1.1.3}
+\contentsline {section}{\numberline {1.2}Factorization-Oriented Representation Learning}{4}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Modeling Lexicon/Pharsal/Senence-Anchoring}{4}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Modeling Symbolic Concepts via Natural Language Description}{4}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}Contribuition}{4}{section.1.3}
+\contentsline {section}{\numberline {1.4}Roadmap}{5}{section.1.4}
+\contentsline {chapter}{\numberline {2.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {Structures in Natural Language}\global \uuthesis@needtocspacetrue }{6}{chapter.2}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {section}{\numberline {2.1}Symbolic Representations for Natural Language}{6}{section.2.1}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsection}{\numberline {2.1.1}Broad-coverage Semantic Representation}{6}{subsection.2.1.1}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsubsection}{\numberline {2.1.1.1}Bi-lexical Semantic Dependency Parsing}{6}{subsubsection.2.1.1.1}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsubsection}{\numberline {2.1.1.2}Abstract Meaning Representation}{6}{subsubsection.2.1.1.2}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsubsection}{\numberline {2.1.1.3}Universal Conceptual Cognitive Anotation}{6}{subsubsection.2.1.1.3}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsection}{\numberline {2.1.2}Application-specific Representation: Dialog}{6}{subsection.2.1.2}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsubsection}{\numberline {2.1.2.1}Dialog Act}{7}{subsubsection.2.1.2.1}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsubsection}{\numberline {2.1.2.2}Dialog State Tracking}{7}{subsubsection.2.1.2.2}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsubsection}{\numberline {2.1.2.3}Conversational Semantic Representation}{7}{subsubsection.2.1.2.3}
+\contentsline {section}{\numberline {2.2}Chapter Summary}{7}{section.2.2}
+\contentsline {chapter}{\numberline {3.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {Unified Graph-based Parsing for Lexical-Anchoring}\global \uuthesis@needtocspacetrue }{8}{chapter.3}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {section}{\numberline {3.1}Anchor Analysis on DM, PSD and AMR}{9}{section.3.1}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsection}{\numberline {3.1.1}Explicit Alignments: DM, PSD}{9}{subsection.3.1.1}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {subsection}{\numberline {3.1.2}Implicit Alignments: AMR}{9}{subsection.3.1.2}
+\contentsline {section}{\numberline {3.2}Two-Stage Graph-based Parsing}{9}{section.3.2}
+\contentsline {section}{\numberline {3.3}Latent Alignment Representation}{9}{section.3.3}
+\contentsline {section}{\numberline {3.4}Evaluation}{9}{section.3.4}
+\contentsline {section}{\numberline {3.5}Summary and conclusions}{9}{section.3.5}
+\contentsline {chapter}{\numberline {4.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {Predicting Symbolic Representation with Phrasal-Anchoring}\global \uuthesis@needtocspacetrue }{10}{chapter.4}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {section}{\numberline {4.1}Analysis on Phrasal Anchoring in UCCA and TOP}{10}{section.4.1}
+\contentsline {section}{\numberline {4.2}Minimal Span-based CKY Parsing for Phrasal Anchoring}{10}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Tree Factorization}{10}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Span-based Representation}{10}{subsection.4.2.2}
+\contentsline {section}{\numberline {4.3}Preprocessing and Post-Processing}{10}{section.4.3}
+\contentsline {section}{\numberline {4.4}Results on UCCA}{10}{section.4.4}
+\contentsline {section}{\numberline {4.5}Results on TOP}{10}{section.4.5}
+\contentsline {section}{\numberline {4.6}Chapter Summary}{10}{section.4.6}
+\contentsline {chapter}{\numberline {5.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {Modeling on Sentence-Anchoring for Dialog in Therapy}\global \uuthesis@needtocspacetrue }{11}{chapter.5}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {section}{\numberline {5.1}Observing Dialogue in Therapy: Background and Motivation}{11}{section.5.1}
+\contentsline {section}{\numberline {5.2}Task Definitions}{12}{section.5.2}
+\contentsline {section}{\numberline {5.3}Models for MISC Prediction}{14}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Dialog Encoding}{14}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Word-level Attention}{14}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Utterance-level Attention}{14}{subsection.5.3.3}
+\contentsline {section}{\numberline {5.4}Evalution on Categorization and Forcasting}{14}{section.5.4}
+\contentsline {section}{\numberline {5.5}Analysis and Abalations}{14}{section.5.5}
+\contentsline {section}{\numberline {5.6}Chapter Summary}{14}{section.5.6}
+\contentsline {chapter}{\numberline {6.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {Representing Intent/Slot Concept with Natural Language Description}\global \uuthesis@needtocspacetrue }{15}{chapter.6}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {section}{\numberline {6.1}Schema-Guided Dialog State Tracking}{15}{section.6.1}
+\contentsline {section}{\numberline {6.2}Q1: Dialog and Schema Encoding}{15}{section.6.2}
+\contentsline {section}{\numberline {6.3}Q2: Supplementary Training on Schema-guided Dialog}{15}{section.6.3}
+\contentsline {section}{\numberline {6.4}Q3: Homogenuous and Heterogenous Evalution on Various Description Styles}{15}{section.6.4}
+\contentsline {section}{\numberline {6.5}Prompts and Other Methods}{15}{section.6.5}
+\contentsline {section}{\numberline {6.6}Chapter Summary}{15}{section.6.6}
+\contentsline {chapter}{\numberline {7.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {Conclusions and Future Work}\global \uuthesis@needtocspacetrue }{16}{chapter.7}
+\ifuuthesis@needtocspace \vspace {\uuthesis@chaptersectionspace } \fi \global \uuthesis@needtocspacefalse 
+\contentsline {section}{\numberline {7.1}Claims and Research Contribution Revisited}{16}{section.7.1}
+\contentsline {section}{\numberline {7.2}Future Work Direction}{16}{section.7.2}
+\contentsline {section}{\numberline {7.3}Summary}{16}{section.7.3}
+\unhbox \voidb@x \\[-1.2ex] \kern -1.5em\contentsline {}{\textbf {APPENDICES}}{}
+\contentsline {chapter}{\numberline {A.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {The First}\global \uuthesis@needtocspacetrue }{17}{appendix.A}
+\contentsline {chapter}{\numberline {B.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {The Second}\global \uuthesis@needtocspacetrue }{18}{appendix.B}
+\contentsline {chapter}{\numberline {C.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {The Third}\global \uuthesis@needtocspacetrue }{19}{appendix.C}
+\contentsline {chapter}{\numberline {D.}\hyphenpenalty =10000\exhyphenpenalty =10000\relax \linepenalty =0 \uppercase {*}\global \uuthesis@needtocspacetrue }{20}{appendix.D}
+\contentsline {chapter}{{\MakeUppercase {Binomial Nomenclature Index}}}{25}{appendix.D}

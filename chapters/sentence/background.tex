@@ -1,0 +1,54 @@
+\section{Background and Motivation} \label{sec:background}
+Motivational Interviewing (MI) is a style of psychotherapy that
+seeks to resolve a client's ambivalence towards their problems,
+thereby motivating behavior change. Several meta-analyses and
+empirical studies have shown the high efficacy and success of MI in
+psychotherapy~\cite{burke2004emerging, martins2009review,
+  lundahl2010meta}. However, MI skills take practice to master and
+require ongoing coaching and feedback to
+sustain~\cite{Schwalbe2014}.  Given the emphasis on using specific
+types of linguistic behaviors in MI (\eg,
+open questions and reflections), fine-grained behavioral coding
+plays an important role in MI theory and training.
+
+Motivational Interviewing Skill Codes (MISC, table~\ref{tbl:misc})
+is a framework for coding MI sessions. It facilitates evaluating
+therapy sessions via utterance-level labels that are akin to
+dialogue acts~\cite{stolcke2000dialogue,jurafsky2018speech}, and are designed to examine therapist and client
+behavior in a therapy session.\footnote{The original MISC description of
+  \citet{miller2003manual} included 28 labels (9 client, 19
+  therapist). Due to data scarcity and label confusion, various
+  strategies are proposed to merge the labels into a coarser set.
+  We adopt the grouping proposed by~\citet{xiao2016behavioral}; the
+  appendix gives more details.}
+% Like dialogue acts in general
+% goal-oriented dialogue~\cite{jurafsky2018speech}, therapist codes
+% characterize counselor and client behavior in a.
+% Additionally, some therapist codes also mark the adherence to or
+% against the spirit of MI. Client behavior
+% codes are designed to characterize behavior change rather than the
+% function of an utterance in the dialogue.
+
+As Table~\ref{tbl:misc} shows,
+client labels mark utterances as discussing changing or sustaining
+problematic behavior (\CHANGE and \SUSTAIN, respectively) or being
+neutral (\FN). Therapist utterances are grouped into eight labels,
+some of which (\RES, \REC) correlate with improved outcomes, while
+MI non-adherent (\MIN) utterances are to be avoided.  MISC labeling
+was originally done by trained annotators performing multiple passes
+over a session recording or a transcript.  Recent NLP work speeds up
+this process by automatically annotating a completed MI
+session~\cite[\eg,][]{tanana2016comparison, xiao2016behavioral,
+  perez2017predicting}.
+
+\emph{Instead of providing feedback to a therapist after the
+  completion of a session, can a dialogue observer provide online
+  feedback?} While past work has shown the helpfulness of post hoc
+evaluations of a session, prompt feedback would be more helpful,
+especially for MI non-adherent responses.  Such feedback opens up
+the possibility of the dialogue observer influencing the therapy
+session. It could serve as an assistant that offers suggestions to a
+therapist (novice or veteran) about how to respond to a client
+utterance. Moreover, it could help alert the therapist to
+potentially important cues from the client (specifically, \CHANGE or
+\SUSTAIN).

@@ -1,0 +1,82 @@
+\newcommand{\jc}[1]{\namedComment{mdblue}{J}{C}{#1}}
+\newcommand{\vs}[1]{\namedComment{orange}{V}{S}{#1}}
+
+% special macros
+\definecolor{mdgreen}{rgb}{0.05,0.6,0.05}
+\newcommand{\lbl}[1]{\textsc{#1}}
+\newcommand{\kw}[1]{\emph{#1}}
+\newcommand{\misc}[1]{\textcolor{mdgreen}{\lbl{#1}}}
+
+\newcommand{\bv}{\bm{v}}
+\newcommand{\ba}{\bm{a}}
+\newcommand{\bq}{\bm{q}}
+\newcommand{\bk}{\bm{k}}
+\newcommand{\by}{\bm{y}}
+
+\newcommand{\FN}{\misc{Fn}\xspace}
+\newcommand{\CHANGE}{\misc{Ct}\xspace}
+\newcommand{\SUSTAIN}{\misc{St}\xspace}
+\newcommand{\FA}{\misc{Fa}\xspace}
+\newcommand{\GI}{\misc{Gi}\xspace}
+\newcommand{\RES}{\misc{Res}\xspace}
+\newcommand{\REC}{\misc{Rec}\xspace}
+\newcommand{\QUC}{\misc{Quc}\xspace}
+\newcommand{\QUO}{\misc{Quo}\xspace}
+\newcommand{\MIA}{\misc{Mia}\xspace}
+\newcommand{\MIN}{\misc{Min}\xspace}
+
+\newcommand{\module}[1]{\textcolor{dkgray}{\lbl{#1}}}
+\newcommand{\HGRU}{\module{HGRU}\xspace}
+\newcommand{\CON}{\module{CONCAT}\xspace}
+\newcommand{\BiDAFH}{\module{BiDAF$^H$}\xspace}
+\newcommand{\GMGRUH}{\module{GMGRU$^H$}\xspace}
+\newcommand{\self}{\module{self$_{42}$}\xspace}
+\newcommand{\anchor}{\module{anchor$_{42}$}\xspace}
+
+\DeclarePairedDelimiterX{\infdivx}[2]{(}{)}{%
+  #1\;\delimsize|\delimsize|\;#2%
+}
+
+\newcommand{\kld}[2]{\ensuremath{D_{KL}\infdivx{#1}{#2}}\xspace}
+
+\newcommand{\mrp}{\textsc{mrp-2019}\xspace}
+\newcommand{\lapa}{\textsc{lapa}\xspace}
+
+\newcommand{\Paragraph}[1]{\vspace{5pt}\noindent\textbf{#1.}}
+\newcommand{\QParagraph}[1]{\vspace{5pt}\noindent\textbf{#1?}}
+
+% special macros
+\newcommand{\published}[1]{\textcolor{mdgreen}{\textbf{#1}}}
+\newcommand{\submitted}[1]{\textcolor{blue}{\textbf{#1}}}
+\newcommand{\desc}[1]{\textcolor{mdgreen}{\lbl{#1}}}
+\newcommand{\ORIGIN}{\desc{Orig\xspace}}
+\newcommand{\ID}{\desc{Identifer\xspace}}
+\newcommand{\NAMEONLY}{\desc{NameOnly\xspace}}
+\newcommand{\NAMEPARA}{\desc{Name-Para\xspace}}
+\newcommand{\QANAMEONLY}{\desc{Q-Name\xspace}}
+\newcommand{\QARICH}{\desc{Q-Orig\xspace}}
+\newcommand{\PARAPHRASE}{\desc{Orig-Para\xspace}}
+\newcommand{\CONSTRAINT}{\desc{Constraint\xspace}}
+\newcommand{\EXTENSIONAL}{\desc{Extensional\xspace}}
+
+\newcommand{\encoder}[1]{{\it #1}}
+\newcommand{\DE}{\encoder{Dual-Encoder}\xspace}
+\newcommand{\CE}{\encoder{Cross-Encoder}\xspace}
+\newcommand{\FE}{\encoder{Fusion-Encoder}\xspace}
+
+\newcommand{\subtask}[1]{\textcolor{black}{\lbl{#1}}}
+\newcommand{\IC}{\subtask{Intent}\xspace}
+\newcommand{\RSI}{\subtask{Req}\xspace}
+\newcommand{\CSL}{\subtask{Cat}\xspace}
+\newcommand{\NSL}{\subtask{NonCat}\xspace}
+
+\newcommand{\CLS}{{\bf CLS}\xspace}
+\newcommand{\TOK}{{\bf TOK}\xspace}
+
+\newcommand{\sgdst}{\textsc{SG-dst}\xspace}
+\newcommand{\multiwoz}{\textsc{MultiWOZ 2.2}\xspace}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "thesis-main.ltx"
+%%% End:

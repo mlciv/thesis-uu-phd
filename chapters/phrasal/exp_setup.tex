@@ -1,0 +1,32 @@
+\subsection{Model Setup}
+\label{ssec:exp_setup}
+
+For lexical-anchoring model setup, our network mainly consists of node
+and edge prediction model. For AMR, DM, and PSD, they all use one
+layer Bi-directional LSTM for input sentence encoder, and two layers
+Bi-directional LSTM for head or dependent node encoder in the
+bi-affine classifier. For every sentence encoder, it takes a sequence
+of word embedding as input (We use 300 dimension Glove here), and then
+their output will pass a softmax layer to predicting output
+distribution. For the latent AMR model, to model the posterior
+alignment, we use another Bi-LSTM for node sequence encoding. For
+phrasal-anchoring model setup, we follow the original model set up in
+\citet{kitaev2018constituency}, and we use 8-layers 8-headers
+transformer with position encoding to encode the input sentence.
+
+For all sentence encoders, we also use the character-level CNN model
+as character-level embedding without any pre-trained deep
+contextualized embedding model. Equipping our model with Bert or
+multi-task learning is promising to get further improvement. We leave
+this as our future work.
+
+Our models are trained with Adam~\cite{kingma2014adam}, using a batch
+size 64 for a graph-based model, and 250 for CKY-based
+model. Hyper-parameters were tuned on the development set, based on
+labeled F1 between two graphs. We exploit early-stopping to avoid
+over-fitting.
+
+%%% Local Variables:
+%%% mode: xlatex
+%%% TeX-master: "main"
+%%% End:

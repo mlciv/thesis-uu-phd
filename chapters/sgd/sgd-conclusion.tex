@@ -1,0 +1,36 @@
+\section{Conclusion}
+\label{sec:conclusion}
+In this paper, we studied three questions on schema-guided dialog
+state tracking: encoder architectures, impact of supplementary
+training, and effective schema description styles.  The main findings
+are as follows:
+
+By caching the token embedding instead of the single \textsc{cls}
+embedding, a simple partial-attention \FE can achieve much better
+performance than \DE, while still infers two times faster than \CE.
+We quantified the gain via supplementary training on two intermediate
+tasks.  By carefully choosing representative description styles
+according to recent works, we are the first of doing both
+homogeneous/heterogeneous evaluations for different description style
+in schema-guided dialog. The results show that simple name-based
+description performs well on \IC~and \RSI~tasks, while \NSL~tasks
+benefits from richer styles of descriptions.  All tasks suffer from
+inconsistencies in description style between training and test, though
+to varying degrees.
+
+Our study are mainly conducted on two datasets: \sgdst~and~\multiwoz,
+while the speed-accuracy balance of encoder architectures and the
+findings in supplementary training are expected to be
+dataset-agnostic, because they depend more on the nature of the
+subtasks than the datasets. Based on our proposed benchmarking
+descriptions suite, the homogeneous and heterogeneous evaluation has
+shed the light on the robustness of cross-style schema-guided dialog
+modeling, we believe our study will provide useful insights for future
+research.
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

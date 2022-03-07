@@ -336,14 +336,14 @@
               % \addcontentsline{toc}{chapter}{\makebox[0.95\textwidth][l]{\textbf{APPENDICES}}}%
               % NB: Magic constant -1.5em comes from book.cls:619 (definition of \l@chapter)
 	      % and -1.2ex upward adjustment comes from on-screen experimentation
-              \addtocontents{toc}{\leavevmode \\[-1.2ex] \kern -1.5em\protect \contentsline{}{\textbf{APPENDICES}}{}}%
+             \addtocontents{toc}{\leavevmode \\[-1.2ex] \kern -1.5em\protect \contentsline{}{\textbf{APPENDICES}}{}}{}%
             \fi
             %
             \ifx \@tmp \@optionONE
               % \addcontentsline{toc}{chapter}{\makebox[0.95\textwidth][l]{\textbf{CHAPTERS}}}%
               % NB: Magic constant -1.5em comes from book.cls:619 (definition of \l@chapter)
 	      % and -1.2ex upward adjustment comes from on-screen experimentation
-              \addtocontents{toc}{\leavevmode \\[-1.2ex] \kern -1.5em\protect \contentsline{}{\textbf{CHAPTERS}}{}}%
+             \addtocontents{toc}{\leavevmode \\[-1.2ex] \kern -1.5em\protect \contentsline{}{\textbf{CHAPTERS}}{}}{}%
             \fi
             %
             \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter.}\thesisTOC{#1}\protect \global \protect \uuthesis@needtocspacetrue}%

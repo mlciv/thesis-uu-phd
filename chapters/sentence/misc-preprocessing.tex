@@ -1,0 +1,62 @@
+
+\subsection{Preprocessing and Model Setup}
+% The standard Motivational Interview Skill Codes (MISC)
+% ~\cite{miller2003manual, houck2012motivational} contains 28 codes
+% including 9 client codes and 19 therapist codes.  But some of them are
+% too rare to build reasonable models. To address this issue, in
+% previous works, several merging strategies have been proposed to group
+% them into new categories \cite{can2015dialog, tanana2016comparison,
+%   xiao2016behavioral}. In this paper, we follow the grouping strategy
+% from \citet{xiao2016behavioral}. As shown in Table \ref{tbl:misc}, our
+% dataset includes 3 client codes and 8 therapist codes.
+
+%As shown in Table~\ref{tbl:misc}, for
+%client codes, based on whether they are towards or away from to Target
+%Behavior Change~(TBC), they are categorized into three codes: POS, NEG,
+%and FN. Respectively, they represent the valence of changing,
+%sustaining or following or neutral to the addictive behaviors
+%~\cite{atkins2014scaling}. For therapist codes, we retain six original
+%MISC code~(FA, GI, RES, REC, QUC, QUO). For other 13 rare codes,
+%according to whether they represent MI adherent and MI non-adherent in
+%the original MISC code annotation guideline, we cluster 8 of them into
+%MIA and the other five into MIN. Table \ref{tbl:misc} shows the brief
+%explanation and examples for final label set we used in our dataset
+%and their distribution in our training corpus.
+%% \vs{Too complicated para. Split somehow}
+
+An MI session contains about 500 utterances on average. We use a
+sliding window of size $N=8$ utterances with padding for the initial
+ones. We assume that we always know the identity of the speaker for
+all utterances. Based on this, we split the sliding windows into a
+client and therapist windows to train separate models.
+%
+We tokenized and lower-cased utterances using
+spaCy~\cite{spacy2}. To embed words, we concatenated 300-dimensional
+Glove embeddings~\cite{pennington2014glove} with ELMo
+vectors~\cite{Peters:2018}. The appendix details 
+the model setup and hyperparameter choices.
+
+% To
+% simplify our model setting and simulate the realtime dialogue
+% setting, for every dialogue utternace, imagining it as the most
+% current utterance as dilogue goes on, then we only select its
+% preceding $N$ utterances with their speaker and label information as
+% our dialogue history(We use N= 8 for our main models, and use
+% $N \leq 16$ for ablation study). We add padding empty utterances
+% with special padding speaker and padding label ahead of the original
+% context utterances when there is not enough preceding utterances.
+
+% The speaker for every utterance is always given information, including
+% the goal utterances, which are the last utterance to be categorized
+% aid the future utterance to be forecasted\footnote{In real practise,
+%   we don't know the future speaker, instead we forecast with models
+%   for both client and therapist setting }. According to the speaker
+% label of the goal utterances, we further split our dataset into client
+% dataset and therapist dataset, and build seperate models for client
+% and therapist on each of them respectively, which leads to reduced
+% label confusion.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

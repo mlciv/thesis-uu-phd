@@ -1,0 +1,162 @@
+\subsection{Word-level Attention}
+\label{ssec:word_att}
+
+Certain words in the utterance history are important to categorize or
+forecast MISC labels. The identification of these words may depend on
+the utterances in the dialogue. For example, to identify that an
+utterance is a simple reflection (\RES) we may need to discover that
+the therapist is mirroring a recent client utterance; the example
+in table~\ref{tbl:misc} illustrates this. Word attention offers a
+natural mechanism for discovering such patterns.
+
+% Words are not equally important for our tasks. When classifying the
+% current utterance $u_{n}$ in categorizing task, words in $u_{n}$ are
+% usually more important than those in other utterances. For example,
+% polarity and behavior related words ``quit'' in $u_{4}$ in Table
+% ~\ref{tbl:example} are good indicators for \misc{NEG}, while most
+% words in the dialogue history may be helpless. On the other side, only
+% words in $u_{n}$ maybe not enough for identifying some codes. For
+% example, only if words in $u_{n}$ are overlapping with previous
+% utterances, then the label for $u_{n}$ is able about reflection~(e.g.,
+% RES, REC, and REF). Hence, it is unclear whether word-attention can
+% capture the above patterns.
+
+We can unify a broad collection of attention mechanisms in NLP under
+a single high level architecture~\cite{galassi2019attention}. We
+seek to define attention over the word encodings $\bv_{ij}$ in the
+history (called queries), guided by the word encodings in the anchor
+$\bv_{nk}$ (called keys). The output is a sequence of
+attention-weighted vectors, one for each word in the $i^{th}$
+utterance.  The $j^{th}$ output vector $\ba_j$ is computed as a
+weighted sum of the keys:
+\begin{equation}
+  \ba_{ij} = \sum_{k} \alpha^{k}_{j} \bv_{nk}
+\label{eq:att_sum}
+\end{equation}
+The weighting factor $\alpha^k_j$ is the attention weight between
+the $j^{th}$ query and the $k^{th}$ key, computed as
+\begin{equation}
+\label{eq:att_weight}
+\alpha^{k}_{j} = \frac{\exp\left(f_{m}(\bv_{nk}, \bv_{ij})\right)}{\sum_{j^{\prime}} \exp\left(f_{m}(\bv_{nk}, \bv_{ij^\prime})\right)}
+\end{equation}
+Here, $f_m$ is a match scoring function between the corresponding
+words, and different choices give us different attention mechanisms.
+
+Finally, a combining function $f_{c}$ combines the original word
+encoding $\bm{v}_{ij}$ and the above attention-weighted word vector
+$\bm{a}_{ij}$ into a new vector representation $\bm{z}_{ij}$ as the final
+representation of the query word encoding:
+\begin{equation}
+\bm{z}_{ij}= f_{c}(\bm{v}_{ij}, \bm{a}_{ij})
+\end{equation}
+
+The attention module, identified by the choice of the functions
+$f_m$ and $f_c$, converts word encodings in each utterance
+$\bv_{ij}$ into attended word encodings $\bm{z}_{ij}$. To use them
+in the \HGRU skeleton, we will encode them a second time using a
+BiGRU to produce attention-enhanced utterance vectors. For brevity,
+we will refer to these vectors as $\bv_i$ for the utterance
+$u_i$. If word attention is used, these attended vectors will be
+treated as word encodings.
+
+
+\begin{table}[t]
+\begin{center}
+  \setlength{\tabcolsep}{3pt}
+  {\small
+    \begin{tabular}{ll|l}
+      \toprule
+      Method                 & $f_{m} $                                    & $f_{c}$                                                             \\ \hline
+      BiDAF                  & \multirow{2}{*}{$\bm{v}_{nk} {\bm{v}_{ij}^{T}}$}             & $[\bm{v}_{ij};~\bm{a}_{ij};  $                                      \\
+                             &                                             & $~~\bm{v}_{ij} \odot \bm{a}_{ij};~\bm{v}_{ij}\odot \bm{a}^{\prime}]$ \\ \hline
+      \multirow{2}{*}{GMGRU} & $\bm{w}^{e} \tanh(\bm{W}^{k}\bm{v}_{nk}$    & \multirow{2}{*}{$[\bm{v}_{ij};\bm{a}_{ij}]$}                        \\
+                             & $~~+ \bm{W}^{q}[\bm{v}_{ij}; \bm{h}_{j-1}])$ &                                                                     \\ \hline
+    \end{tabular}
+  }
+\end{center}
+\caption{\label{tbl:word_att} Summary of word attention mechanisms.
+  %
+  We simplify BiDAF with multiplicative attention between  word
+  pairs for $f_{m}$, while GMGRU uses additive attention
+  influenced by the GRU hidden state.
+  %
+  The vector $\bm{w}_{e} \in\mathbb{R}^{d}$, and matrices
+  $\bm{W}^{k}\in \mathbb{R}^{d \times d}$ and
+  $\bm{W}^{q} \in\mathbb{R}^{2d \times 2d}$ are parameters of the BiGRU. The vector $\bm{h}_{j-1}$
+  is the hidden state from the BiGRU in GMGRU at previous position
+  $j-1$.  
+  %
+  For combination function, BiDAF concatenates bidirectional
+  attention information from both the key-aware query vector
+  $\ba_{ij}$ and a similarly defined query-aware key vector
+  $\ba^{\prime}$. GMGRU uses simple concatenation for $f_c$.}
+\end{table}
+
+To complete this discussion, we need to instantiate the two
+functions. We use two commonly used attention mechanisms:
+BiDAF~\cite{bidaf} and gated matchLSTM~\cite{wang2017gated}. For
+simplicity, we replace the sequence encoder in the latter with a
+BiGRU and refer to it as GMGRU. Table~\ref{tbl:word_att} shows the
+corresponding definitions of $f_{c}$ and $f_{m}$. We refer the
+reader to the original papers for further details. In subsequent
+sections, we will refer to the two attended versions of the \HGRU as
+\BiDAFH and \GMGRUH.
+
+% By specifying different sentence inputs as query and key, we summarize
+% the inputs and outputs when using word-level attention over our
+% skeleton CONCAT and HGRU dialogue encoding in Table
+% \ref{tbl:word_att_q_key}. Worth to mention, we always involve the
+% current utterance into dialogue history to weight with itself. Hence,
+% it simultaneously captures the word interaction within the current
+% utterance $n$ itself.
+
+% \begin{table}[t]
+% \begin{center}
+% \setlength{\tabcolsep}{3pt}
+% \begin{tabular}{lccc}
+% \toprule
+% Skeleton & Query   & Key  & Options\\ \hline 
+% CON & $u_{n}$ & $C_{n}$ &  $\text{BiDAF}^{C}$,$\text{GMGRU}^{C}$ \\ 
+% HGRU & $u_{i}$ & $u_{n}$ & $\text{BiDAF}^{H}$,$\text{GMGRU}^{H}
+% $  \\ \bottomrule
+% \end{tabular}
+% \end{center}
+% \caption{\label{tbl:word_att_q_key} For CON dialogue encoding, the
+%   output of word attention is history-aware $u_{n}$ for
+%   inference. While for HGRU, it output a query-aware history utterance
+%   for each $u_{i}$. Then all the query-aware utterances will be
+%   aggeragated by dialogue encoder to make a query-aware dialogue
+%   representation $H_{n}$ for inference, }
+
+% \end{table}
+
+%In this paper, instead of inventing better attention mechanism for our tasks,
+%we focused on to analysis how much word-level attention needed for our
+%different task settings, and how it helps in our tasks. Hence, we
+%choose to adopt a general gated extension from \cite{wang2017gated},
+%where an extra gate was added to the input of the word attention
+%aggregator to control how much attention in the vector $\bm{z}_{ij}$
+%will be used when aggregating.
+%
+%\begin{equation}
+%\bm{z}^{*}_{ij} = \text{sigmoid}(\bm{W}^{g}\bm{z}_{ij})\cdot\bm{z}_{ij}
+%\end{equation}
+%where $\bm{W}^{g} \in$
+
+% % Match-LSTM is ported from textual % %entailment task to capture word-level
+% attention between premise and %hypothesis.
+% %In our model, we treat the response $r$
+% as a premise and each %utterance in the
+% dialogue history as a hypothesis. %
+
+
+%\vs{I don't understand this paragraph at all. Please expand, with
+%  equations if necessary. It should be accessible to those who
+%  haven't read the match-LSTM paper.}
+
+%\vs{Yes, equations will help. I don't understand what this is.}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

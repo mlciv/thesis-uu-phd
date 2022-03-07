@@ -1,0 +1,66 @@
+\section{Deep Structured Prediction in NLP}
+\label{sec:deepsp}
+Due to the power of representation learning, deep learning is widely
+used to extract sophisticated representations for the inputs in
+various NLP tasks. In this proposal, instead of focusing on a single
+task, we systematically study the representation learning challenges
+for multiple sets of tasks based on different factorization
+strategies\S\ref{ssec:sp-anchors}. Besides the representation learning
+for sequential input text, we also study the representation of output
+structures. It is related to the main research problem for efficient
+deep structured inference~(for both training-time and test-time
+inference): designing continuous and differentiable relaxations for
+\kw{argmax} inference. Most works studied how to inject known
+hand-crafted constraints bewteen discrete variable assignments, e.g.,
+using differentiable fuzzy logic
+operators~\citet{li2019augmenting}. By relaxing the whole structured
+outputs into continuous vectors, structured prediction energy
+networks~\cite[SPEN,][]{belanger2016structured} define energy
+functions that can learn the arbitrary dependencies among parts of
+structured outputs. Following this, inference
+network~\cite{tu2018learning} was proposed to approximate the
+cost-augmented inference during training and then fine-tuning for
+test-time inference.
+
+In this proposal, we study the specific inductive biases based on the
+principle of compositionality, which can be used for \textbf{different
+  purposes more than the accuracy on a single task or a single
+  domain}. For example, with simple independent factorization, we
+study a universal alignment-based model to support
+\textit{cross-framework} meaning representation parsing. By defining
+two complementary dialogueue observers to sequentially predict the MISC
+code for both current and future utterance, our model emphasizes both
+\textit{accurate and real-time} assistance to a therapist. We propose
+to represent the output labels with natural language descriptions for
+\textit{zero-shot learning} on unseen labels~\S\ref{ssec:sgdst}. To
+support \textit{robust low-resource learning} on Seq2Graph model for
+generic graph parsing tasks, we propose to learn the composition by
+representing output structures via self-supervised Graph Convolutional
+Neural Networks.
+
+\subsection{Formulation of Structural Interdependence}
+
+\subsubsection{Graphic Model}
+
+\subsubsection{Declaritive Interdependence}
+
+\subsubsection{Learning Interdependence}
+
+\subsection{Neural Representation Learning}
+
+\subsection{Modeling Discrete Latent Variables}
+
+\subsection{Other Advances in Structured Prediction}
+\subsubsection{MAP Inference}
+Exact: Dynamic Programming: Viterbi, CKY, Max Spanning Arborescence, Exact Search, Integer Linear Programming
+Approximate: Sampling, Beam Search/Learning to Search, Linear Programming Relaxations
+
+\subsubsection{Marginal Inference}
+Forward-Backward/ Inside-outside/ Matrix tree
+CRF
+SparseMAP
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../thesis-main.ltx"
+%%% End:

@@ -1,0 +1,7 @@
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Phrasal-anchoring in EDS[wsj\#0209013], for the sentence \texttt {\char `\"A similar technique is almost impossible to apply to other crops, such as cotton, soybeans and rice.\char `\"}. Bold nodes are similar to the non-terminal nodes in UCCA, which are anchored multiple tokens, thus overlapping with the anchors of other nodes.\relax }}{9}{figure.caption.5}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Architecture of graph-based model and inference, for running exmaple [wsj\#0209013]\relax }}{10}{figure.caption.6}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces UCCA to Constituent Tree Transformation for [wsj\#0209013]\relax }}{21}{figure.caption.14}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Confusion matrix for categorizing client codes, normalized by row.\relax }}{36}{figure.caption.25}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Confusion matrix for categorizing therapist codes, normalized by row.\relax }}{37}{figure.caption.27}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces An example dialog from Restaurant\_1 service, along with its service/intent/slot descriptions and dialog state representation.\relax }}{41}{figure.caption.30}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Dual-Encoder, Cross-Encoder and Fusion Encoder, shaded block will be cached during training\relax }}{46}{figure.caption.32}

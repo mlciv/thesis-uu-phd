@@ -86,6 +86,49 @@
 \usetikzlibrary {decorations.markings}
 \usepackage {varioref}
 
+%%% extra packages not included in the template
+\usepackage {latexsym,amsthm,mathtools}
+\usepackage {listings}
+\usepackage {cases}
+\usepackage {booktabs}
+\usepackage {algorithm}
+\usepackage {algorithmic}
+\usepackage {subfig}
+\usepackage {paralist} %%% for inparaenum, order before enumitem
+\usepackage {enumitem}
+\usepackage {multicol}
+\usepackage {xspace}
+\usepackage {relsize}
+\usepackage {url}
+
+% (inline references)
+\usepackage {natbib}
+\newcommand{\newblock}{}
+\usepackage{tabularx}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+
+
+\usepackage {mlsymbols}
+\graphicspath{ {images/} }
+\newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{#1}}}}}}
+
+%% hyperref is only ok when using uuthesis-2021-hyper
+%% https://tex.stackexchange.com/questions/115008/how-do-i-add-section-subsection-numbers-to-pdf-bookmarks
+\usepackage[colorlinks=false, hidelinks,bookmarksnumbered]{hyperref}
+
+%% adding upper case section for autoref
+\renewcommand\sectionautorefname{Section}
+\renewcommand\subsectionautorefname{Section}
+\renewcommand\subsubsectionautorefname{Section}
+%\hypersetup{
+%    colorlinks=true,
+%    citecolor=.,
+%    linkcolor=.,
+%    urlcolor=blue
+%}
+
 %%% ====================================================================
 %%% The various uuthesis-*.sty packages must come AFTER all other
 %%% system-provided packages, so that they can correctly override
@@ -95,7 +138,8 @@
 %%% change: see http://www.math.utah.edu/pub/uuthesis/ for the most
 %%% current version.)
 
-\usepackage {uuthesis-2016-h}  % MANDATORY package
+%\usepackage {uuthesis-2016-h}  % MANDATORY package
+\usepackage {uuthesis-2021-hyper}  % MANDATORY package
 
 %%% Use one or the other of these:
 % \usepackage {color}
@@ -133,7 +177,6 @@
 %%% Support for a subject index:
 
 \usepackage {uuthesis-index}
-
 %%% ====================================================================
 %%% Support for running page headers
 
@@ -143,7 +186,7 @@
 %%% Support for chapter bibliographies (must come AFTER
 %%% uuthesis-pageheaders, if that package is loaded)
 
-\usepackage {uuthesis-chapterbib}
+%%% \usepackage {uuthesis-chapterbib}
 
 %%% ====================================================================
 %%% This single user-specific file is where all personal customizations
@@ -153,11 +196,13 @@
 
 \usepackage {mythesis}
 
+%\input{math_commands}
+\input{common}
 %%% ====================================================================
 %%% The student-specific front matter fields are defined here:
 
-\author                 {Jane Doe}
-\title                  {INTEGRAL ESTIMATION IN QUANTUM PHYSICS}
+\author                 {Jie Cao}
+\title                  {Factorization-oriented Representation Learning for Linguistic Structured Prediction}
 \thesistype             {dissertation}
 
 \dedication             {For my parents, Alice and Bob.}
@@ -167,21 +212,21 @@
 %%% However, multiline degrees are possible, and are done like this:
 \degree                 {Doctor of Philosophy \\
                          in \\
-                         Mathematical Physics}
+                         Computer Science}
 
 %%% College- and Department-level definitions:
-\approvaldepartment     {Mathematics}
-\department             {Department of Mathematics}
-\graduatedean           {Alice B. Toklas}
-\departmentchair        {Petrus Marcus Aurelius Featherstone-Hough}
+\approvaldepartment     {Computing}
+\department             {School of Computing}
+\graduatedean           {xx }
+\departmentchair        {xx }
 
 %%% The graduate student's committee members:
-\committeechair         {Cornelius L{\'a}nczos}
-\firstreader            {Hans Bethe}
-\secondreader           {Niels Bohr}
-\thirdreader            {Max Born}
-\fourthreader           {Paul A. M. Dirac}
-\chairtitle             {Professor}
+\committeechair         {Vivek Srikumar}
+\firstreader            {Ellen Riloff}
+\secondreader           {Qingyao Ai}
+\thirdreader            {Zac Imel}
+\fourthreader           {Yi Zhang}
+\chairtitle             {Associate Professor}
 
 %%% NB: It is rare, but possible, for there to be two chairs, For
 %%% example, one student had
@@ -193,27 +238,33 @@
 
 %%% Dates that must be adjusted for each academic term, and be permitted
 %%% according to the University of Utah Thesis Office:
-\submitdate             {May 2016}
-\copyrightyear          {2016}
+\submitdate             {Dec 2021}
+\copyrightyear          {2021}
 
 %%% Dates on which committee members approved the thesis
-\chairdateapproved      {17 Feb 2016}
-\firstdateapproved      {17 Feb 2016}
-\seconddateapproved     {17 Feb 2016}
-\thirddateapproved      {17 Feb 2016}
-\fourthdateapproved     {17 Feb 2016}
+\chairdateapproved      {xx 2021}
+\firstdateapproved      {xx 2021}
+\seconddateapproved     {xx 2021}
+\thirddateapproved      {xx 2021}
+\fourthdateapproved     {xx 2021}
 
 %%% ====================================================================
 %%% Typesetting begins here:
 
 \begin{document}
-
+%%% hyperref \MakeUppercaseUnsupportedInPdfStrings being an undefined command.
+%%% https://github.com/ho-tex/oberdiek/issues/58
+\makeatletter
+\let\MakeUppercaseUnsupportedInPdfStrings\@firstofone
+\let\MakeLowercaseUnsupportedInPdfStrings\@firstofone
+\makeatother
 %% Comment out items by inserting a percent % character
 \frontmatterformat
 \titlepage
 \copyrightpage
 \dissertationapproval
 \setcounter {page}     {2}             % UofU Thesis Office demands abstract on p. iii: start one lower
+
 \preface    {abstract} {Abstract}
 \dedicationpage
 \tableofcontents
@@ -237,26 +288,27 @@
 
 %%% Demonstrations of thesis typesetting features for the sample thesis.
 %%% Once you have seen the examples, you can comment out this line.
-\optionalfront {Typesetting Experiments} {\input{samples.tex}}
+%\optionalfront {Typesetting Experiments} {\input{samples.tex}}
 \maintext       % Start normal page numbering: parts and chapters follow.
 
 \pagestyle{plain} % TEMPORARY EXPERIMENT: override default page headers
 \pagestyle{headings} % TEMPORARY EXPERIMENT: override default page headers
 
-\include {chap1}
-\include {chap2}
-\include {chap3}
-\include {chap4}
-\include {chap5}     % NEW for sample-thesis-2
-\include {chap6}     % NEW for sample-thesis-3
+\include {chapters/chap1}
+\include {chapters/chap2}
+\include {chapters/chap3}
+\include {chapters/chap4}
+\include {chapters/chap5}     % NEW for sample-thesis-2
+\include {chapters/chap6}     % NEW for sample-thesis-3
+\include {chapters/chap7}     % summary
 
-% \numberofappendices = 1   % Set 0 for none, else number of appendices.
+% % \numberofappendices = 1   % Set 0 for none, else number of appendices.
 \numberofappendices = 3
 \appendix       % Chapters, sections are now appendix style A, A.1, A.2, B, C, D, ...
 
-\include {appa}
-\include {appb}
-\include {appc}
+\include {chapters/appendices/appa}
+\include {chapters/appendices/appb}
+\include {chapters/appendices/appc}
 
 %%% The choice of bibliography style is a major decision, jointly made
 %%% by you, your thesis advisor and the thesis editor. Common choices are
@@ -288,7 +340,8 @@
 %%% use, the style is defined in each chapter/appendix file that needs
 %%% a bibliography.  Thus, we suppress it here:
 
-%%% \bibliographystyle{siam}
+%%%\bibliographystyle{siam}
+\bibliographystyle{authordate1}
 
 %%% This can also specify a comma-separated list (without embedded
 %%% spaces) of *.bib files found by BibTeX in its BIBINPUTS search
@@ -302,7 +355,8 @@
 %%% \jobname.bbl.  For chapterbib use, there is no end-of-volume
 %%% bibliography, so we suppress it here:
 
-%%% \bibliography{\jobname}
+%%\bibliography{\jobname}
+\bibliography{bib-files/thesis-main, bib-files/proposal,bib-files/sp,bib-files/psyc,bib-files/top,bib-files/semi-top,bib-files/mrp,bib-files/sdp,bib-files/ucca,bib-files/amr,bib-files/ltg,bib-files/sgd,bib-files/scalable-dialog}
 
 %%% The last part of this sample thesis is two specialized indexes,
 %%% and a general topic index.  If the companion Makefile is used to

@@ -1,0 +1,51 @@
+This is makeindex, version 2.15 [TeX Live 2017] (kpathsea + Thai support).
+Scanning input file thesis-main.idx....done (491 entries accepted, 0 rejected).
+Sorting entries.......done (4627 comparisons).
+Generating output file thesis-main.ind....
+## Warning (input = thesis-main.idx, line = 62; output = thesis-main.ind, line = 12):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 63; output = thesis-main.ind, line = 17):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 75; output = thesis-main.ind, line = 36):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 65; output = thesis-main.ind, line = 37):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 66; output = thesis-main.ind, line = 40):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 67; output = thesis-main.ind, line = 139):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 68; output = thesis-main.ind, line = 168):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 96; output = thesis-main.ind, line = 207):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 97; output = thesis-main.ind, line = 208):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 70; output = thesis-main.ind, line = 216):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 491; output = thesis-main.ind, line = 289):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 91; output = thesis-main.ind, line = 298):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 92; output = thesis-main.ind, line = 299):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 93; output = thesis-main.ind, line = 300):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+
+## Warning (input = thesis-main.idx, line = 71; output = thesis-main.ind, line = 308):
+   -- Conflicting entries: multiple encaps for the same page under same key.
+done (356 lines written, 15 warnings).
+Output written in thesis-main.ind.
+Transcript written in thesis-main.ilg.

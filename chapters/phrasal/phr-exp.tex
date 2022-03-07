@@ -1,0 +1,33 @@
+\section{Experiemnts}
+\label{sec:phr:exp}
+
+
+\begin{table}[!ht]
+\begin{center}
+\small
+\begin{tabular}{l|cc}
+\toprule
+\hline
+                                 & \multicolumn{2}{c}{{\bf Phrase Anchoring}} \\ \cline{2-3}
+                                 & EDS                     & UCCA             \\ \hline
+Top                              & 1                       & 1                \\ \hline
+Node Label                       & \_lemma(*)\_semi\_sense & N/A              \\ \hline
+\multirow{2}{*}{Node Properties} &                         & N/A              \\
+                                 & carg: constant value    & N/A              \\ \hline
+Edge Label                       & (45)                    & (15)             \\ \hline
+Edge Properties                  & N/A                     & ``remote"        \\ \hline
+Connectivity                     & True                    & True             \\ \hline
+Training Data                    & 35656                   & 6485             \\ \hline
+Test Data                        & 3269                    & 1131             \\ \hline \bottomrule
+\end{tabular}
+\end{center}
+\caption{Detailed classifiers in our model, round bracket means the
+  number of ouput classes of our classify, * means copy mechanism is
+  used in our classifier. At the end of shared task, EDS are not fully supported to get an official results, we leave it as our future work.}
+\label{tbl:phr:impl_phrasal}
+\end{table}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../thesis-main.ltx"
+%%% End:

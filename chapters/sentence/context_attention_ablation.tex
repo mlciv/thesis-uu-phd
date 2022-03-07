@@ -1,0 +1,114 @@
+\subsection{How Context and Attention Help?}
+\label{ssec:abl_context_attention}
+
+We evaluated various ablations of our best models to see how
+changing various design choices changes performance. We focused on
+the context window size and impact of different word level and
+sentence level attention mechanisms. Tables \ref{tbl:rst_cxt_client}
+and \ref{tbl:rst_cxt_therapist} summarize our results.
+
+\Paragraph{History Size}
+Increasing the history window size generally helps. The biggest
+improvements are for categorizing therapist codes
+(Table~\ref{tbl:rst_cxt_therapist}), especially for the \RES and
+\REC. However, increasing the window size beyond 8 does not help
+to categorize client codes (Table~\ref{tbl:rst_cxt_client}) or
+forecasting (in appendix).
+
+\Paragraph{Word-level Attention}
+Only the model $\mathcal{C}_{T}$ uses word-level attention. As shown
+in Table~\ref{tbl:rst_cxt_therapist}, when we remove the word-level
+attention from it, the overall performance drops by 3.4 points,
+while performances of \RES and \REC drop by 3.3 and 5 points
+respectively. Changing the attention to BiDAF decreases performance
+by about 2 points (still higher than the model without attention).
+
+\Paragraph{Sentence-level Attention} Removing sentence attention
+from the best models that have it decreases performance for the
+models $\mathcal{C}_T$ and $\mathcal{F}_T$ (in appendix).
+%
+%If we extend the GMGRU with a multiplicative multi-head attention
+%for its match function $f_{m}$ in \S\ref{ssec:word_att} (denoted as
+%$\text{GMGRU}_{4h}$), it improves \RES by over 0.4 points, but hurts
+%\REC performance, suggesting that the multi-head word attention
+%cannot distinguish \REC and \RES better than GMGRU.
+%
+  It makes little impact
+on the $\mathcal{F}_C$, however.
+%
+Table \ref{tbl:rst_cxt_client} shows that neither attention helps
+categorizing clients codes.
+%
+% Table~\ref{tbl:rst_cxt_anticipate} shows that sentence-level
+% self-attention improves the overall macro F1 for both client and
+% therapist codes, but adding last-utterance enhanced word-level
+% attention does not. It indicates that retrieving word-level memory
+% from the context does not directly help decide the function of the
+% next sentence in our tasks
+
+\begin{table}[t]
+\begin{center}{\small
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{cccccc}
+\toprule
+ Ablation                                             & Options                      & macro & \FN  & \CHANGE & \SUSTAIN \\ \midrule \midrule
+ \multirow{4}{*}{\parbox{1.5cm}{history window size}} & 0                            & 51.6  & 87.6 & 39.2    & 32.0     \\
+                                                      & 4                            & 52.6  & 88.5 & 37.8    & 31.5     \\
+                                                      & $8^{*}$                      & 53.9  & 89.6 & 39.1    & 33.1     \\
+                                                      & 16                           & 52.0  & 89.6 & 39.1    & 33.1     \\ \midrule
+\multirow{2}{*}{\parbox{1.5cm}{word \quad \quad attention}}   & + GMGRU                      & 52.6  & 89.5 & 37.1    & 31.1     \\
+%                                                     & + $\text{GMGRU}_{\text{1h}}$ & 51.1  & 88.1 & 36.7    & 28.6     \\
+%                                                     & + $\text{GMGRU}_{\text{4h}}$ & 51.1  & 88.0 & 38.3    & 27.1     \\
+                                                      & + BiDAF                      & 50.4  & 87.6 & 36.5    & 27.1     \\ \midrule
+\multirow{2}{*}{\parbox{1.5cm}{sentence \quad attention}} & + \self                      & 53.9  & 89.2 & 39.1    & 33.2     \\
+                                                      & + \anchor                    & 53.0  & 88.2 & 38.9    & 32.0     \\ \bottomrule
+%\multirow{2}{*}{prediction}                          & - $v_{n}$                    & 47.4  & 86.3 & 30.0    & 25.9     \\
+%                                                     & concat $v_{n}$               & 52.7  & 88.8 & 36.7    & 29.1     \\ \bottomrule
+%                                                     & + $l^{*}_{i}$                & 61.8  & 92.4 & 50.0    & 43.1     \\
+%                                                     & + $l^{\prime}_{i}$                & 48.9  & 85.1 & 33.1    & 28.4     \\ \bottomrule
+\end{tabular}}
+\end{center}
+\caption{\label{tbl:rst_cxt_client} Ablation study on categorizing
+  client code. $*$ is our best model $\mathcal{C}_{C}$. All
+  ablation is based on it. The symbol $+$ means adding a
+  component to it.  The default window size
+  is 8 for our ablation models in the word attention and sentence
+  attention parts.}
+\end{table}
+
+\begin{table}[t]
+\begin{center}{\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{cccccc}
+\toprule
+Ablation                                              & Options                        & macro      & \RES       & \REC       & \MIN       \\ \midrule \midrule
+ \multirow{4}{*}{\parbox{1.5cm}{history window size}} & 0                              & 62.6       & 51.6       & 49.4       & 24.2       \\
+                                                      & 4                              & 64.4       & 54.3       & 53.2       & 23.7       \\
+                                                      & $8^{*}$                        & 65.4       & 55.7       & 54.9       & 29.7       \\
+                                                      & 16                             & {\bf 65.6} & 55.4       & {\bf 56.7} & 26.7       \\ \midrule
+\multirow{2}{*}{\parbox{1.5cm}{word \quad\quad attention}}    & - GMGRU                        & 62.0       & 51.9       & 51.7       & 16.0       \\
+                                                      & $\setminus$ BiDAF                      & 63.5       & 54.2       & 51.3       & 22.6       \\\midrule
+%                                                     & $\setminus$ $\text{GMGRU}_{\text{1h}}$ & 65.0       & 56.3       & 52.5       & 28.3       \\
+%                                                     & $\setminus$ $\text{GMGRU}_{\text{4h}}$ & 64.9       & 56.1       & 52.0       & 26.0       \\ \midrule
+\multirow{2}{*}{\parbox{1.5cm}{sentence \quad attention}} & - \anchor                      & 64.9       & 56.0       & 54.4       & 21.8       \\
+                                                      & $\setminus$ \self                      & 63.4       & 55.5       & 48.2       & 21.1       \\ \bottomrule
+%\multirow{3}{*}{prediction}                          & $+$ r                          & 64.9       & 55.9       & 52.3       & 26.8       \\
+%                                                     & concat r                       & 65.0       & {\bf 56.7} & 48.5       & {\bf 30.8} \\
+%                                                     & $+l^{*}_{i}$                   & 69.5       & 59.8       & 60.7       & 40.6       \\
+%                                                     & $+l^{\prime}_{i}$                   & 64.1       & 56.5       & 53.5       & 15.0       \\ \bottomrule
+\end{tabular}}
+\end{center}
+\caption{\label{tbl:rst_cxt_therapist} Ablation study on
+  categorizing therapist codes, $*$ is our proposed model
+  $\mathcal{C}_{T}$. $\setminus$ means substituting and $-$ means removing
+  that component. Here, we only report the important \REC, \RES
+  labels for
+  guiding, and the \MIN label for warning a therapist. }
+\end{table}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

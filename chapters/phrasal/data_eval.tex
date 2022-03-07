@@ -1,0 +1,17 @@
+\subsection{Dataset and Evaluation}
+\label{ssec:data_eval}
+
+For DM, PSD, EDS, we split the training set by taking WSJ section
+(00-19) as training, and section 20 as dev set. For other datasets,
+when developing and parameter tuning, we use splits with a ratio of
+25:1:1. In our submitted model, we did not use multitask learning for
+training. Following the unified MRP metrics in the shared tasks, we train our
+model based on the development set and finally evaluate on the private
+test set.  For more details of the metrics, please refer to the
+summarization of the MRP~2019 task~\cite{Oep:Abe:Haj:19},
+%After the evaluation, we then try equip the model the Bert, the results shows in Table xx.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

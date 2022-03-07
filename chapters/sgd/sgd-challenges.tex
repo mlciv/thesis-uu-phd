@@ -1,0 +1,64 @@
+\section{Schema-Guided Dialog State Tracking}
+\label{sec:chanllenges-in-sgd}
+%Before introducing the details on schema-guided dialog, we recap the
+%general concepts in dialog state tracking by defining notations
+%used in our paper. We use superscripts to denote the indices of
+%dialog utterances, services, intents and slots, and subscripts for indices of tokens
+%in a sequence. Suppose $U^{T}=[u^{1}, u^{2}, ... u^{T}]$ are a
+%set of $T$ history utterances in the dialog,
+%$V^{K}=[v^{1}, v^{2}...v^{K}]$ is a set of $K$ service schema
+%supported by a dialog agent. For each service $v^{k}$, it consists
+%of a set intent labels $I^{M}=[i^{1}, i^{2}...i^{M}]$, and slots
+%labels $S^{N}=[s^{1}, s^{2}...s^{N}]$. A classic dialog state tracking
+%task is to predict a dialog state frame $f^{t,k}$ at turn $t$ for each
+%service $s^{k}$ given the dialog history $U$.
+A classic dialog state tracker predicts a dialog state frame at each
+user turn given the dialog history and predefined domain ontology. As
+shown in Figure \ref{fig:schema-dst}, the key difference between
+schema-guided dialog state tracking and the classic paradigm is the
+newly added natural language descriptions.  In this section, we first
+introduce the four subtasks and schema components in schema-guided
+dialog state tracking, then we outline the research questions in our
+paper.
+
+\Paragraph{Subtasks} As shown in Figure \ref{fig:schema-dst}, the
+dialog state for each service consists of 3 parts: {\it active
+  intent}, {\it requested slots}, {\it user goals~(slot
+  values)}. Without loss of generality, for both \sgdst and \multiwoz
+datasets, we divide their slots into categorical and non-categorical
+slots by following previous study on
+dual-strategies~\cite{zhang2019find}. Thus to fill the dialog state
+frame for each user turn, we solve four subtasks: intent
+classification~(\IC), requested slot identification~(\RSI), categorical
+slot labeling~(\CSL), and non-categorical slot labeling~(\NSL). All
+subtasks require matching the current dialog history with candidate
+schema descriptions for multiple times.
+
+\Paragraph{Schema Components} Figure \ref{fig:schema-dst} shows three
+main schema components: service, intent, slot. For each intent, the
+schema also describes {\it optional} or {\it required} slots for
+it. For each slot, there are flags indicating whether it is
+categorical or not. {\it Categorical} means there is a set of
+predefined candidate values~(Boolean, numeric or text). For instance,
+{\it has\_live\_music} in Figure~\ref{fig:schema-dst} is a categorical
+slot with Boolean values. {\it Non-categorical}, on the other hand,
+means the slot values are filled from the string spans in the dialog
+history.
+
+\Paragraph{New Questions} These added schema descriptions pose
+the following three new questions. We discuss each of them in the
+following sections.
+\\
+\setlength{\fboxsep}{1.5pt}
+\fbox{\small\parbox{0.90\textwidth}{
+\begin{enumerate}[label=Q\arabic*.]
+\item How should dialogue and schema be encoded? \S\ref{sec:models}
+\item How do different supplementary trainings impact each subtask? \S\ref{sec:sup-training}
+\item How do different description styles impact the state tracking performance? \S\ref{sec:abl-desc}
+\end{enumerate}
+}}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../thesis-main.ltx"
+%%% End:

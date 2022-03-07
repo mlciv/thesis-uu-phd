@@ -1,0 +1,45 @@
+\newcommand{\jc}[1]{\namedComment{mdblue}{J}{C}{#1}}
+\newcommand{\vs}[1]{\namedComment{orange}{V}{S}{#1}}
+\newcommand{\mt}[1]{\namedComment{red}{M}{T}{#1}}
+\newcommand{\zi}[1]{\namedComment{magenta}{Z}{I}{#1}}
+
+
+% special macros
+\definecolor{mdgreen}{rgb}{0.05,0.6,0.05}
+\newcommand{\lbl}[1]{\textsl{#1}}
+\newcommand{\desc}[1]{\textcolor{mdgreen}{\lbl{#1}}}
+\newcommand{\ORIGIN}{\desc{Orig\xspace}}
+\newcommand{\ID}{\desc{Identifer\xspace}}
+\newcommand{\NAMEONLY}{\desc{NameOnly\xspace}}
+\newcommand{\NAMEPARA}{\desc{Name-Para\xspace}}
+\newcommand{\QANAMEONLY}{\desc{Q-Name\xspace}}
+\newcommand{\QARICH}{\desc{Q-Orig\xspace}}
+\newcommand{\PARAPHRASE}{\desc{Orig-Para\xspace}}
+\newcommand{\CONSTRAINT}{\desc{Constraint\xspace}}
+\newcommand{\EXTENSIONAL}{\desc{Extensional\xspace}}
+
+\newcommand{\encoder}[1]{{\it #1}}
+\newcommand{\DE}{\encoder{Dual-Encoder}\xspace}
+\newcommand{\CE}{\encoder{Cross-Encoder}\xspace}
+\newcommand{\FE}{\encoder{Fusion-Encoder}\xspace}
+
+\newcommand{\subtask}[1]{\textcolor{black}{\lbl{#1}}}
+\newcommand{\IC}{\subtask{Intent}\xspace}
+\newcommand{\RSI}{\subtask{Req}\xspace}
+\newcommand{\CSL}{\subtask{Cat}\xspace}
+\newcommand{\NSL}{\subtask{NonCat}\xspace}
+
+\newcommand{\CLS}{{\bf CLS}\xspace}
+\newcommand{\TOK}{{\bf TOK}\xspace}
+
+\newcommand{\Paragraph}[1]{\noindent\textbf{#1.}}
+\newcommand{\QParagraph}[1]{\noindent\textbf{#1?}}
+\newcommand{\sgdst}{\textsc{SG-dst}\xspace}
+\newcommand{\multiwoz}{\textsc{MultiWOZ 2.2}\xspace}
+
+\newcommand{\mytitle}{A Comparative Study on Schema-Guided Dialogue State Tracking}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

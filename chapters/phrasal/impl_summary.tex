@@ -1,0 +1,92 @@
+\begin{table*}[!ht]
+\begin{center}
+\setlength{\tabcolsep}{2.5pt}
+\small
+\begin{tabular}{l|ccc|cc}
+\toprule
+\hline
+                                 & \multicolumn{3}{c}{{\bf Lexicon Anchoring}} & \multicolumn{2}{c}{{\bf Phrase Anchoring}}                                        \\ \cline{2-4} \cline{5-6}
+                                 & DM                                          & PSD               & AMR                     & EDS                     & UCCA      \\ \hline
+Top                              & 1                                           & $ \geq 1$ (11.56\%)  & 1                       & 1                       & 1         \\ \hline
+Node Label                       & Lemma                                       & Lemma(*)          & Lemma(*) + NeType(143+) & \_lemma(*)\_semi\_sense & N/A       \\ \hline
+\multirow{2}{*}{Node Properties} & POS                                         & POS               & constant values         &                         & N/A       \\
+                                 & semi(160*)\_args(25)                        & wordid\_sense(25) & polarity, Named entity  & carg: constant value    & N/A       \\ \hline
+Edge Label                       & (45)                                        & (91)              & (94+)                   & (45)                    & (15)      \\ \hline
+Edge Properties                  & N/A                                         & N/A               & N/A                     & N/A                     & ``remote" \\ \hline
+Connectivity                     & True                                        & True              & True                    & True                    & True      \\ \hline
+Training Data                    & 35656                                       & 35656             & 57885                   & 35656                   & 6485      \\ \hline
+Test Data                        & 3269                                        & 3269              & 1998                    & 3269                    & 1131      \\ \hline \bottomrule
+\end{tabular}
+\end{center}
+\caption{Detailed classifiers in our model, round bracket means the
+  number of ouput classes of our classify, * means copy mechanism is
+  used in our classifier. At the end of shared task, EDS are not fully supported to get an official results, we leave it as our future work.}
+\label{tbl:summary_impl}
+\end{table*}
+
+
+\subsection{Summary of Implementation}
+\label{ssec:impl_summary}
+
+We summarize our implementation for five meaning representations as
+Table \ref{tbl:summary_impl}. As we mentioned in the previous
+sections, we use latent-alignment graph-based parsing for lexical
+anchoring MRs~(DM, PSD, AMR), and use CKY-based constituent parsing
+phrasal anchoring in MRs~(UCCA, EDS). This section gives information
+about various decision for our models.
+
+\paragraph{Top} The first row ``Top" shows the numbers of root nodes in
+the graph.  We can see that for PSD, 11.56\% of graphs with more than
+1 top nodes. In our system, we only predict one top node with a N~(N is size of identified nodes) way
+classifier, and then fix this with a post-processing strategy. When
+our model predicts one node as the top node, and if we find additional
+coordination nodes with it, we add the coordination node also as the
+top node.
+
+\paragraph{Node} Except for UCCA, all other four MRs have labeled
+nodes, the row ``Node Label" shows the templates of a node label. For
+DM and PSD, the node label is usually the lemma of its underlying
+token. But the lemma is neither the same as one in the given companion
+data nor the predicted by Stanford Lemma Annotators. One common
+challenge for predicting the node labels is the open label set
+problem. Usually, the lemma is one of the morphology derivations of
+the original word. But the derivation rule is not easy to create
+manually. In our experiment, we found that handcrafted rules for lemma
+prediction only works worse than classification with copy mechanism,
+except for DM.
+
+For AMR and EDS, there are other components in the node
+labels beyond the lemma. Especially, the node label for AMR also
+contains more than 143 fine-grained named entity types; for EDS, it
+uses the full SEM-I entry as its node label, which requires extra
+classifiers for predicting the corresponding sense. In addition to the
+node label, the properties of the label also need to be
+predicted. Among them, node properties of DM are from the SEMI sense
+and arguments handler, while for PSD, senses are constrained the
+senses in the predefined the vallex lexicon.
+
+\paragraph{Edge} Edge predication is another challenge in our task
+because of its large label set (from 45 to 94) as shown in row ``Edge
+Label", the round bracket means the number of output classes of our
+classifiers. For Lexical anchoring MRs, edges are usually connected
+between two tokens, while phrasal anchoring needs extra effort to
+figure out the corresponding span with that node. For example, in UCCA
+parsing, To predict edge labels, we first predicted the node spans,
+and then node labels based that span, and finally we transform back
+the node label into edge label.
+
+\paragraph{Connectivity} Beside the local label classification for
+nodes and edges, there are other global structure constraints for all
+five MRs: All the nodes and edges should eventually form a connected
+graph. For lexical anchoring, we use MSCG algorithm to find the
+maximum connected graph greedily; For phrasal anchoring, we use
+dynamic programming to decoding the constituent tree then
+deterministically transforming back to a connected UCCA Graph
+\footnote{Due to time
+  constraint, we ignored all the discontinuous span and remote edges
+  in UCCA}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

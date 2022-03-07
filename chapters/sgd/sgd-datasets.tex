@@ -1,0 +1,108 @@
+\section{Datasets}
+\label{sec:sgd:datasets}
+
+\begin{table}[!t]
+\begin{center}{\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l|cccccc|c|c}
+\toprule
+\hline
+\multirow{2}{*}{Datasets}   & \multirow{2}{*}{Splits} & \multirow{2}{*}{Dialog} & \multirow{2}{*}{Domains} & \multirow{2}{*}{Services} & Zero-shot & Zero-shot&Function & Collecting             \\
+                            &                         &                         &                          &                           & Domains   & Services &Overlapp & Method                 \\ \hline
+\multirow{3}{*}{ \sgdst}    & Train                   & 16142                   & 16                       & 26                        & -         & -        &\multirow{3}{*}{\parbox[c]{2cm}{Across-domain Within-domain}} & \multirow{3}{*}{ M2M}  \\
+                            & Dev                     & 2482                    & 16                       & 17                        & 1         & 8        & &                        \\
+                            & Test                    & 4201                    & 18                       & 21                        & 3         & 11       & &                        \\ \hline
+\multirow{3}{*}{ \multiwoz} & Train                   & 9617                    & 3                        & 3                         & -         & -        &\multirow{3}{*}{Across-domain} & \multirow{3}{*}{ H2H } \\
+                            & Dev                     & 2455                    & 5                        & 5                         & 2         & 2        & &                        \\
+                            & Test                    & 2969                    & 8                        & 8                         & 5         & 5        & &                        \\ \hline
+\bottomrule
+\end{tabular}}
+\end{center}
+\caption{\label{tbl:datasets} Summary of characteristics of \sgdst \multiwoz datasets, in domain diversity, function overlap, data collecting methods}
+\end{table}
+
+To the best of our knowledge, at the time of our study, \sgdst~and
+\multiwoz~are the only two publicly available corpus for schema-guided
+dialog study. We choose both of them for our study. In this section,
+we first introduce these two representative datasets, then we discuss
+the generalizibility in domain diversity, function overlapping, data
+collecting methods.
+
+\Paragraph{Schema-Guided Dialog Dataset}
+\sgdst
+dataset~\footnote{\url{https://github.com/google-research-datasets/dstc8-schema-guided-dialogue}}
+is especially designed as a test-bed for schema-guided dialog, which
+contains well-designed heterogeneous APIs with overlapping
+functionalities between services~\cite{rastogi2019towards}. In
+DSTC8~\cite{rastogi2020schema}, \sgdst~was introduced as the standard
+benchmark dataset for schema-guided dialog research. \sgdst~covers 20
+domains, 88 intents, 365 slots.\footnote{Please refer to the original
+  paper for more details.} However, previous research are mainly
+conducted based on this single dataset and the provided single
+description style. In this paper, we further extended this dataset
+with other benchmarking description styles as shown in
+\S\ref{sec:abl-desc}, and then we perform both homogenous and
+hetergenous evalution on it.
+
+\Paragraph{Remixed MultiWOZ 2.2 Dataset}
+To eliminate potential bias from the above single \sgdst~dataset, we
+further add \multiwoz~\cite{zang-etal-2020-multiwoz} to our study.
+%Multi-Domain Wizard-of-Oz dataset was first introduced
+%in~\citet{budzianowski2018multiwoz}. With the large-scale fully
+%annotated dialog data, it has pushed forward the research on
+%multi-domain task-oriendted
+%dialog~\cite{kim2019efficient,wu2019transferable,
+%  hosseini2020simple}. Then, 
+Among various extended versions for MultiWOZ
+dataset~\cite[2.0-2.3,][]{budzianowski2018multiwoz,
+  eric2020multiwoz,zang-etal-2020-multiwoz,han2020multiwoz} , besides
+rectifying the annotation errors, \multiwoz ~also introduced the
+schema-guided annotations, which covers 8 domains, 19 intents, 36
+slots.  To evaluate performance on seen/unseen services with MultiWOZ,
+we remix the \multiwoz~dataset to include as seen services dialogs
+related to \textit{restaurant}, \textit{attraction} and \textit{train}
+during training, and eliminate slots from other domains/services from
+training split.  For dev, we add two new domains {\it hotel} and {\it
+  taxi} as unseen services. For test, we add all remaining domains as
+unseen, including those that have minimum overlap with seen services,
+such as {\it hospital}, {\it police}, {\it bus}. The statistics of
+data splits are shown in
+Appendix~\ref{ssec:appendices-multiwoz-dataset}. Note that this data
+split is different from the previous work on zero-shot MultiWOZ DST
+which takes a leave-one-out approach in \citet{wu2019transferable}. By
+remixing the data in the way described above, we can evaluate the
+zero-shot performance on MultiWOZ in a way largely compatible with
+\sgdst.
+
+\Paragraph{Discussion}
+First, the two datasets cover diverse domains. \multiwoz~covers
+various possible dialogue scenarios ranging from requesting basic
+information about attractions through booking a hotel room or
+travelling between cities. While \sgdst~covers more domains, such as
+`Payments', `Calender', `DoctorServices' and so on.
+
+Second, they include different levels of overlapping
+functionalities. \sgdst~allows frequent function overlapping between
+multiple services, within the same domain~(e.g. BookOneWayTicket
+v.s. BookRoundTripTicket), or across different domains~(BusTicket
+v.s. TrainTicket). However, the overlapping in \multiwoz~only exists
+across different domains, e.g., `destination', `leaveat' slots for
+Taxi and Bus services, `pricerange', `bookday' for Restaurant and
+Hotel services.
+
+Third, they are collected by two different approaches which are
+commonly used in dialog collecting. \sgdst~is firstly collected by
+machine-to-machine self-play~\cite[M2M,][]{shah2018building} with
+dialog flows as seeds, then paraphrased by crowd-workers. While
+\multiwoz~are human-to-human
+dialogs~\cite[H2H,][]{kelley1984iterative}, which are collected with
+the Wizard-of-Oz approach.
+
+We summarize the above discussion in Table \ref{tbl:datasets}.  We
+believe that results derived from these two representative datasets can
+guide future research in schema guided dialog.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

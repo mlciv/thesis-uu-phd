@@ -1,0 +1,28 @@
+\subsection{Multiple Task Learning}
+\label{ssec:mtl}
+
+In this section, we studied whether the 4 settings in our tasks can benifit from each other.
+To study the relation between annotating tasks ans forecasting task, we jointly learning the annotating tasks and forecasting task for the same speaker role as the C\_T and T\_JOINT.  To study, the relation between the client tasks and therapist task, we propose the alternative setting, our model alternative optimize for different tasks. Hence, we propose CT\_ANNO  and CT\_FORE for alternative learning for annotating tasks and forecasting task. Finally, we also proposed CT\_ALL for both alternative and jointly together, which learn our 4 settings all in one. We summerize our multple task learning settings in Table \ref{tbl:mtl}. Their experiment results are shown in Table \ref{tbl:mtl_result}
+
+\begin{table}[tp]
+\setlength{\tabcolsep}{3pt}
+\begin{center}
+\begin{tabular}{l|cc|cc}
+\toprule
+\multirow{2}{*}{ Method } & \multicolumn{2}{c|}{ Client } & \multicolumn{2}{c}{ Therapist } \\\cmidrule(lr){2-3}  \cmidrule(lr){4-5}
+                          & Annotate                      & Forecast & Annotate & Forecast  \\ \midrule \midrule
+C\_JOINT                  & Y                             & Y        &          &           \\
+T\_JOINT                  &                               &          & Y        & Y         \\\midrule
+CT\_ANNO                  & Y                             &          & Y        &           \\
+CT\_FORE                  &                               & Y         &         & Y         \\ \midrule
+CT\_ALL                   & Y                             & Y        & Y        & Y         \\ \midrule
+\bottomrule
+\end{tabular}
+\end{center}
+\caption{\label{tbl:mtl} Summary of Multiple Task Learning on our paper}
+\end{table}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

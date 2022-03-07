@@ -1,0 +1,810 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdftex 2017.5.23)  3 MAR 2022 16:02
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**\input uuthesis-2021-hyper.sty
+(./uuthesis-2021-hyper.sty
+./uuthesis-2021-hyper.sty:97: Undefined control sequence.
+l.97 \NeedsTeXFormat
+                    {LaTeX2e}[1994/12/01]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:99: Undefined control sequence.
+l.99 \ProvidesPackage
+                     {uuthesis-2021-hyper}[2021/10/29 v1.08]
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+===============================================================================
+
+
+This is uuthesis-2016-h.sty version 1.08 <2 May 2016>
+
+===============================================================================
+
+./uuthesis-2021-hyper.sty:146: Undefined control sequence.
+l.146 \textheight
+                              = 8.65in
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:147: Undefined control sequence.
+l.147 \textwidth
+                              = 6in
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:149: Undefined control sequence.
+l.149 \oddsidemargin
+                              = 0.25in
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:150: Undefined control sequence.
+l.150 \evensidemargin
+                              = 0.25in
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:153: Undefined control sequence.
+l.153 \topmargin
+                              = 0.0in
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:154: Undefined control sequence.
+l.154 \headheight
+                              = 0.0in
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:155: Undefined control sequence.
+l.155 \headsep
+                              = 24pt
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:157: Undefined control sequence.
+l.157 \footskip
+                              = 0.0in
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:159: Undefined control sequence.
+l.159 \flushbottom
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:162: Undefined control sequence.
+l.162 \textheight
+                              = 8.65in
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:164: Undefined control sequence.
+l.164 \addtolength
+                  {\voffset}   {-20pt}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:164: Missing number, treated as zero.
+<to be read again> 
+                   }
+l.164 \addtolength{\voffset}
+                               {-20pt}%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./uuthesis-2021-hyper.sty:164: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.164 \addtolength{\voffset}
+                               {-20pt}%
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./uuthesis-2021-hyper.sty:165: Undefined control sequence.
+l.165 \addtolength
+                  {\textheight}{+20pt}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:165: Undefined control sequence.
+l.165 \addtolength{\textheight
+                              }{+20pt}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:174: Undefined control sequence.
+l.174 \leftmargini
+                     = 2.5em
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:175: Undefined control sequence.
+l.175 \leftmarginii
+                     = 2.2em     % > \labelsep + width of '(m)'
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:176: Undefined control sequence.
+l.176 \leftmarginiii
+                     = 1.87em    % > \labelsep + width of 'vii.'
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:177: Undefined control sequence.
+l.177 \leftmarginiv
+                     = 1.7em     % > \labelsep + width of 'M.'
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:178: Undefined control sequence.
+l.178 \leftmarginv
+                     = 1em       % is 1em a random value?
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:179: Undefined control sequence.
+l.179 \leftmarginvi
+                     = 1em       % random value?
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:233: Undefined control sequence.
+l.233 \usepackage
+                 {dissertationapproval}%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+\uuthesis=\dimen16
+./uuthesis-2021-hyper.sty:287: Missing number, treated as zero.
+<to be read again> 
+                   @
+l.287 \uuthesis@
+                chaptersectionspace = \baselineskip
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./uuthesis-2021-hyper.sty:287: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   @
+l.287 \uuthesis@
+                chaptersectionspace = \baselineskip
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./uuthesis-2021-hyper.sty:288: Missing number, treated as zero.
+<to be read again> 
+                   \advance 
+l.288 \advance
+               \uuthesis@chaptersectionspace by -6pt
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./uuthesis-2021-hyper.sty:288: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   \advance 
+l.288 \advance
+               \uuthesis@chaptersectionspace by -6pt
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./uuthesis-2021-hyper.sty:288: Missing number, treated as zero.
+<to be read again> 
+                   @
+l.288 \advance \uuthesis@
+                         chaptersectionspace by -6pt
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./uuthesis-2021-hyper.sty:288: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   @
+l.288 \advance \uuthesis@
+                         chaptersectionspace by -6pt
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./uuthesis-2021-hyper.sty:293: Undefined control sequence.
+l.293 \footheight
+                  = 2em       % page foot is used by front matter page numbers
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:294: Undefined control sequence.
+l.294 \footskip
+                  = 25pt
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:299: Undefined control sequence.
+l.299 \providecommand
+                     \phantomsection{}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:299: Undefined control sequence.
+l.299 \providecommand\phantomsection
+                                    {}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:327: Missing number, treated as zero.
+<to be read again> 
+                   @
+l.327 \uuthesis@
+                needtocspacefalse
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./uuthesis-2021-hyper.sty:327: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   @
+l.327 \uuthesis@
+                needtocspacefalse
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./uuthesis-2021-hyper.sty:594: Undefined control sequence.
+l.594 \renewenvironment
+                       {quotation} % for paragraph-length sample text
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:608: Undefined control sequence.
+l.608         \topsep
+                            = \baselineskip
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:610: Undefined control sequence.
+l.610         \list
+                    {} {%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:610: Missing number, treated as zero.
+<to be read again> 
+                   {
+l.610         \list {
+                     } {%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./uuthesis-2021-hyper.sty:610: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   {
+l.610         \list {
+                     } {%
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./uuthesis-2021-hyper.sty:611: Undefined control sequence.
+l.611                      \labelwidth
+                                          = \z@
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:611: Undefined control sequence.
+l.611                      \labelwidth    = \z
+                                              @
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:612: Undefined control sequence.
+l.612                      \labelsep
+                                          = \z@
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:612: Undefined control sequence.
+l.612                      \labelsep      = \z
+                                              @
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:613: Undefined control sequence.
+l.613                      \listparindent
+                                          = \parindent
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:614: Undefined control sequence.
+l.614                      \itemindent
+                                          = \listparindent
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:614: Undefined control sequence.
+l.614 ...          \itemindent    = \listparindent
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:615: Undefined control sequence.
+l.615                      \rightmargin
+                                          = \leftmargin
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:615: Missing number, treated as zero.
+<to be read again> 
+                   =
+l.615                      \rightmargin   =
+                                            \leftmargin
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./uuthesis-2021-hyper.sty:615: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   =
+l.615                      \rightmargin   =
+                                            \leftmargin
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./uuthesis-2021-hyper.sty:615: Undefined control sequence.
+l.615 ...             \rightmargin   = \leftmargin
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:616: Undefined control sequence.
+l.616                      \parsep
+                                          = \z@
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:616: Undefined control sequence.
+l.616                      \parsep        = \z
+                                              @
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:619: Undefined control sequence.
+l.619         \vspace
+                     *{-1.2\baselineskip}% hack!
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:619: Missing number, treated as zero.
+<to be read again> 
+                   }
+l.619         \vspace*{-1.2\baselineskip}
+                                         % hack!
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./uuthesis-2021-hyper.sty:619: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.619         \vspace*{-1.2\baselineskip}
+                                         % hack!
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./uuthesis-2021-hyper.sty:622: Extra }, or forgotten \endgroup.
+l.622 }
+       %
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./uuthesis-2021-hyper.sty:624: Undefined control sequence.
+l.624         \endlist
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:634: Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   \endgroup 
+l.634     \endgroup
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./uuthesis-2021-hyper.sty:637: Undefined control sequence.
+l.637 \renewenvironment
+                       {quote} % for one or more one-line sample texts
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:651: Undefined control sequence.
+l.651         \topsep
+                            = \baselineskip
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:653: Undefined control sequence.
+l.653         \list
+                    {} {%
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:653: Missing number, treated as zero.
+<to be read again> 
+                   {
+l.653         \list {
+                     } {%
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./uuthesis-2021-hyper.sty:653: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   {
+l.653         \list {
+                     } {%
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./uuthesis-2021-hyper.sty:654: Undefined control sequence.
+l.654                      \rightmargin
+                                        = \leftmargin
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:654: Undefined control sequence.
+l.654 ...               \rightmargin = \leftmargin
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:656: Undefined control sequence.
+l.656         \vspace
+                     *{-1.2\baselineskip}% hack!
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:656: Missing number, treated as zero.
+<to be read again> 
+                   }
+l.656         \vspace*{-1.2\baselineskip}
+                                         % hack!
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+./uuthesis-2021-hyper.sty:656: Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.656         \vspace*{-1.2\baselineskip}
+                                         % hack!
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+./uuthesis-2021-hyper.sty:659: Extra }, or forgotten \endgroup.
+l.659 }
+       %
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./uuthesis-2021-hyper.sty:661: Undefined control sequence.
+l.661         \endlist
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:671: Missing } inserted.
+<inserted text> 
+                }
+<to be read again> 
+                   \endgroup 
+l.671     \endgroup
+                   
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+./uuthesis-2021-hyper.sty:735: Undefined control sequence.
+l.735 \renewcommand
+                   {\bibsection}{\referencehead}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:735: Undefined control sequence.
+l.735 \renewcommand{\bibsection
+                               }{\referencehead}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:735: Undefined control sequence.
+\referencehead ->\newpage 
+                          \thispagestyle {empty}\phantomsection \addcontents...
+l.735 \renewcommand{\bibsection}{\referencehead
+                                               }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:735: Undefined control sequence.
+\referencehead ->\newpage \thispagestyle 
+                                         {empty}\phantomsection \addcontents...
+l.735 \renewcommand{\bibsection}{\referencehead
+                                               }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:735: Undefined control sequence.
+\referencehead ...agestyle {empty}\phantomsection 
+                                                  \addcontentsline {toc}{cha...
+l.735 \renewcommand{\bibsection}{\referencehead
+                                               }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:735: Undefined control sequence.
+\referencehead ...phantomsection \addcontentsline 
+                                                  {toc}{chapter}{REFERENCES}...
+l.735 \renewcommand{\bibsection}{\referencehead
+                                               }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:735: Undefined control sequence.
+\referencehead ...hapter}{REFERENCES}\mainheading 
+                                                  {REFERENCES}\uuthesis @fig...
+l.735 \renewcommand{\bibsection}{\referencehead
+                                               }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./uuthesis-2021-hyper.sty:735: Use of \uuthesis doesn't match its definition.
+\referencehead ...heading {REFERENCES}\uuthesis @f
+                                                  igureheadskip \uuthesis @n...
+l.735 \renewcommand{\bibsection}{\referencehead
+                                               }
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./uuthesis-2021-hyper.sty:735: Use of \uuthesis doesn't match its definition.
+\referencehead ...sis @figureheadskip \uuthesis @n
+                                                  oise{References.}
+l.735 \renewcommand{\bibsection}{\referencehead
+                                               }
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+)
+! Emergency stop.
+<*> \input uuthesis-2021-hyper.sty
+                                  
+*** (job aborted, no legal \end found)
+
+!  ==> Fatal error occurred, no output PDF file produced!

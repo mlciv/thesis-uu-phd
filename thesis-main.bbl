@@ -1,0 +1,15 @@
+\def \noopsort #1{}
+\begin{thebibliography}{}
+
+\bibitem[\protect\citename{Baxter, }2000]{baxter2000model}
+Baxter, Jonathan. 2000.
+\newblock A model of inductive bias learning.
+\newblock {\em Journal of artificial intelligence research}, {\bf 12},
+  149--198.
+
+\bibitem[\protect\citename{Wolpert {\em et~al.\ }\relax, }1995]{wolpert1995no}
+Wolpert, David~H, Macready, William~G, {\em et~al.\ }\relax. 1995.
+\newblock {\em No free lunch theorems for search}.
+\newblock Tech. rept. Technical Report SFI-TR-95-02-010, Santa Fe Institute.
+
+\end{thebibliography}

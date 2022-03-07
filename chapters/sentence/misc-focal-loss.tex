@@ -1,0 +1,44 @@
+\subsection{Addressing Label Imbalance}
+\label{ssec:focal_loss}
+From Table \ref{tbl:misc}, we see that both client and therapist
+labels are imbalanced. Moreover, rarer labels are more important in
+both tasks. For example, it is important to identify \CHANGE and
+\SUSTAIN utterances. For therapists, it is crucial to flag MI
+non-adherent (\MIN) utterances; seasoned therapists are trained to
+avoid them because they correlate negatively with patient
+improvements. If not explicitly addressed, the frequent but less
+useful labels can dominate predictions.
+
+% Previous
+% work\cite{can2015dialog,tanana2016comparison, xiao2016behavioral}
+% shows if not handing the label imbalance problem, results on client
+% code may be dominated by most frequent label FN, and rarely predict POS
+% and NEG; while for models on therapist codes, many of the rare labels,
+% such as MIA, MIN will almost zero F1 score.
+% One common solution for class imbalance is the $\alpha$-balanced
+% cross entropy that weights different classes in standard cross
+% entropy loss (CE) with $\alpha \in [0,1]$. Although easily
+% classified labels may have small cross entropy value, the large
+% number of them (for frequent labels) may still overwhelm the total
+% cross entropy loss.
+
+To address this, we extend the focal loss~\cite[FL][]{lin2017focal}
+to the multiclass case. For a label $l$ with probability produced by
+a model $p_t$, the loss is defined as 
+\begin{equation}
+ \label{eq:focal}
+\text{FL}(p_{t}) = -\alpha_{t} {(1 -p_{t})}^{\gamma} \log(p_{t})
+\end{equation}
+In addition to using a label-specific balance weight $\alpha_t$, the
+loss also includes a modulating factor ${(1-p_{t})}^{\gamma}$ to
+dynamically downweight well-classified examples with
+$p_{t}\gg0.5$. Here, the $\alpha_t$'s and the $\gamma$ are
+hyperparameters. We use FL as the default loss function for all our
+models.
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
