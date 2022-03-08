@@ -26,9 +26,10 @@
 %%%                 Hence, we need use this hyperref version to hardcode an extra {}
 %%%                 The reason is \contentline in \addtocontents will not be changed
 %%%                 Another opition will be consistently use addcontentsline.
-%%%                 add phantomsection/cleardoublepage to support correct toc pages.
+%%%                 1. make the section in autoref as uppercase
+%%%                 2. add phantomsection/cleardoublepage to support correct toc pages.
 %%%                 https://tex.stackexchange.com/questions/44088/when-do-i-need-to-invoke-phantomsection
-%%%                 chapter* is not supported in appendix, so modifying "references" after the appendix according to the listoftables
+%%%                 3. chapter* is not supported in appendix, so modifying "references" after the appendix according to the listoftables
 %%%
 %%% [02-May-2016] -- Yet more tweaks, and advance version letter to h.
 %%%
@@ -294,8 +295,30 @@
 \footskip   = 25pt
 \vfuzz      = 80pt      % suppress most overfll \vbox warnings
 
+
+%%% fixes when using the hyperref
+
+% 1. for autoref in hyperref
+\renewcommand\sectionautorefname{Section}
+\renewcommand\subsectionautorefname{Section}
+\renewcommand\subsubsectionautorefname{Section}
+
+% 2. fix reference after appendix
+\def \referencehead
+{%
+    \newpage
+    \thispagestyle{empty}%
+    \phantomsection
+    \addcontentsline{toc}{chapter}{REFERENCES}%
+    \mainheading{REFERENCES}%
+    \uuthesis@figureheadskip
+    \uuthesis@noise{References.}%
+}%
+\renewcommand{\bibsection}{\referencehead}
+
+
+% 3. specially added to support hyperref link to the correct page
 % https://tex.stackexchange.com/questions/44088/when-do-i-need-to-invoke-phantomsection
-% specially added to support hyperref link to the correct page
 \providecommand\phantomsection{}
 
 %%% --------------------------------------------------------------------
@@ -719,20 +742,6 @@
 
 %%% We need to change from the default "Bibliography" to "References"
 \global \def \bibname {References}
-
-% fix reference after appendix
-\def \referencehead
-{%
-    \newpage
-    \thispagestyle{empty}%
-    \phantomsection
-    \addcontentsline{toc}{chapter}{REFERENCES}%
-    \mainheading{REFERENCES}%
-    \uuthesis@figureheadskip
-    \uuthesis@noise{References.}%
-}%
-
-\renewcommand{\bibsection}{\referencehead}
 
 %%% Redefine verbatim environment to use single spacing, both to
 %%% be consistent with single-space quote and quotation environments,

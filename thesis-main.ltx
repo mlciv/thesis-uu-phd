@@ -114,20 +114,9 @@
 \graphicspath{ {images/} }
 \newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{#1}}}}}}
 
-%% hyperref is only ok when using uuthesis-2021-hyper
+%% hyperref only works when using uuthesis-2021-hyper
 %% https://tex.stackexchange.com/questions/115008/how-do-i-add-section-subsection-numbers-to-pdf-bookmarks
 \usepackage[colorlinks=false, hidelinks,bookmarksnumbered]{hyperref}
-
-%% adding upper case section for autoref
-\renewcommand\sectionautorefname{Section}
-\renewcommand\subsectionautorefname{Section}
-\renewcommand\subsubsectionautorefname{Section}
-%\hypersetup{
-%    colorlinks=true,
-%    citecolor=.,
-%    linkcolor=.,
-%    urlcolor=blue
-%}
 
 %%% ====================================================================
 %%% The various uuthesis-*.sty packages must come AFTER all other
@@ -258,6 +247,7 @@
 \let\MakeUppercaseUnsupportedInPdfStrings\@firstofone
 \let\MakeLowercaseUnsupportedInPdfStrings\@firstofone
 \makeatother
+
 %% Comment out items by inserting a percent % character
 \frontmatterformat
 \titlepage
