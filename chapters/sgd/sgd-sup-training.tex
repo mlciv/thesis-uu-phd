@@ -2,42 +2,39 @@
 \label{sec:sgd:sup-training}
 
 \begin{table}[!t]
-\begin{center}{\scriptsize
+\begin{center}{
 \setlength{\tabcolsep}{2pt}
-\begin{tabular}{c|ccc|ccc|ccc|ccc|ccc|ccc}
+\begin{tabular}{c|ccc|ccc|ccc|ccc}
   \toprule
   \hline
-                       & \multicolumn{12}{c|}{ \sgdst } & \multicolumn{6}{c}{ \multiwoz }                                                                                                                                                                                                                      \\ \cline{2-19}
-                       & \multicolumn{3}{c|}{ intent }  & \multicolumn{3}{c|}{ req } & \multicolumn{3}{c|}{ cat } & \multicolumn{3}{c|}{ noncat } & \multicolumn{3}{c|}{ cat } & \multicolumn{3}{c}{ noncat }                                                                                                  \\ \cline{2-19}
-                       & all                            & seen                       & unseen                     & all                           & seen                       & unseen & all   & seen  & unseen & all        & seen  & unseen     & all   & seen  & unseen & all        & seen  & unseen      \\ \hline
-  $\Delta_{\textbf{SNLI}}$  & {\bf +0.51}                    & +0.02                      & {\bf +0.68}                & -0.19                         & +0.38                      & -0.38  & -1.63 & -2.87 & -1.23  & -4.7       & -0.1  & -6.25      & +2.05 & +0.6  & --0.7   & {\bf +3.64} & +1.05 & {\bf +4.84} \\ \hline
-  $\Delta_{\textbf{SQuAD}}$ & -1.81                          & -0.17                      & -1.32                      & -0.25                         & -0.01                      & -0.33  & -2.87 & -3.02 & -5.17  & {\bf +1.99} & -1.79 & {\bf +3.25} & +0.04 & -0.71 & +0.41  & {\bf +1.93} & -2.21 & {\bf +4.27} \\ \hline
+                       & \multicolumn{12}{c}{ \sgdst } \\ \cline{2-13}
+                       & \multicolumn{3}{c|}{ intent }  & \multicolumn{3}{c|}{ req } & \multicolumn{3}{c|}{ cat } & \multicolumn{3}{c}{ noncat } \\ \cline{2-13}
+                       & all                            & seen                       & unseen                     & all                           & seen                       & unseen & all   & seen  & unseen & all        & seen  & unseen     \\ \hline
+  $\Delta_{\textbf{SNLI}}$  & {\bf +0.51}                    & +0.02                      & {\bf +0.68}                & -0.19                         & +0.38                      & -0.38  & -1.63 & -2.87 & -1.23  & -4.7       & -0.1  & -6.25      \\ \hline
+  $\Delta_{\textbf{SQuAD}}$ & -1.81                          & -0.17                      & -1.32                      & -0.25                         & -0.01                      & -0.33  & -2.87 & -3.02 & -5.17  & {\bf +1.99} & -1.79 & {\bf +3.25} \\ \hline
   \bottomrule
 \end{tabular}
 }
 \end{center}
-\caption{\label{tbl:sup-training} Relative performance improvement of different supplementary training on \sgdst~and \multiwoz~dataset}
+\caption{\label{tbl:sup-training-sgd} Relative performance improvement of different supplementary training on \sgdst dataset}
 \end{table}
-
 \begin{table}[!t]
-\begin{center}{\scriptsize
+\begin{center}{
 \setlength{\tabcolsep}{2pt}
-\begin{tabular}{c|cc|cc|cc|cc}
+\begin{tabular}{c|ccc|ccc}
   \toprule
   \hline
-                       & \multicolumn{8}{c}{ \sgdst } \\ \cline{2-9}
-                       & \multicolumn{2}{c|}{ Intent }  & \multicolumn{2}{c|}{ Req } & \multicolumn{2}{c|}{ Cat } & \multicolumn{2}{c}{ NonCat } \\ \cline{2-9}
-                       & seen                       & unseen                     & seen                       & unseen & seen  & unseen & seen  & unseen     \\ \hline
-  $\Delta_{\textbf{SNLI}}$  & +0.02                      & {\bf +0.68}                & +0.38                      & -0.38  & -2.87 & -1.23  & -0.1  & -6.25      \\ \hline
-  $\Delta_{\textbf{SQuAD}}$ & -0.17                      & -1.32                      & -0.01                      & -0.33  & -3.02 & -5.17  & -1.79 & {\bf +3.25} \\ \hline
+                       & \multicolumn{6}{c}{ \multiwoz }                                                                                                                                                                                                                      \\ \cline{2-7}
+                       & \multicolumn{3}{c|}{ cat } & \multicolumn{3}{c}{ noncat }                                                                                                  \\ \cline{2-7}
+                       & all   & seen  & unseen & all        & seen  & unseen      \\ \hline
+  $\Delta_{\textbf{SNLI}}$  & +2.05 & +0.6  & --0.7   & {\bf +3.64} & +1.05 & {\bf +4.84} \\ \hline
+  $\Delta_{\textbf{SQuAD}}$ &  +0.04 & -0.71 & +0.41  & {\bf +1.93} & -2.21 & {\bf +4.27} \\ \hline
   \bottomrule
 \end{tabular}
 }
 \end{center}
-\caption{\label{tbl:sup-training2} Relative performance improvement of different supplementary training on \sgdst~and \multiwoz~dataset}
+\caption{\label{tbl:sup-training-multiwoz} Relative performance improvement of different supplementary training on \multiwoz~dataset}
 \end{table}
-
-
 
 Besides the pretrain-fintune framework used in \S\ref{sec:models},
 \citet{phang2018sentence} propose to add a supplementary training

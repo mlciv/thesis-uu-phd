@@ -1,23 +1,72 @@
-\section{Contribuition and Roadmap}
+\section{Contribuition}
 \label{sec:intro-contri}
 
-Our study on linguistic structure prediction covers two sets of tasks,
-including broad-coverage meaning representation and
-application-specific representations. Our contributions and thesis
-outlines can be summarized as follows:
+\Paragraph{Thesis Statement} Our claim is that by designing
+~\kw{Structural Inductive Bias} and \kw{Natural Language as Inductive
+  Biases}, models with naive independent factorization can achieve strong
+performance on predicting the structures of natural language.
+
+\Paragraph{Contribution} In this theis, focusing on independent factorization setting, we show
+that our proposed indutive biases can offer discriminative features to
+improve the performance of the locally dependent output structured
+prediction model, and still achieve competetive and generalizable
+performance in two sets of tasks, including broad-coverage meaning
+representation and application-specific representations.
+
+We next summarize the main contributions of this thesis, addressing
+some of the open problems mentioned in the previous section.
 
 \begin{enumerate}
-\item Structural Biases for Cross-framework Meaning Representation Parsing
+\item We proposed a unified parsing framework to support
+  both~\textbf{explicit lexical-anchoring}~(DELPH-IN MRS Bi-lexical
+  Dependencies~\citep[DM,][]{ivanova2012did} and Prague Semantic
+  Dependencies~\citep[PSD,][]{hajic2012announcing,miyao2014house}), and
+  \textbf{implicit lexical anchoring}~(AMR). Over 16 teams in the
+  shared tasks, my parser~\citet{cao2019amazon} \kw{ranked 1st on AMR,
+    6th in DM, 7th in PSD}. By combining Perturb-and-MAP
+  sampling~\cite{Papandreou2011PerturbandMAPRF} with differentiable
+  Gumbel-Softmax Sinkhorn Networks~\cite{Mena2018LearningLP}, we can
+  approximately infer the discrete latent-alignment variable in
+  lexical-anchoring of the independent factorization setting.
 
-  For the alignment distribution, we assume it is gumbel distribution, which can be differentiate sampled by gumble sinkhorn operators.
+\item Notice that the \textbf{phrasal-anchoring} Universal Conceptual
+  Cognitive Annotation~\citep[UCCA,][]{abend2013universal} and
+  Task-oriented Dialog
+  Parsing~\citep[TOP,][]{gupta-etal-2018-semantic-parsing} is similar
+  to constituency tree structure, except for unseen phenomenons such
+  as remote edges and discontinuous spans, we extrapolate the existed
+  algorithmic inductive bias on tree structure prediction and
+  Cost-augmented CKY inferece to the new UCCA and TOP parsing
+  tasks. Powered by strong span-representation learning method, my
+  system~\citep{cao2019amazon} \kw{ranked 5/16 on UCCA parsing}, and it
+  can be reused to TOP parsing after a few preprocessing steps, and
+  outperform serveral baseline models.
 
+\item We address the problem of providing real-time guidance to
+  therapists with a dialogue observer. It decompose the dialog
+  structure analysis with two independent factorization tasks: (1)
+  categorizes therapist and client MI behavioral codes and, (2)
+  forecasts codes for upcoming utterances to help guide the
+  conversation and potentially alert the therapist. For both tasks, I
+  studied a hierarchical gated recurrent unit (\HGRU) with the
+  \kw{word-level attention} and \kw{sentence-level attention} to
+  distinguish different importance of words and sentences to our
+  prediction~\cite{jie2019psycdialacl}. Our experiments demonstrate
+  that our models can outperform several baselines for both tasks.  We
+  also report the results of a careful analysis that reveals the
+  impact of the various network design tradeoffs for modeling therapy
+  dialogue.
 
-\item Structural Biases for Pschotherapy Dialog Understanding
+\item Natural language can be leveraged as inductive biases to
+  describe the functions of the intent/slot labels in task-oriented
+  dialogue. We are among the first to use large pretrained language
+  models on description-based dialog state tracking, we offer detailed
+  comparative studies how to transfer inductive biases to new domains
+  and APIs with overlapping functions and task structures, including
+  encoding strategies, supplementary pretraining, homogenuous and
+  heterogeneous evalutions.
+\end{enumerate}
 
-\item Natural Language as Inductive Biases for Schema-guided Dialog State Tracking
-
-\item Future Work and Other Applications
-\item \end{enumerate}
 
 %%% Local Variables:
 %%% mode: latex

@@ -1,12 +1,72 @@
 
-\section{Roadmap}
+\section{Thesis Outline}
+\label{sec:intro:roadmap}
 To coherently present the thesis, we think it is helpful to discuss
 prior work related to an application in its own chapter, instead of
 putting them all in a single chapter. Therefore, we include a section
-of related work at the end of each application chapter.
+of related work at the end of each application chapter. This thesis is
+divided into five parts, which we described below.
+
+\Paragraph{Chapter 2. Background} The first part systematizes the
+background of this theis study in two sections:
+\begin{itemize}
+\item \kw{Structures in NLP.} We first provide the necessary
+  background about structures in natural languages for better exposing
+  our contributions in remaining chapters.
+\item \kw{Structured Prediction, Learning and Inference.} We summerize
+  the recent advances in deep structured prediction with respect to
+  learning and inference respectively. Epsecially, we overview the
+  development of representation learning methods for natural language,
+  from feature selection to deep learning based representation
+  learning methods.
+\end{itemize}
+
+\Paragraph{Chapter 3. Structural Inductive Biases for Lexical and
+  Phrasal Anchoring} In this chapter, we provide lexical and phrasal
+anchoring analysis to decompose the output structures into locally
+dependent parts, where each part can be derived from its anchoring
+words or phrasal in the input sentence. For lexical-anchoring, we
+propose a unified model to support both explicit and implicit
+alignment information between each input parts and output parts. For
+phrasal-anchoring, we compared different ways to learn the
+contextualized representation to rerepsent the span, and how they can
+bring discriminative features to our locally-dependent model. We show
+that with the above lexical and phrasal-anchoring based structural
+inductive biases for energey factorization and contextualized
+representation learning, our model can learn efficient discriminative
+features for the anchor representations and still achieve high
+performance in the locally-dependent model.
+
+\Paragraph{Chapter 4. Structural Inductive Biases for Sentence and
+  Dialog} In the following two chapters, we extend our study to
+structures beyond a single sentence. In this chapter, We study the
+seuquential dialog flow structure in a style of therapy called
+Motivational
+Interviewing~\cite[MI,][]{miller2003motivational,miller2012motivational},
+which is widely used for treating addiction-related problems.
+Sentence-level tags called Motivational Interview Skill Codes are
+designed to represent the intention of each utterance and the dialogue
+flow of the whole therapy session. By developing a modular family of
+neural networks categorizing and forcasting the dialog flow in the
+form of MISC codes, we show that the above mechanisms on dialogue
+representation can efficiently model the sequential structure of
+dialogue flow.
+
+\Paragraph{Chapter 5. Natural Language as Inductive Biases} In this
+chapter, we study using natural language descriptions to represent the
+meaning of output symbols~(Intents and Slots) in task-oriented dialog
+state tracking, which helps to reduce the poor scalability to transfer
+to unseen domain and services. We study three main challenges of using
+natural language for label representation: schema encoding,
+supplementary training, and description styles.
+
+
+\Paragraph{Chapter 6. Conclusion and Future Work} This chapter
+concludes, by providing a summary of contributions and drawing
+possible directions of future work.
 
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../thesis-main.ltx"
+%%% TeX-master: "../../thesis-main.ltx"
 %%% End:

@@ -110,9 +110,7 @@
 \usepackage[T1]{fontenc}
 
 
-\usepackage {mlsymbols}
 \graphicspath{ {images/} }
-\newcommand{\cev}[1]{\reflectbox{\ensuremath{\vec{\reflectbox{\ensuremath{#1}}}}}}
 
 %% hyperref only works when using uuthesis-2021-hyper
 %% https://tex.stackexchange.com/questions/115008/how-do-i-add-section-subsection-numbers-to-pdf-bookmarks
@@ -185,16 +183,15 @@
 
 \usepackage {mythesis}
 
-%\input{math_commands}
 \input{common}
 %%% ====================================================================
 %%% The student-specific front matter fields are defined here:
 
 \author                 {Jie Cao}
-\title                  {Factorization-oriented Representation Learning for Linguistic Structured Prediction}
+\title                  {Inductive Biases for Deep Linguistic Structured Prediction}
 \thesistype             {dissertation}
 
-\dedication             {For my parents, Alice and Bob.}
+\dedication             {For my parents, and my love.}
 
 %%% Most students need just a short degree name, like this:
 \degree                 {Doctor of Philosophy}
@@ -284,13 +281,12 @@
 \pagestyle{plain} % TEMPORARY EXPERIMENT: override default page headers
 \pagestyle{headings} % TEMPORARY EXPERIMENT: override default page headers
 
-\include {chapters/chap1}
-\include {chapters/chap2}
-\include {chapters/chap3}
-\include {chapters/chap4}
-\include {chapters/chap5}     % NEW for sample-thesis-2
-\include {chapters/chap6}     % NEW for sample-thesis-3
-\include {chapters/chap7}     % summary
+\include {chapters/intro}
+\include {chapters/background}
+\include {chapters/lexical-phrasal}
+\include {chapters/sentence}     % NEW for sample-thesis-2
+\include {chapters/sgd}     % NEW for sample-thesis-3
+\include {chapters/summary}     % summary
 
 % % \numberofappendices = 1   % Set 0 for none, else number of appendices.
 \numberofappendices = 3
@@ -331,7 +327,7 @@
 %%% a bibliography.  Thus, we suppress it here:
 
 %%%\bibliographystyle{siam}
-\bibliographystyle{authordate1}
+\bibliographystyle{acl_natbib}
 
 %%% This can also specify a comma-separated list (without embedded
 %%% spaces) of *.bib files found by BibTeX in its BIBINPUTS search
@@ -346,7 +342,7 @@
 %%% bibliography, so we suppress it here:
 
 %%\bibliography{\jobname}
-\bibliography{bib-files/thesis-main, bib-files/proposal,bib-files/sp,bib-files/psyc,bib-files/top,bib-files/semi-top,bib-files/mrp,bib-files/sdp,bib-files/ucca,bib-files/amr,bib-files/ltg,bib-files/sgd,bib-files/scalable-dialog}
+\bibliography{bib-files/thesis-main,bib-files/proposal,bib-files/sp,bib-files/psyc,bib-files/top,bib-files/semi-top,bib-files/mrp,bib-files/sdp,bib-files/ucca,bib-files/amr,bib-files/ltg,bib-files/sgd,bib-files/scalable-dialog}
 
 %%% The last part of this sample thesis is two specialized indexes,
 %%% and a general topic index.  If the companion Makefile is used to

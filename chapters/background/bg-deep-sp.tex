@@ -1,5 +1,5 @@
 \section{Deep Structured Prediction in NLP}
-\label{sec:deepsp}
+\label{sec:background:deepsp}
 Due to the power of representation learning, deep learning is widely
 used to extract sophisticated representations for the inputs in
 various NLP tasks. In this proposal, instead of focusing on a single
@@ -22,21 +22,21 @@ network~\cite{tu2018learning} was proposed to approximate the
 cost-augmented inference during training and then fine-tuning for
 test-time inference.
 
-In this proposal, we study the specific inductive biases based on the
+In this thesis, we study the specific inductive biases based on the
 principle of compositionality, which can be used for \textbf{different
   purposes more than the accuracy on a single task or a single
   domain}. For example, with simple independent factorization, we
 study a universal alignment-based model to support
 \textit{cross-framework} meaning representation parsing. By defining
-two complementary dialogueue observers to sequentially predict the MISC
-code for both current and future utterance, our model emphasizes both
-\textit{accurate and real-time} assistance to a therapist. We propose
-to represent the output labels with natural language descriptions for
-\textit{zero-shot learning} on unseen labels~\S\ref{ssec:sgdst}. To
-support \textit{robust low-resource learning} on Seq2Graph model for
-generic graph parsing tasks, we propose to learn the composition by
-representing output structures via self-supervised Graph Convolutional
-Neural Networks.
+two complementary dialogueue observers to sequentially predict the
+MISC code for both current and future utterance, our model emphasizes
+both \textit{accurate and real-time} assistance to a therapist. We
+propose to represent the output labels with natural language
+descriptions for \textit{zero-shot learning} on unseen
+labels~\S\ref{ssec:sgdst}. In our thesis, we show that during the
+rapid progress of representation learning methods, our proposed
+inductive biases still can outperform the standard usage baselines.
+
 
 \subsection{Formulation of Structural Interdependence}
 
@@ -47,6 +47,12 @@ Neural Networks.
 \subsubsection{Learning Interdependence}
 
 \subsection{Neural Representation Learning}
+For deep learning based methods, we review the recent advances from
+embedding based methods to attention-based dynamic features
+selection. Finally, we also introduced the rapid progress in language
+encoding architectures, from recurrent neural network to transformer,
+and the corresponding pretrained language models ELMo , BERT, GPT3
+etc.
 
 \subsection{Modeling Discrete Latent Variables}
 
@@ -62,5 +68,5 @@ SparseMAP
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../thesis-main.ltx"
+%%% TeX-master: "../../thesis-main.ltx"
 %%% End:

@@ -9,24 +9,41 @@
 %%% included here.
 %%%
 %%% The text of this file should be about 350 words or less.
-  Natural language, when described as a system of symbolic human
-communication, it is inherently studied via various discrete symbolic
-representations. Designing the artificial symbolic representation for
-natural language intuitively follows the principle of compositionality
-in natural language. Leveraging this as an inductive bias, we conduct
-systematic studies on factorization-oriented representation learning
-to predict those combinatorial and symbolic structures. We propose the
-corresponding neural representation learning approaches for three
-different kinds of factorization: {\it Independent Factorization},
-{\it Label Representation}, {\it Auto-regressive Factorization}. We
-ground our studies on both broad-coverage linguistic
-representations~(such as graph-based meaning representations, DM, PSD,
-AMR, and UCCA, etc.)~and application-specific representations~(such as
-MISC code for psychotherapy dialog and dialog state representations
-for task-oriented dialog). The experimental results show our proposed
-methods achieve competetive performance on each task, and they
-potentially help for other linguistic structured prediction tasks with
-similar factorizations.
+Discovering the underlying structures from unstructured text will make
+sense of the rapidly growing data nowadays. Natural language, when
+described as a system of symbolic human communication, it is
+inherently studied via various symbolic and structured
+representations. We ground the studies of natural language structured
+prediction on both broad-coverage linguistic representations~(such as
+graph-based meaning representations, DM, PSD, AMR, and UCCA) and
+application-specific representations~(such as MISC code for
+psychotherapy dialog and dialog state representations for
+task-oriented dialog).
+
+Towards generalization, the search for appropriate inductive biases is
+necessary for any machine learning~(ML) based natural language
+processing~(NLP) system, the same for predicting complicated
+combinatory structures from natural langauge via deep learning
+models. In this thesis, I primarily focused on two kinds of inductive
+biases on deep learning based linguistic structured prediction:
+\kw{Structural Inductive Bias} and \kw{Natural Language as Inductive
+  Biases}.
+
+Due to the compositionality of natural language, the underlying
+language representations are designed as compositional structures. I
+studied structural inductive biases via designing
+factorization-oriented learning and reasoning mechnisms on lexical,
+phrasal, and sentential levels. On the other side, much knowledge or
+human biases are encoded in the massive amount of human
+language. Taking natural language as an media of inductive biases, I
+studied how to leverage natural language to describe the functions of
+the intent/slot labels in task-oriented dialogue, thus guiding the
+model transferring to new domains and APIs with overlapping functions
+and task structures.  The experimental results show our proposed
+methods achieve competetive performance on each task even with simple
+independent factorization assumptions, and they potentially help for
+other linguistic structured prediction tasks with similar inductive
+biases.
 
 %%% Local Variables:
 %%% mode: latex

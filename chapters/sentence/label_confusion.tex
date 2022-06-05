@@ -15,28 +15,29 @@ categories of confusion, shown in Table
 
 \begin{figure}[!h]
 \centering
-  \includegraphics[width=0.24\textwidth]{large_font_categorizing_plabel_confusion_matrix_dev.pdf}
+  \includegraphics[width=0.50\textwidth]{large_font_categorizing_plabel_confusion_matrix_dev.pdf}
   \caption{\label{fig:categorizing_confusion_client} Confusion matrix for categorizing client codes, normalized by row.}
 \end{figure}
 
 \begin{table}[!h]
   \small
   \begin{center}
-\setlength{\tabcolsep}{4pt}
 \begin{tabular}{ll}
   \toprule
   {\bf Category and Explaination}                                                                                                                                                                                                                            & {\bf Client Examples (Gold MISC)}                                                                                                                                         \\\midrule
-  \multirow{3}{*}{\parbox{7cm}{Reasoning is required to understand
-  whether a client wants to change behavior, even with full context~(50,42) }}                               & \multirow{3}{*}{\parbox{8cm}{T: On a scale of zero to ten how confident are you that you can implement this change ? C: I don't know, seven maybe (\CHANGE);\\ I have to wind down after work (\SUSTAIN) }} \\
+  \multirow{4}{*}{\parbox{7cm}{Reasoning is required to understand
+  whether a client wants to change behavior, even with full context~(50,42) }}                               & \multirow{4}{*}{\parbox{7cm}{T: On a scale of zero to ten how confident are you that you can implement this change? \\C: I don't know, seven maybe (\CHANGE);\\ I have to wind down after work (\SUSTAIN) }} \\
+                                                                                                                                                                                                                                                             &                                                                                                                                                                     \\
                                                                                                                                                                                                                                                              &                                                                                                                                                                     \\
                                                                                                                                                                                                                                                              &                                                                                                                                                                     \\\midrule
-  \multirow{3}{*}{\parbox{7cm}{Concise utterances which are easy for humans to understand, but missing information such as coreference, zero pronouns~(22,31)}}                                                                                        & I mean I could try it (\CHANGE)                                                                                                                                      \\
-                                                                                                                                                                                                                                                             & Not a negative consequence for me (\SUSTAIN)                                                                                                                         \\
-                                                                                                                                                                                                                                                             & I want to get every single second and minute out of it(\CHANGE)                                                                                                                         \\\midrule
-  \multirow{2}{*}{\parbox{7cm}{Extremely short ($ \leq5 $) or long sentence ($\ge40 $), caused by incorrect turn segementation. ~(21,23)}} & It is a good thing (\SUSTAIN)                                                                                                                                       \\
-                                                                                                                                                                                                                                                             & Painful (\CHANGE)                                                                                                                                                    \\ \midrule
-  \multirow{2}{*}{\parbox{7cm}{Ambivalent speech, very hard to understand even for human.~(7,4)}}                                                                                                     & What if it does n't work I mean what if I can't do it (\SUSTAIN)                                                                                                                            \\
-                                                                                                                                                                                                                                                             & But I can stop whenever I want(\SUSTAIN)                                                                                                                            \\\bottomrule
+  \multirow{4}{*}{\parbox{7cm}{Concise utterances which are easy for humans to understand, but missing information such as coreference, zero pronouns~(22,31)}}                                                                                        & \multirow{4}{*}{\parbox{7cm}{I mean I could try it (\CHANGE)\\Not a negative consequence for me (\SUSTAIN) \\I want to get every single second and minute out of it(\CHANGE)}}                                                                                                                                     \\
+                                                                                                                                                                                                                                                             & \\
+                                                                                                                                                                                                                                                             & \\
+                                                                                                                                      & \\\midrule
+  \multirow{3}{*}{\parbox{7cm}{Extremely short ($ \leq5 $) or long sentence ($\ge40 $), caused by incorrect turn segementation. ~(21,23)}} & It is a good thing (\SUSTAIN)                                   \\
+                                                                                                                                      & Frankly, I hate it (\CHANGE)                                                               \\ & Painful (\CHANGE)                                                                                                                                                    \\ \midrule
+  \multirow{2}{*}{\parbox{7cm}{Ambivalent speech, very hard to understand even for human.~(7,4)}}                                     & \multirow{3}{*}{\parbox{7cm}{What if it does n't work I mean what if I can't do it (\SUSTAIN)\\But I can stop whenever I want(\SUSTAIN)}}                                                                                                                            \\
+& \\                                                                                                                                                                                                                                                             &                                                                                                                             \\\bottomrule
 \end{tabular}
 \end{center}
 \caption{Categorization of \CHANGE/\SUSTAIN confusions.The two numbers in the brackets are the count of errors for predicting \CHANGE as \SUSTAIN and vice versa. We exampled 100 examples for each case.}
@@ -89,7 +90,7 @@ such utterances could be difficult, even for an expert therapist.
 % }
 
 % \subfloat[Categorizing therapist codes\label{subfig:c_therapist}]{
-  \includegraphics[width=0.5\textwidth]{pred_tlabel_model2_confusion_dev.pdf}
+  \includegraphics[width=0.90\textwidth]{pred_tlabel_model2_confusion_dev.pdf}
 % }
   \caption{\label{fig:categorizing_confusion_therapist} Confusion matrix for categorizing therapist codes, normalized by row.}
 \end{figure}
