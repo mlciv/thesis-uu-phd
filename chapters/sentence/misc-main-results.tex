@@ -1,7 +1,52 @@
 \subsection{Results}
+\label{ssec:snt:results}
 
-\input{chapters/sentence/misc-best-model}
+Our goal is to discover the best client and therapist models for the
+two tasks. We first summarize the best configuration and the
+corresponding performance of our best models for both categorzing and
+forecasting MISC codes in ~\autoref{tbl:main_rst} with precision,
+recall and $F_{1}$ for each codes. Then, we also show the performance
+of these models against various baselines.
+\begin{table}[h]
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l|ccc|ccc}
+\toprule
+\hline
+\multirow{2}{*}{{\bf Label}} & \multicolumn{3}{c}{{\bf Categorizing}} & \multicolumn{3}{c}{{\bf Forecasting}}  \\ \cline{2-4} \cline{5-7}
+                             & P                                      & R    & $\text{F}_{1}$ & P    & R    & $\text{F}_{1}$ \\ \hline
+\FN                          & 92.5                                   & 86.8 & 89.6    & 90.8 & 80.3 & 85.2    \\
+\CHANGE                      & 34.8                                   & 44.7 & 39.1    & 18.9 & 28.6 & 22.7    \\
+\SUSTAIN                     & 28.2                                   & 39.9 & 33.1    & 19.5 & 33.7 & 24.7    \\
+\hline
+\FA                          & 95.1                                   & 94.7 & 94.9    & 70.7 & 73.2 & 71.9    \\
+\RES                         & 50.3                                   & 61.3 & 55.2    & 20.1 & 18.8 & 19.5    \\
+\REC                         & 52.8                                   & 55.5 & 54.1    & 19.2 & 34.7 & 24.7    \\
+\GI                          & 74.6                                   & 75.1 & 74.8    & 52.8 & 67.5 & 59.2    \\
+\QUC                         & 80.6                                   & 70.4 & 75.1    & 36.2 & 24.3 & 29.1    \\
+\QUO                         & 85.3                                   & 81.2 & 83.2    & 27.0 & 11.8 & 16.4    \\
+\MIA                         & 61.8                                   & 52.4 & 56.7    & 27.0 & 10.6 & 15.2    \\
+\MIN                         & 27.7                                   & 28.5 & 28.1    & 17.2 & 10.2 & 12.8    \\ \hline \bottomrule
+\end{tabular}
+\end{center}
+\caption{Performance of our proposed
+  models with respect to precision, recall and $\text{F}_{1}$ on categorizing and forecasting
+  tasks for client and therapist codes}
+\label{tbl:main_rst}
+\end{table}
 
+\Paragraph{Best Models} We identified the following best configurations using $\text{F}_{1}$
+score on the development set:
+\begin{enumerate}[nosep]
+\item {\bf Categorization}: For client, the best model does not need any
+  word or utterance attention. For the therapist, it uses \GMGRUH
+  for word attention and \anchor for utterance attention. We refer
+  to these models as $\mathcal{C}_C$ and $\mathcal{C}_T$ respectively
+\item {\bf Forecasting}: For both client and  therapist, the best
+  model uses no word attention, and uses \self utterance
+  attention. We refer to these models as $\mathcal{F}_C$ and
+  $\mathcal{F}_T$ respectively.
+\end{enumerate}
 
 \Paragraph{Results on Categorization}
 Tables~\ref{tbl:main_rst_c_categorizing} and

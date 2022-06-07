@@ -1,16 +1,16 @@
 %%% -*-LaTeX-*-
 \chapter{Modeling on Sentence-Anchoring for Dialog in Therapy}
-\label{chap:snt-anchoring}
+\label{chap:snt}
 
 Conversational agents have long been studied in the context of
 psychotherapy, going back to chatbots such as
-ELIZA~\cite{weizenbaum1966eliza} and
-PARRY~\cite{colby1975artificial}. Research in modeling such dialogue
+ELIZA~\citep{weizenbaum1966eliza} and
+PARRY~\citep{colby1975artificial}. Research in modeling such dialogue
 has largely sought to simulate a participant in the conversation.
 
-In this paper, we argue for modeling dialogue \emph{observers}
+In this chapter, we argue for modeling dialogue~\kw{observers}
 instead of participants, and focus on psychotherapy. An observer
-could help an \emph{ongoing} therapy session in several ways.
+could help an~\kw{ongoing} therapy session in several ways.
 First, by monitoring fidelity to therapy standards, a helper could
 guide both veteran and novice therapists towards better patient
 outcomes. Second, rather than generating therapist utterances, it
@@ -19,7 +19,7 @@ could alert a therapist about potentially important cues from a
 patient.
 %
 Such assistance would be especially helpful in the increasingly
-prevalent online or text-based counseling services.\footnote{For
+prevalent online or text-based counseling services.~\footnote{For
   example, Crisis Text Line (\url{https://www.crisistextline.org}),
   7 Cups (\url{https://www.7cups.com}), etc.}
 
@@ -64,18 +64,18 @@ prevalent online or text-based counseling services.\footnote{For
 %%
 
 We ground our study in a style of therapy called Motivational
-Interviewing~\cite[MI,][]{miller2003motivational,miller2012motivational},
+Interviewing~\citep[MI,][]{miller2003motivational,miller2012motivational},
 which is widely used for treating addiction-related problems.
 %
 To help train therapists, and also to monitor therapy quality,
 utterances in sessions are annotated using a set of behavioral codes
 called Motivational Interviewing Skill
-Codes~\cite[MISC,][]{miller2003manual}. Table~\ref{tbl:misc} shows
+Codes~\citep[MISC,][]{miller2003manual}. \autoref{tbl:misc} shows
 standard therapist and patient (\ie, client) codes with
 examples. Recent NLP work~\cite[][{\em inter
   alia}]{tanana2016comparison, xiao2016behavioral,
   perez2017predicting, huang2018modeling} has studied the problem of
-using MISC to assess \emph{completed} sessions.  Despite its
+using MISC to assess~\emph{completed} sessions.  Despite its
 usefulness, automated post hoc MISC labeling does not address the
 desiderata for ongoing sessions identified above; such models use
 information from utterances yet to be said. To provide real-time
@@ -97,8 +97,7 @@ We study modeling challenges associated with these tasks related to:
 \item representing words and utterances in therapy dialogue,
 \item ascertaining relevant aspects of utterances and the dialogue
   history, and
-\item handling label imbalance (as evidenced in
-  Table~\ref{tbl:misc}).
+\item handling label imbalance (as evidenced in~\autoref{tbl:misc}).
 \end{inparaenum}
 We develop neural models that address these challenges in this
 domain.
@@ -110,15 +109,14 @@ from future utterances. For the more difficult forecasting task, we
 show that even without having access to an utterance, the dialogue
 history provides information about its MISC label.  We also report
 the results of an ablation study that shows the impact of the
-various design choices.\footnote{The code is available online at
-\url{https://github.com/utahnlp/therapist-observer}.}.% Additionally, we will host
-% a publicly accessible online demo of our best models.
+various design choices.~\footnote{The code is available online at
+~\url{https://github.com/utahnlp/therapist-observer}.}.
 
 In summary, in this chapter, we
 \begin{inparaenum}[(1)]
-\item define the tasks of categorizing and forecasting Motivational
-  Interviewing Skill Codes to provide real-time assistance to
-  therapists,
+\item factorize the dialog sequential structure via defining the tasks
+  of categorizing and forecasting Motivational Interviewing Skill
+  Codes to provide real-time assistance to therapists,
 \item propose neural models for both tasks that outperform several
   baselines, and
 \item show the impact of various modeling choices via extensive
@@ -136,57 +134,6 @@ In summary, in this chapter, we
 \input{chapters/sentence/misc-analysis}
 
 \input{chapters/sentence/misc-conclusion}
-
-
-
-\index{gnu}
-
-\index{gnu!diet}
-\index{gnu!diet!wet season}
-\index{gnu!diet!dry season}
-
-\index{rhinodon}
-\index{rhinodont}
-\index{rhinoceros}
-\index{rhinoceros horn}
-\index{rhinocerite}
-\index{rhinestone}
-\index{Rhineland}
-\index{Rhinegrave}
-\index{Rhine berry}
-\index{rhea}
-\index{rat}
-\index{raccoon}
-\index{Queensland viper}
-\index{quail}
-\index{quagga}
-\index{puffin}
-\index{pterodactyl}
-\index{pronghorn (\bioname{Antilocapra americana})}
-\index{peccary}
-\index{panther}
-\index{panda}
-\index{opossum}
-\index{okapi}
-\index{octopus}
-\index{ocelot (\bioname{Leopardus pardalis})}
-\index{nilgai}
-\index{Neanderthal}
-\index{nautilus}
-\index{narwhal}
-\index{muskrat}
-\index{musk ox}
-\index{moose (\bioname{Alces alces})}
-\index{mastodon}
-\index{mastiff}
-\index{marmot (\bioname{Marmota marmota})}
-\index{margay (\bioname{Leopardus wiedii})}
-\index{manatee (\bioname{Trichechus inunguis})}
-\index{mammoth}
-
-\index{Alces alces@\bioname{Alces alces}}
-\index{Antilocapra americana@\bioname{Antilocapra americana}}
-\index{Marmota marmota@\bioname{Marmota marmota}}
 
 %%% Local Variables:
 %%% mode: latex

@@ -1,7 +1,7 @@
-\paragraph{Different Clustering Strategies for MISC}
-\label{ssec:misc_clustering}
+\section{Different Clustering Strategies for MISC}
+\label{sec:misc_clustering}
 
-\begin{table*}[!h]
+\begin{table}[!h]
   \begin{center}
 \setlength{\tabcolsep}{4pt}
 {\small
@@ -23,24 +23,31 @@
 \end{tabular}}
 \end{center}
 \caption{\label{tbl:misc_mia_min} Label distribution, description and exmaples for \MIA and \MIN}
-\end{table*}
+\end{table}
 
-The original MISC description of \citet{miller2003manual} included 28
-labels (9 client, 19 therapist). Due to data scarcity and label
-confusion, some labels were merged into a coarser set.
-\citet{can2015dialog} retain 6 original labels \FA, \GI, \QUC, \QUO,
-\REC, \RES, and merge remaining 13 rare labels into a single
-\misc{COU} label, they merge all 9 client codes into a single
-\misc{CLI} label.  Instead, \citet{tanana2016comparison} merge only 8
-of rare labels into a \misc{OTHER} label and they cluster client codes
-according to the valence of changing, sustaining or being neutral on
-the addictive behavior\cite{atkins2014scaling}. Then
-\citet{xiao2016behavioral} combine and improve above two clustering
-strategies by splitting the all 13 rare labels according to whether
-the code represents MI-adherent(\MIA) and MI-nonadherent (\MIN) We
-show more details about the original labels in \MIA and \MIN in Table
-\ref{tbl:misc_mia_min}
+\Paragraph{MISC-28} The original MISC description of
+\citet{miller2003manual} included 28 labels (9 client, 19
+therapist).
+
+\Paragraph{MISC-8} Due to data scarcity and label confusion, some
+labels were merged into a coarser set.  \citet{can2015dialog} retain 6
+original labels \FA, \GI, \QUC, \QUO, \REC, \RES, and merge remaining
+13 rare labels into a single \misc{COU} label, they merge all 9 client
+codes into a single \misc{CLI} label.
+
+\Paragraph{MISC-15} Instead, \citet{tanana2016comparison} merge only 8
+of rare labels in therapist codes into a \misc{OTHER} label and they
+cluster client codes into 3 labels according to the valence of
+changing, sustaining or being neutral on the addictive
+behavior~\cite{atkins2014scaling}.
+
+\Paragraph{MISC-11} Then \citet{xiao2016behavioral} combine and
+improve above two clustering strategies by splitting the all 13 rare
+labels according to whether the code represents MI-adherent(\MIA) and
+MI-nonadherent (\MIN) We show more details about the original labels
+in \MIA and \MIN in Table \ref{tbl:misc_mia_min}
+
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "main"
+%%% TeX-master: "../../thesis-main.ltx"
 %%% End:

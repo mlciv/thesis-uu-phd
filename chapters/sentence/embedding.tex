@@ -1,11 +1,7 @@
-\paragraph{Domain Specific Glove and ELMo}
+\subsection{Can Domain Specific Glove and ELMo Help More?}
 \label{ssec:domain_elmo}
-We use the general psychotherapy corpus with 6.5M words (Alexander
-Street Press) to train the domain specific  word embeddings
-$\textbf{Glove}_{psyc}$ with 50, 100, 300 dimension. Also, we
-trained ELMo with 1 highway connection and 256-dimensional output size to get $\textbf{ELMo}_{psyc}$. We found that ELMo 5.5B performs better than ELMo psyc in our experiments, and general Glove-300 is better than the $\textbf{Glove}_{psyc}$. Hence for main results of our models, we use $\textbf{ELMo}_{generic}$ by default.
-Please see more details in Table \ref{tbl:rst_elmo}
-\begin{table*}[!h]
+
+\begin{table}[!h]
 \begin{center}
 \setlength{\tabcolsep}{3pt}
 {\small
@@ -25,9 +21,15 @@ Model                          & Embedding                    & macro      & \FN
 \end{center}
 \caption{\label{tbl:rst_elmo} Ablation study for our proposed model
   with embeddings trained on the psychotherapy corpus.}
-\end{table*}
+\end{table}
+
+We use the general psychotherapy corpus with 6.5M words (Alexander
+Street Press) to train the domain specific  word embeddings
+$\textbf{Glove}_{psyc}$ with 50, 100, 300 dimension. Also, we
+trained ELMo with 1 highway connection and 256-dimensional output size to get $\textbf{ELMo}_{psyc}$. We found that ELMo 5.5B performs better than ELMo psyc in our experiments, and general Glove-300 is better than the $\textbf{Glove}_{psyc}$. Hence for main results of our models, we use $\textbf{ELMo}_{generic}$ by default.
+Please see more details in Table \ref{tbl:rst_elmo}
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "main"
+%%% TeX-master: "../../thesis-main.ltx"
 %%% End:

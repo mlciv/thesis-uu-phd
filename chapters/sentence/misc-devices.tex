@@ -1,13 +1,7 @@
 \section{Models for MISC Prediction}
 \label{sec:snt:devices}
 
-% \vs{General comment: For every section, add a label. I added one
-%  above.}
-
-% \vs{Rename the section title to be more descriptive: \eg, ``Modeling
-% an Ongoing Dialogue'' or something else}
-
-Modeling the two tasks defined in \S\ref{sec:task} requires
+Modeling the categorization and forcasting tasks defined in~\S\ref{sec:snt:task} requires
 addressing four questions:
 \begin{inparaenum}[(1)]
 \item How do we encode a dialogue and its utterances?
@@ -16,20 +10,16 @@ addressing four questions:
 \item How do we handle label imbalance in our data?
 \end{inparaenum}
 %
-Many recent advances in % modeling dialogue with
-neural networks can
-be seen as plug-and-play components. To facilitate the comparative
-study of models, we will describe components that address the
-above questions.  % Then, we
+Many recent advances in neural networks can be seen as plug-and-play
+components. To facilitate the comparative study of models, we will
+describe components that address the above questions.  % Then, we
 % will compare the models and their various ablations as a combination
 % of these modules in \S\ref{sec:experiments} and \ref{sec:analysis}
 % respectively.
 %
-In the rest of the paper, we will use \textbf{boldfaced} terms to
+In the rest of the chapter, we will use~\textbf{boldfaced} terms to
 denote vectors and matrices and \module{small caps} to denote
 component names.
-
-
 
 % In this section, for better comparative study on modeling
 % psychotherapy dialogue our tasks, we first introduce thress

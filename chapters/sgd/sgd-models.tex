@@ -7,7 +7,7 @@ BERT~\cite{devlin2019bert}~\footnote{We use BERT-base-cased for all
 we first extend \DE and \CE~to support both sentence-level matching and token-level
 prediction. Then we propose an additional \FE strategy to get faster
 inference without sacrificing much accuracy. We summarize different
-architectures in Figure \ref{fig:encoders}. Then we show the
+architectures in~\autoref{fig:encoders}. Then we show the
 classification head and results for each subtask.
 
 \begin{figure}[!t]
@@ -80,7 +80,7 @@ history. With cached schema token-level representations, it can
 efficiently produce schema-aware sentence- and token-level
 representation for each dialog-schema pairs.
 
-\subsection{Model Overview}
+\subsection{Models for Factorized Subtasks}
 \label{ssec:models-overview}
 All the above 3 encoders will produce both sentence- and token-level
 representations for a given sentence pair. In this section,
@@ -171,7 +171,7 @@ NonCat & service description, slot description   \\
 \end{center}
 \caption{\label{tbl:schema-seq} Schema description input used for
   different tasks to compare \DE, \CE, and \FE. In the
-  appendix~\ref{ssec:com-desc}, we also studies other compositions of
+  appendix~\ref{sec:sgd:com-desc}, we also studies other compositions of
 description input. We found that service description will not help for
 \IC, \RSI and~\CSL tasks, while the impact on \NSL~task also varies
 from \sgdst~and~\multiwoz~dataset.}

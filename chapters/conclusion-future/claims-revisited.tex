@@ -1,0 +1,60 @@
+\section{Claims and Research Contribution Revisited}
+\label{sec:conclustions:claims}
+
+\Paragraph{Thesis Statement} Our claim is that by designing
+~\kw{Structural Inductive Bias} and \kw{Natural Language as Inductive
+  Biases}, models with naive independent factorization can achieve
+strong performance on predicting the structures of natural language
+across multiple tasks and domains.
+
+\Paragraph{Contribution} The main contributions of this thesis are as
+follows:
+
+\begin{enumerate}
+\item We proposed a unified parsing framework to support
+  both~\textbf{explicit lexical-anchoring} (including DELPH-IN MRS
+  Bi-lexical Dependencies~\citep[DM,][]{ivanova2012did} and Prague
+  Semantic
+  Dependencies~\citep[PSD,][]{hajic2012announcing,miyao2014house}),
+  and \textbf{implicit lexical anchoring}~(AMR). For the
+  \textbf{phrasal-anchoring} Universal Conceptual Cognitive
+  Annotation~\citep[UCCA,][]{abend2013universal} and Task-oriented
+  Dialog Parsing~\citep[TOP,][]{gupta-etal-2018-semantic-parsing},
+  according to their similarity to constituency tree structure, we
+  extrapolate the existed algorithmic inductive bias on tree structure
+  prediction and Cost-augmented CKY inferece to the new UCCA and TOP
+  parsing tasks. Powered by the above structural inductive biases,
+  over 16 teams, our parsing system~\citep{cao2019amazon} \kw{ranked
+    1st on AMR, 6th in DM, 7th in PSD, 5th on UCCA parsing, and
+    outperform serveral baseline models on TOP parsing.}
+
+\item We address the problem of providing real-time guidance to
+  therapists with a dialogue observer. It decompose the dialog
+  structure analysis with two independent factorization tasks: (1)
+  categorizes therapist and client MI behavioral codes and, (2)
+  forecasts codes for upcoming utterances to help guide the
+  conversation and potentially alert the therapist. For both tasks, I
+  studied a hierarchical gated recurrent unit (\HGRU) with the
+  \kw{word-level attention} and \kw{sentence-level attention} to
+  distinguish different importance of words and sentences to our
+  prediction~\citep{jie2019psycdialacl}. Our experiments demonstrate
+  that our models can outperform several baselines for both tasks.  We
+  also report the results of a careful analysis that reveals the
+  impact of the various network design tradeoffs for modeling therapy
+  dialogue.
+
+\item Natural language can be leveraged as inductive biases to
+  describe the functions of the intent/slot labels in task-oriented
+  dialogue. We are among the first to use large pretrained language
+  models on description-based dialog state tracking, we offer detailed
+  comparative studies how to transfer inductive biases to new domains
+  and APIs with overlapping functions and task structures, including
+  encoding strategies, supplementary pretraining, homogenuous and
+  heterogeneous evalutions.
+\end{enumerate}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../thesis-main.ltx"
+%%% End:

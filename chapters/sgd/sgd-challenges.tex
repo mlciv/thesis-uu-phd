@@ -1,5 +1,5 @@
 \section{Schema-Guided Dialog State Tracking}
-\label{sec:chanllenges-in-sgd}
+\label{sec:sgd:chanllenges-in-sgd}
 %Before introducing the details on schema-guided dialog, we recap the
 %general concepts in dialog state tracking by defining notations
 %used in our paper. We use superscripts to denote the indices of
@@ -28,7 +28,7 @@ dialog state for each service consists of 3 parts: {\it active
 datasets, we divide their slots into categorical and non-categorical
 slots by following previous study on
 dual-strategies~\cite{zhang2019find}. Thus to fill the dialog state
-frame for each user turn, we solve four subtasks: intent
+frame for each user turn, we solve four \kw{independent} subtasks: intent
 classification~(\IC), requested slot identification~(\RSI), categorical
 slot labeling~(\CSL), and non-categorical slot labeling~(\NSL). All
 subtasks require matching the current dialog history with candidate
@@ -52,9 +52,9 @@ following sections.
 \setlength{\fboxsep}{1.5pt}
 \fbox{\small\parbox{0.90\textwidth}{
 \begin{enumerate}[label=Q\arabic*.]
-\item How should dialogue and schema be encoded? \S\ref{sec:models}
-\item How do different supplementary trainings impact each subtask? \S\ref{sec:sup-training}
-\item How do different description styles impact the state tracking performance? \S\ref{sec:abl-desc}
+\item How should dialogue and schema be encoded? \S\ref{sec:sgd:models}
+\item How do different supplementary trainings impact each subtask? \S\ref{sec:sgd:sup-training}
+\item How do different description styles impact the state tracking performance? \S\ref{sec:sgd:abl-desc}
 \end{enumerate}
 }}
 

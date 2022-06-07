@@ -1,4 +1,4 @@
-\section{Datasets}
+\section{Datasets and Model Setup}
 \label{sec:sgd:datasets}
 
 \begin{table}[!t]
@@ -28,7 +28,8 @@ we first introduce these two representative datasets, then we discuss
 the generalizibility in domain diversity, function overlapping, data
 collecting methods.
 
-\Paragraph{Schema-Guided Dialog Dataset}
+\subsection{Schema-Guided Dialog Dataset}
+\label{ssec:sgd:schema-dataset}
 \sgdst
 dataset~\footnote{\url{https://github.com/google-research-datasets/dstc8-schema-guided-dialogue}}
 is especially designed as a test-bed for schema-guided dialog, which
@@ -44,9 +45,46 @@ with other benchmarking description styles as shown in
 \S\ref{sec:abl-desc}, and then we perform both homogenous and
 hetergenous evalution on it.
 
-\Paragraph{Remixed MultiWOZ 2.2 Dataset}
+\subsection{Remixed MultiWOZ 2.2 Dataset}
+\label{ssec:sgd:multiwoz-dataset}
+
 To eliminate potential bias from the above single \sgdst~dataset, we
 further add \multiwoz~\cite{zang-etal-2020-multiwoz} to our study.
+
+\Paragraph{Statistic on MultiWOZ 2.2 Remix} To evaluate performance on
+seen/unseen services with MultiWOZ, we remix the \multiwoz dataset to
+include as seen services dialogs related to \textit{restaurant},
+\textit{attraction} and \textit{train} during training, and eliminate
+slots from other domains/services from training split.  For dev, we
+add two new domains {\it hotel} and {\it taxi} as unseen services. For
+test, we add all remaining domains as unseen, including those that
+have minimum overlap with seen services, such as {\it hospital}, {\it
+  police}, {\it bus}. The statistics are as shown in Table
+\ref{tbl:multiwoz-remix}
+
+\begin{table}[!h]
+\begin{center}{\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{ccccccc}
+ \toprule
+
+\multirow{2}{*}{Domain } & \multicolumn{6}{c}{\#dialogs/\#turns}                                                \\ \cmidrule{2-7}
+                         & \multicolumn{2}{c}{ train } & \multicolumn{2}{c}{ dev } & \multicolumn{2}{c}{ test } \\ \hline
+restaurant               & 3900                        & 37953                     & 458 & 6979 & 451 & 7104    \\
+attraction               & 2716                        & 28632                     & 405 & 6198 & 400 & 6290    \\
+train                    & 3001                        & 29646                     & 481 & 5897 & 491 & 6150    \\
+hotel                    & 0                           & 0                         & 737 & 8509 & 718 & 7911    \\
+taxi                     & 0                           & 0                         & 374 & 2692 & 364 & 2659    \\
+hospital                 & 0                           & 0                         & 0   & 0    & 287 & 766     \\
+police                   & 0                           & 0                         & 0   & 0    & 252 & 475     \\
+bus                      & 0                           & 0                         & 0   & 0    & 6   & 132     \\
+ \bottomrule
+\end{tabular}}
+\end{center}
+\caption{\label{tbl:multiwoz-remix} The total number of dialogs and
+  turns related to each domain in train, dev and test split of MultiWOZ}
+\end{table}
+
 %Multi-Domain Wizard-of-Oz dataset was first introduced
 %in~\citet{budzianowski2018multiwoz}. With the large-scale fully
 %annotated dialog data, it has pushed forward the research on
@@ -67,14 +105,16 @@ training split.  For dev, we add two new domains {\it hotel} and {\it
 unseen, including those that have minimum overlap with seen services,
 such as {\it hospital}, {\it police}, {\it bus}. The statistics of
 data splits are shown in
-Appendix~\ref{ssec:appendices-multiwoz-dataset}. Note that this data
-split is different from the previous work on zero-shot MultiWOZ DST
-which takes a leave-one-out approach in \citet{wu2019transferable}. By
+~\autoref{ssec:appendices-multiwoz-dataset}. Note that this data split
+is different from the previous work on zero-shot MultiWOZ DST which
+takes a leave-one-out approach in \citet{wu2019transferable}. By
 remixing the data in the way described above, we can evaluate the
 zero-shot performance on MultiWOZ in a way largely compatible with
 \sgdst.
 
-\Paragraph{Discussion}
+\subsection{Discussion on Datasets}
+\label{ssec:sgd:discussion-datasets}
+
 First, the two datasets cover diverse domains. \multiwoz~covers
 various possible dialogue scenarios ranging from requesting basic
 information about attractions through booking a hotel room or
@@ -102,6 +142,20 @@ We summarize the above discussion in Table \ref{tbl:datasets}.  We
 believe that results derived from these two representative datasets can
 guide future research in schema guided dialog.
 
+
+\subsection{Experiment Setup}
+\label{ssec:sgd:exp-setup}
+All models are based on BERT-base-cased model with 2 V100 GPUs~(with
+16GB GPU RAM each). We train each models for maximum 10 epoch, by
+using AdamW to schedule the learning rate with a warm-up portion of
+0.1. During training, we evaluate checkpoints per 3000 steps on dev
+splits, and select the model with best performance on dev split on all
+seen and unseen services. In our experiments, our model achieves the
+best performance on around 2-4 epochs on \IC, \RSI. and \CSL, while
+\NSL needs 5-8 epochs to get the best performance. For all subtasks, as
+we model all of them as sentence pair encoding during training, we use
+batch size as 16 for each GPU, and gradient accumulate for 8 steps, in
+total 256 batch size on 2 GPUs.
 
 %%% Local Variables:
 %%% mode: latex

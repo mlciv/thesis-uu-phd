@@ -1,0 +1,298 @@
+\section{Impact of Description Styles (Q3)}
+\label{sec:sgd:abl-desc}
+%As shown in Figure \ref{fig:schema-dst} and the predefined notations
+%in \S\ref{sec:chanllenges-in-sgd}, there are three components in the
+%schema definitions: services $V$, intents $I$, slots $S$. Based on the
+%given description, participators in DSTC8 schema-guided dialog state
+%tracking task use different compositions of service/intent/slots
+%descriptions. For example, service description was used by the
+%official baseline model for intent/slot matching, but not by the
+%winning team~\cite{ma2019end}. The diverse design choices also exists
+%in slot value matching.  The difference in architecture choice and
+%state tracking strategy confounds different dialog state tracking
+%models, thus not comparable to discover which composition is the best
+%for each tasks. On the other hand,
+Previous work on schema-guided dialog~\cite{rastogi2020schema} are
+only based on the provided descriptions in \sgdst~dataset. Recent work
+on modeling dialog state tracking as reading
+comprehension~\cite{gao2019dialog}~only formulate the descriptions as
+simple question format with existing intent/slot names, it is unknown
+how it performs when compared to other description styles. Moreover,
+they only conduct homogeneous evaluation where training and test data
+share the same description style. In this section, We also investigate
+how a model trained on one description style will perform on other
+different styles, especially in a scenario where chat-bot developers
+may design their own descriptions. We first introduce different styles
+of descriptions in our study, and then we train models on each
+description style and evaluate on tests with corresponding homogeneous
+and heterogeneous styles of descriptions. Given the best performance
+of \CE~shown in the previous section and its popularity in DSTC8
+challenges, we adopt it as our model architecture in this section.
+
+\subsection{Benchmarking Styles}
+\label{ssec:desc-styles}
+For each intent/slot, we describe their functionalities by the
+following different descriptions styles:
+
+\Paragraph{\ID} This is the least informative case of name-based
+description: we only use meaningless intent/slot identifiers,
+e.g. Intent\_1, Slot\_2. It means we don't use description from any
+schema component. We want to investigate how a simple identifier-based
+description performs in schema-guided dialog modeling, and the
+performance lower-bound on transferring to unseen services.
+
+\Paragraph{\NAMEONLY} Using the original intent/slot names in \sgdst
+and \multiwoz dataset as descriptions, to show whether name is enough
+for schema-guided dialog modeling.
+
+\Paragraph{\QANAMEONLY} This is corresponding to previous
+  work by~\citet{gao2019dialog}. For each intent/slot, it generate a
+  question to inquiry about the intent and slot value of the
+  dialog. For each slot, it simply follows the template '{\it What
+    is the value for {\bf slot i}?}'. Besides that, our work also
+  extend the intent description by following the template ``{\it Is
+    the user intending to {\bf intent j} }".
+
+  \Paragraph{\ORIGIN} The original descriptions in \sgdst and \multiwoz dataset.
+
+  \Paragraph{\QARICH} Different from the \QANAMEONLY, firstly it is
+  based on the original descriptions; secondly, rather than always use
+  the ``what is" template to inquiry the intent/slot value, We add
+  ``what", ``which", ``how many" or ``when" depending on the entity
+  type required for the slot.  Same as \QANAMEONLY, we just add
+  prefixes as ``Is the user intending to\ldots'' in front of the original
+  description. In a sum, this description is just adding question
+  format to original description. The motivation of this description is
+  to see whether the question format is helpful or not for
+  schema-guided dialog modeling.
+
+  To test the model robustness, we also create two paraphrased versions
+  \NAMEPARA~and \PARAPHRASE~for \NAMEONLY~and~\ORIGIN~respectively. We
+  first use nematus~\cite{sennrich-etal-2017-nematus} to automatically
+  paraphrase the description with back translation, from English to
+  Chinese and then translate back, then we manually check the
+  paraphrase to retain the main
+  meaning. Appendix~\ref{sssec:appendices-example-style} shows examples for
+  different styles of schema descriptions.
+
+%
+%\Paragraph{\CONSTRAINT} To present the intent/slot dependecy
+%  relation, add required slots or depended intent after the original
+%  description. Multiwoz 2.1 will not support this style, because no
+%  dependency information provided in the dataset.
+
+\subsection{Results on Description Styles}
+\label{ssec:desc-experiments}
+Unlike the composition used in Table \ref{tbl:schema-seq}, we don't
+use the service description to avoid its impact. For each style, we
+train separate models on 4 subtasks, then we evaluate them on
+different target styles. First, Table \ref{tbl:homo-style-results}
+summarizes the performance for homogeneous evaluation, while Table
+\ref{tbl:squad2-results-question} shows how the question style
+description can benefit from SQuAD2 finetuning. Then we also conduct
+heterogeneous evaluation on the other styles\footnote{We don't consider
+  the meaningless \ID~style due to its bad performance} as shown in
+Table \ref{tbl:hete-style-results-sgd}.
+%
+%Take noncategorical slots subtask on \sgdst as an example, the results
+%are summerized in {\bf last three columns} in Table
+%\ref{tbl:style-results-sgd}. {\bf 75.63} under {\it self} column in
+%{\bf NonCat} means the joint noncategorical accuracy we train the
+%model with \NAMEONLY description and evaluate on \NAMEONLY
+%description. However, $64.99\pm15.25$ means when we evaluate the
+%\NAMEONLY model on two styles \NAMEONLY and \QANAMEONLY in {\it name}
+%group, the average performance on {\it name} group is 64.99, while the
+%large deviation 15.05 means the \NAMEONLY noncategorical slot model
+%cannot perform consistent good on \QANAMEONLY style.  Finally, the
+%last cell " in \ORIGIN row, $73.94\pm3.05$ means the model trained on
+%\ORIGIN style actually perform good on \ORIGIN, \QARICH, \PARAPHRASE
+%description style, the relative small value in standard deviation
+%means relatively stable performance on {\it rich} description group.
+\begin{table}[!ht]
+\begin{center}{
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{c|cccc|cc}
+  \toprule
+  \hline
+\multirow{2}{*}{Style\textbackslash{Task}} & \multicolumn{4}{c|}{ \sgdst } & \multicolumn{2}{c}{ \multiwoz }                                                                                                        \\
+                                           & \multicolumn{1}{c}{ Intent}   & \multicolumn{1}{c}{Req} & \multicolumn{1}{c}{Cat} & \multicolumn{1}{c|}{NonCat} & \multicolumn{1}{c}{Cat} & \multicolumn{1}{c}{NonCat} \\ \hline
+\ID                                        & 61.16                         & 91.48                   & 62.47                   & 30.19                       & 34.25                   & 52.28                      \\ \hline
+\NAMEONLY                                  & {\bf 94.24}                   & 98.84                   & 74.01                   & 75.63                       & 53.72                   & 56.18                      \\
+\QANAMEONLY                                & 93.31                         & {\bf 98.86}             & 74.36                   & 74.86                       & {\bf 54.19}             & 56.17                      \\ \hline
+%\NAMEPARA                                 & 90.76                         &                         &                         &                             &                         &                            \\ \hline
+\ORIGIN                                    & 93.01                         & 98.55                   & 74.51                   & 75.76                       & 52.19                   & 57.20                      \\
+\QARICH                                    & 93.42                         & 98.51                   & {\bf 76.64}             & {\bf 76.60}                 & 53.61                   & {\bf 57.80}                \\
+%\PARAPHRASE                                & 93.57                         & 98.43                   & 75.79                   & 71.94                       & 51.2                    & 56.52                      \\ \hline
+  \hline
+  \bottomrule
+\end{tabular}
+}
+\end{center}
+\caption{\label{tbl:homo-style-results} Homogeneous evaluation results
+  of different description style on \sgdst dataset and \multiwoz
+  datasets. The middle horizontal line separate the two name-based
+  descriptions and two rich descriptions in our settings. All
+  numbers in the table are mixed performance including both seen and
+  unseen services.}
+\end{table}
+
+\subsubsection{Homogeneous Evaluation}
+\label{sssec:homo-eval}
+\QParagraph{Is name-based description enough} As shown in Table
+\ref{tbl:homo-style-results}, \ID~is the worst case of using name
+description, its extremely bad performance indicates name-based
+description can be very unstable. However, we found that simple
+meaningful name-based description actually can perform the best in
+\IC~and~\RSI task, and they perform worse on \CSL~and~\NSL tasks
+comparing to the bottom two {\it rich} descriptions. \footnote{Only
+  exception happens in \CSL~on \multiwoz. When creating
+  \multiwoz~\cite{zang-etal-2020-multiwoz}, the slots with less than
+  50 different slot values are classified as categorical slots, which
+  leads to inconsistencies. We put detailed discuss about \multiwoz~in
+  the supplementary material} After careful analysis on the intents in
+\sgdst datasets, we found that most services only contains two kinds
+of intents, an information retrieval intent with a name prefix
+"Find-", "Get-", "Search-"; another transaction intent like "Add-",
+"Reserve-" or "Buy-". Interestingly, we found that all the intent
+names in the original schema-guided dataset strictly follows an
+action-object template with a composition of words without
+abbreviation, such as "FindEvents", "BuyEventTickets". This simple
+name template is good enough to describe the core functionality of an
+intent in \sgdst dataset.~\footnote{This action-object template has
+  also been found efficient for open domain intent induction
+  task\cite[e.g.,][OPINE]{vedula2020open}.} Additionally, \RSI is a
+relaitively simper task, requesting information are related to
+specifial attributes, such as "has\_live\_music", "has\_wifi", where
+keywords co-occured in the slot name and in the user utterance, hence
+rich explanation cannot help further. On the other side, {\it rich}
+descriptions are more necessary for \CSL~and~\NSL task. Because in
+many cases, slot names are too simple to represent the functionalities
+behind it, for example, slot name "passengers" cannot fully represent
+the meaning "number of passengers in the ticket booking".
+
+\QParagraph{Does question format help} As shown in Table
+\ref{tbl:homo-style-results}, when comparing row \QARICH~v.s.~\ORIGIN,
+we found extra question format can improve the performance on \CSL~and
+\NSL task on both \sgdst and \multiwoz~datasets, but not for \IC~and
+\RSI tasks. We believe that question format helps the model to focus
+more on specific entities in the dialog history. However, when adding
+a simple question pattern to \NAMEONLY, comparing row \QANAMEONLY~and
+\NAMEONLY, there is no consistent improvement on both of the two
+datasets. Further more, we are curious about whether BERT finetuned on
+SQuAD2~(SQuAD2-BERT) can further help on the question format. Because
+\NSL~are similar with span-based question answering, we focus on
+\NSL~here. Table \ref{tbl:squad2-results-question} shows that, after
+applying the supplementary training on
+SQuAD2~(\S\ref{sec:sup-training}), almost all models get improved on
+unseen splits however slightly dropped on seen services. Moreover,
+comparing to \QANAMEONLY, \QARICH~is more similar to the natural
+questions in the SQuAD2, we obverse that \QARICH~gains more than
+\QANAMEONLY~from pretrained model on SQuAD2.
+
+\begin{table}[!t]
+\begin{center}{
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{c|ccc|ccc}
+  \toprule
+  \hline
+                         \multirow{2}{*}{Style/Dataset} & \multicolumn{3}{c}{\sgdst}  & \multicolumn{3}{c}{\multiwoz}  \\ \cline{2-7}
+                                                        & all   & seen  & unseen      & all   & seen  & unseen      \\ \hline
+ \multirow{1}{*}{\ORIGIN}                               & +1.99 & -1.79 & {\bf +3.25} & +1.93 & -2.21 & {\bf +4.27} \\ \
+ \multirow{1}{*}{\QARICH}                               & +6.13 & -2.01 & {\bf +8.84} & +1.06 & -1.28 & {\bf +3.06} \\ \hline
+ \multirow{1}{*}{\NAMEONLY}                             & -0.45 & -1.49 & -0.11       & +1.75 & +0.58 & {\bf +1.77}       \\
+ \multirow{1}{*}{\QANAMEONLY}                           & +0.05 & -2.98 & {\bf +1.04} & -0.04 & -0.32 & {\bf +1.25} \\ \hline
+  \bottomrule
+\end{tabular}
+}
+\end{center}
+\caption{\label{tbl:squad2-results-question} Performance changes when
+  using BERT finetuned on SQuAD2 dataset to further finetuning on our
+  \NSL~task. }
+\end{table}
+
+
+\subsubsection{Heterogeneous}
+\label{sssec:heter-eval}
+In this subsection, we first simulate a scenario when there is no
+recommended description style for the future unseen services. Hence,
+unseen services can follow any description style in our case. We
+average the evaluation performance on three other descriptions and
+summarized in Table \ref{tbl:hete-style-results-sgd}. The $\Delta$ column
+shows the performance change compared to the homogeneous
+performance. It is not surprising that almost all models perform worse
+on heterogeneous styles than on homogeneous styles due to different
+distribution between training and evaluation. The bold number shows
+the best average performance on heterogeneous evaluation for each
+subtask. The trends are similar with the analysis in homogeneous
+evaluation~\ref{sssec:homo-eval}, the name-based descriptions perform
+better than other rich descriptions on intent classification
+tasks. While on other tasks, the \ORIGIN~description performs more
+robust, especially on \NSL~task.
+
+Furthermore, we consider another scenario where fixed description
+convention such as \NAMEONLY~and \ORIGIN~are suggested to developers,
+they must obey the basic style convention but still can freely use
+their own words, such as abbreviation, synonyms, adding extra
+modifiers. We train each model on \NAMEONLY~and~\ORIGIN, then evaluate
+on the corresponding paraphrased version respectively. In the last two
+rows of Table \ref{tbl:hete-style-results-sgd}, the column `para'
+shows performance on paraphrased schema, while $\Delta$ shows the
+performance change compared to the homogeneous evaluation.
+\ORIGIN~still performs more robust than \NAMEONLY~when schema
+descriptions get paraphrased on unseen services.
+%\footnote{More results
+%  and qualitative analysis are availible in the
+%  appdendix~\ref{ssec:more-desc-results}.}.
+
+\begin{table}[!ht]
+\begin{center}{\scriptsize
+\setlength{\tabcolsep}{1pt}
+\begin{tabular}{c|c|c|c|c|c|c|c|c}
+  \toprule
+  \hline
+\multirow{3}{*}{Style\textbackslash{Task}} & \multicolumn{8}{c}{ \sgdst }                                                                                                                                                 \\ \cline{2-9}
+                                           & \multicolumn{2}{c|}{ Intent(Acc)} & \multicolumn{2}{c|}{Req(F1)} & \multicolumn{2}{c|}{Cat(Joint Acc)} & \multicolumn{2}{c}{NonCat(Joint Acc)}                               \\ \cline{2-9}
+                                           & mean                              & $\Delta$                          & mean                                & $\Delta$         & mean        & $\Delta$         & mean        & $\Delta$         \\ \hline
+\NAMEONLY                                  & 82.47                             & -11.47                       & 96.92                               & -1.64       & 61.37       & -5.54       & 56.53       & -14.68      \\
+\QANAMEONLY                                & {\bf 93.27}                       & +0.58                        & {\bf 97.88}                         & -0.76       & 68.55       & +2.63       & 62.92       & -6.30       \\
+\ORIGIN                                    & 79.47                             & -12.70                       & 97.42                               & -0.74       & {\bf 68.58} & -0.3        & {\bf 66.72} & -3.11       \\
+\QARICH                                    & 84.57                             & -8.24                        & 96.70                               & -1.45       & 68.40       & -2.89       & 56.17       & -15.00      \\
+  \hline
+                                           & para                              & $\Delta$                          & para                                & $\Delta$         & para        & $\Delta$         & para        & $\Delta$         \\ \hline
+\NAMEONLY                                  & {\bf 92.22}                       & -1.74                        & 97.69                               & -0.87       & 67.39       & -0.7        & 67.17       & -4.04       \\
+\ORIGIN                                    & 91.54                             & {\bf -0.63}                  & {\bf 98.42}                         & {\bf +0.26} & {\bf 71.74} & {\bf +2.86} & {\bf 67.68} & {\bf -2.16} \\ \hline
+  \bottomrule
+\end{tabular}
+}
+\end{center}
+\caption{\label{tbl:hete-style-results-sgd} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the appendix~\ref{sec:sgd:more-desc-results}}
+\end{table}
+
+%We first consider the diverse description
+%within the same {\it name} or {\it rich} group. Within {\it name}
+%group, models trained on \NAMEONLY~shows larger standard deviation,
+%which indicating unsafe performance of just using simple name as
+%description. Moreover, imaging an extremely bad name convention as
+%{\bf ID} in section \ref{sssec:com-desc}, the model will lose
+%transferbility on unseen service. Within {\it rich} group, we found
+%our model trained on \PARAPHRASE~may perform worse than models trained
+%on \ORIGIN~and~ \QARICH, because \PARAPHRASE~contains more
+%perturbation on \ORIGIN~descriptions, although keeping the same
+%meaning. This indicates BERT may fail to retain the similar
+%representation for the perturbed sentence with the same meaning.
+%Beside the intra-group evaluation, we also consider the inter-group
+%hetergenuous evaluation. It is curious whether the model trained on
+%{\it rich} description can still retain good performance on simple
+%name-based description. We found this only happens on requested slot
+%and categorical slot tasks, while on other subtasks, the performance
+%dropped drastically. The performance drop is more significant on this
+%task requires token-level representation predict the start and end
+%position of the slot value, hence we believe this token-level tasks is
+%more senstive than sentence-level tasks that depending on a summerized
+%sentence representation.
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../thesis-main.ltx"
+%%% End:

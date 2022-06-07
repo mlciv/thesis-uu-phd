@@ -1,28 +1,27 @@
-\section{Task Definitions}
+\section{Task Definitions and Structural Factorization}
 \label{sec:snt:task}
 
 In this section, we will formally define the two NLP tasks
-corresponding to the vision in \S\ref{sec:background} using the
-conversation in table~\ref{tbl:example} as a running example.
-
-Suppose we have an ongoing MI session with utterances
-$u_1, u_2,\cdots, u_n$: together, the dialogue history $H_n$.  Each
-utterance $u_i$ is associated with its speaker $s_i$, either C
-(client) or T (therapist). Each utterance is also associated with
-the MISC label $l_i$, which is the object of study. We will refer to
-the last utterance $u_n$ as the \emph{anchor}.
+corresponding to the vision in~\S\ref{sec:snt:background} using the
+conversation in~\autoref{tbl:snt:misc-example} as a running example. Suppose we
+have an ongoing MI session with utterances $u_1, u_2,\cdots, u_n$:
+together, the dialogue history $H_n$.  Each utterance $u_i$ is
+associated with its speaker $s_i$, either C (client) or T
+(therapist). Each utterance is also associated with the MISC label
+$l_i$, which is the object of study. We will refer to the last
+utterance $u_n$ as the \emph{anchor}.
 
 We will define two classification tasks over a fixed dialogue
-history with $n$ elements --- \emph{categorization} and
-\emph{forecasting}. As the conversation progresses, the history will
+history with $n$ elements --- \emph{categorization}~\S\ref{ssec:snt:task-categorization} and
+\emph{forecasting}~\S\ref{ssec:snt:task-forcasting}. As the conversation progresses, the history will
 be updated with a sliding window.  Since the therapist and client
 codes share no overlap, we will design separate models for the two
 speakers, giving us four settings in all.
 
 \begin{table}[tp]
   \begin{center}
-    \setlength{\tabcolsep}{2pt}
-    {\small
+    \setlength{\tabcolsep}{3pt}
+    {
       \begin{tabular}{crll}
         \toprule
         $i$        & $s_{i}$ & $u_{i}$                             & $l_{i}$  \\ \hline
@@ -34,11 +33,11 @@ speakers, giving us four settings in all.
       \end{tabular}
     }
   \end{center}
-  \caption{\label{tbl:example} An example of ongoing therapy session}
+  \caption{\label{tbl:snt:misc-example} An example of ongoing therapy session}
 \end{table}
 
-\Paragraph{Task 1: Categorization}
-%\label{ssec:task_categorizing}
+\subsection{Task 1: Categorization}
+\label{ssec:snt:task-categorization}
 The goal of this task is to provide real-time feedback to a
 therapist during an ongoing MI session. In the running example, the
 therapist's confrontational response in the third utterance is not
@@ -54,10 +53,11 @@ In essence, we have the following real-time classification task:
   $u_n$.}
 
 The key difference from previous work in predicting MISC labels is
-that we are restricting the input to the
-real-time setting. As a result, models can only use the dialogue
-history to predict the label, and in particular, we can not use models
-such as a conditional random field or a bi-directional LSTM that need both past and future inputs. 
+that we are restricting the input to the real-time setting. As a
+result, models can only use the dialogue history to predict the label,
+and in particular, we can not use models such as a conditional random
+field or a bi-directional LSTM that need both past and future inputs.
+
 % \jc{I added this for comparing to
 % previous dialogue act classification}
 % \vs{I removed the content because it repeats information from
@@ -71,8 +71,8 @@ such as a conditional random field or a bi-directional LSTM that need both past 
 % skills and spirits, such as empathy, support, and evocation.
 
 
-\Paragraph{Task 2: Forecasting}
-% \label{ssec:task_forcasting}
+\subsection{Task 2: Forecasting}
+\label{ssec:snt:task-forcasting}
 A real-time therapy observer may be thought of as an expert
 therapist who guides a session with suggestions to the therapist.
 For example, after a client discloses their recent drug use
@@ -97,17 +97,65 @@ The MISC forecasting task is a previously unstudied problem. %  We
 % development.
 We argue that forecasting the type of the next utterance, rather than
 selecting or generating its text as has been the focus of several
-recent lines of work~\cite[\eg,][]{schatzmann2005quantitative,ubuntu,DSTC7},
-allows the human in the loop (the therapist) the freedom to
+recent lines of work~\citep[\eg,][]{schatzmann2005quantitative,ubuntu,DSTC7},
+allows the human in the loop~(the therapist) the freedom to
 creatively participate in the conversation within the parameters
 defined by the seasoned observer, and perhaps even rejecting
 suggestions. Such an observer could be especially helpful for
-training therapists~\cite{imel2017technology}.
+training therapists~\citep{imel2017technology}.
 %
 The forecasting task is also related to recent work on detecting
 antisocial comments in online
-conversations~\cite{zhang2018conversations} whose goal is to
+conversations~\citep{zhang2018conversations} whose goal is to
 provide an early warning for such events.
+
+
+\subsection{Comparing Categorization and Forcasting Task}
+\label{ssec:snt:compararive-tasks}
+
+Take the dialogue segment in~\autoref{tbl:snt:misc-example} as a
+running example, we compare the categorization and forcaseting task
+for each turn, with respect to the dialogue history and predicting
+target. \autoref{tbl:snt:task-comparasion} shows the detailed
+differences when we choose dialogue history window size as 3.
+
+When the dialogue goes to the turn 3, both the categorization and
+forcasting task will the observe the current dialog history window as
+input $X=H_{n}$. However, the key difference is as follows: the
+categorization task is to predict the MISC code $l_{n}$ for the last
+seen utterance $u_{n}$, while the forcasting task is to guess the
+future MISC code $l_{n+1}$ for the unseen utterance $u_{n+1}$.
+
+Worth to mention, when the dialogue goes to the turn 4, the dialog
+history will slide to the next window of size 3, as
+$H_{n}=\{u_2,u_3,u_4\}$. The $u_{1}$ will be truncated due the sliding
+window. We limit the dialogue window because the whole therapy
+dialogue session may last for 500 utterances, where current neural
+models such as RNN and transformer can not handle the long context
+well.  In this thesis study~\autoref{ssec:snt:abl_context_attention},
+we compare the window size as 8 and 16 for our models. We leave the
+extrem long dialogue context encoding as the future work.
+
+\begin{table}[!h]
+\begin{center}{
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{l|c|c|c}
+\toprule
+\hline
+\multirow{2}{*}{Turn} & \multirow{2}{*}{$X=H_{n}$} & Categorization & Forcasting  \\
+                      &                            & $Y=l_{n}$      & $Y=l_{n+1}$ \\ \hline
+ 1                    & $\{u_1\}$                  & {\QUC}         & {\FN}       \\
+ 2                    & $\{u_1,u_2\}$              & {\FN}          & {\MIN}      \\
+ 3                    & $\{u_1,u_2,u_3\}$          & {\MIN}         & {\CHANGE}   \\
+ 4                    & $\{u_2,u_3,u_4\}$          & {\CHANGE}      & {\RES}      \\ \hline
+  \bottomrule
+\end{tabular}}
+\end{center}
+\caption{\label{tbl:snt:task-comparasion} Differences between the
+  categorization task and the forcasting task, when choosing a window
+  size as 3 to factorize the dialog sequential flow}
+\end{table}
+
 
 % Recent work on patient-like conversational agent also
 % helps for psyctherapy training. 
@@ -147,7 +195,8 @@ provide an early warning for such events.
 %  of whether such online prediction and suggestion is even possible,
 %  not the therapeutic aspects.}
 
+
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "main"
+%%% TeX-master: "../../thesis-main.ltx"
 %%% End:

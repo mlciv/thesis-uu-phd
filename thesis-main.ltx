@@ -265,7 +265,7 @@
 %%% file must NOT contain \chapter, \section, \subsection, \ldots{}
 %%% sectioning commands.
 
-\optionalfront {Notation and Symbols} {\input{notation}}
+%%% \optionalfront {Notation and Symbols} {\input{notation}}
 
 %%% Uncomment this is you want the contents of acknowledge.tex typeset here.
 %%% Note that both "Acknowledgement" and "Acknowledgment" are accepted
@@ -292,9 +292,9 @@
 \numberofappendices = 3
 \appendix       % Chapters, sections are now appendix style A, A.1, A.2, B, C, D, ...
 
-\include {chapters/appendices/appa}
-\include {chapters/appendices/appb}
-\include {chapters/appendices/appc}
+%\include {chapters/appa}
+\include {chapters/appb}
+\include {chapters/appc}
 
 %%% The choice of bibliography style is a major decision, jointly made
 %%% by you, your thesis advisor and the thesis editor. Common choices are
@@ -342,7 +342,7 @@
 %%% bibliography, so we suppress it here:
 
 %%\bibliography{\jobname}
-\bibliography{bib-files/thesis-main,bib-files/proposal,bib-files/sp,bib-files/psyc,bib-files/top,bib-files/semi-top,bib-files/mrp,bib-files/sdp,bib-files/ucca,bib-files/amr,bib-files/ltg,bib-files/sgd,bib-files/scalable-dialog}
+\bibliography{bib-files/thesis-main,bib-files/proposal,bib-files/sp,bib-files/prob-logic,bib-files/psyc,bib-files/top,bib-files/semi-top,bib-files/mrp,bib-files/sdp,bib-files/ucca,bib-files/amr,bib-files/ltg,bib-files/sgd,bib-files/scalable-dialog}
 
 %%% The last part of this sample thesis is two specialized indexes,
 %%% and a general topic index.  If the companion Makefile is used to

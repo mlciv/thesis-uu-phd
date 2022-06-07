@@ -3,8 +3,9 @@
 
 \Paragraph{Thesis Statement} Our claim is that by designing
 ~\kw{Structural Inductive Bias} and \kw{Natural Language as Inductive
-  Biases}, models with naive independent factorization can achieve strong
-performance on predicting the structures of natural language.
+  Biases}, models with naive independent factorization can achieve
+strong performance on predicting the structures of natural language
+across multiple tasks and domains.
 
 \Paragraph{Contribution} In this theis, focusing on independent factorization setting, we show
 that our proposed indutive biases can offer discriminative features to
@@ -18,14 +19,14 @@ some of the open problems mentioned in the previous section.
 
 \begin{enumerate}
 \item We proposed a unified parsing framework to support
-  both~\textbf{explicit lexical-anchoring}~(DELPH-IN MRS Bi-lexical
+  both~\textbf{explicit lexical-anchoring} (including DELPH-IN MRS Bi-lexical
   Dependencies~\citep[DM,][]{ivanova2012did} and Prague Semantic
-  Dependencies~\citep[PSD,][]{hajic2012announcing,miyao2014house}), and
-  \textbf{implicit lexical anchoring}~(AMR). Over 16 teams in the
-  shared tasks, my parser~\citet{cao2019amazon} \kw{ranked 1st on AMR,
+  Dependencies~\citep[PSD,][]{hajic2012announcing,miyao2014house}),
+  and \textbf{implicit lexical anchoring}~(AMR). Over 16 teams in the
+  shared tasks, my parser~\citep{cao2019amazon} \kw{ranked 1st on AMR,
     6th in DM, 7th in PSD}. By combining Perturb-and-MAP
-  sampling~\cite{Papandreou2011PerturbandMAPRF} with differentiable
-  Gumbel-Softmax Sinkhorn Networks~\cite{Mena2018LearningLP}, we can
+  sampling~\citep{papandreouperturb} with differentiable
+  Gumbel-Softmax Sinkhorn Networks~\citep{mena2018learning}, we can
   approximately infer the discrete latent-alignment variable in
   lexical-anchoring of the independent factorization setting.
 
@@ -38,9 +39,9 @@ some of the open problems mentioned in the previous section.
   algorithmic inductive bias on tree structure prediction and
   Cost-augmented CKY inferece to the new UCCA and TOP parsing
   tasks. Powered by strong span-representation learning method, my
-  system~\citep{cao2019amazon} \kw{ranked 5/16 on UCCA parsing}, and it
-  can be reused to TOP parsing after a few preprocessing steps, and
-  outperform serveral baseline models.
+  system~\citep{cao2019amazon} \kw{ranked 5/16 on UCCA parsing},
+  and it can be reused to TOP parsing after a few preprocessing steps,
+  and outperform serveral baseline models.
 
 \item We address the problem of providing real-time guidance to
   therapists with a dialogue observer. It decompose the dialog
@@ -51,7 +52,7 @@ some of the open problems mentioned in the previous section.
   studied a hierarchical gated recurrent unit (\HGRU) with the
   \kw{word-level attention} and \kw{sentence-level attention} to
   distinguish different importance of words and sentences to our
-  prediction~\cite{jie2019psycdialacl}. Our experiments demonstrate
+  prediction~\citep{jie2019psycdialacl}. Our experiments demonstrate
   that our models can outperform several baselines for both tasks.  We
   also report the results of a careful analysis that reveals the
   impact of the various network design tradeoffs for modeling therapy

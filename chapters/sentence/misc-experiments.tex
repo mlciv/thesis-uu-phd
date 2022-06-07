@@ -1,28 +1,31 @@
 \section{Experiments}
 \label{sec:snt:experiments}
 
- The original psychotherapy sessions were collected for both clinical trials and Motivational Interviewing dissemination studies including hospital
-settings~\cite{roy2014brief}, outpatient
-clinics~\cite{baer2009agency}, college alcohol
-interventions~\cite{tollison2008questions, neighbors2012randomized,
-  lee2013indicated, lee2014randomized}.  All sessions were annotated with the Motivational Interviewing Skills Codes (MISC) \cite{atkins2014scaling}.    We use the train/test split
-of \citet{can2015dialog, tanana2016comparison} to give 243 training MI
+The original psychotherapy sessions were collected for both clinical
+trials and Motivational Interviewing dissemination studies including
+hospital settings~\citep{roy2014brief}, outpatient
+clinics~\citep{baer2009agency}, college alcohol
+interventions~\citep{tollison2008questions, neighbors2012randomized,
+  lee2013indicated, lee2014randomized}.  All sessions were annotated
+with the Motivational Interviewing Skills Codes (MISC)
+\cite{atkins2014scaling}.  We use the train/test split of
+\citet{can2015dialog, tanana2016comparison} to give 243 training MI
 sessions and 110 testing sessions. We used 24 training sessions for
 development.
 % ~\footnote{\citet{can2015dialog, tanana2016comparison,
 %     xiao2016behavioral} respectively use 111, 109, 101 sessions for
 %   testing. After deduplication, we use 110 sessions, which are
 %   almost the same with the first two papers.}
-As mentioned in \S\ref{sec:background}, all our experiments are
+As mentioned in \S\ref{sec:snt:background}, all our experiments are
 based on the MISC codes grouped by \citet{xiao2016behavioral}.
 
-
-
 \input{chapters/sentence/misc-preprocessing}
+
+\input{chapters/sentence/misc-exp-setup}
 
 \input{chapters/sentence/misc-main-results}
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../thesis-main.ltx"
+%%% TeX-master: "../../thesis-main.ltx"
 %%% End:

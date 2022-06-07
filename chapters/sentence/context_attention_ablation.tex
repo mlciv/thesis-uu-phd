@@ -1,5 +1,5 @@
 \subsection{How Context and Attention Help?}
-\label{ssec:abl_context_attention}
+\label{ssec:snt:abl_context_attention}
 
 We evaluated various ablations of our best models to see how
 changing various design choices changes performance. We focused on
@@ -12,8 +12,42 @@ Increasing the history window size generally helps. The biggest
 improvements are for categorizing therapist codes
 (Table~\ref{tbl:rst_cxt_therapist}), especially for the \RES and
 \REC. However, increasing the window size beyond 8 does not help
-to categorize client codes (Table~\ref{tbl:rst_cxt_client}) or
-forecasting (in appendix).
+to categorize client codes~(\autoref{tbl:rst_cxt_client}) or
+forecasting~(\autoref{tbl:rst_cxt_forcasting}).
+
+\begin{table}[t]
+\begin{center}
+\setlength{\tabcolsep}{2.5pt}
+{\small
+\begin{tabular}{ccccccccccccc}
+\toprule
+Ablation                                                               & Options               & \CHANGE    & \SUSTAIN   & R@3        & \FA        & \RES       & \REC       & \GI        & \QUC       & \QUO       & \MIA       & \MIN       \\ \midrule \midrule
+\multirow{4}{*}{\parbox{1.5cm}{history size}}                          & 1                     & 17.2       & 15.1       & 66.4       & 59.4       & 12.6       & 9.0        & 44.6       & 16.3       & 14.8       & 11.9       & 4.1        \\
+                                                                       & 4                     & 16.8       & 22.6       & 75.3       & 71.4       & 15.6       & 21.1       & 57.1       & {\bf 29.3} & 11.0       & 11.2       & 14.4       \\
+                                                                       & $8^{*}$               & 24.7       & 22.7       & {\bf 77.0} & {\bf 72.8} & {\bf 20.8} & 23.1       & 58.1       & 28.3       & {\bf 17.7} & 15.9       & 9.0        \\
+                                                                       & 16                    & 23.9       & 20.7       & 76.5       & 71.2       & 13.7       & 24.1       & {\bf 58.5} & 25.9       & 9.7        & 16.2       & 12.7       \\ \midrule
+\multirow{2}{*}{\parbox{1.5cm}{\parbox{1.5cm}{word \quad\quad attention}}}     & GMGRU                 & 14.0       & {\bf 23.2} & 75.7       & 71.7       & 14.2       & 23.0       & 57.5       & 26.5       & 8.0        & 15.4       & 11.6       \\
+                                                                       & $\text{GMGRU}_{4h}$   & 19.1       & 22.9       & 76.3       & 71.3       & 12.1       & 23.3       & 58.1       & 24.5       & 12.6       & 11.7       & 14.0       \\ \midrule
+%                                                                      & BiDAF                 &            &            &            &            &            &            &            &            &            &            &            \\ \midrule
+\multirow{3}{*}{\parbox{1.5cm}{\parbox{1.5cm}{sentence \quad\quad attention}}} & $-$ \self             & {\bf 24.9} & 22.5       & 76.0       & 71.4       & 12.7       & 24.9       & 58.3       & 28.8       & 5.9        & {\bf 17.4} & 9.7        \\
+                                                                       & $\setminus$ \anchor           & 22.9       & 22.9       & 76.2       & 72.2       & 15.5       & {\bf 24.6} & 59.5       & 27.1       & 7.7        & 16.3       & 8.3        \\
+                                                                       & $+$ GMGRU $\setminus$ \anchor & 6.8        & 23.4       & 76.9       & 70.8       & 8.0        & 24.5       & 58.3       & 24.6       & 10.6       & 14.9       & {\bf 12.1} \\ \midrule
+%\multirow{3}{*}{inference}                                            & $+l^{*}_{i}$          & {\bf 40.9} & {\bf 39.9} & 78.8       & 72.2       & 27.3       & 28.1       & 62.5       & 34.1       & 21.2       & 30.1       & 37.0       \\
+%                                                                      & $+l^{\prime}_{i}$          &            &            &            &            &            &            &            &            &            &            &            \\
+%                                                                      & Rating $>$ 5          &            &            & 76.9       & 77.4       & 18.2       & 28.9       & 56.8       & 24.8       & 18.6       & 19.2       & 1.5        \\ \bottomrule
+\end{tabular}}
+\end{center}
+\caption{\label{tbl:rst_cxt_forcasting} Ablation on forecasting task
+  on both client and therapist code. $*$ row are results of our best
+  forecasting model $\mathcal{F}_{C}$, and $\mathcal{F}_{T}$.
+  $\setminus$ means substitute anchor attention with self
+  attention. $+\text{GMGRU}$ \anchor means using word-level attention
+  and achor-based sentence-level attention together. Word-level
+  attention shows no help for both client and therapist codes. While
+  sentence-level attention helps more on therapist codes than on
+  client codes. Multi-head self attention also achieves better
+  performance than anchor-based attention in forecasting tasks. }
+\end{table}
 
 \Paragraph{Word-level Attention}
 Only the model $\mathcal{C}_{T}$ uses word-level attention. As shown

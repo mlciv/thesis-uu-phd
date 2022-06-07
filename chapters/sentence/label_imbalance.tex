@@ -1,6 +1,7 @@
 
-\paragraph{Label Imbalance}
+\subsection{How Focal Loss Helps on Label Imbalance?}
 \label{ssec:label_imb}
+
 We always use the same $\alpha$ for all weighted focal loss. Besides
 considering the label frequency, we also consider the performance
 gap between previous reported $\text{F}_{1}$. We
@@ -38,10 +39,10 @@ $\mathcal{F}^{\text{fl}}$   & 44.2                               & 24.7    & 22.
   $\mathcal{F}_{C}$, while $\gamma=0$ is the best for
   $\mathcal{C}_{T}$ and $\gamma=3$ for $\mathcal{F}_{T}$. Worth to mention,
   when $\gamma=0$, the focal loss degraded into $\alpha$-balanced crossentropy,
-  that first two rows are the same for therspit model.}
+  that first two rows are the same for therapist model.}
 \end{table}
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "main"
+%%% TeX-master: "../../thesis-main.ltx"
 %%% End:
