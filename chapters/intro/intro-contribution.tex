@@ -1,71 +1,70 @@
-\section{Contribuition}
+\section{Contributions}
 \label{sec:intro-contri}
 
 \Paragraph{Thesis Statement} Our claim is that by designing
 ~\kw{Structural Inductive Bias} and \kw{Natural Language as Inductive
   Biases}, models with naive independent factorization can achieve
-strong performance on predicting the structures of natural language
-across multiple tasks and domains.
+strong performance at predicting the natural language structures
+across multiple broad-coverage meaning representations and
+application-specific representations.
 
-\Paragraph{Contribution} In this theis, focusing on independent factorization setting, we show
-that our proposed indutive biases can offer discriminative features to
-improve the performance of the locally dependent output structured
-prediction model, and still achieve competetive and generalizable
-performance in two sets of tasks, including broad-coverage meaning
-representation and application-specific representations.
+\Paragraph{Contributions} In this thesis, focusing on the independent
+factorization setting, we show that our proposed indutive biases can
+offer discriminative features to achieve competetive and generalizable
+performance on broad-coverage meaning representations and
+application-specific representations.
 
 We next summarize the main contributions of this thesis, addressing
 some of the open problems mentioned in the previous section.
 
 \begin{enumerate}
 \item We proposed a unified parsing framework to support
-  both~\textbf{explicit lexical-anchoring} (including DELPH-IN MRS Bi-lexical
-  Dependencies~\citep[DM,][]{ivanova2012did} and Prague Semantic
+  both~\textbf{explicit lexical-anchoring} (including DELPH-IN MRS
+  Bi-lexical Dependencies~\citep[DM,][]{ivanova2012did} and Prague
+  Semantic
   Dependencies~\citep[PSD,][]{hajic2012announcing,miyao2014house}),
   and \textbf{implicit lexical anchoring}~(AMR). Over 16 teams in the
   shared tasks, my parser~\citep{cao2019amazon} \kw{ranked 1st on AMR,
-    6th in DM, 7th in PSD}. By combining Perturb-and-MAP
+    6th in DM, and 7th in PSD}. By combining Perturb-and-MAP
   sampling~\citep{papandreouperturb} with differentiable
   Gumbel-Softmax Sinkhorn Networks~\citep{mena2018learning}, we can
   approximately infer the discrete latent-alignment variable in
-  lexical-anchoring of the independent factorization setting.
-
-\item Notice that the \textbf{phrasal-anchoring} Universal Conceptual
-  Cognitive Annotation~\citep[UCCA,][]{abend2013universal} and
-  Task-oriented Dialog
-  Parsing~\citep[TOP,][]{gupta-etal-2018-semantic-parsing} is similar
-  to constituency tree structure, except for unseen phenomenons such
-  as remote edges and discontinuous spans, we extrapolate the existed
-  algorithmic inductive bias on tree structure prediction and
+  lexical-anchoring of the independent factorization setting. The
+  \textbf{phrasal-anchoring} Universal Conceptual Cognitive
+  Annotation~\citep[UCCA,][]{abend2013universal} and Task-oriented
+  Dialog Parsing~\citep[TOP,][]{gupta-etal-2018-semantic-parsing} are
+  similar to constituency tree structure, except for unseen phenomena
+  such as remote edges and discontinuous spans, we extend the existing
+  algorithmic inductive bias for tree structure prediction and
   Cost-augmented CKY inferece to the new UCCA and TOP parsing
   tasks. Powered by strong span-representation learning method, my
-  system~\citep{cao2019amazon} \kw{ranked 5/16 on UCCA parsing},
-  and it can be reused to TOP parsing after a few preprocessing steps,
+  system~\citep{cao2019amazon} \kw{ranked 5/16 on UCCA parsing}, and
+  it can be reused for TOP parsing after a few preprocessing steps,
   and outperform serveral baseline models.
 
 \item We address the problem of providing real-time guidance to
   therapists with a dialogue observer. It decompose the dialog
-  structure analysis with two independent factorization tasks: (1)
-  categorizes therapist and client MI behavioral codes and, (2)
-  forecasts codes for upcoming utterances to help guide the
+  structure analysis with two independent prediction tasks: (1)
+  categorizing therapist and client MI behavioral codes and, (2)
+  forcasting codes for upcoming utterances to help guide the
   conversation and potentially alert the therapist. For both tasks, I
   studied a hierarchical gated recurrent unit (\HGRU) with the
   \kw{word-level attention} and \kw{sentence-level attention} to
-  distinguish different importance of words and sentences to our
-  prediction~\citep{jie2019psycdialacl}. Our experiments demonstrate
+  distinguish different importance of words and
+  sentences~\citep{jie2019psycdialacl}. Our experiments demonstrate
   that our models can outperform several baselines for both tasks.  We
   also report the results of a careful analysis that reveals the
   impact of the various network design tradeoffs for modeling therapy
   dialogue.
 
-\item Natural language can be leveraged as inductive biases to
-  describe the functions of the intent/slot labels in task-oriented
-  dialogue. We are among the first to use large pretrained language
-  models on description-based dialog state tracking, we offer detailed
-  comparative studies how to transfer inductive biases to new domains
-  and APIs with overlapping functions and task structures, including
-  encoding strategies, supplementary pretraining, homogenuous and
-  heterogeneous evalutions.
+\item Natural language can provide as inductive biases to describe the
+  functions of the intent/slot labels in task-oriented dialogue. We
+  are among the first to use large pretrained language models for
+  description-based dialog state tracking. We offer detailed
+  comparative studies on how to transfer inductive biases to new
+  domains and APIs with overlapping functions and task structures,
+  including encoding strategies, supplementary pretraining,
+  homogenuous and heterogeneous evalutions.
 \end{enumerate}
 
 

@@ -23,7 +23,7 @@ into node- and edge-identification pipelines.
  & NLL(P(C,R \mid w)) \\
  & = - \log(P(C,R \mid w)) \\
  & = - \log(\sum_{a}{P(a) P(C,R \mid w,a)}) \\
- & = - \log\left(\sum_{a}P(a) P(R\mid w,a,c) P(c \mid w, a)\right) \\
+ & = - \log\left(\sum_{a}P(a) P(R\mid w,a,C) P(C \mid w, a)\right) \\
  & = - \log\left(\sum_{a}P(a) \prod_{i}^{m} P(c_{i} \mid h_{a_{i}}) \right. \\
  & \qquad \left.\cdot \prod_{i,j=1}^{m}P(r_{ij} \mid h_{a_{i}}, c_{i}, h_{a_{j}}, c_{j})\right)
 \end{aligned}

@@ -3,178 +3,200 @@
 \chapter{Introduction}
 \label{chap:intro}
 
-During the daily interactions of our social, entertainment, and
-professional life, human language is essential for human intelligence,
-and it is arguably our most powerful tool for the learning and
-transmission of knowledge. With the advances of computers and the
-internet, most of the world's knowledge, such as conversations,
-scholarly research, factual news, online education, and private mental
-health records, is now easily accessible as digitized text. However,
-with very limited ability of information processing, human cannot
-easily find the hidden knowledge from the huge amount of unstructured
-text.
+Human language is essential for human intelligence, and arguably our
+most powerful tool for the learning and transmission of
+knowledge. With the advances of computers and the internet, most of
+the world's knowledge, such as conversations, scholarly research,
+factual news, online education, and private mental health records, is
+now easily accessible as digitized text. However, with limited ability
+of information processing, we cannot easily discover the knowledge
+hidden in the huge amount of unstructured text.
 
 One classical way to study unstructured natural language is to
 represent the language via various structured symbolic representations
-in different levels. Before the revolution of representation learning
-with deep learning, the NLP community has put decades of effort into
-solving different lingustic structured prediction tasks in a pipeline,
-to get various aspects of text understanding. For examples:
+in different levels~\citep{smith2011linguistic}. Before the revolution
+of representation learning with deep learning, the NLP community has
+put decades of effort into solving different lingustic structured
+prediction tasks to get various aspects of text understanding. Let us
+loot at some examples.
 
+% with pipelined toolkits~\citep{manning2014stanford,bird2004nltk},
 \begin{figure}[!th]
 \centering
-\includegraphics[width=0.80\textwidth]{dog-pos.pdf}
-\caption{\label{fig:intro-dog-pos}The part-of-speech for the
-  sentence \textit{"The dog cannot find the bone it hid from the other
-    dogs"}}
+\includegraphics[width=0.85\textwidth]{dog-pos.pdf}
+\caption{\label{fig:intro-dog-pos}Part-of-speech tags for the sentence
+  \textit{"The dog cannot find the bone it hid from the other dogs."}
+  This image shows the tag set used in Penn
+  Treebank~\cite{marcus-etal-1994-penn} }
 \end{figure}
 
 \begin{figure}[!th]
 \centering
-\includegraphics[width=0.90\textwidth]{dog-tree.pdf}
-\caption{\label{fig:intro-dog-tree}The constituent tree \todo{redraw
-    trees} for the sentence \textit{"The dog cannot find the bone it
+\includegraphics[width=0.95\textwidth]{dog-tree.pdf}
+\caption{\label{fig:intro-dog-tree}The constituent tree for the sentence \textit{"The dog cannot find the bone it
     hid from the other dogs"}}
 \end{figure}
 
 \begin{figure}[!th]
 \centering
-\includegraphics[width=0.90\textwidth]{dog-dep.pdf}
+\includegraphics[width=0.98\textwidth]{dog-dep.pdf}
 \caption{\label{fig:intro-dog-dep}The dependency tree, for the
   sentence \textit{"The dog cannot find the bone it hid from the other
     dogs"}}
 \end{figure}
 
-\Paragraph{Example 1: Part-of-Speech Tagging, Consitutency and
-    Dependency Structure} As shown in~\autoref{fig:intro-dog-pos},
-  the part-of-speech~(\textbf{POS}) tagging assigns each word in a sentence a
-  part-of-speech tag, such \lbl{noun}, \lbl{verb},\lbl{adjective},
-  \lbl{pronoun}, etc. How to capture the sequential structure of
-  correlations between consecutive tags is the key of this task.
-  \autoref{fig:intro-dog-tree} shows the \textbf{constituent tree} structure of
-  the sentence. The consistuent tree parsing is to recoginize the
-  recursive phrase structure of a sentence, such as noun, verb,
-  prepositional phrases, and their nesting in relation to each
-  other. \autoref{fig:intro-dog-dep} shows the \textbf{dependency tree}
-  structure of the sententce. Instead of the constituency structure,
-  here the synatactic structure of a sentence is described in terms of
-  the directed bi-lexical grammatical relations between words. Each
-  labeled arcs represents a directed relation from heads to
-  dependents. Besides the above lexical and synactic structured
-  information, various semantics in natural language are also widely
-  studied in structured representation, such as \textbf{named entity
-  recognization}, \textbf{coreference resolution}, \textbf{semantic role
-  labelling}~\footnote{More details about various semantic phenomenos
-    will be introduced in~\autoref{ssec:bg:broad-mr}}. Especially, the
-  above structured information are widely used as features in machine
-  learning based NLP system.
+\Paragraph{Example 1: Part-of-Speech Tagging, Constituency and
+  Dependency Structure} We consider the sentence ``The dog cannot find
+the bone it hid from the other dogs" as a running example. As shown
+in~\autoref{fig:intro-dog-pos}, the part-of-speech~(\textbf{POS})
+tagging assigns each word in a sentence a part-of-speech tag, such as
+\lbl{noun}, \lbl{verb},\lbl{adjective}, \lbl{pronoun}. How to capture
+the sequential correlations between consecutive tags is the key
+modelling challenge for this task.  \autoref{fig:intro-dog-tree} shows
+the \textbf{constituent tree} structure of the sentence. The
+constituent tree parsing requires recognizing the recursive phrase
+structure of a sentence, such as noun, verb, prepositional phrases,
+and their nesting in each other. \autoref{fig:intro-dog-dep} shows the
+\textbf{dependency tree} structure of the sentence. Unlike the
+constituency structure, here the syntactic structure of a sentence is
+described in terms of the directed bi-lexical grammatical relations
+between words. Each labeled arc represents a directed relation from
+head words to their dependents. Besides the above lexical and
+syntactic structured information, as shown in the left part of
+\autoref{fig:intro-dog-amr}, natural language semantics is also widely
+studied as structured representations, via tasks such as \textbf{ word
+  sense diambiguation}, \textbf{semantic role labeling}
+and~\textbf{co-reference resolution} and so on~\footnote{More details
+  about various semantic phenomenons will be introduced
+  in~\autoref{ssec:bg:broad-mr}}. Such structured information is
+widely used in classical feature-engineering based NLP
+system~\citep[e.g.,][]{Joh:Nug:08,hovy2010s,punyakanok2008importance},
+they are still helpful in deep learning based
+systems~\citep{moosavi-strube-2018-using,strubell-etal-2018-linguistically,bowman-etal-2016-fast}.
 
-\Paragraph{Example 2: Broad Coverage Meaning Representation} Besides
-  the above structures capturing specific lexical, syntactic or
-  semantic information, recent developments in semantic representation
-  aims to represent the multiple phenomenos in a single structure. As
-  shown in~\autoref{fig:intro-dog-amr}, it shows the
-  Abstract Meaning
-  Representation~\citep[\textbf{AMR},][]{Ban:Bon:Cai:13} of the
-  corresponding sentence. The node in the graph represent the abstract
-  concept~\footnote{AMR concepts includes PropBank framesets, and
-    other sepcial date, and spatial entities, etc. More details about AMR will be introduced in~\autoref{ssec:bg:broad-mr}}, and the labeled
-  edges between the nodes represent the relations between those
-  concepts.  \autoref{fig:intro-dog-ucca} shows the foundational layer
-  of Universal Conceptual Cognitive
-  Annotation~\citep[\textbf{UCCA},][]{Abe:Rap:13b}, which is a
-  multi-layered framework for semantic representation that aims to
-  accommodate the semantic distinctions expressed through linguistic
-  utterances, and support open-ended extension. This foundational
-  layer focuses on argument structures of verbal, nominal and
-  adjectival predicates and the inter-relations between them.
+\Paragraph{Example 2: Broad-coverage Meaning Representation} Besides
+the above structures capturing specific lexical, syntactic or semantic
+information, a broad-coverage semantic representation is a
+general-purpose meaning representation langauge aiming to represent
+the multiple phenomena in a single structure for broad-coverage
+text. \autoref{fig:intro-dog-amr} shows the Abstract Meaning
+Representation~\citep[\textbf{AMR},][]{Ban:Bon:Cai:13} of the example
+sentence. The node in the graph represent abstract
+concepts~\footnote{AMR concepts includes PropBank framesets, and other
+  special date, and spatial entities, etc. More details about AMR will
+  be introduced in~\autoref{ssec:bg:broad-mr}}, and the labeled edges
+between the nodes represent the relations between those concepts. As
+shown in \autoref{fig:intro-dog-tree}, the node `find--01' and
+`hide-01' represent the word sense predefined in the
+Propbank~\cite{Kin:Pal:02}; The connected edges `:ARG0' and `:ARG1'
+captures the semantic roles that can be derived from the semantic role
+labelling tasks; While the node `dog/d1' means the subject for events
+`find-01', `hide-01' and 'possible-01' are the same dog, thus
+capturing the correference information. \autoref{fig:intro-dog-ucca}
+shows the foundational layer of Universal Conceptual Cognitive
+Annotation~\citep[\textbf{UCCA},][]{Abe:Rap:13b}, which is a
+multi-layered framework for semantic representation that aims to
+accommodate the semantic distinctions in the sentence and support
+open-ended extensions. Different from AMR, this UCCA foundational
+layer mainly forms a tree-like structure, which focuses on argument
+structures of verbal, nominal and adjectival predicates and the
+inter-relations between them. Besides the above two broad-coverage
+meaning representations, we also studied the DELPH-IN MRS Bi-lexical
+Dependencies~\cite[DM,][]{ivanova2012did} and Prague Semantic
+Dependencies~\cite[PSD,][]{hajic2012announcing,miyao2014house}. More
+details about their captured semantic content and their structure
+properties will introduced comparatively
+in~\autoref{ssec:bg:broad-mr}.
 
 \begin{figure}[!th]
 \centering
-\includegraphics[width=0.70\textwidth]{dog-amr.pdf}
-\caption{\label{fig:intro-dog-amr}\todo{SDP} The broad coverage mearning
-  representation AMR for the sentence \textit{"The dog cannot
-    find the bone it hid from the other dogs"}}
+\includegraphics[width=1.0\textwidth]{broad-coverage-mr.pdf}
+\caption{\label{fig:intro-dog-amr} The broad coverage meaning
+  representation AMR for the sentence \textit{"The dog cannot find the
+    bone it hid from the other dogs."}. It represent multiple
+  phenomena in a single structure, inclduing the predicate-argument
+  structure and word sense disambiguiation in semantic role labelling,
+  coreference resolution, and so on.}
 \end{figure}
 
 
 \begin{figure}[!th]
 \centering
 \includegraphics[width=0.90\textwidth]{dog-ucca.pdf}
-\caption{\label{fig:intro-dog-ucca}\todo{SDP} The broad coverage mearning
+\caption{\label{fig:intro-dog-ucca} The broad coverage meaning
   representation UCCA for the sentence \textit{"The dog cannot
-    find the bone it hid from the other dogs"}}
+    find the bone it hid from the other dogs."}}
 \end{figure}
 
 \Paragraph{Example 3: Application-specific Symbolic Representation}
-  Besides the above broad coverage syntactic and semantic structures
-  in natural language, researchers have designed various symbolic
-  representation for specific applications. Take dialogue application
-  as an example, dialog act and dialog intents are firstly dessgned to
-  represent the speech act or intention of each utterance. To
-  represent the state of the dialog, inspired by the case theory,
-  frame-based representation in GUS~\citep{bobrow1977gus} are
-  introduced into dialog state representation, which consists of a
-  collection of slots and each with a set of possible
-  values. \autoref{fig:intro-dialogue} shows an example of dialog
-  state tracking, where each table filling with intent/slot/slot
-  values represent a dialog state for a user turn.
+Besides the above broad coverage syntactic and semantic structures in
+natural language, researchers have designed various symbolic
+representations for specific applications. Dialog acts are firstly
+designed to represent the speech act or intention of each utterance,
+in order to represent the functions of each utterance in the
+dialogue~\citep{wittgenstein2010philosophical,bunt2010towards}. Then
+inspired by the case theory~\citep{Fillmore:68}, frame-based
+representation in GUS~\citep{bobrow1977gus} are introduced to
+represent the state of dialogue, which consists of a collection of
+slots and each with a set of possible
+values. \autoref{fig:intro-dialogue} shows an example of dialog state
+tracking, where each table filled with intent, slot and slot values,
+representing a dialog state for a user turn.
 
 \begin{figure}[!th]
 \centering
 \includegraphics[width=0.90\textwidth]{dialog-example.pdf}
-\caption{\label{fig:intro-dialogue} \todo{dialog act and dialog state tracking example} }
+\caption{\label{fig:intro-dialogue} Example for dialog state
+  tracking.}
 \end{figure}
 
-From specific linguistic structures to broad coverage semantic
-represention and application-specific representations, they are
-interpretable to both human and computers. Exploit this structured
-analysis on symbolic representation can offer rigorous document
-analysis, easier knowledge organization, programmable reasoning, which
-are also potentially helpful to offer actionable suggestions to guide
-human behavior, such as mental health~\citep{tanana2016comparison},
+Lexical, syntactic structures, broad coverage semantic representations
+and application-specific representations, are interpretable to both
+human and computers. Such structured representations can enable
+rigorous document analysis, easier knowledge organization, and
+programmable reasoning. Further more, they can be potentially helpful
+to offer actionable suggestions to guide human behavior, such as
+improving mental health counseling~\citep{tanana2016comparison},
 dialog state tracking~\citep{budzianowski2018multiwoz}, scientific
 document analysis~\citep{dernoncourt2017pubmed}, and so on.
+%However, previous with pipelined
+%toolkits~\citep{manning2014stanford,bird2004nltk},
 
 With the stunning rise of deep learning, modern NLP systems have
-achieved outstanding performance on many benchmarking tasks, and offer
-helpful services to human's daily life, such as machine translation,
-chat bot. Without considering any prior knowledge or the syntax or
-semantic structures for feature engineering, they simply feed the
-large amount of labeled raw data into an end-to-end deep learning
-model, and outperform many previous hand-scrafted models. Recently,
-pretrained large language models even became the unfied model for many
-of the NLP tasks, which further boost the performances. However, many
-research have shown that those end-to-end NLP system often fail
-catastrophically when given unseen inputs from different sources or
-via adversarial attacks. The end-to-end black-box models lack of
-inteperability and robustness, and they are fragile to maintain when
-deployed to real users. What's more, using those large language model
-without any careful intervention will lead to various fairness
+achieved outstanding performance on many benchmark tasks, and offer
+helpful services, such as machine translation. Without any prior
+knowledge of the syntax or semantic structures for feature
+engineering, they simply feed the large amount of labeled raw data
+into an end-to-end deep learning model, and outperform many previous
+pipeline models built from hand-crafted features. Recently, pretrained
+large language models even became the unified base model for many of
+the NLP tasks, which further boosts the performances.
+
+However, recent research have shown that such end-to-end NLP systems
+often fail catastrophically when given unseen inputs from different
+sources or via adversarial attacks. The end-to-end black-box models
+lack inteperability and robustness, and they are fragile to maintain
+when deployed to real users. Using those large language models without
+any careful intervention will lead to fairness
 issues~\citep{bommasani2021opportunities}.  Using interpretable
-symbolic representation in deep learning models can both improve the
-efficiency and robustness of NLP systenms. Taking AMR as an example,
-combining the power of nueral representation with symbolic AMR
-representation has shown great benifits to NLP applications like
-machine translation~\citep{song2019semantic},
+symbolic representation in deep learning models can improve both the
+efficiency and robustness of NLP systems. For example, combining the
+power of neural representation with symbolic AMR representation has
+shown great benefits to NLP applications like machine
+translation~\citep{song2019semantic},
 summarization~\citep{liu2015toward}, question
-answering~\citep{kapanipathi2021leveraging} and so on.\todo{adding
-  more sucess of neural-symbolic models}
+answering~\citep{kapanipathi2021leveraging} and so on.
+%\todo{adding more sucess of neural-symbolic models}
 
-Hence, from classical NLP pipeline to modern deep learning based
-models, predicting the underlying structured representations are
-arguably important for natural language processing, and still
-important in deep learning era. In this thesis, we ground the studies
-of natural language structured prediction on both broad-coverage
-linguistic representations~(such as graph-based meaning
-representations, DM, PSD, AMR, and UCCA, etc.)~and
-application-specific representations~(such as MISC code for
-psychotherapy dialog and dialog state representations for
-task-oriented dialog). More importantly, considering both the success
-and the failure for the pure data-driven deep learning model, we focus
-our study on the inductive biases useful in deep lingustic structured
-prediction tasks.
-
+Predicting structured representations of text is important for natural
+language processing, even in the deep learning era. In this thesis, we
+ground the studies of natural language structured prediction on both
+broad-coverage meaning representations and application-specific
+representations. Beyond pure data-driven methods, we primarily focus
+on studing deep linguistic structured prediction via independent
+factorization. We propose two kinds of generic inductive biases to
+support the independent factorization for each task, including
+Structural Inductive Biases and Natural Language as Inductive Biases.
 \input{chapters/intro/intro-motivation}
 %\input{chapters/intro/intro-replearning}
 \input{chapters/intro/intro-contribution}
@@ -194,120 +216,13 @@ prediction tasks.
 %%%
 %%% However, for this document, we only want lots of index entries to
 %%% populate a sample topic index.
+\index{Inductive Bias}
+\index{Structured Prediction}
+\index{Linguistic Structured Prediction}
+\index{AMR, Abstract Meaning Representations}
+\index{PSD, Prague Semantic Dependencies}
+\index{DM, DELPH-IN MRS Bi-lexical Dependencies}
 
-\index{gnu hair}
-\index{gnu  hair}
-\index{ gnu  hair}
-\index{ gnu hair }
-
-\index{E. coli bacterium@\bioname{E. coli} bacterium}
-
-\index{GNU Project}
-\index{gnu}
-
-\index{gnu!diet}
-\index{gnu!diet!wet season}
-\index{gnu!diet!dry season}
-
-\index{gnu!hair}
-\index{gnu!hair!color}
-\index{gnu!hair!DNA analysis}
-\index{gnu!hair!texture}
-\index{gnu!hair!thickness}
-
-\index{gnu!predators}
-\index{gnu!predators!crocodiles}
-\index{gnu!predators!hyenas}
-\index{gnu!predators!lions}
-
-\index{zythum (ancient Egyptian malt beverage)}
-\index{zoetrope}
-\index{zebu (cattle) (\bioname{Bos taurus indicus})}
-\index{zebra}
-\index{yucca}
-\index{yak}
-\index{xylophone}
-\index{xylem (woody tissue of a plant)}
-\index{xenon (noble gas)}
-\index{X radiation}
-\index{X ray}
-\index{woodchuck (\bioname{Marmota monax})}
-\index{wolverine}
-\index{wolf}
-\index{white-tailed deer (\bioname{Odocoileus virginianus})}
-\index{whippet}
-\index{whale}
-\index{weasel}
-\index{water buffalo}
-\index{wart hog}
-\index{wapiti (\bioname{Cervus canadensis})}
-\index{wanderoo}
-\index{walrus}
-\index{wallaby}
-\index{vulture}
-\index{vicuna (Vicugna vicugna)@vicu{\~n}a (\bioname{Vicugna vicugna})}
-\index{vampire bat}
-\index{unicorn}
-\index{turbot}
-\index{tuna}
-\index{toucan}
-\index{tiger (\bioname{Panthera tigris})}
-\index{tapir}
-\index{tangun}
-\index{swordfish}
-\index{suslik}
-\index{sunfish}
-\index{skunk}
-\index{skink}
-\index{sapajou}
-\index{salamander}
-\index{saber-toothed cat}
-
-\index{Alces alces@\bioname{Alces alces}}
-\index{Antilocapra americana@\bioname{Antilocapra americana}}
-\index{Bos taurus indicus@\bioname{Bos taurus indicus}}
-\index{Cervus canadensis@\bioname{Cervus canadensis}}
-\index{Connochaetes gnou@\bioname{Connochaetes gnou}}
-\index{Lama glama@\bioname{Lama glama}}
-\index{Marmota monax@\bioname{Marmota monax}}
-\index{Odocoileus virginianus@\bioname{Odocoileus virginianus}}
-\index{Panthera tigris@\bioname{Panthera tigris}}
-\index{Vicugna vicugna@\bioname{Vicugna vicugna}}
-
-
-%%% ====================================================================
-%%% Cross-references for index entries should be specified only once:
-
-\index{Alces alces@\bioname{Alces alces}|see{moose}}
-\index{Antilocapra americana@\bioname{Antilocapra americana}|see{pronghorn}}
-\index{Cervus canadensis@\bioname{Cervus canadensis}|see{elk}}
-\index{Cervus canadensis@\bioname{Cervus canadensis}|see{wapiti}}
-\index{Connochaetes gnou@\bioname{Connochaetes gnou}|see{gnu}}
-\index{Lama glama@\bioname{Lama glama}|see{llama}}
-\index{Leopardus pardalis@\bioname{Leopardus pardalis}|see{ocelot}}
-\index{Leopardus wiedii@\bioname{Leopardus wiedii}|see{margay}}
-\index{Lynx canadensis@\bioname{Lynx canadensis}|see{lynx}}
-\index{Lynx rufus@\bioname{Lynx rufus}|see{bobcat}}
-\index{Marmota monax@\bioname{Marmota monax}|see{woodchuck}}
-\index{Panthera onca@\bioname{Panthera onca}|see{jaguar}}
-\index{Panthera tigris@\bioname{Panthera tigris}|see{tiger}}
-\index{Puma concolor@\bioname{Puma concolor}|see{cougar}}
-\index{Tragelaphus eurycerus@\bioname{Tragelaphus eurycerus}|see{bongo}}
-\index{Trichechus inunguis@\bioname{Trichechus inunguis}|see{manatee}}
-\index{Vicugna vicugna@\bioname{Vicugna vicugna}|see{vicu{\~n}a}}
-
-\index{African ungulate|see{gnu}}
-\index{ungulate|see{gnu}}
-\index{ungulate|see{impala}}
-\index{ungulate|see{kudu}}
-\index{ungulate|see{springbok}}
-\index{wildebeest|see{gnu}}
-\index{pachyderm|see{elephant}}
-\index{pachyderm|see{hippopotamus}}
-\index{pachyderm|see{rhinoceros}}
-\index{puma|see{cougar}}
-\index{rhino|see{rhinoceros}}
-\index{free software|seealso{GNU Project}}
 
 %%% Local Variables:
 %%% mode: latex

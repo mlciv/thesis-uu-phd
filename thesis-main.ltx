@@ -188,7 +188,7 @@
 %%% The student-specific front matter fields are defined here:
 
 \author                 {Jie Cao}
-\title                  {Inductive Biases for Deep Linguistic Structured Prediction}
+\title                  {Inductive Biases for Deep Linguistic Structured Prediction via Independent Factorization}
 \thesistype             {dissertation}
 
 \dedication             {For my parents, and my love.}
@@ -224,15 +224,15 @@
 
 %%% Dates that must be adjusted for each academic term, and be permitted
 %%% according to the University of Utah Thesis Office:
-\submitdate             {Dec 2021}
-\copyrightyear          {2021}
+\submitdate             {June 2022}
+\copyrightyear          {2022}
 
 %%% Dates on which committee members approved the thesis
-\chairdateapproved      {xx 2021}
-\firstdateapproved      {xx 2021}
-\seconddateapproved     {xx 2021}
-\thirddateapproved      {xx 2021}
-\fourthdateapproved     {xx 2021}
+\chairdateapproved      {}
+\firstdateapproved      {}
+\seconddateapproved     {}
+\thirddateapproved      {}
+\fourthdateapproved     {}
 
 %%% ====================================================================
 %%% Typesetting begins here:
@@ -293,8 +293,8 @@
 \appendix       % Chapters, sections are now appendix style A, A.1, A.2, B, C, D, ...
 
 %\include {chapters/appa}
-\include {chapters/appb}
 \include {chapters/appc}
+\include {chapters/appb}
 
 %%% The choice of bibliography style is a major decision, jointly made
 %%% by you, your thesis advisor and the thesis editor. Common choices are
@@ -371,17 +371,17 @@
 \renewcommand {\bioname} [1] {\emph{#1}}   % redefine to suppress color and indexing in index
 \renewcommand {\fsfname} [1] {\texttt{#1}} % redefine to suppress color and indexing in index
 
-\renewcommand {\indexname} {Binomial Nomenclature Index}
+%\renewcommand {\indexname} {Binomial Nomenclature Index}
 
-\input{\jobname-bioname.ind}
+%\input{\jobname-bioname.ind}
 
-\renewcommand {\indexname} {Free Software Index}
+% \renewcommand {\indexname} {Free Software Index}
 
-\input{\jobname-fsfname.ind}
+%\input{\jobname-fsfname.ind}
 
-\renewcommand {\indexname} {Topic Index}
+%\renewcommand {\indexname} {Topic Index}
 
-\overfullrule = 0pt % suppress visible warnings about overfull hboxes
-\printindex
+%\overfullrule = 0pt % suppress visible warnings about overfull hboxes
+%\printindex
 
 \end {document}

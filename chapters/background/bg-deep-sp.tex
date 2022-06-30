@@ -22,7 +22,7 @@ MISC code for both current and future utterance, our model emphasizes
 both \textit{accurate and real-time} assistance to a therapist. We
 propose to represent the output labels with natural language
 descriptions for \textit{zero-shot learning} on unseen
-labels~\S\ref{ssec:sgdst}. In our thesis, we show that during the
+labels~\S\ref{chap:sgd}. In our thesis, we show that during the
 rapid progress of representation learning methods, our proposed
 inductive biases still can outperform the standard usage baselines.
 
@@ -104,30 +104,109 @@ fine-tuning for test-time inference.
 
 \subsection{Neural Representation Learning}
 \label{ssec:bg:rep-learning}
-For deep learning based methods, we review the recent advances from
-static word embedding based methods to attention-based dynamic
-features selection and contextualized representation. Finally, we also
-introduced the rapid progress in language encoding architectures, from
-recurrent neural network to transformer, and the corresponding
-pretrained language models ELMo , BERT, GPT3 etc.
+Structured prediction requires the representation learning can capture
+both the distriminitive interactions between $x$ and $y$ and also
+allow efficient combinatorial optimization over $y$. Ideally, we hope
+neural repsentation learning can handle all of this.
+
+The key challenge of trying to apply analytical and computational
+methods to text data is how to represent the text in a way that is
+amenable to operations such as similarity, composition, etc. Besides
+the early day one-hot representation and TF-IDF extensions, word
+embedding and nerual contextualized representation are widely used in
+modern deep learning based models. In this section, we review the
+recent advances from static word embedding based methods to
+attention-based dynamic features selection and contextualized
+representation. Finally, we also introduced the rapid progress in
+language encoding architectures, from recurrent neural network to
+transformer, and the corresponding pretrained language models ELMo ,
+BERT, GPT3 etc.
 
 \Paragraph{Static Word Embedding}
-
+Word embeddings are
+commonly~\cite{Baroni:2014,pennington2014glove,li2015generative}
+categorized into two types, depending upon the strategies used to
+induce them:
+\begin{inparaenum}[(1)]
+\item Prediction-based models, via local data in sentence~(a word'
+  context).
+\item Count-based models, via the global corpus-wide statistics~(such
+  as word counts, co-occurrece).
+\end{inparaenum}
+Skip-gram with negative sampling~\cite[SGNS,][]{mikolov13w2v} and
+GloVe~\cite{pennington2014glove} are among the best known models for
+the two type respectively. However, they create a single fixed
+representation for each word, a notable problem with static word
+embeddings is that all senses of a polysemous word must share a single
+vector.
 
 \Paragraph{Contetualized Representation and Contextualing Models}
-
-
+To resolve the issue of static word embedding, sequence encoders~(such
+as LSTM~\citep{hochreiter97lstm}, Transformer~\citep{NIPS2017_7181})
+can be used as contextualizing models to encode the whole context and
+produce a \kw{contexualized representation} for each word, phrase or
+the whole sentence. In this way, the contextualized representation
+dynamicly depends on the entire sentence.  Further more, based on the
+neural sequence encodingarchitectures, pretraining language models
+with a large amount of text can create more powerful representations.
+ELMo~\cite{elmo} creates contextualized representations of each token
+by concatenating the internal states of a 2-layer biLSTM trained on a
+bidirectional language modelling task. In contrast,
+BERT~\citep{devlin2019bert} and GPT-2~\citep{radford2018improving} are
+bi-directional and uni-directional transformer-based language models
+respectively. \citet{peters2019tune} shows that ELMo contextualized
+representation is more suitable to be used a fixed word embedding. In
+our thesis, we simply replace the original fixed word embedding with
+ELMo, and then feed them into other nerual models. While for BERT and
+GPT-2, finetuning them on downsteam task will lead better performance.
 
 \subsection{Inference}
 \label{ssec:bg:inference}
-\subsubsection{MAP Inference}
-Exact: Dynamic Programming: Viterbi, CKY, Max Spanning Arborescence, Exact Search, Integer Linear Programming
-Approximate: Sampling, Beam Search/Learning to Search, Linear Programming Relaxations
+Learning with structured data typically involves searching or summing
+over a set with an exponential number of structured elements, for
+example the set of all parse trees for a given sentence. In the deep
+learning community, it is common to fit models by computing point
+estimates, such as the MLE or MAP estimate. Such MAP inference
+approaches seem particularly appealing, since they are computationally
+fairly cheap, and can use the prior to reduce overfitting. In this
+way, the nerual models only learn a single set of parameter. However,
+the point estimation does not capture the associated
+uncertainties~\citep{murphy2022probabilistic,wilson2020bayesian}.
+Hence, in structured prediction research, we care about both MAP
+inference and marginal inference.
 
-\subsubsection{Marginal Inference}
-Forward-Backward/ Inside-outside/ Matrix tree
-CRF
-SparseMAP
+\Paragraph{MAP Inference} Various exact inference methods are proposed
+for MAP inference in NLP tasks.  Exact inference methods include
+dynamic programming based methods~(such as
+viterbi~\citep{viterbi1967error} for hidden markov models, CKY for
+context-tree
+grammars~\cite{kasami1966efficient,younger1967recognition,cocke1969programming}
+, Max Spanning Arborescence for spanning
+tree~\cite{chu1965shortest,edmonds1967optimum}, and so on), and
+Integer Linear
+Programming~\citep{roth2005integer,roth2007global,berant2014modeling}. On
+the other side, approximate inference methods includes various
+sampling methods~\citep{finkel2005incorporating,singh2012monte},
+search-based
+methods~\citep{daume2009search,ross2011reduction,chang2015learning},
+and Linear Programming
+Relaxations~\citep{rush2012tutorial,werner2014power}.
+
+\Paragraph{Marginal Inference} Integration is at the heart of marginal
+inference, whereas differentiation is at the heart of
+optimization. Corresponding to the each of the above exact MAP
+inference algorithms, various methods are proposed for marginal
+inference. They compute marginal probabilities and partition functions
+which are central to many methods, such as
+EM~\citep{baker1979trainable,weizenbaum1966eliza}, constrative
+estimation~\citep{smith2005contrastive}, Conditional Random
+Field~\citep[CRF,][]{lafferty01crf}, max-margin training over all
+candidate targets~\cite{koller2004max}. For linguistic structured
+prediction, exact marginal inference methods include forward-backward
+algorithm for HMM~\citep{binder1997space},
+Inside-outside~\citep{baker1979trainable}, Matrix-Tree Theorem for
+non-projective dependency
+structures~\citep{koo-etal-2007-structured,liu2018learning}.
 
 %%% Local Variables:
 %%% mode: latex

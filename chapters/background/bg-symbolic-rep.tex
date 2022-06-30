@@ -3,23 +3,15 @@
 In the~\autoref{chap:intro}, we have listed serveral lexical,
 syntactic and semantic structures in NLP. In this section, we will
 mainly introduce more detailed background on the broad-coverage
-semantic presentation~\autoref{ssec:bg:broad-mr} and
+semantic presentations~\S\ref{ssec:bg:broad-mr} and
 application-specific representations on
-dialogue~\autoref{ssec:bg:dialogue-mr}.
+dialogue~\S\ref{ssec:bg:dialogue-mr}.
 
-\subsection{Broad-coverage Semantic Representation}
-\label{ssec:bg:broad-mr}
+Before we introduce each semantic representation, we first define the
+term \kw{anchoring} and \kw{anchors}, and then we use them to organize
+semantic representations in our dissertation.
 
-For linguistic analysis, structures have been studied from
-subword-level morphology~\cite{beesley2003finite}, word-level lexicon
-semantics~\cite{miller1998wordnet}, to single-sentence syntax/semantic
-representations~\cite{baker1998berkeley,palmer2005proposition,collins2003head},
-and multi-sentences discourse
-analysis~\cite{carlson2003building,wolf2005representing,prasad2008penn}.
-
-\Paragraph{Anchoring} Before we introduce each semantic
-representation, we first define the term \kw{anchoring} used to
-organize them. As the same definition of \kw{anchoring} used in the
+\Paragraph{Anchoring} As the same definition of \kw{anchoring} used in the
 Meaning Representation Parsing~(MRP) shared
 task~\citep{Oep:Abe:Haj:19}, we distinguish different flavors of
 semantic graphs based on the nature of the relationship they assume
@@ -34,10 +26,21 @@ corresponding node in the graph. According to the type of the
 substring~(lexicon, phrase, sentence and so on), we mainly classify
 the type of the \kw{anchors} into \kw{lexical-anchoring},
 \kw{phrasal-anchoring} and
-\kw{sentence-anchoring}.
+\kw{sentential-anchoring}.
 
-This thesis covers broad-coverage graph-based semantic representations
-in a single sentence, which involves \kw{lexical-anchoring} and
+
+\subsection{Broad-coverage Semantic Representation}
+\label{ssec:bg:broad-mr}
+
+For linguistic analysis, structures have been studied from
+subword-level morphology ~\citep{beesley2003finite}, word-level
+lexicon semantics~\citep{miller1998wordnet}, to single sentence
+syntax/semantic
+representations~\citep{baker1998berkeley,palmer2005proposition,collins2003head},
+and multi-sentences discourse
+analysis~\citep{carlson2003building,wolf2005representing,prasad2008penn}. This
+thesis covers broad-coverage graph-based semantic representations in a
+single sentence, which involves \kw{lexical-anchoring} and
 \kw{phrasal-anchoring}. For lexical anchoring, we cover the DELPH-IN
 MRS Bi-lexical Dependencies~\cite[DM,][]{ivanova2012did} and Prague
 Semantic
@@ -63,7 +66,7 @@ representations.~\footnote{The summeriziation paper in MRP
 
 As shown in~\autoref{fig:intro-dog-dep}, syntactic dependency
 structures captures the directed bi-lexical grammatical relations
-between words. Each labeled arcs represents a directed relation from
+between words. Each labeled arc represents a directed relation from
 heads to dependents. However, different with the syntactic dependency
 tree, semantic dependency graphs aims to represent the semantic
 dependencies in the full sentence, inclduing word sense distinctions,
@@ -87,13 +90,13 @@ Semantics~\citep[ERS,][]{Ben:Fli:Oep:15}, and the underlying grammar
 is rooted in the general linguistic theory of Head-Driven Phrase
 Structure Grammar~\citep[HPSG,][]{Pol:Sag:94}.
 
-Then \citet{Iva:Oep:Ovr:12} propose a two-stage version to transformer
+Then \citet{Iva:Oep:Ovr:12} propose a two-stage version to transform
 the ERS logical forms into bi-lexical semantic dependency graphs. As
 shown in the~\autoref{fig:dm-psd-history}, ERS logical forms are
 firstly tranformed into Elementary Dependency
 Structures~\cite[EDS,][]{Oep:Lon:06}, then EDS are simplified into
 pure bi-lexical dependencies, dubbed DELPH-IN MRS Bi-Lexical
-Dependencies~(or DM). As shown in~\autoref{fig:bg-gm}, graph nodes in
+Dependencies~(or DM). As shown in~\autoref{fig:bg-dm}, graph nodes in
 DM are anchoring to the surface tokens. However, the underlying
 sentence is fully covered in the graph. For example, the word ``will"
 does not produce any node in the DM graph. Edges mainly indicate
@@ -149,7 +152,7 @@ verbal nodes indicate specific verbal senses in the lexicon.
 \begin{figure}[!th]
 \centering
 \includegraphics[width=0.98\textwidth]{bg/amr-20001001.pdf}
-\caption{\label{fig:bg-amr }The AMR representation for the sentence
+\caption{\label{fig:bg-amr} The AMR representation for the sentence
   \#20001001}
 \end{figure}
 
@@ -158,7 +161,7 @@ represents sentence meaning as directed graphs with labeled nodes
 ~(concepts) and edges~(relations). AMRs are rooted, labeled graphs
 that are easy for people to read, and easy for programs to traverse.
 AMR concepts are either English words (``board"), PropBank framesets
-(“join-01”), or special entity keywords~(``date-entity", ``person",
+(``join-01"), or special entity keywords~(``date-entity", ``person",
 ``name", etc.), quantities~(``temporal-quantity",
 ``distance-quantity", etc.), and logical conjunctions~(``and", etc).
 AMR strives for a more logical, less syntactic representation.  For
@@ -396,13 +399,13 @@ state revision and recovering.
 
 In this thesis, we study the structures of single sentence
 representation TOP for dialogue
-representations. \autoref{fig:top-examples} shows two examples of the
+representations. \autoref{fig:top-example} shows two examples of the
 nested structures of TOP structures. All intents and slots are
 non-teriminal nodes, and their labels are prefixed with \kw{IN:} or
 \kw{SL:} respectively.
 
-The TOP tree structure shares a lot similaries with consituent tre
-shown in~\autoref{dog-tree}. It has the following three structural
+The TOP tree structure shares a lot similaries with consituent tree
+shown in~\autoref{fig:intro-dog-tree}. It has the following three structural
 constraints.
 \begin{inparaenum}[(1)]
 \item The top level node must be an intent.
