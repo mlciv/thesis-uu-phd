@@ -1,4 +1,4 @@
-\chapter{Representing Intent/Slot Concept with Natural Language Description}
+\chapter{Natural Language as Inductive Biases for Tracking Dialogue State}
 \label{chap:sgd}
 
 From early frame-driven dialog system GUS~\citep{bobrow1977gus} to
@@ -11,11 +11,43 @@ modeling~\citep{budzianowski2018multiwoz,byrne2019taskmaster,
   shah-etal-2018-bootstrapping} and transferable dialog state tracking
 to unseen intent/slots~\cite{mrkvsic2017neural,
   wu2019transferable, hosseini2020simple}.
+
+\begin{figure}[!th]
+\centering
+\includegraphics[width=0.98\textwidth]{label-schema-example.pdf}
+\caption{\label{fig:label-schema-example} Different Flight Service
+  Ontology for Dialogue State Tracking}
+\end{figure}
+
+As shown in~\autoref{fig:label-schema-example}, the intent
+classification task is to understand what the user trying to
+accomplish. Booking a flight, Finding a Movie, or booking a
+hotel. While the slot filling task to extract the particular slots and
+fillers that the user intends the system to understand from their
+utterance with respect to their intent. As shown
+in~\autoref{fig:label-schema-example}, bolded text are the evidence
+for different slot values. For example, ``economic" implies the value
+of the slot seat class, and ``June 10" indicates the time of
+departure.
+
+In \autoref{fig:label-schema-example}, two flight services present two
+different ontology for the same domain task of booking a flight. For
+the dialogue presented in the center of the figure, the two services
+will produce different dialogue state for each user dialogue turn, and
+request different commands for downsteam information retrieval
+components. When there is a new flight booking service, then there
+will be new onotlogy for the new domain. Hence, even if it shares a
+lot of overlapping functionalities with previous two flight service,
+we still need to annotate new data for the new service and retraining
+the new model on the newly annotated data. Such re-annotating and
+re-training on new service is costly.
+
 \begin{figure}[!ht]
 \centering
   \includegraphics[width=0.90\textwidth]{schema-dst.pdf}
   \caption{\label{fig:schema-dst} An example dialog from Restaurant\_1 service, along with its service/intent/slot descriptions and dialog state representation.}
 \end{figure}
+
 
 Recently, \citet{rastogi2019towards} proposed a new paradigm called
 schema-guided dialog for transferable dialog state tracking by using
@@ -60,9 +92,7 @@ our contributions include:
   variations in schema description for both \sgdst~and~\multiwoz.
 \end{itemize}
 
-\input{chapters/sgd/sgd-challenges}
-
-\input{chapters/sgd/sgd-related-work}
+\input{chapters/sgd/sgd-independent-factorization}
 
 \input{chapters/sgd/sgd-datasets}
 
@@ -71,6 +101,8 @@ our contributions include:
 \input{chapters/sgd/sgd-sup-training}
 
 \input{chapters/sgd/sgd-desc}
+
+\input{chapters/sgd/sgd-related-work}
 
 \input{chapters/sgd/sgd-conclusion}
 

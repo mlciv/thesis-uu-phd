@@ -1,22 +1,23 @@
-\section{Task Definitions and Structural Factorization}
+\section{Independent Factorization for Motivational Interviewing}
 \label{sec:snt:task}
-
 In this section, we will formally define the two NLP tasks
 corresponding to the vision in~\S\ref{sec:snt:background} using the
-conversation in~\autoref{tbl:snt:misc-example} as a running example. Suppose we
-have an ongoing MI session with utterances $u_1, u_2,\cdots, u_n$:
-together, the dialogue history $H_n$.  Each utterance $u_i$ is
-associated with its speaker $s_i$, either C (client) or T
-(therapist). Each utterance is also associated with the MISC label
-$l_i$, which is the object of study. We will refer to the last
-utterance $u_n$ as the \emph{anchor}.
+conversation in~\autoref{tbl:snt:misc-example} as a running
+example. Suppose we have an ongoing MI session with utterances
+$u_1, u_2,\cdots, u_n$: together, the dialogue history $H_n$.  Each
+utterance $u_i$ is associated with its speaker $s_i$, either C
+(client) or T (therapist). We will define two classification tasks
+over a fixed dialogue history with $n$ elements ---
+\emph{categorization}~\S\ref{ssec:snt:task-categorization} and
+\emph{forecasting}~\S\ref{ssec:snt:task-forcasting}.  Then we make a
+comparative analysis on the independent factorization for the two
+tasks~\S\ref{ssec:snt:comparative-task}.
 
-We will define two classification tasks over a fixed dialogue
-history with $n$ elements --- \emph{categorization}~\S\ref{ssec:snt:task-categorization} and
-\emph{forecasting}~\S\ref{ssec:snt:task-forcasting}. As the conversation progresses, the history will
-be updated with a sliding window.  Since the therapist and client
-codes share no overlap, we will design separate models for the two
-speakers, giving us four settings in all.
+%We will refer to the last utterance $u_n$ as the \emph{anchor} for the
+%corresponding subtasks.  As the conversation progresses, the history
+%will be updated with a sliding window.  Since the therapist and client
+%codes share no overlap, we will design separate models for the two
+%speakers, giving us four settings in all.
 
 \begin{table}[tp]
   \begin{center}
@@ -46,6 +47,12 @@ therapist back on track. The client's response, however, shows an
 inclination to change their behavior (\CHANGE). Alerting a therapist
 (especially a novice) can help guide the conversation in a direction
 that encourages it.
+
+In previous post-hoc dialogue analysis setting, we have the following
+definition for the categorization task: \emph{Given the dialogue
+  history $H_n=\{u_{1},u_{2}, ..., u_{n}\}$ which includes the speaker
+  information, output a sequence of MISC label
+  $L_n=\{l_{1}, l_{2}, ..., l_{n}\}$ for each utterance $u_i$.}
 
 In essence, we have the following real-time classification task:
 \emph{Given the dialogue history $H_n$ which includes the speaker
@@ -85,13 +92,14 @@ Such an expert may also anticipate important cues
 from the client.% , expressing their intention to change or sustain
 % their behavior
 % .
+The MISC forecasting task is a previously unstudied problem in the
+posthoc dialogue analysis.
 
-The forecasting task seeks to mimic the intent of such a seasoned therapist:
-\emph{Given a dialogue history $H_n$ and the next speaker's identity
-  $s_{n+1}$, predict the MISC code $l_{n+1}$ of the yet unknown next
-  utterance $u_{n+1}$.}
-
-The MISC forecasting task is a previously unstudied problem. %  We
+The forecasting task seeks to mimic the intent of such a seasoned
+therapist: \emph{Given a dialogue history $H_n$ and the next speaker's
+  identity $s_{n+1}$, predict the MISC code $l_{n+1}$ of the yet
+  unknown next utterance $u_{n+1}$.}
+% We
 % argue that it is possible to learn to anticipate information about
 % future utterances; this forms the basis of chatbot
 % development.
@@ -110,31 +118,59 @@ conversations~\citep{zhang2018conversations} whose goal is to
 provide an early warning for such events.
 
 
-\subsection{Comparing Categorization and Forcasting Task}
-\label{ssec:snt:compararive-tasks}
-
+\subsection{Independent Factorization for Categorization and
+  Forcasting Task}
+\label{ssec:snt:comparative-tasks}
 Take the dialogue segment in~\autoref{tbl:snt:misc-example} as a
 running example, we compare the categorization and forcaseting task
-for each turn, with respect to the dialogue history and predicting
-target. \autoref{tbl:snt:task-comparasion} shows the detailed
-differences when we choose dialogue history window size as 3.
+for each turn, with respect to the independent factorization for the
+dialogue history and predicting target. Both categorization and
+forcasting tasks are taking a sequence of dialogue utterances as
+input, and then predict a sequence of MISC labels as output. They
+share the similar sequence labelling structures, and seems sharing the
+same independent factorization. However, they have different
+predicting goals when considering it for each dialogue turn.
+\autoref{tbl:snt:task-comparasion} shows the detailed differences when
+we choose dialogue history window size as 3.
 
-When the dialogue goes to the turn 3, both the categorization and
-forcasting task will the observe the current dialog history window as
-input $X=H_{n}$. However, the key difference is as follows: the
-categorization task is to predict the MISC code $l_{n}$ for the last
-seen utterance $u_{n}$, while the forcasting task is to guess the
-future MISC code $l_{n+1}$ for the unseen utterance $u_{n+1}$.
+\Paragraph{Output Decomposition} The output of both tasks are a
+squence of MISC labels. Because each MISC label is naturally
+associated with a corresponding utterance, and each of them represent
+different functions as shown in \autoref{tbl:misc}. Hence for
+independent factorization, it is natural to decompose the whole
+squence prediction into a set of continous single MISC label
+prediction task as defined previously. In such way, each MISC
+prediction in categorization or forcasting task are independent from
+the MISC prediction in the previous dialogue turn. However, they have
+different goals for each dialogue turn. When the dialogue goes to the
+turn 3, both the categorization and forcasting task will the observe
+the current dialog history window as input $X=H_{n}$. However, the key
+difference is as follows: the categorization task is to predict the
+MISC code $l_{n}$ for the last seen utterance $u_{n}$, while the
+forcasting task is to guess the future MISC code $l_{n+1}$ for the
+unseen utterance $u_{n+1}$.
 
-Worth to mention, when the dialogue goes to the turn 4, the dialog
-history will slide to the next window of size 3, as
-$H_{n}=\{u_2,u_3,u_4\}$. The $u_{1}$ will be truncated due the sliding
-window. We limit the dialogue window because the whole therapy
-dialogue session may last for 500 utterances, where current neural
-models such as RNN and transformer can not handle the long context
-well.  In this thesis study~\autoref{ssec:snt:abl_context_attention},
-we compare the window size as 8 and 16 for our models. We leave the
-extrem long dialogue context encoding as the future work.
+\Paragraph{Input Decomposition and Alignments Discovery}
+For the input decomposition in previous lexical-anchoring and
+phrasal-anchoring, the corresponding output label can be directly
+derived from each input segment. For example, in lexical anchoring,
+each concept or subgraph in an AMR graph is aligned to the each token
+or special entity. In phrasal anchoring, a non-terminal intent and
+slot label in TOP is aligned to a phrase in the input
+sentence. However, in MISC code prediction, 
+
+Due to the realtime setting, the input dialogue is naturually
+decomposed by time steps, and forms a sequence of incremental dialgoue
+history $\{u_1\}$, $\{u_1,u_2\}$, and $\{u_1,u_2,u_3\}$.  Worth to
+mention, when the dialogue goes to the turn 4, the dialog history will
+slide to the next window of size 3, as $H_{n}=\{u_2,u_3,u_4\}$. The
+$u_{1}$ will be truncated due the sliding window. We limit the
+dialogue window because the whole therapy dialogue session may last
+for 500 utterances, where current neural models such as RNN and
+transformer can not handle the long context well.  In this thesis
+study~\autoref{ssec:snt:abl_context_attention}, we compare the window
+size as 8 and 16 for our models. We leave the extrem long dialogue
+context encoding as the future work.
 
 \begin{table}[!h]
 \begin{center}{
@@ -155,45 +191,6 @@ extrem long dialogue context encoding as the future work.
   categorization task and the forcasting task, when choosing a window
   size as 3 to factorize the dialog sequential flow}
 \end{table}
-
-
-% Recent work on patient-like conversational agent also
-% helps for psyctherapy training. 
-% We leave this text generation tasks
-% for our future work. \todo{@Mike @Vivke Please help to check this citation and related reference text}
-% Furthermore, from an operational perspective, we can use
-% standard multi-class evaluations instead of addressing the problem
-% of evaluating generated text.
-
-%\begin{numcases}{}
-%\operatorname*{arg\,max}_{l \in L_{C}} p(l_{n+1}=l|H_{n}, s_{n+1}=C) \label{eq:fc}\\
-%\operatorname*{arg\,max}_{l \in L_{T}} p(l_{n+1}=l|H_{n}, s_{n+1}=T) \label{eq:ft}
-%\end{numcases}
-%
-%\subsection{Task Extentions}
-%\label{ssec:task_ext}
-%What's more, as our model annotate current utterance at each turn, we
-%also can incorprate the predicted MISC label $l^{\prime}_{i}$ into our
-%dialogue history, then we have labeled dialogue history
-%$H^{l}_{n}$. For $i < n$, instead of a pair $(u_{i}, s_{i})$, we have a
-%triple $(u_{i}, s_{i}, l^{\prime}_{i})$. Hence, the labeled dialogue
-%history $H^{l}_{n}$ can substitute the unlabeled dialogue history
-%$H_{n}$ for all above 4 settings. We will discuss this extenions to
-%explore how those predicted labels helps in our tasks.
-
-
-%\vs{Needs a good segue into the next para. Maybe a paragraph saying
-%  that we need to monitor an ongoing therapy session, as opposed to
-%  analyze a session after it is done.}
-
-%\vs{Do we need to introduce the symbols $n$ and $T$ here? If they
-%  are not used anywhere, we can leave it dots. Something like
-%  $\{a_1, a_2, \cdots\}$. Also use $\cdots$ or $\ldots$ for ellipses
-%  instead of three dots.}
-
-% \vs{We need to say that the focus of this paper is the NLP question
-%  of whether such online prediction and suggestion is even possible,
-%  not the therapeutic aspects.}
 
 
 %%% Local Variables:

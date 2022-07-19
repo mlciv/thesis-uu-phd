@@ -1,0 +1,75 @@
+\section{Independent Factorization for Dialogue State Tracking}
+\label{sec:sgd:ind-factorization}
+A classic dialog state tracker predicts a dialog state frame at each
+user turn given the dialog history and predefined domain ontology. As
+shown in Figure \ref{fig:schema-dst}, the key difference between
+schema-guided dialog state tracking and the classic paradigm is the
+newly added natural language descriptions.  In this section, we will
+analyze the task structure of dialogue state tracking and the design
+for independent factorization.  First, we will analyze the
+decomposition of dialogue state, and split the dialogue state tracking
+into four independent subtasks. In addition to the output
+decomposition, we propose to add a natural language description for
+each part of the output label to support unseen new services.  We
+introduce the schema components in schema-guided dialog state
+tracking. Then, we show how each output part can be derived from the
+input decomposition.  Finally, we outline the research questions in
+our paper and address each of them in the rest sections of this
+chapter.
+
+\subsection{Output Decomposition: Four Subtasks}
+\label{sec:sgd:decompose-y}
+As shown in Figure \ref{fig:schema-dst}, the dialog state for each
+service consists of 3 parts: {\it active intent}, {\it requested
+  slots}, {\it user goals~(slot values)}. Without loss of generality,
+for both \sgdst and \multiwoz datasets, we divide their slots into
+categorical and non-categorical slots by following previous study on
+dual-strategies~\cite{zhang2019find}. Thus to fill the dialog state
+frame for each user turn, we solve four \kw{independent} subtasks:
+intent classification~(\IC), requested slot identification~(\RSI),
+categorical slot labeling~(\CSL), and non-categorical slot
+labeling~(\NSL). All subtasks require matching the current dialog
+history with candidate schema descriptions for multiple times.
+
+\Paragraph{Schema Components} Figure \ref{fig:schema-dst} shows three
+main schema components: service, intent, slot. For each intent, the
+schema also describes {\it optional} or {\it required} slots for
+it. For each slot, there are flags indicating whether it is
+categorical or not. {\it Categorical} means there is a set of
+predefined candidate values~(Boolean, numeric or text). For instance,
+{\it has\_live\_music} in Figure~\ref{fig:schema-dst} is a categorical
+slot with Boolean values. {\it Non-categorical}, on the other hand,
+means the slot values are filled from the string spans in the dialog
+history.
+
+\subsection{Input Decomposition and Alignments Discovery: Attention}
+\label{sec:sgd:decompose-x}
+
+In lexical-anchoring, the input sentence is decomposed into
+exclusively tokens and special entities. In phrasal-anchoring, the
+input sentence is decomposed into nested phrases which forms a tree
+structure. In sentential-anchoring, we show that the input dialogue
+are naturally decomposed into a sliding dialogue history window.
+
+\subsection{New Questions}
+\label{ssec:sgd:new-questions}
+According the output decomposition with four independent subtasks, and
+the alignments analysis, we summerize the design for independent
+factorization in Table xx.
+
+These added schema descriptions pose the following three new
+questions. We discuss each of them in the following sections.
+\\
+\setlength{\fboxsep}{1.5pt} \fbox{\small\parbox{0.90\textwidth}{
+\begin{enumerate}[label=Q\arabic*.]
+\item How should dialogue and schema be encoded? \S\ref{sec:sgd:models}
+\item How do different supplementary trainings impact each subtask? \S\ref{sec:sgd:sup-training}
+\item How do different description styles impact the state tracking performance? \S\ref{sec:sgd:abl-desc}
+\end{enumerate}
+}}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../thesis-main.ltx"
+%%% End:

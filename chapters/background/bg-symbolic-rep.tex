@@ -38,9 +38,12 @@ lexicon semantics~\citep{miller1998wordnet}, to single sentence
 syntax/semantic
 representations~\citep{baker1998berkeley,palmer2005proposition,collins2003head},
 and multi-sentences discourse
-analysis~\citep{carlson2003building,wolf2005representing,prasad2008penn}. This
-thesis covers broad-coverage graph-based semantic representations in a
-single sentence, which involves \kw{lexical-anchoring} and
+analysis~\citep{carlson2003building,wolf2005representing,prasad2008penn}. A
+broad-coverage semantic representation is a general-purpose meaning
+representation language aiming to represent the multiple phenomena in
+a single structure for broad-coverage text. This thesis covers
+broad-coverage graph-based semantic representations in a single
+sentence, which involves \kw{lexical-anchoring} and
 \kw{phrasal-anchoring}. For lexical anchoring, we cover the DELPH-IN
 MRS Bi-lexical Dependencies~\cite[DM,][]{ivanova2012did} and Prague
 Semantic
@@ -97,19 +100,22 @@ firstly tranformed into Elementary Dependency
 Structures~\cite[EDS,][]{Oep:Lon:06}, then EDS are simplified into
 pure bi-lexical dependencies, dubbed DELPH-IN MRS Bi-Lexical
 Dependencies~(or DM). As shown in~\autoref{fig:bg-dm}, graph nodes in
-DM are anchoring to the surface tokens. However, the underlying
-sentence is fully covered in the graph. For example, the word ``will"
-does not produce any node in the DM graph. Edges mainly indicate
-semantic argument roles~(ARG1, ARG2, ...) into the relation
-corresponding to their source node~\footnote{The annotation of
-  predicate-arugment structures is based on the semantic
-  inferface~(SEM-I) in the ERG. Please refer to this introduction for
-  more
+DM are anchoring to the surface tokens. Hence, DM is
+lexical-anchoring. However, the underlying sentence is not fully
+covered in the graph. For example, the word ``will" does not produce
+any node in the DM graph. Edges mainly indicate semantic argument
+roles~(ARG1, ARG2, ...) into the relation corresponding to their
+source node~\footnote{The annotation of predicate-arugment structures
+  is based on the semantic inferface~(SEM-I) in the ERG. Please refer
+  to this introduction for more
   details.\url{https://github.com/delph-in/docs/wiki/ErgSemantics_Interface}},
 but there are some more specialized edge labels too. For example, it
 uses \kw{compound} to reflect the name ``Pierre Vinken" as a whole,
 and uses BV (bound variable, e.g., the word 'a') as a reflection of
-quantification in the underlying logic quantification.
+quantification in the underlying logic quantification. \textit{In a sum, DM is
+lexical-anchoring, and it captures semantic phenomena including
+predicate-argument structures, word-sense differentiation,
+quanitification and scope.}
 
 \begin{figure}[!th]
 \centering
@@ -136,7 +142,11 @@ sentence. \autoref{fig:bg-psd} shows the PSD represention of our
 example sentence. One major difference are the role labels and verb
 frames, they are grounded in a machine-readable valency
 lexicon~\citep{urevsova2016czengvallex}, and the frame values on
-verbal nodes indicate specific verbal senses in the lexicon.
+verbal nodes indicate specific verbal senses in the lexicon. \textit{In a
+summary, PSD is also lexical-anchoring, and it captures the same
+sementic contents with DM~(inclduing predicate-argument structures,
+word-sense, quatification and scope), however, with the different
+formation and different frame lexicon.}
 
 \begin{figure}[!th]
   \centering
@@ -186,7 +196,13 @@ aligner~\cite{Pourdamghani:2014aligning} for this
 purpose\footnote{Other aligners exist -- \eg,
   \citet{chen2017unsupervised} uses dependencies, but raw text
   alignments are more prevalent.}  We introduced more details about
-AMR alignment in ~\autoref{sssec:lex-phr:amr-anchor}.
+AMR alignment in ~\autoref{sssec:lex-phr:amr-anchor}, and we show that
+AMR nodes and subgraphs are actually implicitly anchored to the
+lexical tokens or entities. \textit{In a sum, AMR is implicit
+  lexical-anchorin, and it captures more semantic content than DM and
+  PSD. Besides the common predicate-argument structure, word sense,
+  qutification, scope~(by placing `polarity'), AMR also represents the
+  lexical decomposion, anaphoric coreference and entity-linking.}
 
 
 \subsubsection{Universal Conceptual Cognitive Anotation}
@@ -227,9 +243,45 @@ persistent state. As shown in~\autoref{fig:bg-ucca}, for the event
 category ``Process", which is the main relation of a scene that
 evolves in time. While the edge `A' linked to the non-terminal node
 corresponding to ``Pierre, Vinken, 61 years old" means the unit
-``Pierre, Vinken" is the participant of the scene. For more detailed
+``Pierre, Vinken" is the participant of the scene. In a sum, UCCA is
+phrasal-anchoring, and its foundational layer captures
+predicate-argument structures, anaphoric coreference, representing
+less semantic content than DM,PSD, and AMR. However, UCCA shows more
+benefits on cross-ligual, easy annotation and extensible modualrity.
+
+
+\subsubsection{Summary of Broad-Coverage Meaning Representation}
+\label{ssec:bg:summary-broad-coverage}
+For easy reference, in~\autoref{tbl:summary-broad-coverage}, we summerize the background of
+broad-coverage meaning representations with respect to the their
+anchoring type and captured semantic phenomena. For more detailed
 comparative studies over the state-of-art semantic representation,
 please refer to the paper~\cite{abend2017state}.
+
+\begin{table}[ht]
+  \begin{center}
+\setlength{\tabcolsep}{4pt}
+{\small
+\begin{tabular}{c|cccc}
+\toprule
+\hline
+                        & DM               & PSD              & AMR              & UCCA    \\ \hline
+Anchoring Type          & Explicit Lexical & Explicit Lexical & Implicit Lexical & Phrasal \\ \hline
+Predicate-Argument      & Yes              & Yes              & Yes              & Yes     \\
+Word Sense              & Yes              & Yes              & Yes              & No      \\
+Qualification and Scope & Partial          & No               & Yes              & No      \\
+Presupposition/Focus    & No               & No               & Yes              & No      \\
+Lexical Decomposition   & No               & No               & Yes              & No      \\
+Anaphoric Coreference   & No               & No               & Partial          & Partial \\
+Grounding               & No               & No               & Yes              & No \\ \hline
+\bottomrule
+
+\end{tabular}}
+\end{center}
+\caption{The summary of broad-coverage meaning representation, with respect to their anchoring type and captured semantic contents}
+\label{tbl:summary-broad-coverage}
+\end{table}
+
 
 \subsection{Application-specific Representation on Dialogue}
 \label{ssec:bg:dialogue-mr}
@@ -307,8 +359,8 @@ Given the emphasis on using specific types of linguistic behaviors in
 MI~(\eg, open questions and reflections), fine-grained behavioral
 coding plays an important role in MI theory and training.
 
-Motivational Interviewing Skill Codes~(MISC, table~\ref{tbl:misc}) is
-a framework for coding MI sessions. It facilitates evaluating therapy
+Motivational Interviewing Skill Codes~(MISC, ~\autoref{tbl:misc}) is a
+framework for coding MI sessions. It facilitates evaluating therapy
 sessions via utterance-level labels that are akin to dialogue
 acts~\citep{stolcke2000dialogue,jurafsky2018speech}, and are designed
 to examine therapist and client behavior in a therapy
@@ -318,23 +370,19 @@ session.\footnote{The original MISC description of
   strategies are proposed to merge the labels into a coarser set.  We
   adopt the grouping proposed by~\citet{xiao2016behavioral}; the
   appendix~\autoref{sec:misc_clustering} gives more details.}
-
-% Like dialogue acts in general
-% goal-oriented dialogue~\cite{jurafsky2018speech}, therapist codes
-% characterize counselor and client behavior in a.
-% Additionally, some therapist codes also mark the adherence to or
-% against the spirit of MI. Client behavior
-% codes are designed to characterize behavior change rather than the
-% function of an utterance in the dialogue.
+\autoref{tbl:misc} shows the distritbution, description and examples
+of MISC labels for clients and therapist. Each of the MISC label will
+be corresponding to the a single utterance. \textit{Hence, MISC code
+prediction is a sentence-anchoring task, and it mainly captures the
+function of each utterance.}
 
 \subsubsection{Dialog State Tracking}
 \label{ssec:bg:dialogue-state}
 
-\begin{figure}[!th]
+\begin{figure}[!ht]
 \centering
-\includegraphics[width=0.98\textwidth]{label-schema-example.pdf}
-\caption{\label{fig:label-schema-example} Different Flight Service
-  Ontology for Dialogue State Tracking}
+  \includegraphics[width=0.90\textwidth]{dst.pdf}
+  \caption{\label{fig:dst} An example dialogue, along with its dialog state representation for  the intent, requested slot, slot values}
 \end{figure}
 
 From the simple GUS~\citep{bobrow1977gus} to the modern task-based
@@ -346,30 +394,24 @@ system can extract from user sentences, and consists of a collection
 of slots, each of which can take a set of possible values. Together
 this set of frames is sometimes called a domain ontology.
 
-As shown in~\autoref{fig:label-schema-example}, two flight services
-present two different ontology for the same domain task of booking a
-flight. For the dialogue presented in the center of the figure, the
-two services will produce different dialogue state for each user
-dialogue turn, and request different commands for downsteam
-information retrieval components. Imaging another hotel booking tasks,
-then there will be new onotlogy for the new domain.
-
-The intent classification task is to understand what the user trying
-to accomplish? Booking a flight, Finding a Movie, or booking a
-hotel. While the slot filling task to extract the particular slots and
-fillers that the user intends the system to understand from their
-utterance with respect to their intent. As shown
-in~\autoref{fig:label-schema-example}, bolded text are the evidence
-for different slot values. For example, ``economic" implies the value
-of the slot seat class, and ``June 10" indicates the time of
-departure.
-
 As the dialogue goes on, a dialogue state tracker maintains the
 current state of the dialogue (which include the user's most recent
 dialogue intent, plus the entire set of slot-filler constraints the
 user has expressed so far). The dialogue policy decides what the
 system should do or say next. Finally, dialogue state systems have a
 natural language generation component to reply the utterance to users.
+
+\autoref{fig:dst} shows a dialogue on restaurant booking service. For
+each user turn, the dialogue state tracking is to predict the
+corresponding intent, requested slot, slot values for that turn. The
+intent classification task is to understand what the user trying to
+accomplish in this dialogue utterance, thus the output intent label is
+anchored to the current user utterance. The requested slot is what the
+user is asking for more information, while the slot filling task is to
+extract the particular slots and fillers that the user offered to the
+system for more detailed arguments of their intent. The requested
+slots aand slot-filling tasks can depend on any relevant tokens or
+phrases in the user utterance, thus the anchoring is mixed anchoring.
 
 \subsubsection{Conversational Semantic Representation}
 \label{ssec:bg:dialogue-rep}
@@ -381,9 +423,9 @@ represent complex conversational request, such multiple intents in the
 same utterance, and nested intent slot structures.
 \begin{figure}[!th]
 \centering
-\includegraphics[width=0.98\textwidth]{top.pdf}
+\includegraphics[width=0.95\textwidth]{top-driving.pdf}
 \caption{\label{fig:top-example} TOP examples for conversational
-  semantic parsing~(excerpted from the original
+  semantic parsing~(borrowed from the original
   paper~\citep{gupta-etal-2018-semantic-parsing})}
 \end{figure}
 
@@ -412,6 +454,46 @@ constraints.
 \item An intent can have tokens and/or slots as children
 \item A slot can have either tokens or intents as its children.
 \end{inparaenum}
+
+\subsubsection{Summary of Application-specific Representations}
+\label{ssec:bg:summary-application-rep}
+\autoref{tbl:app-rep} summarized the application-specific representations studied in our thesis. For the application-specific rerepsentations on dialogue, we first
+introduced sentence-level anchoring representation: dialogue acts, and
+we show a specific type of dialogue acts for pschotherapy dialogue
+called MISC. Then we introduced the frame-based dialog state tracking,
+and we show that intent classification is also sentence-anchoring
+tasks, while requested slot and slot filling tasks can be considered
+as mixed anchoring. Finally, to resolve the limitations on
+non-recursive intent and slot tagging, we briefly introduced a set of
+conversational semantic parsing representations. They offers richer
+intent slot compositions, and support complex conversational
+linguistic phenomenos, such as dialogue state revision and recovering.
+In this thesis, we mainly focused on one of tree-structural
+conversational dialogue representation called TOP, which shares the
+same phrasal anchoring due to the similar structure with constituent
+tree.
+
+\begin{table}[ht]
+  \begin{center}
+\setlength{\tabcolsep}{4pt}
+{\small
+\begin{tabular}{c|c|c|c}
+\toprule
+\hline
+               & MISC               & Dialogue State Tracking            & TOP            \\ \hline
+Application    & Psychotherapy      & Task Oriented                      & Task Orientied \\
+Structures     & Sequence Labelling & Intent/Requested Slot/Slot Filling & Tree Parsing   \\
+Anchoring Type & Sentential         & Mixed                              & Phrasal        \\
+\hline
+\bottomrule
+
+\end{tabular}}
+\end{center}
+\caption{The summarization of the application-specific representations studied in this thesis.}
+\label{tbl:app-rep}
+\end{table}
+
+
 
 %%% Local Variables:
 %%% mode: latex

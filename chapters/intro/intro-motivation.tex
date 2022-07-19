@@ -34,6 +34,7 @@ obtain generalization. \citet{mitchell1980need} argues that inductive
 biases constitue the heart of generalization and indeed a key basis
 for learning itself.
 
+\Paragraph{The Definition of Inductive Bias}
 Let us examine a concrete example: the popular supervised learning
 setting.  We design algorithms that can learn from a set of supervised
 training examples to predict a certain target output for an input. The
@@ -48,7 +49,6 @@ generalization. Without any additional assumptions, this
 generalization problem cannot be solved since unseen situations might
 have an arbitrary output value. The kind of necessary assumptions are
 subsumed in the phrase inductive bias.
-
 %\begin{figure}[!th]
 %\centering
 %\includegraphics[width=0.80\textwidth]{supervised-learning-hypothesis.pdf}
@@ -66,15 +66,15 @@ in~\cite{mitchell1980need}, we define \kw{indutive bias} as:
   strict consistency with the observed training instances'.
 \end{quote}
 
-\subsection{Beyond Training Data: The Origins of Inductive Biases}
-\label{ssec:intro:bias-source}
-Inductive biases are widely studied in the history of machine
-learning. As the definition stated above, inductive biases can be any
-assumption beyond the observed training data. In this thesis, we
-focused on the supervised learning setting, where observed training
-data only means the annotated training data directly avaible to that
-task.
 
+\Paragraph{The Use of Inductive Biases}
+As the definition stated above, inductive biases can be any assumption
+beyond the observed training data. In this thesis, we focused on the
+supervised learning setting, where observed training data only means
+the annotated training data directly avaible to that task. Inductive
+biases are widely studied in the history of machine learning. In the
+following, we list a set of common ways of using inductive biases in
+machine learning.
 
 For the popular supervised learning setting, let $\mathcal{H}$ refer
 to machine learning model families, including deep learning
@@ -109,41 +109,104 @@ that unfairly disadvantage members of that group. Hence, \kw{Data
   manipulation} can also help finding the desired hypoethsis by
 augmenting the original training data with inductive biases.
 
+In this thesis, we mainly use \kw{neural architectures} and \kw{data
+  manipulation} to support our inductive bises for deep linguistic
+structure prediction. To help understanding the inductive biases, in
+the following, we will first introduce two examples of inductive
+biases used in deep learning era, then we introduce the main study
+goal of using inductive biases for deep linguistic structured
+prediction with independent factorization.
+
+\subsection{Inductive Biases in Deep Learning}
+\label{ssec:intro:bias-source}
 According to the universal approximation
 theorem~\citep{hornik1989multilayer}, properly parameterized neural
 network can represent any function. Further more, training data seems
-rich enough in many cases. It seems purely data-driven deep learning
-can learn any target function. Then, what kind of inductive biases we
-need in deep learning era? In the following, by two examples of
-inductive biases used in computer vision and natural language
-processing, we show what are the inductive biases used beyond the
-training data in the deep learning era.
+rich enough in many tasks nowadays. It seems purely data-driven deep
+learning can learn any target function. Then, what kind of inductive
+biases we need in deep learning era? In the following, we show two
+examples of inductive biases used in computer vision and natural
+language processing in the deep learning era.
 
 \begin{figure}[!th]
   \centering
   \includegraphics[width=0.98\textwidth]{shift-cat-example.pdf}
-  \caption{\label{fig:shift-cat-example}In object classication task,
-    we hope the learned model can still recognize `cat' for the unseen
-    image with shifted or rotated cat.}
+  \caption{\label{fig:shift-cat-example}In the image classication
+    task, we hope the learned model can still recognize `cat' for the
+    unseen image with shifted or rotated cat.}
 \end{figure}
+
+\Paragraph{Computer Vision Example: Shift-Invariant in Object
+  Classfiction} As the image classification task shown
+in~\autoref{fig:shift-cat-example}, imagining a model is trained on
+the first image with a cat in the bottom-left corner, we hope it can
+still predict `cat' when shift the cat to the upper-right corner.
+Considering a feed-forword neural network, which can capture any
+function, it may fail on this shifted case, because not all the
+shifting will exist in the training data.  Augmenting the training
+data with the shifted images may imitigate this problem. However, more
+elegant way is to use convolutional neural networks with a pooling
+layer.  The pooling operation over convolutional filters is largely
+shift-invariant~\cite{zhang2019making}. Beyond the training data, the
+inductive bias here is to assume the model should be shift-invariant.
+Similarly, on the third image in~\autoref{fig:shift-cat-example}, we
+also can asumme the model should be rotation-invariant to predict
+correctly on unseen rotated cat images~\cite{cheng2016rifd}.
 
 \begin{figure}[!th]
   \centering
   \includegraphics[width=0.98\textwidth]{compositional-dog-example.pdf}
-  \caption{\label{fig:compositional-dog-example}In named entity
+  \caption{\label{fig:compositional-dog-example}In the named entity
     recognization task, we hope the learned model can still recognize
     `dog' for new word 'Husky' in unseen context with newly composed
     words, phases and sentences.}
 \end{figure}
 
-For example, the
-translation invariance for convolutional neural networks~(CNN) and
-pooling, and the recurrent assumption of recurrent neural
-networks~(RNN), the equivariance over permutation for neural graph
-networks~(GNN), the positional encoding for word orders in
-Transformer, they are all specific inductive biases.
 
-%\todo{SGD generalization,smoothness}
+\Paragraph{Natural Language Example: Compositionality} For natural
+language processing, \autoref{fig:compositional-dog-example} shows
+another example of inductive biases in named entity recognization
+task. Natural language is naturally compositional. Beyond the training
+data, we mainly make assumptions about the compositional properties
+for unseen data. Imagining the training data contains the first
+annotated sentence, `The Boxer can find the bone the other dogs hid
+from it.', the word `Boxer' is annotated as 'ANIMAL'. Now we add
+unseen new words, such as `cannot' and `Husky', and also add unseen
+new phrases by swaping the phrases `the bone' and `the other
+dogs'. Finally, it forms a unseen new sentence in the bottom of the
+figure. Can our model still predict the unseen word 'Husky' in the
+unseen sentence as `ANIMAL'? Similarly,we can augment the training
+data by enumerating unseen combinations for the original training
+data. However, it is intractable. To achieve this inductive bias about
+compositionality, instead of augmenting all combinations, various
+techinique are proposed to capture the underlying composing patterns
+inspired by linguistic studies. For example, inspired by morphology
+study, word piece~\citep{schuster2012japanese} and byte pair
+encoding~\citep[BPE,][]{sennrich2016neural} are proposed to learn the
+representation for unseen words, and they are widely used in the
+recent advances of large language models, such as
+BERT~\citep{devlin2019bert}, GPT3~\citep{brown2020language}. For
+unseen phrases and sentences, inspired by the assumption about
+recurrent syntax and grammar, recurrent neural networks~(such as
+LSTM~\citep{hochreiter97lstm}, RNN~\citep{mesnil13rnn},
+GRU~\citep{chung14gru}, and etc.)  are proposed to capture the
+compositional patterns of natural language sequences. Instead of the
+strong recurrent assumption, a weaker word-order assumption also works
+quite well by using a positional encoding with self-attention
+mechanism in the popular transformer-based
+models~\citep{NIPS2017_7181}. Finally, inspired by the distributional
+hypotheis, where words that are used and occur in the same contexts
+tend to purport similar meanings~\cite{harris1954distributional},
+bi-directional architectures are the standard to modeling word
+embedding and language models.~(e.g., looking both the past and future
+via Bi-directional LSTM, self-attention and so on)
+
+Besides the shift-invariant, rotate-invariant and compositional
+assumption for the \kw{input} image and natural language data, there
+are many other assumptions beyond the training data can be used in
+deep learning era. In this dissertation, we extend the compositional
+inductive biases on the inductive biases for lingustic structured
+prediction tasks. %\todo{SGD generalization,smoothness}
 %\todo{Optimization will control the bias shift during learning}
 
 
@@ -161,15 +224,25 @@ Transformer, they are all specific inductive biases.
 %  (Hashimoto et al., 2018).
 %\todo{Data augmentation for different pertubation}
 %\todo{Realistic distribution shift}
-In this thesis, we mainly study inductive biases from neural
-architectures and the corresponding representation learning.
 
-\subsection{Inductive Biases for Deep Lingusitic Structured
+\subsection{Independent Factorization for Deep Lingusitic Structured
   Prediction}
 \label{ssec:intro:bias-dsp}
 
 For systematic generalization, the search for appropriate inductive
 biases is necessary for deep linguistic structured prediction.
+
+First, beyond the compositionality of input natural language, we
+believe that both the input text and output structured symbolic
+representations will follow the principle of compositionality. The
+composition of input natural language and the composition of output
+representations are correlated with each other. Hence, we propose to
+use \kw{independent factorization} framework to study the
+compositional inductive biases in natural language and its output
+structures.
+
+\subsubsection{Independent Factorization}
+\label{ssec:intro:ind-factorization}
 
 Let us denote an observation $x \in \mathcal{X}$. It can be any natural
 language text. Such as, the sentence ``The dog cannot find the bone it
@@ -217,16 +290,13 @@ and $y$ are key in structured prediction model. In the
 \autoref{chap:background}, we show various representation formalism
 ~(such as graphical models), structured learning~(max-margin
 framework) and inference approaches~(dynamic programming, integer
-linear programming) to model the interdependence. Inductive biases can
-be designed in all the three key aspects.
-
-In this thesis, we always assume the \kw{indenpendence factorization}
-paradigm, where each factor $c$ only depends on a well-segemented
-subset of subcomponents $y_{c}$ and the aligned $x$
-components~(anchors)~$x_{c}=a(y_{c})$. In other words, the output
-parts, once decomposed into mutually exclusive output segments, we
-consider each segment as an atomic output part, and each atomic part
-are independent from each other.
+linear programming) to model the interdependence. In this thesis, we
+always assume the \kw{independent factorization}, where each factor
+$c$ only depends on a well-segemented subset of subcomponents $y_{c}$
+and the aligned $x$ components~(anchors)~$x_{c}=a(y_{c})$. In other
+words, the output parts, once decomposed into mutually exclusive
+output segments, we consider each segment as an atomic output part,
+and each atomic part are independent from each other.
 
 \begin{equation}
     \label{eq:independent-factor}
@@ -241,10 +311,12 @@ $x$. Thus the prediction of each $y_{c}$ are independent from each
 other, and can be locally decided by its aligned anchors.
 
 Hence, this simple independent factorization can decompose the
-structured learning into decomposed local learning~(constrained by
-some global constraints). More importantly, it also makes the
-inference tractable, thus can be easily employed in the end-to-end
-neural network training framework.
+structured learning into decomposed local learning~(still constrained
+by some global constraints). In this way, independent factorization
+largely simplifies the learning of linguistic structured
+prediction. More importantly, it also makes the inference tractable,
+thus can be easily employed in the end-to-end neural network training
+framework.
 
 Using AMR parsing in \autoref{fig:intro-dog-amr} as an example, the
 independent factorization will first segment the output $y$ into small
@@ -253,7 +325,12 @@ input sentence for each $y_{c}$ from the candidate decomposition set
 $seg_{in}(x)$. For example, one of the segmented $y_{c}$ in
 Figure~\ref{fig:intro-dog-amr} is a pre-categorized sub-graph
 `(possible-01 :polarity -)', and its anchor $a(y_{c})$ is the anchor
-word `cannot'. The words `the', 'from' are mapped to empty nodes.
+word `cannot'. The words `the', 'from' are mapped to empty nodes.  In
+such an independent factorization way, by leaveraging the
+compositionality of the input and output, and the alignments between
+their decompositions, we offer the prior knowledges about the
+correlations between the input and output. Hence, we hope this will
+help the model can generalize to unseen input to output structures.
 
 \begin{figure}[!th]
 \centering
@@ -263,35 +340,194 @@ word `cannot'. The words `the', 'from' are mapped to empty nodes.
   hid" into an AMR graph}
 \end{figure}
 
-During inference, we can directly produce $y_{c}$ for all candidates
-segments in a new sentence as shown in
-Figure~\ref{fig:intro-independent-example}. We first prepare a list of
-candidate anchors $seg_{in}(x)=\{${`The', `dog', `found', `the',
-  `bone', `it', `hide'$\}$, then the model will produce the
-  independent prediction $y_{c}$ of each anchor as
+During inference, when we encounter a new sentence as shown in
+Figure~\ref{fig:intro-independent-example}, we hope the model can
+leaverage the seen decomposed mappings in the training data to
+generalize to the unseen sentences. In this way, We first prepare a
+list of candidate anchors $seg_{in}(x)=\{${`The', `dog', `found',
+  `the', `bone', `it', `hide'$\}$, then the model will easily produce
+  each independent prediction $y_{c}$ of each anchor as
   $\{\phi,\text{`dog'}, \text{`find-01'}, \phi, \text{`bone'},\text{`it'},
-  `hide'\}$, then we assemble the non-empty $y_{c}$ by predicing the
-  relations between each other and finally forms \OUT~via
-  postprocessing\footnote{The post-processing include mergeing
-    coreference nodes~(as the `dog' and `it'), adding other
+  `hide'\}$ because most of the decomposed inputs are seen in
+  previous~\autoref{fig:intro-dog-amr}. Then we assemble the non-empty
+  $y_{c}$ by predicting the relations between each other and finally
+  forms \OUT~via postprocessing\footnote{The post-processing include
+    mergeing coreference nodes~(as the `dog' and `it'), adding other
     attributes}.
 
-  Hence, in the independence factorization setting, the problem is
-  reduced into three challenges:
+  \Paragraph{Three Steps in Independent Factorizations} In a sum, in
+  the independence factorization setting, we factorize the input and
+  the output via the compositionality of both the input and output,
+  and then we hope the model can the learn such compositional
+  correlations between the decomposed input and output parts. Hence,
+  the whole structured prediction problem is reduced into three
+  challenges:
 \begin{itemize}
-\item How to decompose the output $y$ into a set of independent parts
-  $y_{c}$.
+\item \textbf{Output Decomposition:} How to decompose the output $y$
+  into a set of independent parts $y_{c}$.
 
-\item How to decompose $x$ and derive the aligned input $x_{a_{y_{c}}}$ at the index $a_{y_{c}}$.
-
-\item How to model the representation of $x$ at the index $a_{y_{c}}$ and $y_{c}$ to
-  compute the energy score $E(x, a(y_{c}), y_{c})$.
+\item \textbf{Input Decomposition and Alignment Discovery:} How to decompose $x$ and offer a
+  set of candidates that may generate each independent parts $y_{c}$.
+\item \textbf{Factor Modelling:} How to find the relevant parts
+  $x_{a_{y_{c}}}$ in $x$ aligned to ${y_{c}}$ and model the factorized
+  energy score $E(x, a(y_{c}), y_{c})$
 \end{itemize}
 
 The first question on independently decomposing $y$ is either
 straightforward or has been resolved by previously existing methods in
-our studied tasks. We mainly focus on the remaining challenges on
-modeling alignment and representation learning.
+our studied tasks. In this thesis, we mainly focus on the remaining
+challenges on modeling alignment and representation learning, which
+requires different inductive biases to help with the
+modelling. We consider the inductive biases to
+help modelling the above structured correlations between the input and
+output structures as \textbf{Structual Inductive Biases}, then we also
+use \textbf{Natural Language as Inductive Biases} to extend the
+independent factorization for cross-domain and cross-task
+generalization.
+
+\subsubsection{Structural Inductive Biases}
+\label{sssec:intro:structural-biases}
+To design the independent factorization for a new task, it requires
+the prior knowledge about structures of input and output, e.g., proper
+input decomposition, or the linguistic analysis on the
+semantic-syntatic interface for the alignment information, or more
+recent structural bias for deep learning based language modelling.
+
+In this part, Using the AMR parsing in
+\autoref{fig:structural-bias-example}) as a running example, we
+consider the structural inductive biases for its independent
+factorization. The first sentence and its corresponding AMR
+graph~(left) are in training data, we need to build a model to predict
+the corresponding AMR graph for the unseen setnence. Hence, to offer
+more inductive biases beyond the training data, we consider the
+compositionality for both the input and output. We leave more details
+of AMR in \autoref{ssec:bg:amr} and more inductive biases about
+decomposing AMR in
+\autoref{sssec:lex-phr:lex-output-decomposition}. In this part, we
+mainly show the intuititve understanding about the structural
+inductive bias for the independent factorization.
+
+\begin{figure}[!th]
+  \centering
+  \includegraphics[width=0.95\textwidth]{structural-bias.pdf}
+  \caption{\label{fig:structural-bias-example} Structural Inductive
+    Biases of AMR decomposition, and AMR alignments.}
+\end{figure}
+
+\Paragraph{Output Decomposition} To decompose an AMR graph, we need to
+know the meaning of each part of the AMR graph. The nodes in AMR can
+be categorized into five main categories~(as shown in
+\autoref{fig:structural-bias} and a figure in later
+section~\autoref{fig:bg-amr}): frame~(e.g., find-01, hide-01), basic
+concept~(e.g., dog, jury), string~(``Pierre Vinken"), number (e.g.,
+61) and other constant (e.g., `-'), while there many templated
+subgraphs used to represent special entities in the AMR, such as
+quanties, named entities, special roles, and other enetities in dates,
+times, percentages, phone, email, URLs. In this part, we mainly show
+an example of subgraph segementation for AMR, which will simplify the
+independent factorization. As shown in the left AMR graph, we draw a
+rectangle for the subgraph ``(possible-01 :polarity -)", which means
+it forms a subgraph when decomposing the output AMR graph. The whole
+subgraph will be aligned to the word `cannot' the first
+sentence. Further more, when there comes the second sentence, for the
+same word `cannot' in the new sentence, we hope the model can produce
+the same subgraph ``(possible-01 :polarity -)" from it. Besides this
+subgraph, other segmented constituent in the left AMR graph will be
+each single node. While in other AMR graph~(\autoref{fig:bg-amr}), we
+required to consider the subgraphs that are used to represent the
+special entities. According to the above knowledge about the AMR
+graph, we use a rule-based recategorization preprocessing to do the
+segmentation, which is inspired by the previous work on addresing the
+data sparsity issue in AMR
+parsing~\cite{Werling:2015up,foland-martin-2017-abstract,Wang:2017vt,Peng:2017ud
+}
+
+\Paragraph{Input Decomposition and Alignment Discovery} As shown in
+the first row of Lego blocks in \autoref{fig:structural-bias}, it
+naturally forms the decomposition of the first sentence for the AMR
+parsing case. However, for a more complicated case in
+\autoref{fig:bg-amr}, rather than each standalone token, we may still
+need to consider other multiword expression and the special entities
+in the sentence. Furthermore, when considering the previous UCCA
+parsing example shown in~\autoref{fig:intro-dog-ucca}, we also need to
+decompose the input sentence into phrases, so that it can be easily
+aligned to the non-teriminal nodes in the decomposed UCCA graph.
+Another problem after the input decomposition is the alignment
+discovery problem. We can notice that there are two `dog' lego blocks
+in the first sentence, and we also have two `dog' AMR nodes. We have
+the words `from' in the sentence, however, it cannot align to any node
+the AMR nodes. We need to build an alignment model to distinguish the
+alignments between them.  In a sum, we need to consider the input
+decomposition with the inductive biases on the semantic contents in
+the symbolic representations and how they are derived from the surface
+tokens.
+
+\Paragraph{Factor Modelling} The above output and input decomposition
+are usually done with prior knowledges about the language and the
+corresponding symbolic representations. Once we get the segmented
+nodes or subgraphs for output decomposition and the Lego blocks as the
+input decomposition, then the whole structured prediction problem are
+simplified to learn a set of classification models. For example, we
+hope the model can map the words ``cannot" into the subgraph
+"(possible-01 :polarity -)", and ``hid" into ``hide-01". When there
+are explict alignment information, it will be easy to model them with
+aligned input and output pairs. However, when there are uncertainties
+about the alignments, we may need to jointly model the alignment
+discovery model with the factor modelling. For this, we will propose a
+latent alignment model for AMR Parsing in
+\autoref{sec:lex-phr:graph-based}. Besides that, consider the same
+word `find' in both sentence, we need a discriminative contexturalized
+representation to predict the correst meaning representation as the
+`find-01' for the first sentence and as the `find-02' for the second
+sentence. The efficient contexturalized representation is also the key
+to make such independent factorization possible. We will introduce
+more details of the two-stage AMR parsing in
+\autoref{sec:lex-phr:graph-based}, which introduces more about how to
+assemble those local decision about nodes and edges into a graph.
+
+In a sum, although the independent factorization simplifies structured
+prediction into simpler classification problems, however, we need many
+inductive biases to make the right designing choices. Besides the
+above AMR parsing running example, we also design different model with
+independent factorization for a set of tasks, e.g. parsing graph-based
+representations with
+lexical-anchoring~\S\ref{ssec:lex-phr:lex-factorization-analysis} and
+phrasal-anchoring~\S\ref{ssec:lex-phr:phr-factorization-analysis},
+observing dialog in therapy~\S\ref{sec:snt:task}.
+
+
+\subsubsection{Natural Language as Inductive Biases}
+\label{sssec:intro:language-biases}
+Furthermore, besides the generic structured correlational with each
+other, we also study natural language description as inductive biases
+to describe the function of each decomposed output parts.  We still
+take the AMR Parsing in \autoref{fig:structural-bias} as a running
+example. When we don't know the meaning of the `find-01' and
+`find-02', to make the word `find' in the second sentence can generate
+the `find-02' instead of `find-01', it still needs a lot of aligned
+pairs about the `find' from other training data to learn. This is true
+for both human and machines. However, if we look at the explaination
+of ``find-01" and ``find-02'' in the propbank, we may easily find that
+``find-01" means discovery, while ``find-02" means verdict. Hence,
+human now can easily tell that the second `find' should predict
+``find-02" because it means `verdict" by the jury, without any more
+examples about 'find-02". Once we know the explaination of `find-01'
+and `find-02', we can make the prediction because we understand the
+meaning of the natural language that used for the explaination. We
+believe that the knowledge in the natural language can also be used as
+inductive biases for machine learning. In this thesis, we mainly
+extend the independent factorization of task-oriented dialogue state
+tracking with natural language descriptions~\S\ref{chap:sgd}. We show
+that natural language as inductive provide great zero-shot performance
+on unseen dialogue services.
+
+In a sum, motivated by the compositional property of natural language
+and relared symbolic representation, we propose to use independent
+factorization to model the correlations between the input and output
+structures. Furthermore, to make the independent factorization work
+for our mdoels, we present a detailed anlaysis on how to do it for
+each task, and how to use above inductive biases to help modeling the
+independent factorization.
 
 %%% Local Variables:
 %%% mode: latex
