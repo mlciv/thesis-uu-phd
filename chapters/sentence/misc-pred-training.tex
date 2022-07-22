@@ -26,7 +26,12 @@ in \textbf{CON} mode, we can use history-aware utterance encoding $\bm{v}^{worda
 While in HGRU, it produced a self-attentive utterance encoding. We
 denote it as $\bm{v}^{selfatt}_{n}$.
 
-We summarize the option input encodings for inference in Table \ref{tbl:inference}. There are two ways to scoring withthese inputs, one is to score the concatenated those vectors together, denoted as $\text{concat}(A, B)=\text{MLP}([A;B)$; The other one is scoring each of them first and then add the scores up as the final scores, such as $\text{add}(A,B)=\text{MLP}(A)+\text{MLP}(B)$.
+We summarize the option input encodings for inference
+in~\autoref{tbl:inference_options}. There are two ways to scoring withthese
+inputs, one is to score the concatenated those vectors together,
+denoted as $\text{concat}(A, B)=\text{MLP}([A;B)$; The other one is
+scoring each of them first and then add the scores up as the final
+scores, such as $\text{add}(A,B)=\text{MLP}(A)+\text{MLP}(B)$.
 
 
 \begin{table}[t]
@@ -34,7 +39,7 @@ We summarize the option input encodings for inference in Table \ref{tbl:inferenc
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcc}
 \toprule
-Skeleton & Annotating                                                & Forecasting  \\ \hline \hline
+Skeleton & Categorization & Forecasting  \\ \hline \hline
 CON      & $\bm{v}^{seg}_{n}$,$\bm{v}^{{wordatt}_{n}}$, $\bm{v}_{n}$ & $\bm{C}_{n}$ \\ \hline
 HGRU     & $\bm{H}_{n}$,$\bm{v}^{selfatt}_{n}$,$\bm{v}_{n}$          & $\bm{H}_{n}$ \\ \bottomrule
 \end{tabular}
@@ -43,10 +48,8 @@ HGRU     & $\bm{H}_{n}$,$\bm{v}^{selfatt}_{n}$,$\bm{v}_{n}$          & $\bm{H}_{
 
 \end{table}
 
-% \vs{What is $t$ here? Do we have one $\alpha$ per label or example?. What
-% about $\gamma$?}
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "main"
+%%% TeX-master: "../../thesis-main.ltx"
 %%% End:

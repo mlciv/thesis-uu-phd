@@ -83,26 +83,6 @@ Service + I/S Desc        & 86.95                       & 97.99       & 67.08   
 \caption{\label{tbl:sup-training-details} Results of different supplementary training on \sgdst~and \multiwoz~dataset}
 \end{table}
 
-\begin{table}[!]
-\begin{center}{\scriptsize
-\begin{tabular}{lll}
-\toprule
-\hline
-style                         & Intent Description                                                                                               & Slot Description                                                                                                               \\ \hline
-\ID                           & intent\_1                                                                                                        & slot\_4                                                                                                                        \\ \hline
-\NAMEONLY                     & CheckBalance                                                                                                     & account\_type                                                                                                                  \\
-\QANAMEONLY                   & Is the user intending to CheckBalance?                                                                           & What is the value of acctount\_type  ?                                                                                         \\
-\ORIGIN                       & Check the amount of money in a user's bank account                                                               & The account type of the user                                                                                                   \\ 
-\QARICH                       & Does the user want to check the amount of money in the bank account ?                                            & What is the account type of the user ?                                                                                         \\ \hline
-\NAMEPARA                     & CheckAccountBalance                                                                                              & user\_account\_type                                                                                                            \\ 
-\PARAPHRASE                   & Check the balance of the user's bank account                                                                     & Type of the user account                                                                                                       \\ \hline
-%\multirow{2}{*}{\CONSTRAINT} & \multirow{2}{*}{\parbox{5cm}{Check the amount of money in a user's bank account, requiring the type of account}} & \multirow{2}{*}{\parbox{5cm}{The account type of the user, required by mulitple intents, checking balance and transfer money}} \\
-\bottomrule
-\end{tabular}}
-\end{center}
-\caption{\label{tbl:schema-desc-ext} Different extensions of schema descriptions}
-\end{table}
-
 \subsection{Results on Description Compositions}
 \label{ssec:sgd:com-results}
 Table~\ref{tbl:schema-component-results} shows the results of using
@@ -185,10 +165,6 @@ the multi-turn dialog histories.
 
 \section{Homogeneous and Hetergenuous Evaluation on Different Styles}
 \label{sec:sgd:more-desc-results}
-
-\subsection{Examples for Different Description Styles}
-\label{ssec:sgd:appendices-example-style}
-Table \ref{tbl:schema-desc-ext} shows examples for different styles of schema descriptions.
 
 \subsection{More details on SQuAD2 Results on Different Styles}
 \label{ssec:sgd:squad2_homo}

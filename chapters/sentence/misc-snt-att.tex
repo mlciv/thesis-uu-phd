@@ -9,7 +9,7 @@ the relationship of the current therapist utterance to one or more
 of the previous client utterances. For forecasting, since we do not
 have an utterance to label, several previous utterances may
 be relevant. For example, in the conversation in
-Table~\ref{tbl:example}, both $u_2$ and $u_4$ may be used to
+Table~\ref{tbl:snt:misc-example}, both $u_2$ and $u_4$ may be used to
 forecast a complex reflection.
 
 To model such utterance-level attention, we will employ the
@@ -41,7 +41,8 @@ setting all three matrices to $[\bm{v}_{1} \cdots \bm{v}_{n}]$.
 For both settings, we use four heads and stacking them for two hops,
 and refer to them as $\self$ and $\anchor$.
 
+
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "main"n
+%%% TeX-master: "../../thesis-main.ltx"
 %%% End:

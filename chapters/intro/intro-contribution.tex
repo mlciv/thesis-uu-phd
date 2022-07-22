@@ -1,6 +1,7 @@
 \section{Contributions}
 \label{sec:intro-contri}
 
+
 \Paragraph{Thesis Statement} Our claim is that by designing
 ~\kw{Structural Inductive Bias} and \kw{Natural Language as Inductive
   Biases}, models with naive independent factorization can achieve
@@ -9,8 +10,8 @@ across multiple broad-coverage meaning representations and
 application-specific representations.
 
 \Paragraph{Contributions} In this thesis, focusing on the independent
-factorization setting, we show that our proposed indutive biases can
-offer discriminative features to achieve competetive and generalizable
+factorization setting, we show that our proposed inductive biases can
+offer discriminative features to achieve competitive and generalizable
 performance on broad-coverage meaning representations and
 application-specific representations.
 
@@ -34,33 +35,33 @@ some of the open problems mentioned in the previous section.
   \textbf{phrasal-anchoring} Universal Conceptual Cognitive
   Annotation~\citep[UCCA,][]{abend2013universal} and Task-oriented
   Dialog Parsing~\citep[TOP,][]{gupta-etal-2018-semantic-parsing} are
-  similar to constituency tree structure, except for unseen phenomena
+  similar to a constituency tree structure, except for unseen phenomena
   such as remote edges and discontinuous spans, we extend the existing
   algorithmic inductive bias for tree structure prediction and
-  Cost-augmented CKY inferece to the new UCCA and TOP parsing
-  tasks. Powered by strong span-representation learning method, my
+  Cost-augmented CKY inference to the new UCCA and TOP parsing
+  tasks. Powered by a strong span-representation learning method, my
   system~\citep{cao2019amazon} \kw{ranked 5/16 on UCCA parsing}, and
   it can be reused for TOP parsing after a few preprocessing steps,
-  and outperform serveral baseline models.
+  and outperform several baseline models.
 
 \item To provide real-time guidance to therapists with a dialogue
   observer, we decompose the dialog structure analysis with two
   independent prediction tasks: (1) categorizing therapist and client
-  MI behavioral codes and, (2) forcasting codes for upcoming
+  MI behavioral codes and (2) forecasting codes for upcoming
   utterances to help guide the conversation and potentially alert the
   therapist. For both tasks, I studied a hierarchical gated recurrent
   unit (\HGRU) with the \kw{word-level attention} and
   \kw{sentence-level attention} to distinguish different importance of
   words and sentences~\citep{jie2019psycdialacl}. Our experiments
   demonstrate that our models can outperform several baselines for
-  both tasks.  We also report the results of a careful analysis that
+  both tasks. We also report the results of a careful analysis that
   reveals the impact of the various network design tradeoffs for
   modeling therapy dialogue.
 
-\item By decomposing the dialogue state tracking into four independent
+  \item By decomposing the dialogue state tracking into four independent
   sub-tasks, we use natural language description as inductive biases
-  to describe the functions of each independent intent/slot labels,
-  thus capturing the function overlapping between different
+  to describe the functions of each independent intent/slot label,
+  thus capturing the functional overlapping between different
   services. We show that such natural language descriptions can
   support the zero-shot learning for each independent subtask for
   unseen service. We are among the first to use large pretrained
@@ -68,7 +69,7 @@ some of the open problems mentioned in the previous section.
   offer detailed comparative studies on how to transfer inductive
   biases to new domains and APIs with overlapping functions and task
   structures, including encoding strategies, supplementary
-  pretraining, homogenuous and heterogeneous evalutions.
+  pretraining, homogeneous, and heterogeneous evaluations.
 \end{enumerate}
 
 

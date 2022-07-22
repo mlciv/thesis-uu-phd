@@ -1,19 +1,33 @@
 \section{Conclusion}
+\label{sec:snt:conclusion}
+
 We addressed the question of providing real-time assistance to
 therapists and proposed the tasks of categorizing and forecasting MISC
 labels for an ongoing therapy session. By developing a modular family
-of neural networks for these tasks, we show that our models outperform several
-baselines by a large margin.
-%
-Extensive analysis shows
-that our model can decrease the label confusion compared to previous
-work, especially for reflections and rare labels, but also
-highlights directions for future work. 
+of neural networks for these tasks, we show that our models outperform
+several baselines by a large margin.  Ablation studies on history
+size, word-level and sentence-level attention, focal loss and generic
+or domain-specific embeddings, shows how each of them helps in our
+tasks. Extensive analysis shows that our model can decrease the label
+confusion compared to previous work, especially for reflections and
+rare labels. results show that word-level and sentence-level attention
+mechanism can help our independent factorization to discover the
+relevant parts for our local factor modelling without the hard
+alignment.
 
-% Ablation studies on history size, word-level and sentence-level
-% attention, focal loss and generic or domain-specific embeddings, shows
-% how each of them helps in our tasks. What's more, our model trained on
-% regular MI sessions with both MI adherent and non-adherent utterances
-% can still achieve a recall@3 of 76.9 on selected good MI
-% sessions. Hence our model potentially helps for therapist training on
-% psychotherapy domain.
+Furthermore, our model trained on regular MI sessions with both MI
+adherent and non-adherent utterances can still achieve a recall@3 of
+76.9 on selected good MI sessions. Hence our model potentially helps
+for therapist training on psychotherapy domain. Beyond the strategy of
+mimic good therapy dialogue session, in the future, we also can extend
+the study to other strategies. For example, one possibility is to use
+some sort of an external idea of checklist on how the dialogue should
+go. In this way, the checklist can supervise the dialogue flow on the
+going. Another possiblity is that we can use reinforcement learning to
+model the reward and policy towards the final goal of motivational
+interview: facilitating behaviour change.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../../thesis-main.ltx"
+%%% End:

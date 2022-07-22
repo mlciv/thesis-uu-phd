@@ -1,19 +1,20 @@
 \section{Deep Ligusitic Structured Prediction and Independent Factorization}
 \label{sec:background:deepsp}
+
 Due to the power of representation learning, deep learning is widely
 used to extract sophisticated representations for the inputs in
 various NLP tasks. In this thesis, instead of focusing on a single
 task, we systematically study the representation learning challenges
-for multiple sets of tasks based on independent factorization
-assumption.  In this section, We first introduce the recent advances
+for multiple tasks based on the independent factorization
+assumption. In this section, We first introduce the recent advances
 in deep structured prediction with respect to representational
-formalism~\S\ref{ssec:bg:formalism} and introduce the independent
+formalism~(\S\ref{ssec:bg:formalism}) and introduce the independent
 factorization with factor graphs. Then we briefly summarize the
-progress on the representation learning on natural
-language~\S\ref{ssec:bg:rep-learning} and show why the independent
-factorization is possible with the contextualized representation.
-Finally, we also summerize the recent advances on
-inference~\S\ref{ssec:bg:inference} on lingustic structured prediction.
+progress on representation learning for natural
+language~(\S\ref{ssec:bg:rep-learning}) and show why the independent
+factorization is possible with the contextualized representations.
+Finally, we also summarize the recent advances on
+inference~(\S\ref{ssec:bg:inference}) for linguistic structured prediction.
 
 %In this thesis, based on the independent factorization, we study the
 %generic inductive biases for \textbf{different purposes more than the
@@ -41,63 +42,61 @@ distribution over a multi-dimensional space, which represents a set of
 independences that hold in the specific distribution. Two branches of
 graphical representations of distributions are commonly used, namely,
 Bayesian networks and Markov random fields. Both families encompass
-the properties of factorization and independences, but they differ in
+the properties of factorization and independence, but they differ in
 the set of independences they can encode and the factorization of the
 distribution that they induce.
 
-\Paragraph{Constrained Conditional Models} Besides using graphical
-models to declaritively represent the structural interdependence
-between variables, constrained conditional
-models~\citep[CCM,][]{chang2012structured} is another machine learning
-and inference framework for the same goals. More specifically, CCM
+\Paragraph{Constrained Conditional Models} Besides the graphical
+models to declaratively represent the structural interdependence, constrained conditional
+models~\citep[CCM,][]{chang2012structured} are for the same goals. More specifically, CCM
 emphasizes augmenting the learning of conditional models with
 declarative constraints. It aims to support constrained decisions in
 an expressive output space while maintaining modularity and
 tractability of training and inference. These constraints can express
 either hard restrictions, completely prohibiting some assignments, or
-soft restrictions, penalizing unlikely assignments. One popular
-formalism to represent the constraints is to use an interger linear
+soft limits, penalizing unlikely assignments. One popular
+formalism to represent the constraints is to use an integer linear
 programming~(ILP), which has been widely used to constrain learning in
-many NLP tasks~\citep{roth2007global}. The declaritive linear
-objective functions and linear constraints, and the availibities of
+many NLP tasks~\citep{roth2007global}. The declarative linear
+objective functions, linear constraints, and the availabilities of
 the off-the-shelf solvers make this formalism very easy to use.
 
-\Paragraph{Declaring Constraints in Deep Learning} Recently, to inject
-known hand-crafted constraints bewteen discrete variable assignments
-in the deep neural networks, one foundmental challange is how to
+\Paragraph{Declarative Constraints in Deep Learning} Recently, to inject
+known hand-crafted constraints between discrete variable assignments
+in the deep neural networks, one fundamental challange is how to
 represent the constraints in end-to-end differentiable
-ways~\cite{bach2017hinge}. For example, \citet{li2019augmenting}
+ways~\citep{bach2017hinge}. For example, \citet{li2019augmenting}
 propose to use differentiable fuzzy logic operators to augment the
 neural networks with boolean logic. \citet{pacheco2021modeling}
-introduces a declarative Deep Relational Learning framework~(\DRAIL)
-via integrating neural representation learners with probabilistic
-logic. Besides representing the constraints as logic forms, many
+introduce a declarative Deep Relational Learning framework~(\DRAIL)
+integrating neural representation learners with probabilistic
+logic. Besides representing the constraints as logic forms, much
 recent work also studies representing constraints with discrete latent
-variable models, such as StructVAE for latent tree structured
-variables, ~\cite{yin2018structvae, corro2019learning}. Our work on
+variable models, such as StructVAE for latent tree-structured
+variables~\citep{yin2018structvae, corro2019learning}. Our work on
 latent alignment models also falls into this category.
 
 \Paragraph{Learning Constraints in Deep Learning} Besides injecting
-declaritive constraints, recent research also learn the constraints in
-an end-to-end ways. \citet[SPEN,][]{belanger2016structured} define
+declarative constraints, recent research also learn the constraints in
+end-to-end ways. \citet[SPEN,][]{belanger2016structured} define
 energy functions that can learn the arbitrary dependencies among parts
 of structured outputs by relaxing the whole structured outputs into
 continuous vectors, Following this, inference
-network~\cite{tu2018learning} was proposed to learn the constrained
-network for inference, which approximate the cost-augmented inference
+network~\citep{tu2018learning} was proposed to learn the constrained
+network for inference, which approximates the cost-augmented inference
 during training and then fine-tuning for test-time inference.
 
 \Paragraph{Independent Factorization} In this thesis, we mainly use
 the undirected Markov random fileds to represent our independent
 factorization assumptions. As shown
-in~\autoref{fig:bg:graphical-model}, each circle represent a variable,
-while each rectangle shows a factor between the input sentence
-variable $x$ and each decomposed segements of output structures
-$y$. The difference between left and right figure lies to the
-alignment variable $a$ in the center. In the left figure, the shade
-cicle $a$ means the alignment are explicitly observed after the
-decomposion. While in the right figure, the alignment variable $a$ is
-not observed.
+in~\autoref{fig:bg:graphical-model}, each circle represents a
+variable, while each rectangle indicates a factor between the input
+sentence variable $x$ and each decomposed segments of output
+structures $y$. The difference between the left and right figure is in
+the alignment variable $a$ in the center. In the left figure, the
+shaded circle $a$ means the alignment is explicitly observed after the
+decomposition. In the right figure, the alignment variable $a$ is not
+observed.
 
 \begin{figure}[!th]
 \centering
@@ -126,98 +125,123 @@ features for modelling the relative parts of $x_{a_{y_{c}}}$, thus
 make the 3rd challenge of independent factorization possible. Then we
 provide the background knowledge about structures in NLP in
 \autoref{sec:bg:symbolic}, and we briefly show that such prior
-knowledge about anchoring and the compositionality are the main source
-of inductive biases that guide us to find the decomposition and
-alignment in the challenge 1 and 2.  We extend the detailed analysis
-about independent factorization in each application chapter.
+knowledge about anchoring and compositionality are the main source of
+inductive biases that guide us to find the decomposition and alignment
+in the challenge 1 and 2. We extend the detailed analysis about
+independent factorization in each application chapter.
 
 \subsection{Neural Representation Learning}
 \label{ssec:bg:rep-learning}
+
 Structured prediction requires the representation learning can capture
-both the distriminitive interactions between $x$ and $y$ and also
+both the discriminative interactions between $x$ and $y$ and also
 allow efficient combinatorial optimization over $y$. Ideally, we hope
-neural repsentation learning can handle all of this.
+neural representation learning can handle all of this.
 
 The key challenge of trying to apply analytical and computational
-methods to text data is how to represent the text in a way that is
+methods to text data are how to represent the text in a way that is
 amenable to operations such as similarity, composition, etc. Besides
-the early day one-hot representation and TF-IDF extensions, word
-embedding and nerual contextualized representation are widely used in
-modern deep learning based models. In this section, we review the
-recent advances from static word embedding based methods to
-attention-based dynamic features selection and contextualized
-representation. Finally, we also introduced the rapid progress in
-language encoding architectures, from recurrent neural network to
-transformer, and the corresponding pretrained language models ELMo ,
-BERT, GPT3 etc.
+the early day one-hot representation and TF-IDF
+extensions~\citep{jones1972statistical}, word embedding and neural
+contextualized representation are widely used in modern deep learning
+based models. In this section, we review the recent advances from
+static word embedding based methods to attention-based dynamic
+features selection and contextualized representation. Finally, we also
+introduced the rapid progress in language encoding architectures, from
+recurrent neural networks to transformer, and the corresponding
+pre-trained language models ELMo~\citep{elmo},
+BERT~\citep{devlin2018bert}, GPT3~\cite{brown2020language}, etc.
 
 \Paragraph{Static Word Embedding}
-Word embeddings are
-commonly~\cite{Baroni:2014,pennington2014glove,li2015generative}
-categorized into two types, depending upon the strategies used to
-induce them:
+Word embeddings are commonly categorized into two
+types~\citep{Baroni:2014,pennington2014glove,li2015generative},
+depending upon the strategies used to induce them:
 \begin{inparaenum}[(1)]
 \item Prediction-based models, via local data in sentence~(a word'
   context).
 \item Count-based models, via the global corpus-wide statistics~(such
   as word counts, co-occurrece).
 \end{inparaenum}
+
 Skip-gram with negative sampling~\cite[SGNS,][]{mikolov13w2v} and
-GloVe~\cite{pennington2014glove} are among the best known models for
-the two type respectively. However, they create a single fixed
-representation for each word, a notable problem with static word
-embeddings is that all senses of a polysemous word must share a single
+GloVe~\cite{pennington2014glove} are among the best-known models for
+the two types respectively. However, they create a single fixed
+representation for each word, a notable problem with the static word
+embeddings are that all senses of a polysemous word must share a single
 vector.
 
-\Paragraph{Contetualized Representation and Contextualing Models}
-To resolve the issue of static word embedding, sequence encoders~(such
-as LSTM~\citep{hochreiter97lstm}, Transformer~\citep{NIPS2017_7181})
+\Paragraph{Contetualized Representation and Contextualizing Models}
+To resolve the issue of static word embedding, sequence encoders, such
+as LSTM~\citep{hochreiter97lstm}, Transformer~\citep{NIPS2017_7181},
 can be used as contextualizing models to encode the whole context and
 produce a \kw{contexualized representation} for each word, phrase or
 the whole sentence. In this way, the contextualized representation
-dynamicly depends on the entire sentence.  Further more, based on the
-neural sequence encodingarchitectures, pretraining language models
-with a large amount of text can create more powerful representations.
-ELMo~\cite{elmo} creates contextualized representations of each token
-by concatenating the internal states of a 2-layer biLSTM trained on a
-bidirectional language modelling task. In contrast,
-BERT~\citep{devlin2019bert} and GPT-2~\citep{radford2018improving} are
-bi-directional and uni-directional transformer-based language models
+dynamically depends on the entire sentence. Furthermore, based on the
+neural sequence encoding architectures, pretraining language models
+with a large amount of text can create a more powerful contextualized
+representations~\citep{ethayarajh2019contextual}. ELMo~\cite{elmo}
+creates contextualized representations of each token by concatenating
+the internal states of a 2-layer biLSTM trained on a bidirectional
+language modeling task. In contrast, BERT~\citep{devlin2019bert} and
+GPT-2~\citep{radford2018improving} are bi-directional and
+uni-directional transformer-based language models
 respectively. \citet{peters2019tune} shows that ELMo contextualized
 representation is more suitable to be used as a fixed word embedding,
 as also shown in our thesis~\autoref{chap:lexical-phrasal} and
-~\autoref{chap:sentence}. While for BERT and GPT-2, finetuning them on
-downsteam task will lead better performance, which also inspired us on
-exploiting natural language description to understand each output
-components~(such as intent, slot labels)~in task-oriened
-dialogue~\autoref{chap:sgd}
+~\autoref{chap:snt}. While for BERT and GPT-2, finetuning them on
+downstream task will lead to better performance, which also inspired
+us on exploiting natural language description to understand each
+output components~(such as intent, slot labels)~in task-oriented
+dialogue~\autoref{chap:sgd}.  One assumption behind the independent
+factorization is that local models with rich features may perform
+competitively or better than global models also exists in pre-deep
+learning era. Before the rising of deep learning in 2012, the well
+known MEMM-based Stanford pos tagger is the state-of-art model at that
+time. Instead of using a single normalized, global CRF model for the
+sequence modeling, richer features seem diminish the label biases
+problems in the
+MEMM~\citep{toutanvoa2000enriching,toutanova2003feature}. However, the
+rich global features required heavy engineering in ten years ago.
+Recently, according to the NLP-Progress
+website\footnote{\url{http://nlpprogress.com/english/named_entity_recognition.html},
+  visited on July 19, 2022}, which tracks the state-of-art models for
+each task, we found that the state-of-art models for many sequences
+tagging tasks~(such as Named Entity Recognization, Part-of-Speech
+Tagging) are attention-based models without any CRF layer. In this
+thesis, the contextualized representation learned from deep learning
+is the key to our independent factorization, which helps our
+decomposed factor models to make local decisions with a set of
+discriminative and global features, without any heavy feature
+engineering. Furthermore, large pre-trained language model also offers
+great power to use natural language in our modeling, such as
+prompt-based models~\citep{shin2020autoprompt,liu2021pre}.
 
 \subsection{Inference}
 \label{ssec:bg:inference}
+
 Learning with structured data typically involves searching or summing
 over a set with an exponential number of structured elements, for
-example the set of all parse trees for a given sentence. In the deep
+example, the set of all parse trees for a given sentence. In the deep
 learning community, it is common to fit models by computing point
 estimates, such as the MLE or MAP estimate. Such MAP inference
-approaches seem particularly appealing, since they are computationally
-fairly cheap, and can use the prior to reduce overfitting. In this
-way, the nerual models only learn a single set of parameter. However,
+approaches seem particularly appealing since they are computationally
+fairly cheap and can use the before reducing overfitting. In this
+way, the neural models only learn a single set of parameters. However,
 the point estimation does not capture the associated
 uncertainties~\citep{murphy2022probabilistic,wilson2020bayesian}.
-Hence, in structured prediction research, we care about both MAP
-inference and marginal inference.
+Hence, we care about both MAP
+and marginal inference in structured prediction research.
 
 \Paragraph{MAP Inference} Various exact inference methods are proposed
-for MAP inference in NLP tasks.  Exact inference methods include
+for MAP inference in NLP tasks. Exact inference methods include
 dynamic programming based methods~(such as
 viterbi~\citep{viterbi1967error} for hidden markov models, CKY for
 context-tree
-grammars~\cite{kasami1966efficient,younger1967recognition,cocke1969programming}
+grammars~\citep{kasami1966efficient,younger1967recognition,cocke1969programming}
 , Max Spanning Arborescence for spanning
-tree~\cite{chu1965shortest,edmonds1967optimum}, and so on), and
+tree~\citep{chu1965shortest,edmonds1967optimum}, and so on), and
 Integer Linear
-Programming~\citep{roth2005integer,roth2007global,berant2014modeling}. On
-the other side, approximate inference methods includes various
+Programming~\citep{roth2005integer,roth2007global,berant2014modeling}. On the other side, approximate inference methods include various
 sampling methods~\citep{finkel2005incorporating,singh2012monte},
 search-based
 methods~\citep{daume2009search,ross2011reduction,chang2015learning},
@@ -233,7 +257,7 @@ which are central to many methods, such as
 EM~\citep{baker1979trainable,weizenbaum1966eliza}, constrative
 estimation~\citep{smith2005contrastive}, Conditional Random
 Field~\citep[CRF,][]{lafferty01crf}, max-margin training over all
-candidate targets~\cite{koller2004max}. For linguistic structured
+candidate targets~\citep{koller2004max}. For linguistic structured
 prediction, exact marginal inference methods include forward-backward
 algorithm for HMM~\citep{binder1997space},
 Inside-outside~\citep{baker1979trainable}, Matrix-Tree Theorem for
@@ -247,8 +271,8 @@ this thesis, the assumption of independent factorization simplified
 the inference into either greedy~(\S\ref{chap:snt} and
 \S\ref{chap:sgd}) or dynamic programming based exact MAP
 inference~(such as the dynamic programming parsing the dependency and
-constituency structures in~\autoref{sec:lex-phr:two-stage} and
-~\autoref{sec:lex-phr:cky-based} respectively)
+constituency structures in~\S\ref{ssec:lex-phr:two-stage} and
+~\S\ref{sec:lex-phr:cky-based} respectively)
 
 %%% Local Variables:
 %%% mode: latex

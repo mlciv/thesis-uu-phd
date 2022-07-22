@@ -1,19 +1,37 @@
+
 \section{Independent Factorization for Dialogue State Tracking}
 \label{sec:sgd:ind-factorization}
 A classic dialog state tracker predicts a dialog state frame at each
 user turn given the dialog history and predefined domain ontology. As
 shown in Figure \ref{fig:schema-dst}, the key difference between
 schema-guided dialog state tracking and the classic paradigm is the
-newly added natural language descriptions.  In this section, we will
+newly added natural language descriptions. Beyond the classic
+independent factorization, we also add a natural language description
+to describe each output labels. Hence, the independent factorization
+for schema-guided dialog state tracking can be represented
+as~\autoref{eq:desc-factor}. Instead of using the label of decomposed
+part $y_{c}$ only, we also use the natural language description of
+$y_{c}$.
+
+\begin{equation}
+    \label{eq:desc-factor}
+    \begin{split}
+    E(x, y) & =\sum_{c \in C} E(x, y_{c}) = \sum_{c \in C}E(x, a(y_{c}), desc(y_{c}))  \\
+    \end{split}
+\end{equation}
+
+
+
+In this section, we will
 analyze the task structure of dialogue state tracking and the design
-for independent factorization.  First, we will analyze the
+for independent factorization. First, we will examine the
 decomposition of dialogue state, and split the dialogue state tracking
 into four independent subtasks. In addition to the output
 decomposition, we propose to add a natural language description for
-each part of the output label to support unseen new services.  We
+each part of the output label to support unseen new services. We
 introduce the schema components in schema-guided dialog state
 tracking. Then, we show how each output part can be derived from the
-input decomposition.  Finally, we outline the research questions in
+input decomposition. Finally, we outline the research questions in
 our paper and address each of them in the rest sections of this
 chapter.
 
@@ -28,14 +46,26 @@ dual-strategies~\cite{zhang2019find}. Thus to fill the dialog state
 frame for each user turn, we solve four \kw{independent} subtasks:
 intent classification~(\IC), requested slot identification~(\RSI),
 categorical slot labeling~(\CSL), and non-categorical slot
-labeling~(\NSL). All subtasks require matching the current dialog
-history with candidate schema descriptions for multiple times.
+labeling~(\NSL).
+
+Beyond the independent factorization of 4 subtasks, we also consider
+describing each decomposed intent/slot label with natural
+language. By using natural language description to define a dynamic
+set of service schema. As shown in Figure \ref{fig:schema-dst}, we
+hope these descriptions can offer effective knowledge sharing across
+different services, e.g., connecting semantically similar concepts
+across heterogeneous APIs, thus allowing a unified model to handle
+unseen services and APIs. Hence, in this independent factorization, we
+require matching the current dialog history with candidate schema
+descriptions for each subtask and multiple times. Such matches are
+computation-heavy, which raises new challenges to our modeling.
+
 
 \Paragraph{Schema Components} Figure \ref{fig:schema-dst} shows three
 main schema components: service, intent, slot. For each intent, the
 schema also describes {\it optional} or {\it required} slots for
 it. For each slot, there are flags indicating whether it is
-categorical or not. {\it Categorical} means there is a set of
+categorical or not. {\it Categorical} means a set of
 predefined candidate values~(Boolean, numeric or text). For instance,
 {\it has\_live\_music} in Figure~\ref{fig:schema-dst} is a categorical
 slot with Boolean values. {\it Non-categorical}, on the other hand,
@@ -44,12 +74,24 @@ history.
 
 \subsection{Input Decomposition and Alignments Discovery: Attention}
 \label{sec:sgd:decompose-x}
-
-In lexical-anchoring, the input sentence is decomposed into
-exclusively tokens and special entities. In phrasal-anchoring, the
-input sentence is decomposed into nested phrases which forms a tree
+In lexical-anchoring, the input sentence is decomposed exclustively
+into tokens and special entities. In phrasal-anchoring, the input
+sentence is decomposed into nested phrases which forms a tree
 structure. In sentential-anchoring, we show that the input dialogue
-are naturally decomposed into a sliding dialogue history window.
+are naturally decomposed into a sliding dialogue history window. The
+input decomposition for dialogue state tracking is the same as
+sentential-anchoring MISC prediction tasks. Because for both MISC
+prediction and dialogue state tracking tasks, we cannot simply find
+relevant parts to predict the intent and slots, which requires jointly
+considering the current dialogue utterance and the previous dialogue
+history. Hence, due to the success of attention mechanisms in the MISC
+prediction, we also use the attention mechanism to discover the more
+detailed relevant parts for our dialogue state tracking. We ground our
+study on the pre-trained transformer model:
+BERT~\cite{devlin2018bert}. BERT uses the self-attention mechanism to
+dynamically learn the relevant parts from a large amount of text,
+which has been shown great success for many NLP tasks, including
+dialogue state tracking~\cite{chao2019bert,noroozi2020fast}
 
 \subsection{New Questions}
 \label{ssec:sgd:new-questions}

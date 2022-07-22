@@ -147,12 +147,12 @@ maximum sum of the start and end scores.
 \subsection{Experiments on Encoder Comparison}
 \label{ssec:encoder-results}
 To fairly compare all three models, we follow the same schema input
-setting as in Table \ref{tbl:schema-seq}. We trained separate models
+setting as in~\autoref{tbl:sgd:schema-seq}. We trained separate models
 for \sgdst~and the remixed MultiWOZ datasets for all the experiments
-in our papers\footnote{Appendix~\ref{ssec:exp-setup} shows the
-  detailed experiment setup}. Because there are very few intent and
-requested slots in \multiwoz~dataset, we ignore the intent and
-requested slots tasks for \multiwoz~in our paper.
+in our papers\footnote{\autoref{ssec:sgd:exp-setup} shows the detailed
+  experiment setup}. Because there are very few intent and requested
+slots in \multiwoz~dataset, we ignore the intent and requested slots
+tasks for \multiwoz~in our paper.
 
 
 \begin{table}[!t]
@@ -169,7 +169,7 @@ NonCat & service description, slot description   \\
   \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:schema-seq} Schema description input used for
+\caption{\label{tbl:sgd:schema-seq} Schema description input used for
   different tasks to compare \DE, \CE, and \FE. In the
   appendix~\ref{sec:sgd:com-desc}, we also studies other compositions of
 description input. We found that service description will not help for

@@ -20,27 +20,26 @@ to unseen intent/slots~\cite{mrkvsic2017neural,
 \end{figure}
 
 As shown in~\autoref{fig:label-schema-example}, the intent
-classification task is to understand what the user trying to
+classification task is to understand what the user is trying to
 accomplish. Booking a flight, Finding a Movie, or booking a
 hotel. While the slot filling task to extract the particular slots and
 fillers that the user intends the system to understand from their
 utterance with respect to their intent. As shown
-in~\autoref{fig:label-schema-example}, bolded text are the evidence
+in~\autoref{fig:label-schema-example}, bolded text is the evidence
 for different slot values. For example, ``economic" implies the value
-of the slot seat class, and ``June 10" indicates the time of
-departure.
+of the slot seat class, and ``June 10" indicates the departure time.
 
 In \autoref{fig:label-schema-example}, two flight services present two
-different ontology for the same domain task of booking a flight. For
+different ontologies for the same domain task of booking a flight. For
 the dialogue presented in the center of the figure, the two services
-will produce different dialogue state for each user dialogue turn, and
+will produce different dialogue states for each user dialogue turn and
 request different commands for downsteam information retrieval
 components. When there is a new flight booking service, then there
-will be new onotlogy for the new domain. Hence, even if it shares a
-lot of overlapping functionalities with previous two flight service,
+will be new ontology for the new domain. Hence, even if it shares a
+lot of overlapping functionalities with the previous two flight services,
 we still need to annotate new data for the new service and retraining
 the new model on the newly annotated data. Such re-annotating and
-re-training on new service is costly.
+retraining on new services are costly.
 
 \begin{figure}[!ht]
 \centering
@@ -69,7 +68,8 @@ Despite the novel approach and promising results, current
 schema-guided dialog state tracking task only evaluates on a single
 dataset with limited variation in schema definition. It is unknown how
 this paradigm generalizes to other datasets and other different styles
-of descriptions. In this paper, we focus our investigation on the
+of descriptions. In this chapter\footnote{This chapter is published in
+  my paper~\cite{cao2021schema}}, we focus our investigation on the
 study of three aspects in schema-guided dialog state tracking:
 \begin{inparaenum}[(1)]
 \item schema encoding model architectures

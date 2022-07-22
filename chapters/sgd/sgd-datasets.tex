@@ -18,7 +18,7 @@
 \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:datasets} Summary of characteristics of \sgdst \multiwoz datasets, in domain diversity, function overlap, data collecting methods}
+\caption{\label{tbl:sgd:datasets} Summary of characteristics of \sgdst \multiwoz datasets, in domain diversity, function overlap, data collecting methods}
 \end{table}
 
 To the best of our knowledge, at the time of our study, \sgdst~and
@@ -42,7 +42,7 @@ domains, 88 intents, 365 slots.\footnote{Please refer to the original
 conducted based on this single dataset and the provided single
 description style. In this paper, we further extended this dataset
 with other benchmarking description styles as shown in
-\S\ref{sec:abl-desc}, and then we perform both homogenous and
+\S\ref{sec:sgd:abl-desc}, and then we perform both homogenous and
 hetergenous evalution on it.
 
 \subsection{Remixed MultiWOZ 2.2 Dataset}
@@ -105,7 +105,7 @@ training split.  For dev, we add two new domains {\it hotel} and {\it
 unseen, including those that have minimum overlap with seen services,
 such as {\it hospital}, {\it police}, {\it bus}. The statistics of
 data splits are shown in
-~\autoref{ssec:appendices-multiwoz-dataset}. Note that this data split
+~\autoref{tbl:multiwoz-remix}. Note that this data split
 is different from the previous work on zero-shot MultiWOZ DST which
 takes a leave-one-out approach in \citet{wu2019transferable}. By
 remixing the data in the way described above, we can evaluate the
@@ -138,9 +138,9 @@ dialog flows as seeds, then paraphrased by crowd-workers. While
 dialogs~\cite[H2H,][]{kelley1984iterative}, which are collected with
 the Wizard-of-Oz approach.
 
-We summarize the above discussion in Table \ref{tbl:datasets}.  We
+We summarize the above discussion in~\autoref{tbl:sgd:datasets}.  We
 believe that results derived from these two representative datasets can
-guide future research in schema guided dialog.
+guide future research in schema guided dialogue.
 
 
 \subsection{Experiment Setup}

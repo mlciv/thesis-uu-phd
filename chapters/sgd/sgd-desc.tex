@@ -66,14 +66,35 @@ for schema-guided dialog modeling.
   to see whether the question format is helpful or not for
   schema-guided dialog modeling.
 
-  To test the model robustness, we also create two paraphrased versions
-  \NAMEPARA~and \PARAPHRASE~for \NAMEONLY~and~\ORIGIN~respectively. We
-  first use nematus~\cite{sennrich-etal-2017-nematus} to automatically
+  To test the model robustness, we also create two paraphrased
+  versions \NAMEPARA~and \PARAPHRASE~for
+  \NAMEONLY~and~\ORIGIN~respectively. We first use
+  nematus~\cite{sennrich-etal-2017-nematus} to automatically
   paraphrase the description with back translation, from English to
   Chinese and then translate back, then we manually check the
-  paraphrase to retain the main
-  meaning. Appendix~\ref{sssec:appendices-example-style} shows examples for
-  different styles of schema descriptions.
+  paraphrase to retain the main meaning. Table
+  \ref{tbl:sgd:schema-desc-ext} shows examples for different styles of
+  schema descriptions.
+
+\begin{table}[!]
+\begin{center}{\scriptsize
+\begin{tabular}{lll}
+\toprule
+\hline
+style                         & Intent Description                                                                                               & Slot Description                                                                                                               \\ \hline
+\ID                           & intent\_1                                                                                                        & slot\_4                                                                                                                        \\ \hline
+\NAMEONLY                     & CheckBalance                                                                                                     & account\_type                                                                                                                  \\
+\QANAMEONLY                   & Is the user intending to CheckBalance?                                                                           & What is the value of acctount\_type  ?                                                                                         \\
+\ORIGIN                       & Check the amount of money in a user's bank account                                                               & The account type of the user                                                                                                   \\
+\QARICH                       & Does the user want to check the amount of money in the bank account ?                                            & What is the account type of the user ?                                                                                         \\ \hline
+\NAMEPARA                     & CheckAccountBalance                                                                                              & user\_account\_type                                                                                                            \\
+\PARAPHRASE                   & Check the balance of the user's bank account                                                                     & Type of the user account                                                                                                       \\ \hline
+%\multirow{2}{*}{\CONSTRAINT} & \multirow{2}{*}{\parbox{5cm}{Check the amount of money in a user's bank account, requiring the type of account}} & \multirow{2}{*}{\parbox{5cm}{The account type of the user, required by mulitple intents, checking balance and transfer money}} \\
+\bottomrule
+\end{tabular}}
+\end{center}
+\caption{\label{tbl:sgd:schema-desc-ext} Different extensions of schema descriptions}
+\end{table}
 
 %
 %\Paragraph{\CONSTRAINT} To present the intent/slot dependecy
@@ -83,16 +104,16 @@ for schema-guided dialog modeling.
 
 \subsection{Results on Description Styles}
 \label{ssec:desc-experiments}
-Unlike the composition used in Table \ref{tbl:schema-seq}, we don't
+Unlike the composition used in Table \ref{tbl:sgd:schema-seq}, we don't
 use the service description to avoid its impact. For each style, we
 train separate models on 4 subtasks, then we evaluate them on
-different target styles. First, Table \ref{tbl:homo-style-results}
+different target styles. First, Table \ref{tbl:sgd:homo-style-results}
 summarizes the performance for homogeneous evaluation, while Table
-\ref{tbl:squad2-results-question} shows how the question style
+\ref{tbl:sgd:squad2-results-question} shows how the question style
 description can benefit from SQuAD2 finetuning. Then we also conduct
 heterogeneous evaluation on the other styles\footnote{We don't consider
   the meaningless \ID~style due to its bad performance} as shown in
-Table \ref{tbl:hete-style-results-sgd}.
+Table \ref{tbl:sgd:hete-style-results-sgd}.
 %
 %Take noncategorical slots subtask on \sgdst as an example, the results
 %are summerized in {\bf last three columns} in Table
@@ -128,7 +149,7 @@ Table \ref{tbl:hete-style-results-sgd}.
 \end{tabular}
 }
 \end{center}
-\caption{\label{tbl:homo-style-results} Homogeneous evaluation results
+\caption{\label{tbl:sgd:homo-style-results} Homogeneous evaluation results
   of different description style on \sgdst dataset and \multiwoz
   datasets. The middle horizontal line separate the two name-based
   descriptions and two rich descriptions in our settings. All
@@ -139,7 +160,7 @@ Table \ref{tbl:hete-style-results-sgd}.
 \subsubsection{Homogeneous Evaluation}
 \label{sssec:homo-eval}
 \QParagraph{Is name-based description enough} As shown in Table
-\ref{tbl:homo-style-results}, \ID~is the worst case of using name
+\ref{tbl:sgd:homo-style-results}, \ID~is the worst case of using name
 description, its extremely bad performance indicates name-based
 description can be very unstable. However, we found that simple
 meaningful name-based description actually can perform the best in
@@ -171,7 +192,7 @@ behind it, for example, slot name "passengers" cannot fully represent
 the meaning "number of passengers in the ticket booking".
 
 \QParagraph{Does question format help} As shown in Table
-\ref{tbl:homo-style-results}, when comparing row \QARICH~v.s.~\ORIGIN,
+\ref{tbl:sgd:homo-style-results}, when comparing row \QARICH~v.s.~\ORIGIN,
 we found extra question format can improve the performance on \CSL~and
 \NSL task on both \sgdst and \multiwoz~datasets, but not for \IC~and
 \RSI tasks. We believe that question format helps the model to focus
@@ -181,9 +202,9 @@ a simple question pattern to \NAMEONLY, comparing row \QANAMEONLY~and
 datasets. Further more, we are curious about whether BERT finetuned on
 SQuAD2~(SQuAD2-BERT) can further help on the question format. Because
 \NSL~are similar with span-based question answering, we focus on
-\NSL~here. Table \ref{tbl:squad2-results-question} shows that, after
+\NSL~here. Table \ref{tbl:sgd:squad2-results-question} shows that, after
 applying the supplementary training on
-SQuAD2~(\S\ref{sec:sup-training}), almost all models get improved on
+SQuAD2~(\S\ref{sec:sgd:sup-training}), almost all models get improved on
 unseen splits however slightly dropped on seen services. Moreover,
 comparing to \QANAMEONLY, \QARICH~is more similar to the natural
 questions in the SQuAD2, we obverse that \QARICH~gains more than
@@ -205,7 +226,7 @@ questions in the SQuAD2, we obverse that \QARICH~gains more than
 \end{tabular}
 }
 \end{center}
-\caption{\label{tbl:squad2-results-question} Performance changes when
+\caption{\label{tbl:sgd:squad2-results-question} Performance changes when
   using BERT finetuned on SQuAD2 dataset to further finetuning on our
   \NSL~task. }
 \end{table}
@@ -217,7 +238,7 @@ In this subsection, we first simulate a scenario when there is no
 recommended description style for the future unseen services. Hence,
 unseen services can follow any description style in our case. We
 average the evaluation performance on three other descriptions and
-summarized in Table \ref{tbl:hete-style-results-sgd}. The $\Delta$ column
+summarized in Table \ref{tbl:sgd:hete-style-results-sgd}. The $\Delta$ column
 shows the performance change compared to the homogeneous
 performance. It is not surprising that almost all models perform worse
 on heterogeneous styles than on homogeneous styles due to different
@@ -235,7 +256,7 @@ they must obey the basic style convention but still can freely use
 their own words, such as abbreviation, synonyms, adding extra
 modifiers. We train each model on \NAMEONLY~and~\ORIGIN, then evaluate
 on the corresponding paraphrased version respectively. In the last two
-rows of Table \ref{tbl:hete-style-results-sgd}, the column `para'
+rows of Table \ref{tbl:sgd:hete-style-results-sgd}, the column `para'
 shows performance on paraphrased schema, while $\Delta$ shows the
 performance change compared to the homogeneous evaluation.
 \ORIGIN~still performs more robust than \NAMEONLY~when schema
@@ -265,7 +286,7 @@ descriptions get paraphrased on unseen services.
 \end{tabular}
 }
 \end{center}
-\caption{\label{tbl:hete-style-results-sgd} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the appendix~\ref{sec:sgd:more-desc-results}}
+\caption{\label{tbl:sgd:hete-style-results-sgd} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the appendix~\ref{sec:sgd:more-desc-results}}
 \end{table}
 
 %We first consider the diverse description

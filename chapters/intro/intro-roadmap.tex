@@ -1,27 +1,27 @@
 
 \section{Thesis Outline}
 \label{sec:intro:roadmap}
+
 In the thesis, we discuss prior work related to an application in its
 own chapter, instead of putting them all in a single
-chapter. Furthermore, at the begining of each application chapter, we
+chapter. Furthermore, at the beginning of each application chapter, we
 will first show the motivation and inductive biases of applying
-independent factorization to each task. Then we show the details about
+independent factorization to each task. Then we offer the details about
 how we model the independent factorization. This thesis is divided
-into five parts, which we described below.
+into five parts, which we describe below.
 
 \Paragraph{Chapter 2. Background} The first part systematizes the
 background of this thesis study in two sections:
 \begin{itemize}
-\item \kw{Structured Prediction, Learning and Inference.} We summarize
+\item \kw{Structured Prediction, Learning, and Inference.} We summarize
   the recent advances in deep structured prediction with respect to
-  representational formaliam, learning and inference respectively. We
-  overview the development of representation learning methods for
+  representational formalism, learning, and inference, respectively. We
+  overview of the development of representation learning methods for
   natural language, from feature selection to deep learning based
   representation learning methods.
 
 \item \kw{Structures in NLP.} We first provide the necessary
-  background about structures in natural languages for better
-  highlighting our contributions in remaining chapters.
+  background about natural language structures to highlight our contributions in the remaining chapters better.
 \end{itemize}
 
 \Paragraph{Chapter 3. Structural Inductive Biases for Lexical and
@@ -32,44 +32,43 @@ anchoring words or phrases in the input sentence. For
 lexical-anchoring, we propose a unified model to support both explicit
 and implicit alignment information between each input and output. For
 phrasal-anchoring, we compared different ways to learn the
-contextualized representation for the spans, and how they can bring
+contextualized representation for the spans and how they can bring
 discriminative features to our locally-dependent model. We show that
 with the above lexical and phrasal-anchoring based structural
-inductive biases for energey factorization and contextualized
+inductive biases for energy factorization and contextualized
 representation learning, our model can learn efficient discriminative
 features for the anchor and achieve high performance in the
 locally-independent model.
 
 \Paragraph{Chapter 4. Structural Inductive Biases for Sentenctial
   Anchoring} Besides the above lexical and phrasal anchoring in a
-single senentece, we extend our study to structures beyond a single
+single sentence, we extend our study to structures beyond a single
 sentence. In this chapter, we study the sequential dialog flow
 structure in a style of therapy called Motivational
 Interviewing~\cite[MI,][]{miller2003motivational,miller2012motivational},
 which is widely used for treating addiction-related problems.
 Sentence-level tags called Motivational Interview Skill Codes are
 designed to represent the intention of each utterance and the dialogue
-flow of the whole therapy session. We decompose the dialog structure
+the flow of the whole therapy session. We decompose the dialog structure
 analysis with two independent prediction tasks: categorizing and
-forcasting the dialog flow in the form of MISC codes. By developing a
+forecasting the dialog flow in the form of MISC codes. By developing a
 modular family of neural networks for two independent tasks, we show
 that the above mechanisms on dialogue representation can efficiently
 model the sequential structure of dialogue flow, and offer realtime
-guidance to therapist.
+guidance to a therapist.
 
 \Paragraph{Chapter 5. Natural Language as Inductive Biases} In this
 chapter, we study using natural language descriptions to represent the
 meaning of output symbols~(Intents and Slots) in task-oriented dialog
 state tracking, which helps to reduce the poor scalability to transfer
-to unseen domain and services. We study three main challenges of using
+to unseen domains and services. We study three main challenges of using
 natural language for label representation: schema encoding,
 supplementary training, and description styles.
 
 
 \Paragraph{Chapter 6. Conclusion and Future Work} This chapter
-concludes, by providing a summary of contributions and a discussion of
+concludes by providing a summary of contributions and a discussion of
 possible directions of future work.
-
 
 %%% Local Variables:
 %%% mode: latex

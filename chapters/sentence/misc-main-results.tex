@@ -240,23 +240,25 @@ attention.\footnote{The forecasting task bears similarity to the
   Dual-Encoder approach used for that task consistently
   underperformed the other baselines described here.}
 
-Tables \ref{tbl:main_rst_forecast} (a,b) show our forecasting results for
-client and therapist respectively. For client codes, we also report
-the \CHANGE and \SUSTAIN performance on the development set because
-of their importance.  For the therapist codes, we also report the
-recall@3 to show the performance of a suggestion system that
+\autoref{tbl:main_rst_forecast:client} and
+\autoref{tbl:main_rst_forecast:therapist} show our forecasting results
+for client and therapist respectively. For client codes, we also
+report the \CHANGE and \SUSTAIN performance on the development set
+because of their importance.  For the therapist codes, we also report
+the recall@3 to show the performance of a suggestion system that
 displayed three labels instead of one.
 %
-The results show that even without an utterance, the dialogue
-history conveys signal about the next MISC label. Indeed, the
-performance for some labels is even better than some categorization
-baseline systems. Surprisingly, word attention ($\text{GMGRU}^{H}$)
-in Table \ref{tbl:main_rst_forecast} did not help in forecasting
+The results show that even without an utterance, the dialogue history
+conveys signal about the next MISC label. Indeed, the performance for
+some labels is even better than some categorization baseline
+systems. Surprisingly, word attention ($\text{GMGRU}^{H}$) in both
+the~\autoref{tbl:main_rst_forecast:client} and
+\autoref{tbl:main_rst_forecast:therapist} did not help in forecasting
 setting, and a model with the \self utterance attention is
-sufficient. For the therapist labels, if we always predicted the
-three most frequent labels (\FA, \GI, and \RES), the recall@3 is
-only 67.7, suggesting that our models are informative if used in
-this suggestion-mode.
+sufficient. For the therapist labels, if we always predicted the three
+most frequent labels (\FA, \GI, and \RES), the recall@3 is only 67.7,
+suggesting that our models are informative if used in this
+suggestion-mode.
 
 %%% Local Variables:
 %%% mode: latex

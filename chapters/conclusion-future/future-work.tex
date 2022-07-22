@@ -3,18 +3,19 @@
 
 \subsection{For Other Factorization}
 \label{ssec:future:other-factorization}
-In this thesis, we mainly focus on the independent factorization,
-which ignores the interdependence between output parts.  Our
-experiments shows contexturalized representation capturing the
-interdependence within the input parts can still offer discriminative
-features to independently predict each local output parts. However,
-there are other factorizations we can extend our work on, such as
-auto-regressive factorization, or arbitrary high order
-factorizations. In those cases, the output parts will either depend on
-the previously predicted output, or have other high order
-dependecies. Take the auto-regressive factorization as an example, we
-consider a more broad-coverage construction of output \OUT~as
-sequential decisions as shown in~\autoref{eq:auto-factor}.
+
+This thesis mainly focuses on independent factorization, which ignores
+the interdependence between output parts. Our experiments show that
+the contextualized representation can capture the interdependence
+within the input parts; thus, they can offer discriminative features
+to predict each output part independently. However, we also can extend
+our work on other factorizations such as \kw{auto-regressive
+  factorization}, or arbitrary high order factorizations. In those
+cases, the output parts will either depend on the previously predicted
+output or have other high order dependecies. Take the auto-regressive
+factorization as an example, we consider a more broad-coverage
+construction of output \OUT~as sequential decisions as shown
+in~\autoref{eq:auto-factor}.
 
 \begin{equation}
   \label{eq:auto-factor}
@@ -40,11 +41,73 @@ guide constrained structured prediction.
 
 \subsection{Apply to Other Symbolic Representations}
 \label{ssec:future:application}
-As shown in~\autoref{chap:leixcal-phrasal}, above structural inductive
-bias in lexical, phrasal, sentential anchoring can be easily extended
-to other linguistic structured prediction tasks, such as coreference
-resolution, semantic role labeling, where the main task strutures has
-been studied in our broad-coverage meaning representation parsing.
+As shown in~\autoref{chap:lexical-phrasal}, the above structural
+inductive bias in lexical, phrasal, and sentential anchoring can be
+easily extended to other linguistic structured prediction tasks, such
+as coreference the resolution, semantic role labeling, where the main
+task structures has been studied in our broad-coverage meaning
+representation parsing.
+
+Let us take the \kw{coreference resolution} tasks as an example, we
+show how to apply the independent factorization on a new
+task. Coreference resolution is the task of clustering mentions in
+text that refer to the same underlying real-world entities or
+events. As shown in the left bottom of \autoref{fig:intro:dog-amr},
+``dog" and ``it" are pointed to the same dog.
+
+\Paragraph{Output Decomposition}
+A classic problem formula for coreference resolution task is to define
+a set of antecedent assignments $y_{i}$ for each of span $x_{i}$ in
+the given document. The set of possible assignments for each
+$y_{i} \in {\Phi, 1,...i-1}$. $\Phi$ means dummy antecent or the span
+$i$ is not a mention, and every $y_{i}$ can be assigned with the
+preceding spans.  Hence, then there are three factors for the
+pair-wise coreference core.
+\begin{inparaenum}[(1)]
+\item predict $I_{m}(i)$, whether span $i$ is a mention.
+\item predict $I_{m}(j)$, whether span $j$ is a mention.
+\item search for $y_{i}$, based on the previous mention predictions
+  $I_{m}(i)$ and $I_{m}(j)$.
+\end{inparaenum}
+
+One problem with the above factorization is that the third factor
+$y_{i}$ may have multiple values, which are antecedent for multiple
+preceding spans. Furthermore, it is not easy to do $N$ ways
+classification directly, because for each $y_{i}$ the output candidate
+labels are different, and the features only from span $i$ may not
+enough to produce the $y_{i}$.
+
+Instead, a better independence factorization can model this into
+a two-stage pipeline model as shown in AMR parsing: Stage 1, predicting
+the possible mentions via local classifier for each local factor
+$I_{m}(i)$. Stage 2, predicting the edges labels between all pairs as
+local binary classification $I_{a}(i,j)$, which means whether span $i$
+and $j$ are in the same cluster without caring about the preceding or
+not. In this output factorization, we can model two part of
+contextualized representation from span $i$ and span $j$. Such a
+pair-wise factorization will offer more discriminative features and
+simplifer all the classification into binary classification.  We still
+can use a bi-affine classifier to model the pair-wise binary
+classification. Furthermore, logic constraints can be added here to
+enforce the consistency between local decisions.
+
+\Paragraph{Input Decomposition}
+According to the above analysis on output decomposition, we need to
+decompose the inputs into candidate spans. Assuming there are $N$
+words in the input document, then there will be $\frac{T(T+1)}{2}$
+possible spans. However, we don't need to consider the spans cross the
+sentence boundaries, and we only mainly consider the pronouns, nouns
+, and other entity-related or event-related spans. Hence, such
+inductive biases about extracting potential spans will also simplify
+the input decomposition. At the same time, the pruning of the spans
+will reduce the computation for the second stage on binary edge label
+prediction.
+
+Hence, our proposed methods for two-stage graph-based parsing can be
+used in coreference resolution with task-specific output
+decompositions and input decompositions. The contextualized
+representation for each span can also benefit from span representation
+we studied in phrasal-anchoring parsing~\S\ref{ssec:phr:span}
 
 For application-specific symbolic representation, besides the single
 sentence representation
@@ -61,35 +124,54 @@ for structured social analysis such as mental health, cyberbullying,
 thus offering structural suggestions to guide human behavior.
 
 \subsection{Future Work on Contexualized Representation}
-\label{ssec:future:contextural-rep} The strong power of
-contexturalized representation learning make out independent
+\label{ssec:future:contextural-rep}
+The strong power of
+contextualized representation learning make out independent
 factorization works still gold under our inductive biases. However,
-there are still many challenges on contexturalized representation
+there are still many challenges on contextualized representation
 learning.
 
-\Paragraph{Extreme Long Context} First, we need to resolve extrem long
-text encoding problem. Our current models on psychotherapy dialogue
-and schema-guided dialog only consider 8 to 16 utterance as the
+\Paragraph{Extreme Long Context} First, we need to resolve the extrem long
+text encoding problem. Our current models of psychotherapy dialogue
+and schema-guided dialog only consider 8 to 16 utterances as the
 dialogue history window. However, we have more than 500 utterance in a
-single therapy session. Further more, a psychotherapy treatment may
-last for months and years, which involves multiple dialogue
-sessions. The long context problem also exists in other domain, such
-as scientific document analysis, and threaded conversations in social
-medias.
+single therapy session. Furthermore, a psychotherapy treatment may
+last for months and years which involves multiple dialogue
+sessions. The extended context problem also exists in other domains, such
+as scientific document analysis and threaded conversations in social
+media.
 
-\Paragraph{Contextualized Representation Beyond Text} multimodality
+\Paragraph{Contextualized Representation Beyond Text} In this thesis,
+we mainly utilize the contextualized text representation to model the
+structured prediction. However, human acquisition of information and
+communication with the world does not occur based on pure language
+input. From a cognitive perspective, processing language in isolation
+without information in other modalities seems insufficient. Recently,
+multimodal contextualized representation has also been widely used in
+the natural language processing
+task. \citet{beinborn-etal-2018-multimodal} shows that multimodal
+grouding of verbs play a crucial role for the compositional power of
+language. Jointly considering both visual and textual models has been
+widely used in many tasks, such as Multimodel Aspect-Based Sentimental
+Analysis~(MABSA)~\cite{ju2021joint}, Named Entity
+Recognization~\cite{zhang2021multi} and so on. Some tasks consider
+both multimodal inputs and multimodal outputs, e.g., Question
+Answering~\cite{singh-etal-2021-mimoqa}. More recently,
+vision-language pre-training further boosts the power of contextualized
+representation~\cite{lu2019vilbert,ling-etal-2022-vision}. Recent works on multimodality above raise challenges for future
+structured prediction tasks and their independent factorization.
 
 \subsection{Other Biases in Other Formalism}
 \label{ssec:future:rep-bias-ways}
 
 Besides the above structural inductive bias on compositionality and
-hierarchial structure, in the future, I will continue the study on how
-to represent other inductive biases in other ways.
+hierarchical structure, in the future, I will continue the study on how
+to represent other inductive biases in other different ways.
 
 \Paragraph{Declaritive Constraints and other latent Models}In the
 future, we also inject other structural interdependence/constraints
-with declaritive tools, such as integer linear programming,
-probabilistic neural logic rules. Further more, following the line of
+with declarative tools, such as integer linear programming,
+probabilistic neural logic rules. Furthermore, following the line of
 latent variable models, we plan to study more ways to relax structural
 inductive biases as continuous and differentiable latent variables in
 the end2end deep learning.
@@ -100,15 +182,15 @@ generalizing to new environments makes us efficiently learn when
 interacting with the world and other human beings. This efficiency
 largely depends on many \kw{inductive biases} and \kw{approximate
   biases} from human intelligence~\cite{Gershman2021WhatMU}, which are
-potentially helpful for machine intelligence. We also plan to working
-approximate biases for reasoning. Especially, for deep learning, we
+potentially helpful for machine intelligence. We also plan to work
+on approximate biases for reasoning. Especially for deep learning, we
 plan to design approximate inference methods for deep structured
 prediction.
 
-\Paragraph{Causality} Current factorization and markov random field
-based formalism only can capture the correlation between different
-variables. In the future, we will also extend the formalism to
-bayesian networks and intervention based models.
+\Paragraph{Causality} Current factorization and Markov random
+field-based formalism only can capture the correlation between
+different variables. In the future, we will extend the formalism to
+bayesian networks and intervention-based models.
 
 \subsection{Learning and Transfering the Inductive Biases}
 \label{ssec:future:bias-learn-transfer}

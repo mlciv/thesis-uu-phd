@@ -4,14 +4,17 @@
 \Paragraph{Thesis Statement} Our claim is that by designing
 ~\kw{Structural Inductive Bias} and \kw{Natural Language as Inductive
   Biases}, models with naive independent factorization can achieve
-strong performance on predicting the structures of natural language
-across multiple tasks and domains.
+strong performance on predicting the natural language structures
+across multiple broad-coverage and application-specific
+representations.
 
 \Paragraph{Contribution} The main contributions of this thesis are as
 follows:
 
 \begin{enumerate}
-\item We proposed a unified parsing framework to support
+\item Based on the assumption of independent factorization and the
+  structural inductive biases about different anchoring-types, we
+  proposed a unified parsing framework to support
   both~\textbf{explicit lexical-anchoring} (including DELPH-IN MRS
   Bi-lexical Dependencies~\citep[DM,][]{ivanova2012did} and Prague
   Semantic
@@ -30,13 +33,14 @@ follows:
 
 \item We address the problem of providing real-time guidance to
   therapists with a dialogue observer. It decompose the dialog
-  structure analysis with two independent factorization tasks: (1)
-  categorizes therapist and client MI behavioral codes and, (2)
-  forecasts codes for upcoming utterances to help guide the
-  conversation and potentially alert the therapist. For both tasks, I
-  studied a hierarchical gated recurrent unit (\HGRU) with the
-  \kw{word-level attention} and \kw{sentence-level attention} to
-  distinguish different importance of words and sentences to our
+  structure analysis with two independent factorization tasks and
+  modeling for two speaker seperately: (1) categorizes therapist and
+  client MI behavioral codes and, (2) forecasts codes for upcoming
+  utterances to help guide the conversation and potentially alert the
+  therapist. For both tasks, I studied a hierarchical gated recurrent
+  unit (\HGRU) with the \kw{word-level attention} and
+  \kw{sentence-level attention} to distinguish different importance of
+  words and sentences to our
   prediction~\citep{jie2019psycdialacl}. Our experiments demonstrate
   that our models can outperform several baselines for both tasks.  We
   also report the results of a careful analysis that reveals the

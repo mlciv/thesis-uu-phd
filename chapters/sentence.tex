@@ -24,46 +24,6 @@ prevalent online or text-based counseling services.~\footnote{For
   example, Crisis Text Line (\url{https://www.crisistextline.org}),
   7 Cups (\url{https://www.7cups.com}), etc.}
 
-%% putting the table here to make it in the second page.
-\begin{table}[ht]
-  \begin{center}
-\setlength{\tabcolsep}{4pt}
-{\small
-\begin{tabular}{llll}
-  \toprule
-  {\bf Code}            & {\bf Count}            & {\bf Description}                                                                                            & {\bf Examples}                                    \\
-  \midrule \midrule
-  \multicolumn{4}{c}{ \bf Client Behavioral Codes }                                                                                                                                                                 \\
-  \midrule
-  \multirow{2}{*}{\FN}  & \multirow{2}{*}{47715} & \multirow{2}{*}{\parbox{5.5cm}{Follow/ Neutral: unrelated to changing or sustaining behavior.}}              & ``You know, I didn't smoke for a while.''         \\
-                        &                        &                                                                                                              & ``I have smoked for forty years now.''            \\
-  \CHANGE               & \multirow{2}{*}{5099}  & \multirow{2}{*}{\parbox{5.5cm}{Utterances about changing unhealthy  behavior.}}                                                                          & ``I want to stop smoking.''                       \\
-                        & \\
-  \SUSTAIN              & \multirow{2}{*}{4378}  & \multirow{2}{*}{\parbox{5.5cm}{Utterances about sustaining unhealthy behavior.}}                                                                        & ``I really don't think I smoke too much.''        \\
-                        & \\ \midrule
-  \midrule
-  \multicolumn{4}{c}{\bf Therapist Behavioral Codes }                                                                                                                                                               \\
-  \midrule
-  \FA                   & 17468                  & Facilitate conversation                                                                                      & ``Mm Hmm.'', ``OK.'',``Tell me more.''            \\
-  \GI                   & 15271                  & Give information or feedback.                                                                                & ``I'm Steve.'', ``Yes, alcohol is a depressant.'' \\
-  \multirow{2}{*}{\RES} & \multirow{2}{*}{6246}  & \multirow{2}{*}{\parbox{5.5cm}{Simple reflection about the client's most recent utterance.}}                 & C: ``I didn't smoke last week''                   \\
-                        &                        &                                                                                                              & T: ``Cool, you avoided smoking last week.''       \\
-  \multirow{2}{*}{\REC} & \multirow{2}{*}{4651}  & \multirow{2}{*}{\parbox{5.5cm}{Complex reflection based on a client's conversation history.}} & C: ``I didn't smoke last week.''                  \\
-                        &                        &                                                                                                              & T: ``You mean things begin to change''.           \\
-  \QUC                  & 5218                   & Closed question                                                                                              & ``Did you smoke this week?''                      \\
-  \QUO                  & 4509                   & Open question                                                                                                & ``Tell me more about your week.''                 \\
-  \multirow{2}{*}{\MIA} & \multirow{2}{*}{3869}  & \multirow{2}{*}{\parbox{5.5cm}{MI adherent,~\eg, affirmation, advising with permission, etc.}}          & ``You've accomplished a difficult task.''         \\
-                        &                        &                                                                                                              & ``Is it OK if I suggested something?''            \\
-  \multirow{2}{*}{\MIN} & \multirow{2}{*}{1019}  & \multirow{2}{*}{\parbox{5.5cm}{MI non-adherent,~\eg, confront, advising without permission, etc.}}      & ``You hurt the baby's health for cigarettes?''    \\
-                        &                        &                                                                                                              & ``You ask them not to drink at your house.''      \\\bottomrule
-\end{tabular}}
-\end{center}
-\caption{Distribution, description and examples of MISC labels.}
-\label{tbl:misc}
-\end{table}
-
-%%
-
 We ground our study in a style of therapy called Motivational
 Interviewing~\citep[MI,][]{miller2003motivational,miller2012motivational},
 which is widely used for treating addiction-related problems.
@@ -71,7 +31,7 @@ which is widely used for treating addiction-related problems.
 To help train therapists, and also to monitor therapy quality,
 utterances in sessions are annotated using a set of behavioral codes
 called Motivational Interviewing Skill
-Codes~\citep[MISC,][]{miller2003manual}. \autoref{tbl:misc} shows
+Codes~\citep[MISC,][]{miller2003manual}. \autoref{tbl:bg:misc} shows
 standard therapist and patient (\ie, client) codes with
 examples. Recent NLP work~\cite[][{\em inter
   alia}]{tanana2016comparison, xiao2016behavioral,
@@ -98,20 +58,22 @@ We study modeling challenges associated with these tasks related to:
 \item representing words and utterances in therapy dialogue,
 \item ascertaining relevant aspects of utterances and the dialogue
   history, and
-\item handling label imbalance (as evidenced in~\autoref{tbl:misc}).
+\item handling label imbalance (as evidenced in~\autoref{tbl:bg:misc}).
 \end{inparaenum}
 We develop neural models that address these challenges in this
 domain.
 
 Experiments show that our proposed models outperform baselines by a
-large margin. For the categorization task, our models even
-outperform previous session-informed approaches that use information
-from future utterances. For the more difficult forecasting task, we
-show that even without having access to an utterance, the dialogue
-history provides information about its MISC label.  We also report
-the results of an ablation study that shows the impact of the
-various design choices.~\footnote{The code is available online at
-~\url{https://github.com/utahnlp/therapist-observer}.}.
+large margin. For the categorization task, our models even outperform
+previous session-informed approaches that use information from future
+utterances. For the more difficult forecasting task, we show that even
+without having access to an utterance, the dialogue history provides
+information about its MISC label.  We also report the results of an
+ablation study that shows the impact of the various design
+choices.~\footnote{The code is available online at
+  ~\url{https://github.com/utahnlp/therapist-observer}. The majority
+  content of this chapter is published in our
+  paper~\cite{jie2019psycdialacl}}.
 
 In summary, in this chapter, we
 \begin{inparaenum}[(1)]

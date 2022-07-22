@@ -2,11 +2,42 @@
 \label{sec:lex-phr:graph-based}
 
 In this section, we will introduce the two-stage framework for parsing
-the DM, PSD, and AMR graphs~\S\ref{sec:lex-phr:two-stage}. Then we
-resolve the alignment problem with a latent alignment model~\S\ref{sec:lex-phr:latent-alignment}
+the DM, PSD, and AMR graphs~\S\ref{ssec:lex-phr:two-stage}. Then we
+resolve the alignment problem with a latent alignment model~\S\ref{ssec:lex-phr:latent-alignment}
+
+
+According to the linguistic analysis on anchoring, we have shown that
+DM, PSD and AMR belong to the lexical-anchoring, which indicates that
+their nodes in the output graph are explicitly or implicitly anchored
+to the lexical units of the corresponding input sentence.  Before
+showing the unified design of independent factorization, let us
+introduce the fundamental concepts and notations.
+
+We refer to words in a sentence as
+$x=(x_{0};x_{1};...x_{i};...;x_{n})$, where $n$ is the sentence
+length.  For all the graph-based representations in our
+lexical-anchoring category, we decompose the whole graph into nodes
+and edges. We denotes the labelled nodes~(concepts) as
+$C = \{c_{i}\mid i \in [0,m]\}$, where $m$ is the number of concepts.
+While the labelled edges~(relations) between the $m$ concepts are
+denoted as $R = \{r_{ij}\mid i \in [0, m], j \in [0, m]\}$.  $r_{ij}$ means
+the directional relation from the node $i$ to the node $j$.  We use
+$r_{ij}=\Phi$ to indicate no edge from the node $i$ to the node $j$.
+
+In this part, based on the above notations, we introduce how to do
+independent factorization on lexical-anchoring by addressing the three
+main chellenges in \textbf{Output
+  Decomposition}~(\S\ref{sssec:lex-phr:lex-output-decomposition}),
+\textbf{Input Decomposition and Alignments
+  Discovery}~(\S\ref{sssec:lex-phr:lex-input-decomposition}), and
+\textbf{Factor Modelling}~(Two-stage
+Parsing~\S\ref{ssec:lex-phr:two-stage} and Latent Alignment
+Model~\S\ref{ssec:lex-phr:latent-alignment})
+
+\input{chapters/lexical-phrasal/lex-factorization.tex}
 
 \subsection{Two-stage Graph-Based Parsing}
-\label{sec:lex-phr:two-stage}
+\label{ssec:lex-phr:two-stage}
 
 Before formulating the graph-based model into a probabilistic model as
 Equation \ref{eq:graph_prob}, we denote some notations: $C$, $R$ are
@@ -32,10 +63,10 @@ into node- and edge-identification pipelines.
 In DM, PSD, and AMR, every token will only be aligned once.  Hence, we
 train a joint model to maximize the above probability for both node
 identification
-$P(c_{i} \mid h_{a_{i}})$~\S\ref{sssec:lex-phr:node-indent} and edge
+$P(c_{i} \mid h_{a_{i}})$~\S\ref{sssec:lex-phr:node-ident} and edge
 identification
 $P(r_{ij} \mid h_{{a_{i}}, c_{i},h_{a_{j}},
-  c_{j}})$~\S\ref{sssec:lex-phr:edge-indent}. The alignment
+  c_{j}})$~\S\ref{sssec:lex-phr:edge-ident}. The alignment
 information is mainly used for training. We need to marginalize out
 the discrete alignment variable $a$ to jointly learning the parameters
 in node identification and relation identification networks. We will
@@ -46,7 +77,8 @@ following subsections, we will explain the framework in more details.
 
 \begin{figure}[h] \centering
   \includegraphics[width=1.00\textwidth]{graph-overview3.pdf}
-\caption{\label{fig:graph-based-inference} Architecture of graph-based model and inference, for running exmaple [wsj\#0209013]}
+  \caption{\label{fig:graph-based-inference} Two-stage graph-based
+    parsing for the running exmaple [wsj\#0209013]}
 \end{figure}
 
 \subsubsection{Node Identification}
@@ -91,7 +123,7 @@ structured output.
 \label{ssec:lex-phr:latent-alignment}
 
 As the two-stage probablistic model shown
-in~\autoref{eq:graph_prob_bried}, we need to marginalize all the
+in~\autoref{eq:graph_prob_brief}, we need to marginalize all the
 alignment information $a$ to learn the above two-stage nerual networks
 for node and edge identification. We do the following computing for
 explicit and implicit alignments respectively.
