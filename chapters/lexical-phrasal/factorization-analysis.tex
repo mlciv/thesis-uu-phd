@@ -1,4 +1,4 @@
-\section{Anchoring Analysis on Graph-based Representation}
+\section[Anchoring Analysis on Graph-based Representations]{Anchoring Analysis on Graph-based \\Representations}
 \label{sec:lex-phr:factorization-analysis}
 
 In this chapter, we mainly study the parsing of four meaning
@@ -28,14 +28,14 @@ structures. As a result, the semantic concepts in these meaning
 representations can be anchored to the individual lexical units of the
 sentence. Hence, \texttt{Flavor-0} is actually explicit
 \textbf{lexical-anchoring}. Hence, \texttt{Flavor-0} is
-lexical-anchoring in our thesis.
+lexical-anchoring in our dissertation.
 
 \texttt{Flavor-1} includes Elementary Dependency
 Structures~\cite[EDS,][]{oepen2006discriminant} and Universal
 Conceptual Cognitive Annotation
 framework~\cite[UCCA,][]{abend2013universal}, which shows an explicit,
 many-to-many anchoring of semantic concepts onto sub-strings of the
-underlying sentence. In this thesis, we consider UCCA with another
+underlying sentence. In this dissertation, we consider UCCA with another
 application-specific symbolic representation TOP, where the underlying
 sub-strings mainly form a tree-like structure\footnote{We leave the
   parsing of EDS as future work}. We grouped UCCA and TOP as
@@ -66,12 +66,12 @@ model~\cite{brown1993mathematics} to align the linearized sequence of
 concepts and relations with tokens in the sentence. According to the
 AMR annotation guidelines and error analysis of ISI aligner, some of
 the nodes or relations are evoked by subwords, e.g., the whole graph
-fragment \texttt{(p/possible-01 :polarity -)} is evoked by word
-``impossible", where the subword \texttt{\char`\"im-\char`\"} actually
-evoked the relation polarity and concept \texttt{\char`\"-\char`\"};
+fragment \tquoted{(p/possible-01 :polarity -)} is evoked by word
+``impossible", where the subword \tquoted{im} actually
+evoked the relation polarity and concept \tquoted{-};
 On the other side, sometimes concepts are evoked by multiple words,
-e.g., named entities, \texttt{(c/city :name (n/name :op1
-  \char`\"New\char`" :op2 \char`\"York\char`\"))}, which also happens
+e.g., named entities, \tquoted{(c/city :name (n/name :op1
+  `New' :op2 `York'))}, which also happens
 in explict anchoring of DM and PSD. Hence, aligning and parsing with
 recategorized graph fragments are a natural solution in aligners and
 parsers. JAMR aligner~\cite{Flanigan:2014vc} uses a set of rules to
@@ -102,14 +102,15 @@ lexical anchoring. Based on this, \citet{lyu2018amr} propose to treat
 token-node alignments as discrete and exclusive alignment matrix and
 learn the latent alignment jointly with parsing. Recently,
 attention-based seq2graph model also achieved the state-of-the-art
-accuracy on AMR parsing~\cite{zhang-etal-2018-stog}.  However, whether
+accuracy on AMR parsing~\citep{zhang-etal-2018-stog}.  However, whether
 the attention weights can be explained as AMR alignments needs more
 investigation in future.
 
 \subsubsection{Summary of Anchoring Analysis}
+\label{sssec:lex-phr:sum-anchoring}
 
 \Paragraph{Explicit Lexical Anchoring: DM and PSD}
-As discussed in~\autoref{ssec:bg:bi-leixcal}, DM and PSD aim to
+As discussed in~\autoref{sssec:bg:dm} and~\autoref{sssec:bg:psd}, DM and PSD aim to
 represent all the semantic dependencies between words, fully
 covering the sentence. For each node in the graph, there will be an
 explicit words and multiword expressions aligning to it. Hence, we call such
@@ -130,5 +131,5 @@ phrase-level input decomposition for UCCA.
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:

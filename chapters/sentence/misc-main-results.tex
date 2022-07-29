@@ -8,6 +8,9 @@ forecasting MISC codes in ~\autoref{tbl:main_rst} with precision,
 recall and $F_{1}$ for each codes. Then, we also show the performance
 of these models against various baselines.
 \begin{table}[h]
+\caption{Performance of our proposed
+  models with respect to precision, recall and $\text{F}_{1}$ on categorizing and forecasting
+  tasks for client and therapist codes}
 \begin{center}
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{l|ccc|ccc}
@@ -29,13 +32,10 @@ of these models against various baselines.
 \MIN                         & 27.7                                   & 28.5 & 28.1    & 17.2 & 10.2 & 12.8    \\ \hline \bottomrule
 \end{tabular}
 \end{center}
-\caption{Performance of our proposed
-  models with respect to precision, recall and $\text{F}_{1}$ on categorizing and forecasting
-  tasks for client and therapist codes}
 \label{tbl:main_rst}
 \end{table}
 
-\Paragraph{Best Models} We identified the following best configurations using $\text{F}_{1}$
+We identified the following best configurations using $\text{F}_{1}$
 score on the development set:
 \begin{enumerate}[nosep]
 \item {\bf Categorization}: For client, the best model does not need any
@@ -48,7 +48,8 @@ score on the development set:
   $\mathcal{F}_T$ respectively.
 \end{enumerate}
 
-\Paragraph{Results on Categorization}
+\subsubsection{Results on Categorization}
+\label{sssec:snt:results-categorication}
 Tables~\ref{tbl:main_rst_c_categorizing} and
 \ref{tbl:main_rst_t_categorizing} show the performance of the
 $\mathcal{C}_C$ and $\mathcal{C}_T$ models and the baselines.
@@ -66,6 +67,13 @@ $\text{GMGRU}^{H}$ and $\text{BiDAF}^{H}$ are new baselines
 we define below.
 
 \begin{table}[!h]
+\caption{\label{tbl:main_rst_c_categorizing} Main results on categorizing
+  client codes, in terms of macro $\text{F}_{1}$, and $\text{F}_{1}$ for
+  each client code. Our model $\mathcal{C}_C$ uses final dialogue
+  vector $H_{n}$ and current utterance vector $v_{n}$ as input of MLP
+  for final prediction. We found that predicting using
+  $\text{MLP}(H_{n})+\text{MLP}(v_{n})$ performs better than just
+  $\text{MLP}({H_{n}})$.}
 \begin{center}{\small
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccc}
@@ -91,16 +99,15 @@ $\Delta=\mathcal{C}_{C} - \text{\underline{score}}$ & {\footnotesize +3.5} & {\f
   \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:main_rst_c_categorizing} Main results on categorizing
-  client codes, in terms of macro $\text{F}_{1}$, and $\text{F}_{1}$ for
-  each client code. Our model $\mathcal{C}_C$ uses final dialogue
-  vector $H_{n}$ and current utterance vector $v_{n}$ as input of MLP
-  for final prediction. We found that predicting using
-  $\text{MLP}(H_{n})+\text{MLP}(v_{n})$ performs better than just
-  $\text{MLP}({H_{n}})$.}
 \end{table}
 
 \begin{table}[!htp]
+\caption{\label{tbl:main_rst_t_categorizing} Main results on
+  categorizing therapist codes, in terms of macro $\text{F}_{1}$, and
+  $\text{F}_{1}$ for each therapist code. Models are the same as Table
+  ~\ref{tbl:main_rst_c_categorizing}, but tuned for therapist
+  codes. For the two grouped MISC set \MIA and \MIN, their results are
+  not reported in the original work due to different setting.}
 \begin{center}{\small
 \begin{tabular}{lccccccccc}
 \toprule
@@ -121,15 +128,7 @@ $\mathcal{C}_{T}$                              & {\bf 65.4}           & {\bf 95.
 $\Delta=\mathcal{C}_{T} - \text{\underline{score}}$ & {\footnotesize +5.2} & {\footnotesize +0.3} & {\footnotesize +3.9} & {\footnotesize +3.8} & {\footnotesize +0.2} & {\footnotesize +2.8} & {\footnotesize +1.6} & {\footnotesize +2.6} & {\footnotesize +18.9}                                                                                                \\ \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:main_rst_t_categorizing} Main results on
-  categorizing therapist codes, in terms of macro $\text{F}_{1}$, and
-  $\text{F}_{1}$ for each therapist code. Models are the same as Table
-  ~\ref{tbl:main_rst_c_categorizing}, but tuned for therapist
-  codes. For the two grouped MISC set \MIA and \MIN, their results are
-  not reported in the original work due to different setting.}
 \end{table}
-
-
 
 The first set of baselines (above the line) do not encode dialogue
 history and use only the current utterance encoded with a BiGRU. The
@@ -191,6 +190,7 @@ with $\text{CONCAT}^{C}$ always performs worse than the hierarchical
 method and even the simpler $\text{BiGRU}_{\text{ELMo}}$.
 
 \begin{table}[!h]
+\caption{\label{tbl:main_rst_forecast:client} Main results on forecasting client codes, in terms of $\text{F}_{1}$ for \SUSTAIN, \CHANGE on dev set, and macro $\text{F}_{1}$, and $\text{F}_{1}$ for each client code on the test set.}
 \centering
 \begin{tabular}{lcccccc}
   \toprule
@@ -205,10 +205,10 @@ $\text{CONCAT}^{F}$       & 20.4                    & 30.2       & 43.6       & 
   $\mathcal{F}_{C}$       & {\bf 21.1}              & {\bf 31.3} & 44.3       & 85.2       & 24.7       & 22.7       \\
 \bottomrule
 \end{tabular}
-\caption{\label{tbl:main_rst_forecast:client} Main results on forecasting client codes, in terms of $\text{F}_{1}$ for \SUSTAIN, \CHANGE on dev set, and macro $\text{F}_{1}$, and $\text{F}_{1}$ for each client code on the test set.}
 \end{table}
 
 \begin{table}[!h]
+\caption{\label{tbl:main_rst_forecast:therapist} Main results on forecasting therapist codes, in terms of Recall@3, macro $\text{F}_{1}$, and $\text{F}_{1}$ for each label on test set}
 \centering
 \begin{tabular}{ccccccccccc}
 \toprule
@@ -224,21 +224,21 @@ $\text{GMGRU}^{H}$      & 76.6                       & 26.6       & {\bf 72.6} &
 $\mathcal{F}_{T}$       & {\bf 77.0}                 & {\bf 31.1} & 71.9       & {\bf 19.5} & 24.7       & {\bf 59.2} & {\bf 29.1} & {\bf 16.4} & 15.2       & {\bf 12.8} \\
 \bottomrule
 \end{tabular}
-\caption{\label{tbl:main_rst_forecast:therapist} Main results on forecasting therapist codes, in terms of Recall@3, macro $\text{F}_{1}$, and $\text{F}_{1}$ for each label on test set}
 \end{table}
 
-\Paragraph{Results on Forecasting} Since the forecasting task is
-new, there are no published baselines to compare against. Our
-baseline systems essentially differ in their representation of
-dialogue history. The model $\text{CONCAT}^{F}$ uses the same
-architecture as the model $\text{CONCAT}^{C}$ from the categorizing
-task. We also show comparisons to the simple \HGRU model and the
-\GMGRUH model that uses a gated matchGRU for word
-attention.\footnote{The forecasting task bears similarity to the
-  next utterance selection task in dialogue state tracking
+\subsubsection{Results on Forecasting}
+\label{sssec:snt:results-forecasting}
+Since the forecasting task is new, there are no published baselines to
+compare against. Our baseline systems essentially differ in their
+representation of dialogue history. The model $\text{CONCAT}^{F}$ uses
+the same architecture as the model $\text{CONCAT}^{C}$ from the
+categorizing task. We also show comparisons to the simple \HGRU model
+and the \GMGRUH model that uses a gated matchGRU for word
+attention.\footnote{The forecasting task bears similarity to the next
+  utterance selection task in dialogue state tracking
   work~\cite{DSTC7}. In preliminary experiments, we found that the
-  Dual-Encoder approach used for that task consistently
-  underperformed the other baselines described here.}
+  Dual-Encoder approach used for that task consistently underperformed
+  the other baselines described here.}
 
 \autoref{tbl:main_rst_forecast:client} and
 \autoref{tbl:main_rst_forecast:therapist} show our forecasting results
@@ -262,5 +262,5 @@ suggestion-mode.
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:

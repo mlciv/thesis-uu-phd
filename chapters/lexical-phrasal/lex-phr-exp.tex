@@ -39,8 +39,10 @@ Test Data                        & 3269                  & 3269              & 1
 
 
 \begin{table}[!ht]
+\caption{The detailed lex-anchoring classifiers in our model. The round bracket means the number of ouput classes of our classifiers, * means copy mechanism is
+  used in our classifier.}
+\label{tbl:phr:impl_phrasal}
 \begin{center}
-\small
 \begin{tabular}{l|cc}
 \toprule
 \hline
@@ -57,8 +59,6 @@ Training Data                    & 6485      & 35741                          \\
 Test Data                        & 1131      & 9042                           \\ \hline \bottomrule
 \end{tabular}
 \end{center}
-\caption{The detailed lex-anchoring classifiers in our model. The round bracket means the number of ouput classes of our classifiers, * means copy mechanism is
-  used in our classifier.}
 \label{tbl:phr:impl_phrasal}
 \end{table}
 
@@ -183,7 +183,7 @@ results on DM and PSD shows that there is still around 2.5 points
 performance gap between our model and the top 1 model.
 
 \begin{table}[!h]
-\small
+\caption{\label{tbl:results_rank} Official results overview on unified MRP metric, we selected the performance from top 1/3/5 system(s) for comparison}
 \centering
 \begin{tabular}{lll}
 \toprule
@@ -194,7 +194,6 @@ DM(7)  & 93/92/92.14   & 94.76/94.32/93.74 \\ \hline
 %UCCA   & 76/68/71.65   & 81.67/77.80/73.22 \\
 %EDS    & N/A           & 94.47/90.75/89.10 \\ \bottomrule
 \end{tabular}
-\caption{\label{tbl:results_rank} Official results overview on unified MRP metric, we selected the performance from top 1/3/5 system(s) for comparison}
 \end{table}
 
 \Paragraph{Official Results on Phrasal Anchoring~(UCCA)} Table
@@ -378,5 +377,5 @@ bi-affine classifier for edge prediction, or remote edge recovering.
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:

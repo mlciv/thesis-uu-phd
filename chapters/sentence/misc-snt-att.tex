@@ -24,9 +24,9 @@ respectively. The multi-head attention is defined as:
 \label{eq:multihead_attention}
 {\small \text{Multihead}(\bm{Q},\bm{K},\bm{V}) = [\text{head}_{1};\cdots; \text{head}_{h}]\bm{W}^{O}}
 \end{equation}
-\begin{equation*}
+\begin{equation}
  \text{head}_{i} = \text{softmax}\left(\frac{\bm{Q}\bm{W}^{Q}_{i}\left(\bm{K}\bm{W}^{K}_{i}\right)^T}{\sqrt{d_{k}}}\right)\bm{V}\bm{W}^{V}_{i}
-\end{equation*}
+\end{equation}
 The $\bm{W}_i$'s refer to projection matrices for the three inputs,
 and the final $\bm{W}^o$ projects the concatenated heads into a
 single vector.
@@ -44,5 +44,5 @@ and refer to them as $\self$ and $\anchor$.
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:

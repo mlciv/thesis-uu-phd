@@ -24,85 +24,88 @@ look at some examples.
 \begin{figure}[!th]
 \centering
 \includegraphics[width=0.85\textwidth]{dog-pos.pdf}
-\caption{\label{fig:intro:dog-pos}Part-of-speech tags for the sentence
-  \textit{"The dog cannot find the bone it hid from the other dogs."}
-  This image shows the tag set used in Penn
+\caption{\label{fig:intro:dog-pos}The structure of POS tags for the
+  sentence \emph{\dquoted{The dog cannot find the bone it hid from the
+      other dogs.}}~This image shows the tag set used in Penn
   Treebank~\cite{marcus-etal-1994-penn} }
 \end{figure}
 
 \begin{figure}[!th]
 \centering
 \includegraphics[width=0.95\textwidth]{dog-tree.pdf}
-\caption{\label{fig:intro:dog-tree}The constituent tree for the sentence \textit{"The dog cannot find the bone it
-    hid from the other dogs"}}
+\caption{\label{fig:intro:dog-tree}The structure of constituent tree
+  for the sentence~\emph{\dquoted{The dog cannot find the bone it hid
+      from the other dogs.}}}
 \end{figure}
 
 \begin{figure}[!th]
 \centering
 \includegraphics[width=0.98\textwidth]{dog-dep.pdf}
-\caption{\label{fig:intro:dog-dep}The dependency tree, for the
-  sentence \textit{"The dog cannot find the bone it hid from the other
-    dogs"}}
+\caption{\label{fig:intro:dog-dep}The structure of dependency tree for
+  the sentence \emph{\dquoted{The dog cannot find the bone it hid from the
+    other dogs.}}}
 \end{figure}
 
-\Paragraph{Example 1: Part-of-Speech Tagging, Constituency and
-  Dependency Structure} We consider the sentence ``The dog cannot find
-the bone it hid from the other dogs" as a running example. As shown
-in~\autoref{fig:intro:dog-pos}, the part-of-speech~(\textbf{POS})
-tagging assigns each word in a sentence a part-of-speech tag, such as
-\lbl{noun}, \lbl{verb},\lbl{adjective}, \lbl{pronoun}. How to capture
-the sequential correlations between consecutive tags is the key
-modeling challenge for this task.  \autoref{fig:intro:dog-tree} shows
-the \textbf{constituent tree} structure of the sentence. The
-constituent tree parsing requires recognizing the recursive phrase
-structure of a sentence, such as noun, verb, prepositional phrases,
-and their nesting in each other. \autoref{fig:intro:dog-dep} shows the
-\textbf{dependency tree} structure of the sentence. Unlike the
-constituency structure, here the dependency structure of a sentence is
-described in terms of the directed bi-lexical grammatical relations
-between words. Each labeled arc represents a directed relation from
-headwords to their dependents. Besides the above lexical and syntactic
-structured information, as shown in the left part of
-\autoref{fig:intro:dog-amr}, natural language semantics is also widely
-studied as structured representations via tasks such as \textbf{ word
-  sense diambiguation}, \textbf{semantic role labeling}
-and~\textbf{co-reference resolution} and so on~\footnote{More details
-  about various semantic phenomena will be introduced
-  in~\autoref{ssec:bg:broad-mr}}. Such structured information is
-widely used in classical feature-engineering based NLP
+Firstly, we illustrate the \kw{classic linguistic structures}, such as
+part-of-speech~(POS), constituency and dependency trees. We consider
+the sentence \dquoted{The dog cannot find the bone it hid from the
+  other dogs.}~as a running example. As shown
+in~\autoref{fig:intro:dog-pos}, the part-of-speech tagging assigns
+each word in a sentence a part-of-speech tag, such as \lbl{noun},
+\lbl{verb},\lbl{adjective}, \lbl{pronoun}. How to capture the
+sequential correlations between consecutive tags is the key modeling
+challenge for this task.  \autoref{fig:intro:dog-tree} shows the
+\kw{constituent tree} structure of the sentence. The constituent tree
+parsing requires recognizing the recursive phrase structure of a
+sentence, such as noun, verb, prepositional phrases, and their nesting
+in each other. \autoref{fig:intro:dog-dep} shows the \kw{dependency
+  tree} structure of the sentence. Unlike the constituency structure,
+here the dependency structure of a sentence is described in terms of
+the directed bi-lexical grammatical relations between words. Each
+labeled arc represents a directed relation from headwords to their
+dependents. Besides the above lexical and syntactic structured
+information, as shown in the left part of \autoref{fig:intro:dog-amr},
+natural language semantics is also widely studied as structured
+representations via tasks such as \kw{ word sense diambiguation},
+\kw{semantic role labeling} and~\kw{co-reference resolution} and so
+on~\footnote{More details about various semantic phenomena will be
+  introduced in~\autoref{ssec:bg:broad-mr}}. Such structured
+information is widely used in classical feature-engineering based NLP
 system~\citep[e.g.,][]{Joh:Nug:08,hovy2010s,punyakanok2008importance},
 they are still helpful in deep learning based
 systems~\citep{moosavi-strube-2018-using,strubell-etal-2018-linguistically,bowman-etal-2016-fast}.
 
-\Paragraph{Example 2: Broad-coverage Meaning Representation} Besides
-the above structures capturing specific lexical, syntactic or semantic
-information, a broad-coverage semantic representation is a
-general-purpose meaning representation language aiming to represent
-the multiple phenomena in a single structure for broad-coverage
-text. \autoref{fig:intro:dog-amr} shows the Abstract Meaning
-Representation~\citep[\textbf{AMR},][]{Ban:Bon:Cai:13} of the example
-sentence. The node in the graph represents abstract
-concepts~\footnote{AMR concepts include PropBank framesets, and other special dates, spatial entities, etc. More details about AMR will
-  be introduced in~\autoref{ssec:bg:broad-mr}}, and the labeled edges
+Secondly, we exmaine \kw{broad-coverage meaning
+  representations}. Besides the above structures capturing specific
+lexical, syntactic or semantic information, a broad-coverage semantic
+representation is a general-purpose meaning representation language
+aiming to represent the multiple phenomena in a single structure for
+broad-coverage text. \autoref{fig:intro:dog-amr} shows the Abstract
+Meaning Representation~\citep[\kw{AMR},][]{Ban:Bon:Cai:13} of the
+example sentence. The node in the graph represents abstract
+concepts~\footnote{AMR concepts include PropBank framesets, and other
+  special dates, spatial entities, etc. More details about AMR will be
+  introduced in~\autoref{ssec:bg:broad-mr}}, and the labeled edges
 between the nodes represent the relations between those concepts. As
-shown in \autoref{fig:intro:dog-tree}, the node `find–01' and
-`hide-01' represents the word sense predefined in the
-Propbank~\cite{Kin:Pal:02}; The connected edges `:ARG0' and `:ARG1'
-captures the semantic roles that can be derived from the semantic role
-labelling tasks; While the node `dog/d1' means the subject for events
-`find-01', `hide-01' and 'possible-01' are the same dog, thus
-capturing the coreference information. \autoref{fig:intro:dog-ucca}
-shows the foundational layer of Universal Conceptual Cognitive
-Annotation~\citep[\textbf{UCCA},][]{Abe:Rap:13b}, which is a
+shown in \autoref{fig:intro:dog-tree}, the node \tquoted{find-01} and
+\tquoted{hide-01} represents the word sense predefined in the
+Propbank~\cite{Kin:Pal:02}; The connected edges \tquoted{:ARG0} and
+\tquoted{:ARG1} captures the semantic roles that can be derived from
+the semantic role labelling tasks; While the node \tquoted{dog/d1}
+means the subject for events \tquoted{find-01}, \tquoted{hide-01} and
+\tquoted{possible-01} are the same dog, thus capturing the coreference
+information. \autoref{fig:intro:dog-ucca} shows the foundational layer
+of Universal Conceptual Cognitive
+Annotation~\citep[\kw{UCCA},][]{Abe:Rap:13b}, which is a
 multi-layered framework for semantic representation that aims to
 accommodate the semantic distinctions in the sentence and support
 open-ended extensions. Different from AMR, this UCCA foundational
-layer mainly forms a tree-like structure, which focuses on the argument
-structures of verbal, nominal, and adjectival predicates and the
-inter-relations between them. Besides the above two broad-coverage
+layer mainly forms a tree-like structure, which focuses on the
+argument structures of verbal, nominal, and adjectival predicates and
+the inter-relations between them. Besides the above two broad-coverage
 meaning representations, we also studied the DELPH-IN MRS Bi-lexical
-Dependencies~\cite[DM,][]{ivanova2012did} and Prague Semantic
-Dependencies~\cite[PSD,][]{hajic2012announcing,miyao2014house}. More
+Dependencies~\citep[\kw{DM},][]{ivanova2012did} and Prague Semantic
+Dependencies~\citep[\kw{PSD},][]{hajic2012announcing,miyao2014house}. More
 details about their captured semantic content and their structure
 properties will be introduced comparatively
 in~\autoref{ssec:bg:broad-mr}.
@@ -111,8 +114,8 @@ in~\autoref{ssec:bg:broad-mr}.
 \centering
 \includegraphics[width=1.0\textwidth]{broad-coverage-mr.pdf}
 \caption{\label{fig:intro:dog-amr} The broad coverage meaning
-  representation AMR for the sentence \textit{"The dog cannot find the
-    bone it hid from the other dogs."}. It represents multiple
+  representation AMR for the sentence \emph{\dquoted{The dog cannot find the
+    bone it hid from the other dogs.}}. It represents multiple
   phenomena in a single structure, inclduing the predicate-argument
   structure and word sense disambiguiation in semantic role labelling,
   coreference resolution, and so on.}
@@ -123,29 +126,28 @@ in~\autoref{ssec:bg:broad-mr}.
 \centering
 \includegraphics[width=0.90\textwidth]{dog-ucca.pdf}
 \caption{\label{fig:intro:dog-ucca} The broad coverage meaning
-  representation UCCA for the sentence \textit{"The dog cannot
-    find the bone it hid from the other dogs."}}
+  representation UCCA for the sentence \emph{\dquoted{The dog cannot
+    find the bone it hid from the other dogs.}}}
 \end{figure}
 
-\Paragraph{Example 3: Application-specific Symbolic Representation}
-Besides the above broad coverage syntactic and semantic structures in
-natural language, researchers have designed various symbolic
-representations for specific applications. Dialogue acts are firstly
-designed to represent the speech act or intention of each utterance,
-to represent the functions of each utterance in the
+Finally, besides the above broad coverage syntactic and semantic
+structures in natural language, researchers have designed various
+\kw{symbolic representations for specific applications}. Dialogue acts are
+firstly designed to represent the speech act or intention of each
+utterance, to represent the functions of each utterance in the
 dialogue~\citep{wittgenstein2010philosophical,bunt2010towards}. Then
 inspired by the case theory~\citep{Fillmore:68}, frame-based
 representation in GUS~\citep{bobrow1977gus} are introduced to
 represent the state of dialogue, which consists of a collection of
 slots and each with a set of possible
-values. \autoref{fig:intro:dialogue} shows an example of dialogue state
-tracking, where each table is filled with intent, slot, and slot values,
-representing a dialogue state for a user turn.
+values. \autoref{fig:intro:dialogue} shows an example of dialogue
+state tracking, where each table is filled with intent, slot, and slot
+values, representing a dialogue state for a user turn.
 
 \begin{figure}[!th]
 \centering
-\includegraphics[width=0.90\textwidth]{dialogue-example.pdf}
-\caption{\label{fig:intro:dialogue} Example for dialogue state
+\includegraphics[width=0.98\textwidth]{dialogue-example.pdf}
+\caption{\label{fig:intro:dialogue} An Example for dialogue state
   tracking.}
 \end{figure}
 
@@ -185,14 +187,14 @@ summarization~\citep{liu2015toward}, question
 answering~\citep{kapanipathi2021leveraging} and so on.
 
 Predicting structured representations of text is essential for natural
-language processing, even in the deep learning era. In this thesis, we
+language processing, even in the deep learning era. In this dissertation, we
 ground the studies of natural language structured prediction on both
 broad-coverage meaning representations and application-specific
 representations. Beyond pure data-driven methods, we primarily study
 deep linguistic structured prediction via independent
 factorization. We propose two kinds of generic inductive biases to
 support the independent factorization for each task, including
-Structural Inductive Biases and Natural Language as Inductive Biases.
+structural inductive biases and natural language as inductive biases.
 
 \input{chapters/intro/intro-motivation}
 %\input{chapters/intro/intro-replearning}
@@ -223,5 +225,5 @@ Structural Inductive Biases and Natural Language as Inductive Biases.
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../thesis-main.ltx"
+%%% TeX-master: "../dissertation-main.ltx"
 %%% End:

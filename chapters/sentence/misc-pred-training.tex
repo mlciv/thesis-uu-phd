@@ -2,7 +2,7 @@
 \subsection{Predicting and Training}
 \label{ssec:inference_and_training}
 
-\Paragraph{Predicting} From up to the bottom, every component will
+From top to the bottom, every component will
 produce some of useful representation for inferences in our tasks.
 The dialogue encoding vector $\bm{H}_{n}$, as the final of the
 unidirectional GRU, it is also the contextual utterance encoding
@@ -35,6 +35,7 @@ scores, such as $\text{add}(A,B)=\text{MLP}(A)+\text{MLP}(B)$.
 
 
 \begin{table}[t]
+\caption{\label{tbl:inference_options} Input options for annotating and forecasting tasks based on CON and HGRU skeletons.}
 \begin{center}
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcc}
@@ -44,12 +45,10 @@ CON      & $\bm{v}^{seg}_{n}$,$\bm{v}^{{wordatt}_{n}}$, $\bm{v}_{n}$ & $\bm{C}_{
 HGRU     & $\bm{H}_{n}$,$\bm{v}^{selfatt}_{n}$,$\bm{v}_{n}$          & $\bm{H}_{n}$ \\ \bottomrule
 \end{tabular}
 \end{center}
-\caption{\label{tbl:inference_options} Input options for annotating and forecasting tasks based on CON and HGRU skeletons.}
-
 \end{table}
 
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:

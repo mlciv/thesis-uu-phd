@@ -1,4 +1,5 @@
-\section{Independent Factorization for Motivational Interviewing}
+\section[Independent Factorization for Motivational
+Interviewing]{Independent Factorization for Motivational \\Interviewing}
 \label{sec:snt:task}
 In this section, we will formally define the two NLP tasks
 corresponding to the vision in~\S\ref{sec:snt:background} using the
@@ -103,6 +104,7 @@ therapist: \emph{Given a dialogue history $H_n$ and the next speaker's
 % argue that it is possible to learn to anticipate information about
 % future utterances; this forms the basis of chatbot
 % development.
+
 We argue that forecasting the type of the next utterance, rather than
 selecting or generating its text as has been the focus of several
 recent lines of work~\citep[\eg,][]{schatzmann2005quantitative,ubuntu,DSTC7},
@@ -117,8 +119,8 @@ antisocial comments in online
 conversations~\citep{zhang2018conversations} whose goal is to
 provide an early warning for such events.
 
-
-\subsection{Independent Factorization for Categorization and
+\subsection[Independent Factorization for Categorization and
+Forcasting Task]{Independent Factorization for Categorization \\and
   Forcasting Task}
 \label{ssec:snt:comparative-tasks}
 
@@ -137,23 +139,25 @@ sliding window to decompose the input dialogue
 history. \autoref{tbl:snt:task-comparasion} shows the clear
 differences when we choose dialogue history window size as 3.
 
-\Paragraph{Output Decomposition} The outputs of both tasks are a
-sequence of MISC labels. Because each MISC label is naturally
-associated with a corresponding utterance, representing different
-functions as shown in \autoref{tbl:bg:misc}. Hence for independent
-factorization, it is natural to decompose the whole sequence
-prediction into a set of continuous single MISC label prediction tasks
-as defined previously. In such a way, each MISC prediction in the
-categorization or forecasting task is independent of the MISC
-prediction in the previous dialogue turn. However, they have different
-goals for each dialogue turn. When the dialogue goes to turn 3, both
-the categorization and forecasting task will observe the current
-dialog history window as input $X=H_{n}$. However, the key difference
-is as follows: the categorization task is to predict the MISC code
-$l_{n}$ for the last seen utterance $u_{n}$, while the forecasting
-task is to guess the future MISC code $l_{n+1}$ for the unseen
-utterance $u_{n+1}$. To model this difference on output decomposition,
-we introduce four components for dialogue and sentence representation
+\subsubsection{Output Decomposition}
+\label{sssec:snt:output-decomposition}
+The outputs of both tasks are a sequence of MISC labels. Because each
+MISC label is naturally associated with a corresponding utterance,
+representing different functions as shown in
+\autoref{tbl:bg:misc}. Hence for independent factorization, it is
+natural to decompose the whole sequence prediction into a set of
+continuous single MISC label prediction tasks as defined
+previously. In such a way, each MISC prediction in the categorization
+or forecasting task is independent of the MISC prediction in the
+previous dialogue turn. However, they have different goals for each
+dialogue turn. When the dialogue goes to turn 3, both the
+categorization and forecasting task will observe the current dialog
+history window as input $X=H_{n}$. However, the key difference is as
+follows: the categorization task is to predict the MISC code $l_{n}$
+for the last seen utterance $u_{n}$, while the forecasting task is to
+guess the future MISC code $l_{n+1}$ for the unseen utterance
+$u_{n+1}$. To model this difference on output decomposition, we
+introduce four components for dialogue and sentence representation
 learning and search for the best model for each
 task~\autoref{sec:snt:devices}. Furthermore, the MISC codes for the
 clients and therapist represent different meanings and functions for
@@ -170,7 +174,8 @@ $F_{t}$ for client and therapist. After such output decomposition,
 every model only needs to classify on a unified set of MISC labels,
 representing coherent goals for the clients or the therapist.
 
-\Paragraph{Input Decomposition and Alignments Discovery}
+\subsubsection{Input Decomposition and Alignments Discovery}
+\label{sssec:snt:input-decomposition}
 For the input decomposition in previous lexical-anchoring and
 phrasal-anchoring, the corresponding output label can be directly
 derived from each input segment. For example, in lexical anchoring,
@@ -198,12 +203,15 @@ slide to the next window of size 3, as $H_{n}=\{u_2,u_3,u_4\}$. The
 $u_{1}$ will be truncated due the sliding window. We limit the
 dialogue window because the whole therapy dialogue session may last
 for 500 utterances, where current neural models such as RNN and
-transformer can not handle the long context well.  In this thesis
+transformer can not handle the long context well.  In this dissertation
 study~\autoref{ssec:snt:abl_context_attention}, we compare the window
 size as 8 and 16 for our models. We leave the extremely long dialogue
 context encoding as the future work.
 
 \begin{table}[!h]
+\caption{\label{tbl:snt:task-comparasion} Differences between the
+  categorization task and the forcasting task, when choosing a window
+  size as 3 to factorize the dialog sequential flow}
 \begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{l|c|c|c}
@@ -218,13 +226,10 @@ context encoding as the future work.
   \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:snt:task-comparasion} Differences between the
-  categorization task and the forcasting task, when choosing a window
-  size as 3 to factorize the dialog sequential flow}
 \end{table}
 
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:

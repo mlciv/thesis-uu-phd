@@ -1,5 +1,5 @@
 
-\section{Independent Factorization for Dialogue State Tracking}
+\section[Independent Factorization for Dialogue State Tracking]{Independent Factorization for Dialogue \\State Tracking}
 \label{sec:sgd:ind-factorization}
 A classic dialog state tracker predicts a dialog state frame at each
 user turn given the dialog history and predefined domain ontology. As
@@ -60,19 +60,18 @@ require matching the current dialog history with candidate schema
 descriptions for each subtask and multiple times. Such matches are
 computation-heavy, which raises new challenges to our modeling.
 
-
-\Paragraph{Schema Components} Figure \ref{fig:schema-dst} shows three
+Figure \ref{fig:schema-dst} shows three
 main schema components: service, intent, slot. For each intent, the
 schema also describes {\it optional} or {\it required} slots for
 it. For each slot, there are flags indicating whether it is
 categorical or not. {\it Categorical} means a set of
 predefined candidate values~(Boolean, numeric or text). For instance,
 {\it has\_live\_music} in Figure~\ref{fig:schema-dst} is a categorical
-slot with Boolean values. {\it Non-categorical}, on the other hand,
+slot with boolean values. {\it Non-categorical}, on the other hand,
 means the slot values are filled from the string spans in the dialog
 history.
 
-\subsection{Input Decomposition and Alignments Discovery: Attention}
+\subsection[Input Decomposition and Alignments Discovery: Attention]{Input Decomposition and Alignments Discovery: \\Attention Mechanism}
 \label{sec:sgd:decompose-x}
 In lexical-anchoring, the input sentence is decomposed exclustively
 into tokens and special entities. In phrasal-anchoring, the input
@@ -113,5 +112,5 @@ questions. We discuss each of them in the following sections.
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:

@@ -1,4 +1,4 @@
-\subsection{Word-level Attention}
+\subsection{Word-Level Attention}
 \label{ssec:word_att}
 
 Certain words in the utterance history are important to categorize or
@@ -39,6 +39,7 @@ the $j^{th}$ query and the $k^{th}$ key, computed as
 \label{eq:att_weight}
 \alpha^{k}_{j} = \frac{\exp\left(f_{m}(\bv_{nk}, \bv_{ij})\right)}{\sum_{j^{\prime}} \exp\left(f_{m}(\bv_{nk}, \bv_{ij^\prime})\right)}
 \end{equation}
+
 Here, $f_m$ is a match scoring function between the corresponding
 words, and different choices give us different attention mechanisms.
 
@@ -61,19 +62,6 @@ treated as word encodings.
 
 
 \begin{table}[t]
-\begin{center}
-  \setlength{\tabcolsep}{3pt}
-  {\small
-    \begin{tabular}{ll|l}
-      \toprule
-      Method                 & $f_{m} $                                    & $f_{c}$                                                             \\ \hline
-      BiDAF                  & \multirow{2}{*}{$\bm{v}_{nk} {\bm{v}_{ij}^{T}}$}             & $[\bm{v}_{ij};~\bm{a}_{ij};  $                                      \\
-                             &                                             & $~~\bm{v}_{ij} \odot \bm{a}_{ij};~\bm{v}_{ij}\odot \bm{a}^{\prime}]$ \\ \hline
-      \multirow{2}{*}{GMGRU} & $\bm{w}^{e} \tanh(\bm{W}^{k}\bm{v}_{nk}$    & \multirow{2}{*}{$[\bm{v}_{ij};\bm{a}_{ij}]$}                        \\
-                             & $~~+ \bm{W}^{q}[\bm{v}_{ij}; \bm{h}_{j-1}])$ &                                                                     \\ \hline
-    \end{tabular}
-  }
-\end{center}
 \caption{\label{tbl:word_att} Summary of word attention mechanisms.
   %
   We simplify BiDAF with multiplicative attention between  word
@@ -90,6 +78,19 @@ treated as word encodings.
   attention information from both the key-aware query vector
   $\ba_{ij}$ and a similarly defined query-aware key vector
   $\ba^{\prime}$. GMGRU uses simple concatenation for $f_c$.}
+\begin{center}
+  \setlength{\tabcolsep}{3pt}
+  {\small
+    \begin{tabular}{ll|l}
+      \toprule
+      Method                 & $f_{m} $                                    & $f_{c}$                                                             \\ \hline
+      BiDAF                  & \multirow{2}{*}{$\bm{v}_{nk} {\bm{v}_{ij}^{T}}$}             & $[\bm{v}_{ij};~\bm{a}_{ij};  $                                      \\
+                             &                                             & $~~\bm{v}_{ij} \odot \bm{a}_{ij};~\bm{v}_{ij}\odot \bm{a}^{\prime}]$ \\ \hline
+      \multirow{2}{*}{GMGRU} & $\bm{w}^{e} \tanh(\bm{W}^{k}\bm{v}_{nk}$    & \multirow{2}{*}{$[\bm{v}_{ij};\bm{a}_{ij}]$}                        \\
+                             & $~~+ \bm{W}^{q}[\bm{v}_{ij}; \bm{h}_{j-1}])$ &                                                                     \\ \hline
+    \end{tabular}
+  }
+\end{center}
 \end{table}
 
 To complete this discussion, we need to instantiate the two
@@ -144,10 +145,10 @@ sections, we will refer to the two attended versions of the \HGRU as
 %where $\bm{W}^{g} \in$
 
 % % Match-LSTM is ported from textual % %entailment task to capture word-level
-% attention between premise and %hypothesis.
+% attention between premise and %hypodissertation.
 % %In our model, we treat the response $r$
 % as a premise and each %utterance in the
-% dialogue history as a hypothesis. %
+% dialogue history as a hypodissertation. %
 
 
 %\vs{I don't understand this paragraph at all. Please expand, with
@@ -157,5 +158,5 @@ sections, we will refer to the two attended versions of the \HGRU as
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:

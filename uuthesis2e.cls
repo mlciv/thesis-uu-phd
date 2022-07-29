@@ -911,7 +911,8 @@
 \def\fourlevels{
   \threelevels
   \setcounter{secnumdepth}{6}
-  \setcounter{tocdepth}{6}
+  %\setcounter{tocdepth}{6} only showing two levels
+  \setcounter{tocdepth}{3}
   \newcounter{subsubsection}[subsection]
   \def\thesubsubsection{\thesubsection.\arabic{subsubsection}}
   \def\theparagraph{\thesubsubsection.\arabic{paragraph}}

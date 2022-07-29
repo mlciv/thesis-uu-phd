@@ -7,7 +7,8 @@ the context window size and impact of different word level and
 sentence level attention mechanisms. Tables \ref{tbl:rst_cxt_client}
 and \ref{tbl:rst_cxt_therapist} summarize our results.
 
-\Paragraph{History Size}
+\subsubsection{History Size}
+\label{sssec:snt:history-size}
 Increasing the history window size generally helps. The biggest
 improvements are for categorizing therapist codes
 (Table~\ref{tbl:rst_cxt_therapist}), especially for the \RES and
@@ -16,6 +17,16 @@ to categorize client codes~(\autoref{tbl:rst_cxt_client}) or
 forecasting~(\autoref{tbl:rst_cxt_forcasting}).
 
 \begin{table}[t]
+\caption{\label{tbl:rst_cxt_forcasting} Ablation on forecasting task
+  on both client and therapist code. $*$ row are results of our best
+  forecasting model $\mathcal{F}_{C}$, and $\mathcal{F}_{T}$.
+  $\setminus$ means substitute anchor attention with self
+  attention. $+\text{GMGRU}$ \anchor means using word-level attention
+  and achor-based sentence-level attention together. Word-level
+  attention shows no help for both client and therapist codes. While
+  sentence-level attention helps more on therapist codes than on
+  client codes. Multi-head self attention also achieves better
+  performance than anchor-based attention in forecasting tasks. }
 \begin{center}
 \setlength{\tabcolsep}{2.5pt}
 {\small
@@ -37,19 +48,10 @@ Ablation                                                               & Options
 %                                                                      & Rating $>$ 5          &            &            & 76.9       & 77.4       & 18.2       & 28.9       & 56.8       & 24.8       & 18.6       & 19.2       & 1.5        \\ \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:rst_cxt_forcasting} Ablation on forecasting task
-  on both client and therapist code. $*$ row are results of our best
-  forecasting model $\mathcal{F}_{C}$, and $\mathcal{F}_{T}$.
-  $\setminus$ means substitute anchor attention with self
-  attention. $+\text{GMGRU}$ \anchor means using word-level attention
-  and achor-based sentence-level attention together. Word-level
-  attention shows no help for both client and therapist codes. While
-  sentence-level attention helps more on therapist codes than on
-  client codes. Multi-head self attention also achieves better
-  performance than anchor-based attention in forecasting tasks. }
 \end{table}
 
-\Paragraph{Word-level Attention}
+\subsubsection{Word-Level Attention}
+\label{sssec:snt:word-att-analysis}
 Only the model $\mathcal{C}_{T}$ uses word-level attention. As shown
 in Table~\ref{tbl:rst_cxt_therapist}, when we remove the word-level
 attention from it, the overall performance drops by 3.4 points,
@@ -57,9 +59,11 @@ while performances of \RES and \REC drop by 3.3 and 5 points
 respectively. Changing the attention to BiDAF decreases performance
 by about 2 points (still higher than the model without attention).
 
-\Paragraph{Sentence-level Attention} Removing sentence attention
-from the best models that have it decreases performance for the
-models $\mathcal{C}_T$ and $\mathcal{F}_T$ (in appendix).
+\subsubsection{Sentence-Level Attention}
+\label{sssec:snt:snt-att-analysis}
+Removing sentence attention from the best models that have it
+decreases performance for the models $\mathcal{C}_T$ and
+$\mathcal{F}_T$ (in appendix).
 %
 %If we extend the GMGRU with a multiplicative multi-head attention
 %for its match function $f_{m}$ in \S\ref{ssec:word_att} (denoted as
@@ -81,6 +85,12 @@ categorizing clients codes.
 % next sentence in our tasks
 
 \begin{table}[t]
+\caption{\label{tbl:rst_cxt_client} Ablation study on categorizing
+  client code. $*$ is our best model $\mathcal{C}_{C}$. All
+  ablation is based on it. The symbol $+$ means adding a
+  component to it.  The default window size
+  is 8 for our ablation models in the word attention and sentence
+  attention parts.}
 \begin{center}{
 \setlength{\tabcolsep}{6pt}
 \begin{tabular}{cccccc}
@@ -102,15 +112,15 @@ categorizing clients codes.
 %                                                     & + $l^{\prime}_{i}$                & 48.9  & 85.1 & 33.1    & 28.4     \\ \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:rst_cxt_client} Ablation study on categorizing
-  client code. $*$ is our best model $\mathcal{C}_{C}$. All
-  ablation is based on it. The symbol $+$ means adding a
-  component to it.  The default window size
-  is 8 for our ablation models in the word attention and sentence
-  attention parts.}
 \end{table}
 
 \begin{table}[t]
+\caption{\label{tbl:rst_cxt_therapist} Ablation study on
+  categorizing therapist codes, $*$ is our proposed model
+  $\mathcal{C}_{T}$. $\setminus$ means substituting and $-$ means removing
+  that component. Here, we only report the important \REC, \RES
+  labels for
+  guiding, and the \MIN label for warning a therapist. }
 \begin{center}{
 \setlength{\tabcolsep}{5pt}
 \begin{tabular}{cccccc}
@@ -132,15 +142,9 @@ Ablation                                              & Options                 
 %                                                     & $+l^{\prime}_{i}$                   & 64.1       & 56.5       & 53.5       & 15.0       \\ \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:rst_cxt_therapist} Ablation study on
-  categorizing therapist codes, $*$ is our proposed model
-  $\mathcal{C}_{T}$. $\setminus$ means substituting and $-$ means removing
-  that component. Here, we only report the important \REC, \RES
-  labels for
-  guiding, and the \MIN label for warning a therapist. }
 \end{table}
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:
