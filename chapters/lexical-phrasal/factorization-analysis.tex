@@ -108,26 +108,32 @@ investigation in future.
 
 \subsubsection{Summary of Anchoring Analysis}
 \label{sssec:lex-phr:sum-anchoring}
+According to the above factorization analysis, we group the
+broad-coverage meaning representations~(DM, PSD, AMR, UCCA) and the
+conversational semantic representation~(TOP) into the following three
+categories.
 
-\Paragraph{Explicit Lexical Anchoring: DM and PSD}
-As discussed in~\autoref{sssec:bg:dm} and~\autoref{sssec:bg:psd}, DM and PSD aim to
-represent all the semantic dependencies between words, fully
-covering the sentence. For each node in the graph, there will be an
-explicit words and multiword expressions aligning to it. Hence, we call such
-kind of lexical anchoring explicit lexical-anchoring.
+\begin{itemize}
+\item \textbf{Explicit lexical-anchoring: DM and PSD.} As discussed
+  in~\autoref{sssec:bg:dm} and~\autoref{sssec:bg:psd}, DM and PSD aim
+  to represent all the semantic dependencies between words, fully
+  covering the sentence. For each node in the graph, there will be an
+  explicit words and multiword expressions aligning to it. Hence, we
+  call such kind of lexical anchoring explicit lexical-anchoring.
 
-\Paragraph{Implicit Lexical Anchoring: AMR}
-AMR tries to abstract the meaning representation away from the surface
-token. The absence of explicit anchoring can present difficulties for
-parsing. However, through extensive anchoring analysis on AMR
-alignments, we show that AMR nodes can be implicitly aligned to the
-lexical tokens or special entities in a sentence. Hence, we mainly
-consider the lexical-level input decomposition for AMR.
+\item \textbf{Implicit lexical-anchoring: AMR.} AMR tries to abstract
+  the meaning representation away from the surface token. The absence
+  of explicit anchoring can present difficulties for parsing. However,
+  through extensive anchoring analysis on AMR alignments, we show that
+  AMR nodes can be implicitly aligned to the lexical tokens or special
+  entities in a sentence. Hence, we mainly consider the lexical-level
+  input decomposition for AMR.
 
-\Paragraph{Phrasal Anchoring: UCCA and TOP} According to the
-background of UCCA~\S\ref{ssec:bg:ucca}, UCCA non-terminal nodes are
+\item \textbf{Phrasal-anchoring: UCCA and TOP.} According to the
+background of UCCA~\autoref{ssec:bg:ucca}, UCCA non-terminal nodes are
 aligned to phrases in a sentence. Hence, we need to consider
 phrase-level input decomposition for UCCA.
+\end{itemize}
 
 %%% Local Variables:
 %%% mode: latex

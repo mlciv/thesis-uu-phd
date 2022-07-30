@@ -72,6 +72,8 @@
 %%% University of Utah Thesis Office requirements.  Therefore, minimize
 %%% the number of packages that you include!
 
+
+%\usepackage [hyperref]{acl_bib}
 \usepackage {amsmath}
 \usepackage {amssymb}
 \usepackage {bm}
@@ -104,8 +106,7 @@
 \usepackage {microtype}
 
 % (inline references)
-%\usepackage[square, numbers]{natbib}
-\usepackage{natbib}
+\usepackage[sort, square, numbers]{natbib}
 \newcommand{\newblock}{}
 \usepackage{tabularx}
 
@@ -117,7 +118,17 @@
 
 %% hyperref only works when using uuthesis-2021-hyper
 %% https://tex.stackexchange.com/questions/115008/how-do-i-add-section-subsection-numbers-to-pdf-bookmarks
-\usepackage[colorlinks=false, hidelinks,bookmarksnumbered]{hyperref}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=false,
+    %linkbordercolor={white},
+    %citebordercolor={white},
+    filebordercolor={white},
+    menubordercolor={white},
+    urlbordercolor={white},
+    runbordercolor={white},
+    bookmarksnumbered
+}
 
 %%% ====================================================================
 %%% The various uuthesis-*.sty packages must come AFTER all other
@@ -340,8 +351,8 @@
 %%% a bibliography.  Thus, we suppress it here:
 
 %%%\bibliographystyle{siam}
-\bibliographystyle{acl_natbib}
-%%%\bibliographystyle{ieeetr}
+%%%\bibliographystyle{acl_natbib}
+\bibliographystyle{IEEEtranN}
 
 %%% This can also specify a comma-separated list (without embedded
 %%% spaces) of *.bib files found by BibTeX in its BIBINPUTS search

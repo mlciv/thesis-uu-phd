@@ -1,6 +1,6 @@
 \section{Supplementary Training}
 \label{sec:sgd:sup-training}
-Besides the pretrain-fintune framework used in \S\ref{sec:sgd:models},
+Besides the pretrain-fintune framework used in~\autoref{sec:sgd:models},
 \citet{phang2018sentence} propose to add a supplementary training
 phase on an intermediate task after the pretraining, but before
 finetuning on target task. It shows significant improvement on the
@@ -28,19 +28,20 @@ predict with the summerized sentence-pair~\CLS~representation. While
 \NSL~also requires span-based detection such as question
 answering. Hence, they share the similar problem structure with the
 following sentence-pair encoding tasks.
-
-\Paragraph{Natural Language Inference} Given a hypodissertation/premise
+\begin{itemize}
+\item \textbf{Natural Language Inference:} Given a hypodissertation/premise
 sentence pair, natural language inference is a task to determine
 whether a hypodissertation is entailed, contradicted or neutral given
 that premise.
 
-\Paragraph{Question Answering} Given a passage/question pairs, the
+\item \textbf{Question Answering:} Given a passage/question pairs, the
 task is to extract the span-based answer in the passage.
+\end{itemize}
 
 Hence, when finetuning BERT on our subtaks, instead of directly using
 the originally pretrained BERT, we use the BERT
 finetuned on the above two tasks for further finetuning.  Due to better
-peformance of \CE in \S\ref{ssec:models-overview}, we directly use the finetuned
+peformance of \CE in~\autoref{ssec:models-overview}, we directly use the finetuned
 \CE~version of BERT models on SNLI and SQuAD2.0 dataset from
 Huggingface model hub. We add extra speaker tokens [user:] and
 [system:] into the vocabulary for encoding the multi-turn dialog

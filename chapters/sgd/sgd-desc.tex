@@ -1,7 +1,7 @@
 \section{Impact of Description Styles}
 \label{sec:sgd:abl-desc}
 %As shown in Figure \ref{fig:schema-dst} and the predefined notations
-%in \S\ref{sec:chanllenges-in-sgd}, there are three components in the
+%in~\autoref{sec:chanllenges-in-sgd}, there are three components in the
 %schema definitions: services $V$, intents $I$, slots $S$. Based on the
 %given description, participators in DSTC8 schema-guided dialog state
 %tracking task use different compositions of service/intent/slots
@@ -29,23 +29,24 @@ and heterogeneous styles of descriptions. Given the best performance
 of \CE~shown in the previous section and its popularity in DSTC8
 challenges, we adopt it as our model architecture in this section.
 
-\subsection{Benchmarking Styles}
+\subsection{Benchmarking Styles and Experiment Setup}
 \label{ssec:desc-styles}
 For each intent/slot, we describe their functionalities by the
 following different descriptions styles:
 
-\Paragraph{\ID} This is the least informative case of name-based
+\begin{itemize}
+\item \textbf{\ID:} This is the least informative case of name-based
 description: we only use meaningless intent/slot identifiers,
 e.g. Intent\_1, Slot\_2. It means we don't use description from any
 schema component. We want to investigate how a simple identifier-based
 description performs in schema-guided dialog modeling, and the
 performance lower-bound on transferring to unseen services.
 
-\Paragraph{\NAMEONLY} Using the original intent/slot names in \sgdst
+\item \textbf{\NAMEONLY:} Using the original intent/slot names in \sgdst
 and \multiwoz dataset as descriptions, to show whether name is enough
 for schema-guided dialog modeling.
 
-\Paragraph{\QANAMEONLY} This is corresponding to previous
+\item \textbf{\QANAMEONLY:} This is corresponding to previous
   work by~\citet{gao2019dialog}. For each intent/slot, it generate a
   question to inquiry about the intent and slot value of the
   dialog. For each slot, it simply follows the template '{\it What
@@ -53,9 +54,9 @@ for schema-guided dialog modeling.
   extend the intent description by following the template ``{\it Is
     the user intending to {\bf intent j} }".
 
-  \Paragraph{\ORIGIN} The original descriptions in \sgdst and \multiwoz dataset.
+ \item \textbf{\ORIGIN:} The original descriptions in \sgdst and \multiwoz dataset.
 
-  \Paragraph{\QARICH} Different from the \QANAMEONLY, firstly it is
+ \item \textbf{\QARICH:} Different from the \QANAMEONLY, firstly it is
   based on the original descriptions; secondly, rather than always use
   the ``what is" template to inquiry the intent/slot value, We add
   ``what", ``which", ``how many" or ``when" depending on the entity
@@ -66,8 +67,10 @@ for schema-guided dialog modeling.
   to see whether the question format is helpful or not for
   schema-guided dialog modeling.
 
-  To test the model robustness, we also create two paraphrased
-  versions \NAMEPARA~and \PARAPHRASE~for
+\end{itemize}
+
+To test the model robustness, we also create two paraphrased
+  versions \textbf{\NAMEPARA}~and \textbf{\PARAPHRASE}~for
   \NAMEONLY~and~\ORIGIN~respectively. We first use
   nematus~\cite{sennrich-etal-2017-nematus} to automatically
   paraphrase the description with back translation, from English to
@@ -76,7 +79,14 @@ for schema-guided dialog modeling.
   \ref{tbl:sgd:schema-desc-ext} shows examples for different styles of
   schema descriptions.
 
+  Unlike the composition used in Table \ref{tbl:sgd:schema-seq}, we
+  don't use the service description to avoid its impact. For each
+  style, we train separate models on 4 subtasks, then we evaluate them
+  on different target styles in both homogeneous~(\autoref{ssec:sgd:homo-eval})
+  and~heterogeneous settings~(\autoref{ssec:sgd:heter-eval})
+
 \begin{table}[!]
+\caption{\label{tbl:sgd:schema-desc-ext} Different extensions of schema descriptions}
 \begin{center}{\scriptsize
 \begin{tabular}{lll}
 \toprule
@@ -93,7 +103,6 @@ style                         & Intent Description                              
 \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:sgd:schema-desc-ext} Different extensions of schema descriptions}
 \end{table}
 
 %
@@ -102,18 +111,6 @@ style                         & Intent Description                              
 %  description. Multiwoz 2.1 will not support this style, because no
 %  dependency information provided in the dataset.
 
-\subsection{Results on Description Styles}
-\label{ssec:desc-experiments}
-Unlike the composition used in Table \ref{tbl:sgd:schema-seq}, we don't
-use the service description to avoid its impact. For each style, we
-train separate models on 4 subtasks, then we evaluate them on
-different target styles. First, Table \ref{tbl:sgd:homo-style-results}
-summarizes the performance for homogeneous evaluation, while Table
-\ref{tbl:sgd:squad2-results-question} shows how the question style
-description can benefit from SQuAD2 finetuning. Then we also conduct
-heterogeneous evaluation on the other styles\footnote{We don't consider
-  the meaningless \ID~style due to its bad performance} as shown in
-Table \ref{tbl:sgd:hete-style-results-sgd}.
 %
 %Take noncategorical slots subtask on \sgdst as an example, the results
 %are summerized in {\bf last three columns} in Table
@@ -130,6 +127,12 @@ Table \ref{tbl:sgd:hete-style-results-sgd}.
 %description style, the relative small value in standard deviation
 %means relatively stable performance on {\it rich} description group.
 \begin{table}[!ht]
+\caption{\label{tbl:sgd:homo-style-results} Homogeneous evaluation results
+  of different description style on \sgdst dataset and \multiwoz
+  datasets. The middle horizontal line separate the two name-based
+  descriptions and two rich descriptions in our settings. All
+  numbers in the table are mixed performance including both seen and
+  unseen services.}
 \begin{center}{
 \setlength{\tabcolsep}{2pt}
 \begin{tabular}{c|cccc|cc}
@@ -149,38 +152,42 @@ Table \ref{tbl:sgd:hete-style-results-sgd}.
 \end{tabular}
 }
 \end{center}
-\caption{\label{tbl:sgd:homo-style-results} Homogeneous evaluation results
-  of different description style on \sgdst dataset and \multiwoz
-  datasets. The middle horizontal line separate the two name-based
-  descriptions and two rich descriptions in our settings. All
-  numbers in the table are mixed performance including both seen and
-  unseen services.}
 \end{table}
 
-\subsubsection{Homogeneous Evaluation}
-\label{sssec:homo-eval}
-\QParagraph{Is name-based description enough} As shown in Table
-\ref{tbl:sgd:homo-style-results}, \ID~is the worst case of using name
-description, its extremely bad performance indicates name-based
-description can be very unstable. However, we found that simple
-meaningful name-based description actually can perform the best in
-\IC~and~\RSI task, and they perform worse on \CSL~and~\NSL tasks
-comparing to the bottom two {\it rich} descriptions. \footnote{Only
-  exception happens in \CSL~on \multiwoz. When creating
-  \multiwoz~\cite{zang-etal-2020-multiwoz}, the slots with less than
-  50 different slot values are classified as categorical slots, which
-  leads to inconsistencies. We put detailed discuss about \multiwoz~in
-  the supplementary material} After careful analysis on the intents in
-\sgdst datasets, we found that most services only contains two kinds
-of intents, an information retrieval intent with a name prefix
-"Find-", "Get-", "Search-"; another transaction intent like "Add-",
-"Reserve-" or "Buy-". Interestingly, we found that all the intent
-names in the original schema-guided dataset strictly follows an
-action-object template with a composition of words without
-abbreviation, such as "FindEvents", "BuyEventTickets". This simple
-name template is good enough to describe the core functionality of an
-intent in \sgdst dataset.~\footnote{This action-object template has
-  also been found efficient for open domain intent induction
+\subsection{Homogeneous Evaluation}
+\label{ssec:sgd:homo-eval}
+In this section, Table \ref{tbl:sgd:homo-style-results} summarizes the
+performance for homogeneous evaluation, while Table
+\ref{tbl:sgd:squad2-results-question} shows how the question style
+description can benefit from SQuAD2 finetuning. Then we also conduct
+heterogeneous evaluation on the other styles\footnote{We don't
+  consider the meaningless \ID~style due to its bad performance} as
+shown in Table \ref{tbl:sgd:hete-style-results-sgd}.
+%
+\subsubsection{Is name-based description enough?}
+\label{sssec:sgd:question-name}
+As shown in Table \ref{tbl:sgd:homo-style-results}, \ID~is the worst
+case of using name description, its extremely bad performance
+indicates name-based description can be very unstable. However, we
+found that simple meaningful name-based description actually can
+perform the best in \IC~and~\RSI task, and they perform worse on
+\CSL~and~\NSL tasks comparing to the bottom two {\it rich}
+descriptions. \footnote{Only exception happens in \CSL~on
+  \multiwoz. When creating \multiwoz~\cite{zang-etal-2020-multiwoz},
+  the slots with less than 50 different slot values are classified as
+  categorical slots, which leads to inconsistencies. We put detailed
+  discuss about \multiwoz~in the supplementary material} After careful
+analysis on the intents in \sgdst datasets, we found that most
+services only contains two kinds of intents, an information retrieval
+intent with a name prefix "Find-", "Get-", "Search-"; another
+transaction intent like "Add-", "Reserve-" or "Buy-". Interestingly,
+we found that all the intent names in the original schema-guided
+dataset strictly follows an action-object template with a composition
+of words without abbreviation, such as "FindEvents",
+"BuyEventTickets". This simple name template is good enough to
+describe the core functionality of an intent in \sgdst
+dataset.~\footnote{This action-object template has also been found
+  efficient for open domain intent induction
   task\cite[e.g.,][OPINE]{vedula2020open}.} Additionally, \RSI is a
 relaitively simper task, requesting information are related to
 specifial attributes, such as "has\_live\_music", "has\_wifi", where
@@ -191,24 +198,27 @@ many cases, slot names are too simple to represent the functionalities
 behind it, for example, slot name "passengers" cannot fully represent
 the meaning "number of passengers in the ticket booking".
 
-\QParagraph{Does question format help} As shown in Table
-\ref{tbl:sgd:homo-style-results}, when comparing row \QARICH~v.s.~\ORIGIN,
-we found extra question format can improve the performance on \CSL~and
-\NSL task on both \sgdst and \multiwoz~datasets, but not for \IC~and
-\RSI tasks. We believe that question format helps the model to focus
-more on specific entities in the dialog history. However, when adding
-a simple question pattern to \NAMEONLY, comparing row \QANAMEONLY~and
-\NAMEONLY, there is no consistent improvement on both of the two
-datasets. Further more, we are curious about whether BERT finetuned on
-SQuAD2~(SQuAD2-BERT) can further help on the question format. Because
-\NSL~are similar with span-based question answering, we focus on
-\NSL~here. Table \ref{tbl:sgd:squad2-results-question} shows that, after
+\subsubsection{Does question format help?}
+\label{sssec:sgd:question-format}
+
+As shown in~\autoref{tbl:sgd:homo-style-results}, when comparing row
+\QARICH~v.s.~\ORIGIN, we found extra question format can improve the
+performance on \CSL~and \NSL task on both \sgdst and
+\multiwoz~datasets, but not for \IC~and \RSI tasks. We believe that
+question format helps the model to focus more on specific entities in
+the dialog history. However, when adding a simple question pattern to
+\NAMEONLY, comparing row \QANAMEONLY~and \NAMEONLY, there is no
+consistent improvement on both of the two datasets. Further more, we
+are curious about whether BERT finetuned on SQuAD2~(SQuAD2-BERT) can
+further help on the question format. Because \NSL~are similar with
+span-based question answering, we focus on
+\NSL~here. \autoref{tbl:sgd:squad2-results-question} shows that, after
 applying the supplementary training on
-SQuAD2~(\S\ref{sec:sgd:sup-training}), almost all models get improved on
-unseen splits however slightly dropped on seen services. Moreover,
-comparing to \QANAMEONLY, \QARICH~is more similar to the natural
-questions in the SQuAD2, we obverse that \QARICH~gains more than
-\QANAMEONLY~from pretrained model on SQuAD2.
+SQuAD2~(\autoref{sec:sgd:sup-training}), almost all models get
+improved on unseen splits however slightly dropped on seen
+services. Moreover, comparing to \QANAMEONLY, \QARICH~is more similar
+to the natural questions in the SQuAD2, we obverse that \QARICH~gains
+more than \QANAMEONLY~from pretrained model on SQuAD2.
 
 \begin{table}[!t]
 \begin{center}{
@@ -232,8 +242,8 @@ questions in the SQuAD2, we obverse that \QARICH~gains more than
 \end{table}
 
 
-\subsubsection{Heterogeneous Evaluation}
-\label{sssec:heter-eval}
+\subsection{Heterogeneous Evaluation}
+\label{ssec:sgd:heter-eval}
 In this subsection, we first simulate a scenario when there is no
 recommended description style for the future unseen services. Hence,
 unseen services can follow any description style in our case. We
@@ -245,7 +255,7 @@ on heterogeneous styles than on homogeneous styles due to different
 distribution between training and evaluation. The bold number shows
 the best average performance on heterogeneous evaluation for each
 subtask. The trends are similar with the analysis in homogeneous
-evaluation~\ref{sssec:homo-eval}, the name-based descriptions perform
+evaluation~(\autoref{ssec:sgd:homo-eval}), the name-based descriptions perform
 better than other rich descriptions on intent classification
 tasks. While on other tasks, the \ORIGIN~description performs more
 robust, especially on \NSL~task.
@@ -266,8 +276,9 @@ descriptions get paraphrased on unseen services.
 %  appdendix~\ref{ssec:more-desc-results}.}.
 
 \begin{table}[!ht]
-\begin{center}{\scriptsize
-\setlength{\tabcolsep}{1pt}
+\caption{\label{tbl:sgd:hete-style-results-sgd} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the appendix~\ref{sec:sgd:more-desc-results}}
+\begin{center}{
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|c|c|c|c|c|c|c|c}
   \toprule
   \hline
@@ -286,7 +297,6 @@ descriptions get paraphrased on unseen services.
 \end{tabular}
 }
 \end{center}
-\caption{\label{tbl:sgd:hete-style-results-sgd} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the appendix~\ref{sec:sgd:more-desc-results}}
 \end{table}
 
 %We first consider the diverse description

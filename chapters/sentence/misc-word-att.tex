@@ -62,32 +62,17 @@ treated as word encodings.
 
 
 \begin{table}[t]
-\caption{\label{tbl:word_att} Summary of word attention mechanisms.
-  %
-  We simplify BiDAF with multiplicative attention between  word
-  pairs for $f_{m}$, while GMGRU uses additive attention
-  influenced by the GRU hidden state.
-  %
-  The vector $\bm{w}_{e} \in\mathbb{R}^{d}$, and matrices
-  $\bm{W}^{k}\in \mathbb{R}^{d \times d}$ and
-  $\bm{W}^{q} \in\mathbb{R}^{2d \times 2d}$ are parameters of the BiGRU. The vector $\bm{h}_{j-1}$
-  is the hidden state from the BiGRU in GMGRU at previous position
-  $j-1$.  
-  %
-  For combination function, BiDAF concatenates bidirectional
-  attention information from both the key-aware query vector
-  $\ba_{ij}$ and a similarly defined query-aware key vector
-  $\ba^{\prime}$. GMGRU uses simple concatenation for $f_c$.}
+\caption{\label{tbl:word_att} Summary of word attention mechanisms.}
 \begin{center}
   \setlength{\tabcolsep}{3pt}
-  {\small
-    \begin{tabular}{ll|l}
+  {
+    \begin{tabular}{c|c|c}
       \toprule
-      Method                 & $f_{m} $                                    & $f_{c}$                                                             \\ \hline
-      BiDAF                  & \multirow{2}{*}{$\bm{v}_{nk} {\bm{v}_{ij}^{T}}$}             & $[\bm{v}_{ij};~\bm{a}_{ij};  $                                      \\
-                             &                                             & $~~\bm{v}_{ij} \odot \bm{a}_{ij};~\bm{v}_{ij}\odot \bm{a}^{\prime}]$ \\ \hline
-      \multirow{2}{*}{GMGRU} & $\bm{w}^{e} \tanh(\bm{W}^{k}\bm{v}_{nk}$    & \multirow{2}{*}{$[\bm{v}_{ij};\bm{a}_{ij}]$}                        \\
-                             & $~~+ \bm{W}^{q}[\bm{v}_{ij}; \bm{h}_{j-1}])$ &                                                                     \\ \hline
+      \hline
+      Method & $f_{m} $                                                                          & $f_{c}$                                                 \\ \hline
+      BiDAF  & $\bm{v}_{nk} {\bm{v}_{ij}^{T}}$                                  & $[\bm{v}_{ij};~\bm{a}_{ij};~\bm{v}_{ij} \odot \bm{a}_{ij};~\bm{v}_{ij}\odot \bm{a}^{\prime}]$ \\ \hline
+      GMGRU  & $\bm{w}^{e} \tanh(\bm{W}^{k}\bm{v}_{nk} + \bm{W}^{q}[\bm{v}_{ij}; \bm{h}_{j-1}])$ & $[\bm{v}_{ij};\bm{a}_{ij}]$            \\ \hline
+      \bottomrule
     \end{tabular}
   }
 \end{center}
@@ -96,9 +81,19 @@ treated as word encodings.
 To complete this discussion, we need to instantiate the two
 functions. We use two commonly used attention mechanisms:
 BiDAF~\cite{bidaf} and gated matchLSTM~\cite{wang2017gated}. For
-simplicity, we replace the sequence encoder in the latter with a
-BiGRU and refer to it as GMGRU. Table~\ref{tbl:word_att} shows the
-corresponding definitions of $f_{c}$ and $f_{m}$. We refer the
+simplicity, we replace the sequence encoder in the latter with a BiGRU
+and refer to it as GMGRU. Table~\ref{tbl:word_att} shows the
+corresponding definitions of $f_{c}$ and $f_{m}$. We simplify BiDAF
+with multiplicative attention between word pairs for $f_{m}$, while
+GMGRU uses additive attention influenced by the GRU hidden state.  The
+vector $\bm{w}_{e} \in\mathbb{R}^{d}$, and matrices
+$\bm{W}^{k}\in \mathbb{R}^{d \times d}$ and
+$\bm{W}^{q} \in\mathbb{R}^{2d \times 2d}$ are parameters of the BiGRU. The
+vector $\bm{h}_{j-1}$ is the hidden state from the BiGRU in GMGRU at
+previous position $j-1$.  For combination function, BiDAF concatenates
+bidirectional attention information from both the key-aware query
+vector $\ba_{ij}$ and a similarly defined query-aware key vector
+$\ba^{\prime}$. GMGRU uses simple concatenation for $f_c$.We refer the
 reader to the original papers for further details. In subsequent
 sections, we will refer to the two attended versions of the \HGRU as
 \BiDAFH and \GMGRUH.

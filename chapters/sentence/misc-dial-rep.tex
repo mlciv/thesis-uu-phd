@@ -6,9 +6,9 @@
 %\vs{Start each subsection with a description of what the underlying problem is. Here, the problem is: To build any c%lassifier over a dialogue, we need to encode them into a vector form. Dialogues are sequences of utterences, which t% hemselves are sequences of tokens. This hierarchical structure has been widely studied in past work and the typical% approach is to use a hierarchical recurrent neural network [cite]...}
 
 %Through extensive experiments in
-%\S\ref{sec:experiments}, we find out the best combination of them for
+%\autoref{sec:experiments}, we find out the best combination of them for
 %each task, and show what helps and what doesn't in each task with
-%abalation studies in \S\ref{sec:analysis}.
+%abalation studies in~\autoref{sec:analysis}.
 
 Since both our tasks are classification tasks over a dialogue
 history, our goal is to convert the sequence of utterences into a
@@ -22,8 +22,7 @@ bidirectional GRU over word embeddings to encode utterances. As is
 standard, we represent an utterance $u_i$ by concatenating the final
 forward and reverse hidden states. We will refer to this utterance
 vector as $\bm{v}_i$. Also, we will use the hidden states of
-each word as inputs to the attention components in
-\S\ref{ssec:word_att}. We will refer to such contextual word
+each word as inputs to the attention components in~\autoref{ssec:word_att}. We will refer to such contextual word
 encoding of the $j^{th}$ word as $\bm{v}_{ij}$. The dialogue encoder
 is a unidirectional GRU that operates on a concatenation of
 utterance vectors $\bm{v}_i$ and a trainable vector representing the

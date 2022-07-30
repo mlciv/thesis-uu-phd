@@ -2,6 +2,7 @@
 \label{sec:sgd:datasets}
 
 \begin{table}[!t]
+\caption{\label{tbl:sgd:datasets} Summary of characteristics of \sgdst \multiwoz datasets, in domain diversity, function overlap, data collecting methods}
 \begin{center}{\small
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{l|cccccc|c|c}
@@ -18,7 +19,6 @@
 \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:sgd:datasets} Summary of characteristics of \sgdst \multiwoz datasets, in domain diversity, function overlap, data collecting methods}
 \end{table}
 
 To the best of our knowledge, at the time of our study, \sgdst~and
@@ -41,8 +41,7 @@ domains, 88 intents, 365 slots.\footnote{Please refer to the original
   paper for more details.} However, previous research are mainly
 conducted based on this single dataset and the provided single
 description style. In this paper, we further extended this dataset
-with other benchmarking description styles as shown in
-\S\ref{sec:sgd:abl-desc}, and then we perform both homogenous and
+with other benchmarking description styles as shown in~\autoref{sec:sgd:abl-desc}, and then we perform both homogenous and
 hetergenous evalution on it.
 
 \subsection{Remixed MultiWOZ 2.2 Dataset}
@@ -51,19 +50,20 @@ hetergenous evalution on it.
 To eliminate potential bias from the above single \sgdst~dataset, we
 further add \multiwoz~\cite{zang-etal-2020-multiwoz} to our study.
 
-\Paragraph{Statistic on MultiWOZ 2.2 Remix} To evaluate performance on
-seen/unseen services with MultiWOZ, we remix the \multiwoz dataset to
-include as seen services dialogs related to \textit{restaurant},
-\textit{attraction} and \textit{train} during training, and eliminate
-slots from other domains/services from training split.  For dev, we
-add two new domains {\it hotel} and {\it taxi} as unseen services. For
-test, we add all remaining domains as unseen, including those that
-have minimum overlap with seen services, such as {\it hospital}, {\it
-  police}, {\it bus}. The statistics are as shown in Table
-\ref{tbl:multiwoz-remix}
+To evaluate performance on seen/unseen services with MultiWOZ, we
+remix the \multiwoz dataset to include as seen services dialogs
+related to \textit{restaurant}, \textit{attraction} and \textit{train}
+during training, and eliminate slots from other domains/services from
+training split.  For dev, we add two new domains {\it hotel} and {\it
+  taxi} as unseen services. For test, we add all remaining domains as
+unseen, including those that have minimum overlap with seen services,
+such as {\it hospital}, {\it police}, {\it bus}. The statistics are as
+shown in Table \ref{tbl:multiwoz-remix}
 
 \begin{table}[!h]
-\begin{center}{\scriptsize
+\caption{\label{tbl:multiwoz-remix} The total number of dialogs and
+  turns related to each domain in train, dev and test split of MultiWOZ}
+\begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{ccccccc}
  \toprule
@@ -81,8 +81,6 @@ bus                      & 0                           & 0                      
  \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:multiwoz-remix} The total number of dialogs and
-  turns related to each domain in train, dev and test split of MultiWOZ}
 \end{table}
 
 %Multi-Domain Wizard-of-Oz dataset was first introduced

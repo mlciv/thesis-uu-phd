@@ -15,6 +15,16 @@ examples in different tasks. Experiments shows
 that except for the model $\mathcal{C}^{T}$, focal loss outperforms
 cross-entropy loss and weighted cross entropy.
 \begin{table}[!h]
+\caption{\label{tbl:loss} Abalation study of different loss function
+  on categorizing and forecasting task. Based on our proposed model for
+  our four settings, we compared our best model with crossentropy
+  loss(ce), $\alpha$ balanced cross-entropy(wce) and focal loss. Here we
+  only report the macro $\text{F}_{1}$ for rare labels and the overall macro
+  $\text{F}_{1}$. $\gamma=1$ is the best for both the model $\mathcal{C}_{C}$ and
+  $\mathcal{F}_{C}$, while $\gamma=0$ is the best for
+  $\mathcal{C}_{T}$ and $\gamma=3$ for $\mathcal{F}_{T}$. Worth to mention,
+  when $\gamma=0$, the focal loss degraded into $\alpha$-balanced crossentropy,
+  that first two rows are the same for therapist model.}
 \setlength{\tabcolsep}{3pt}
 \begin{center}{\small
 \begin{tabular}{c|ccc|ccccc}
@@ -30,16 +40,6 @@ $\mathcal{F}^{\text{fl}}$   & 44.2                               & 24.7    & 22.
 \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:loss} Abalation study of different loss function
-  on categorizing and forecasting task. Based on our proposed model for
-  our four settings, we compared our best model with crossentropy
-  loss(ce), $\alpha$ balanced cross-entropy(wce) and focal loss. Here we
-  only report the macro $\text{F}_{1}$ for rare labels and the overall macro
-  $\text{F}_{1}$. $\gamma=1$ is the best for both the model $\mathcal{C}_{C}$ and
-  $\mathcal{F}_{C}$, while $\gamma=0$ is the best for
-  $\mathcal{C}_{T}$ and $\gamma=3$ for $\mathcal{F}_{T}$. Worth to mention,
-  when $\gamma=0$, the focal loss degraded into $\alpha$-balanced crossentropy,
-  that first two rows are the same for therapist model.}
 \end{table}
 
 %%% Local Variables:

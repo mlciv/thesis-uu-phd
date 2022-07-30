@@ -17,16 +17,17 @@ to categorize client codes~(\autoref{tbl:rst_cxt_client}) or
 forecasting~(\autoref{tbl:rst_cxt_forcasting}).
 
 \begin{table}[t]
-\caption{\label{tbl:rst_cxt_forcasting} Ablation on forecasting task
-  on both client and therapist code. $*$ row are results of our best
-  forecasting model $\mathcal{F}_{C}$, and $\mathcal{F}_{T}$.
-  $\setminus$ means substitute anchor attention with self
-  attention. $+\text{GMGRU}$ \anchor means using word-level attention
-  and achor-based sentence-level attention together. Word-level
-  attention shows no help for both client and therapist codes. While
-  sentence-level attention helps more on therapist codes than on
-  client codes. Multi-head self attention also achieves better
-  performance than anchor-based attention in forecasting tasks. }
+  \caption{\label{tbl:rst_cxt_forcasting} Ablation study on
+    forecasting task on both client and therapist code. $*$ row are
+    results of our best forecasting model $\mathcal{F}_{C}$, and
+    $\mathcal{F}_{T}$.  $\setminus$ means substitute anchor attention with
+    self attention. $+\text{GMGRU}$ \anchor means using word-level
+    attention and achor-based sentence-level attention
+    together. Word-level attention shows no help for both client and
+    therapist codes. While sentence-level attention helps more on
+    therapist codes than on client codes. Multi-head self attention
+    also achieves better performance than anchor-based attention in
+    forecasting tasks. }
 \begin{center}
 \setlength{\tabcolsep}{2.5pt}
 {\small
@@ -66,7 +67,7 @@ decreases performance for the models $\mathcal{C}_T$ and
 $\mathcal{F}_T$ (in appendix).
 %
 %If we extend the GMGRU with a multiplicative multi-head attention
-%for its match function $f_{m}$ in \S\ref{ssec:word_att} (denoted as
+%for its match function $f_{m}$ in~\autoref{ssec:word_att} (denoted as
 %$\text{GMGRU}_{4h}$), it improves \RES by over 0.4 points, but hurts
 %\REC performance, suggesting that the multi-head word attention
 %cannot distinguish \REC and \RES better than GMGRU.

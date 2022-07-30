@@ -2,9 +2,9 @@
 Parsing]{Lexical-Anchoring: Latent Alignment \\Model for Graph-Based Parsing}
 \label{sec:lex-phr:graph-based}
 
-In this section, we will introduce the two-stage framework for parsing
-the DM, PSD, and AMR graphs~\S\ref{ssec:lex-phr:two-stage}. Then we
-resolve the alignment problem with a latent alignment model~\S\ref{ssec:lex-phr:latent-alignment}
+In this section, we will first introduce the two-stage framework for parsing
+the DM, PSD, and AMR graphs~(\autoref{ssec:lex-phr:two-stage}). Then we
+resolve the alignment problem with a latent alignment model~(\autoref{ssec:lex-phr:latent-alignment})
 
 
 According to the linguistic analysis on anchoring, we have shown that
@@ -28,12 +28,12 @@ $r_{ij}=\Phi$ to indicate no edge from the node $i$ to the node $j$.
 In this part, based on the above notations, we introduce how to do
 independent factorization on lexical-anchoring by addressing the three
 main chellenges in \textbf{Output
-  Decomposition}~(\S\ref{sssec:lex-phr:lex-output-decomposition}),
+  Decomposition}~(\autoref{sssec:lex-phr:lex-output-decomposition}),
 \textbf{Input Decomposition and Alignments
-  Discovery}~(\S\ref{sssec:lex-phr:lex-input-decomposition}), and
+  Discovery}~(\autoref{sssec:lex-phr:lex-input-decomposition}), and
 \textbf{Factor Modelling}~(Two-stage
-Parsing~\S\ref{ssec:lex-phr:two-stage} and Latent Alignment
-Model~\S\ref{ssec:lex-phr:latent-alignment})
+Parsing~(\autoref{ssec:lex-phr:two-stage} and Latent Alignment
+Model~\autoref{ssec:lex-phr:latent-alignment})
 
 \input{chapters/lexical-phrasal/lex-factorization.tex}
 
@@ -64,10 +64,10 @@ into node- and edge-identification pipelines.
 In DM, PSD, and AMR, every token will only be aligned once.  Hence, we
 train a joint model to maximize the above probability for both node
 identification
-$P(c_{i} \mid h_{a_{i}})$~\S\ref{sssec:lex-phr:node-ident} and edge
+$P(c_{i} \mid h_{a_{i}})$~(\autoref{sssec:lex-phr:node-ident}) and edge
 identification
 $P(r_{ij} \mid h_{{a_{i}}, c_{i},h_{a_{j}},
-  c_{j}})$~\S\ref{sssec:lex-phr:edge-ident}. The alignment
+  c_{j}})$~(\autoref{sssec:lex-phr:edge-ident}). The alignment
 information is mainly used for training. We need to marginalize out
 the discrete alignment variable $a$ to jointly learning the parameters
 in node identification and relation identification networks. We will
@@ -140,11 +140,11 @@ condition the node- and edge-identification methods on the alignments.
 However, it is computationally intractable to enumerate all
 combinatoral values for the discrete alignment variable. Hence, we
 estimate the latent alignments via variational inferece, which has
-been initialially used in \citet{lyu2018amr}. In the following
+been initialially used in~\citet{lyu2018amr}. In the following
 section, we firstly introduce the details of latent alignment model
-via continuous relaxiation~\S\ref{sssec:lex-phr:alignment-relax} and
+via continuous relaxiation~\autoref{sssec:lex-phr:alignment-relax} and
 then we descibe the details of variational
-inference~\S\ref{sssec:lex-phr:gumble-sinkhorn}, and we propose a
+inference~\autoref{sssec:lex-phr:gumble-sinkhorn}, and we propose a
 error fix for computing KL-divergence with implicit Gumbel-Sinkhorn
 distribution.
 

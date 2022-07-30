@@ -2,17 +2,17 @@
 Interviewing]{Independent Factorization for Motivational \\Interviewing}
 \label{sec:snt:task}
 In this section, we will formally define the two NLP tasks
-corresponding to the vision in~\S\ref{sec:snt:background} using the
+corresponding to the vision in~\autoref{sec:snt:background} using the
 conversation in~\autoref{tbl:snt:misc-example} as a running
 example. Suppose we have an ongoing MI session with utterances
 $u_1, u_2,\cdots, u_n$: together, the dialogue history $H_n$.  Each
 utterance $u_i$ is associated with its speaker $s_i$, either C
 (client) or T (therapist). We will define two classification tasks
 over a fixed dialogue history with $n$ elements ---
-\emph{categorization}~\S\ref{ssec:snt:task-categorization} and
-\emph{forecasting}~\S\ref{ssec:snt:task-forcasting}.  Then we make a
+\emph{categorization}~\autoref{ssec:snt:task-categorization} and
+\emph{forecasting}~\autoref{ssec:snt:task-forcasting}.  Then we make a
 comparative analysis on the independent factorization for the two
-tasks~\S\ref{ssec:snt:comparative-tasks}.
+tasks~\autoref{ssec:snt:comparative-tasks}.
 
 %We will refer to the last utterance $u_n$ as the \emph{anchor} for the
 %corresponding subtasks.  As the conversation progresses, the history
@@ -21,6 +21,7 @@ tasks~\S\ref{ssec:snt:comparative-tasks}.
 %speakers, giving us four settings in all.
 
 \begin{table}[tp]
+  \caption{\label{tbl:snt:misc-example} An example of ongoing therapy session}
   \begin{center}
     \setlength{\tabcolsep}{3pt}
     {
@@ -35,7 +36,6 @@ tasks~\S\ref{ssec:snt:comparative-tasks}.
       \end{tabular}
     }
   \end{center}
-  \caption{\label{tbl:snt:misc-example} An example of ongoing therapy session}
 \end{table}
 
 \subsection{Task 1: Categorization}
@@ -209,7 +209,7 @@ size as 8 and 16 for our models. We leave the extremely long dialogue
 context encoding as the future work.
 
 \begin{table}[!h]
-\caption{\label{tbl:snt:task-comparasion} Differences between the
+\caption{\label{tbl:snt:task-comparasion} The differences between the
   categorization task and the forcasting task, when choosing a window
   size as 3 to factorize the dialog sequential flow}
 \begin{center}{

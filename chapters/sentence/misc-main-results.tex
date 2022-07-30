@@ -69,11 +69,7 @@ we define below.
 \begin{table}[!h]
 \caption{\label{tbl:main_rst_c_categorizing} Main results on categorizing
   client codes, in terms of macro $\text{F}_{1}$, and $\text{F}_{1}$ for
-  each client code. Our model $\mathcal{C}_C$ uses final dialogue
-  vector $H_{n}$ and current utterance vector $v_{n}$ as input of MLP
-  for final prediction. We found that predicting using
-  $\text{MLP}(H_{n})+\text{MLP}(v_{n})$ performs better than just
-  $\text{MLP}({H_{n}})$.}
+  each client code.}
 \begin{center}{\small
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccc}
@@ -104,10 +100,7 @@ $\Delta=\mathcal{C}_{C} - \text{\underline{score}}$ & {\footnotesize +3.5} & {\f
 \begin{table}[!htp]
 \caption{\label{tbl:main_rst_t_categorizing} Main results on
   categorizing therapist codes, in terms of macro $\text{F}_{1}$, and
-  $\text{F}_{1}$ for each therapist code. Models are the same as Table
-  ~\ref{tbl:main_rst_c_categorizing}, but tuned for therapist
-  codes. For the two grouped MISC set \MIA and \MIN, their results are
-  not reported in the original work due to different setting.}
+  $\text{F}_{1}$ for each therapist code.}
 \begin{center}{\small
 \begin{tabular}{lccccccccc}
 \toprule
@@ -163,27 +156,39 @@ of ELMo.
 %   studied categorizing only client codes on a different dataset. For
 %   comparison, we reimplement the $\text{CONCAT}^{C}$ method with ELMo
 %   in our paper, and also studied their proposed input add-ons
-%   separately in \S\ref{ssec:abl_context_attention}, and we leave topic
+%   separately in~\autoref{ssec:abl_context_attention}, and we leave topic
 %   model embedding as our future work.  }
 
-For categorizing client codes, $\text{BiGRU}_{\text{ELMo}}$ is a
-simple but robust baseline model. It outperforms the previous
-best no-context model by more than 2 points on macro $\text{F}_{1}$. Using the
-dialogue history, the more sophisticated model $\mathcal{C}_{C}$
-further gets 1 point improvement. Especially important is its
-improvement on the infrequent, yet crucial labels \CHANGE and
-\SUSTAIN. It shows a drop in the $\text{F}_{1}$ on the \FN label, which is
-essentially considered to be an unimportant, background class from
-the point of view of assessing patient progress.
+
+For categorizing client codes, our model $\mathcal{C}_C$ uses final
+dialogue vector $H_{n}$ and current utterance vector $v_{n}$ as input
+of MLP for final prediction. We found that predicting using
+$\text{MLP}(H_{n})+\text{MLP}(v_{n})$ performs better than just
+$\text{MLP}({H_{n}})$.  As shown
+in~\autoref{tbl:main_rst_c_categorizing}, $\text{BiGRU}_{\text{ELMo}}$
+is a simple but robust baseline model. It outperforms the previous
+best no-context model by more than 2 points on macro
+$\text{F}_{1}$. Using the dialogue history, the more sophisticated
+model $\mathcal{C}_{C}$ further gets 1 point improvement. Especially
+important is its improvement on the infrequent, yet crucial labels
+\CHANGE and \SUSTAIN. It shows a drop in the $\text{F}_{1}$ on the \FN
+label, which is essentially considered to be an unimportant,
+background class from the point of view of assessing patient progress.
 %
-For therapist codes, as the highlighted numbers in Table
-\ref{tbl:main_rst_t_categorizing} show, only incorporating GMGRU-based
-word-level attention, $\text{GMGRU}^{H}$ has already outperformed many
-baselines, our proposed model $\mathcal{F}_{T}$ which uses both
-GMGRU-based word-level attention and anchor-based multi-head multihop
-sentence-level attention can further achieve the best overall
-performance. Also, note that our models outperform approaches
-that take advantage of future utterances.
+
+For therapist codes, as the highlighted numbers in
+\autoref{tbl:main_rst_t_categorizing} show, only incorporating
+GMGRU-based word-level attention, $\text{GMGRU}^{H}$ has already
+outperformed many baselines, our proposed model $\mathcal{F}_{T}$
+which uses both GMGRU-based word-level attention and anchor-based
+multi-head multihop sentence-level attention can further achieve the
+best overall performance. The set of baseline models are the same as
+in~\autoref{tbl:main_rst_c_categorizing}, but tuned for therapist
+codes. For the two grouped MISC set \MIA and \MIN, the results for
+\citet{can2015dialog} and~\citet{tanana2016comparison} are not
+reported in their original work due to different setting. Also, note
+that our models outperform approaches that take advantage of future
+utterances.
 
 For both client and therapist codes, concatenating dialogue history
 with $\text{CONCAT}^{C}$ always performs worse than the hierarchical

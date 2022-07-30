@@ -3,12 +3,11 @@
 In this section, we focus on the model architecture for matching
 dialog history with schema descriptions using pretrained
 BERT~\cite{devlin2019bert}~\footnote{We use BERT-base-cased for all
-  main experiments. Other pretrained language models can be easily adapted to our study}. To support four subtasks,
-we first extend \DE and \CE~to support both sentence-level matching and token-level
-prediction. Then we propose an additional \FE strategy to get faster
-inference without sacrificing much accuracy. We summarize different
-architectures in~\autoref{fig:encoders}. Then we show the
-classification head and results for each subtask.
+  main experiments. Other pretrained language models can be easily
+  adapted to our study}. We first compare different encoder
+architectures in~\autoref{ssec:encoder-arch}. Then for each of four
+subtasks, we show the classification
+head~(\autoref{ssec:models-overview}) and the results~(\autoref{ssec:encoder-results})
 
 \begin{figure}[!t]
 \centering
@@ -18,32 +17,41 @@ classification head and results for each subtask.
 
 \subsection{Encoder Architectures}
 \label{ssec:encoder-arch}
-\Paragraph{Dual-Encoder} It consists of two separate BERTs to encode
-dialog history and schema description respectively, as
-Figure~\ref{fig:encoders}~(a). We follow the setting in the official
-baseline provided by DSTC8 Track4~\cite{rastogi2020schema}. We first
-use a fixed BERT to encode the schema description once and cached the
-encoded schema $\CLS_{S}$. Then for sentence-level representation, we
-concatenate dialog history representation $\CLS_{D}$ and candidate
-schema representation $\CLS_{S}$ as the whole sentence-level
-representation for the pair, denoted as~${\CLS^{DE}}$.  For
-token-level representation, we concatenate the candidate schema
-$\CLS_{S}$ with each token embedding in the dialog history, denoted
+To support four subtasks, we first extend \DE and \CE~to support both
+sentence-level matching and token-level prediction. Then we propose an
+additional \FE strategy to get faster inference without sacrificing
+much accuracy. We summarize different architectures
+in~\autoref{fig:encoders}.
+
+\subsubsection{Dual-Encoder}
+\label{sssec:sgd:dual-encoder}
+
+It consists of two separate BERTs to encode dialog history and schema
+description respectively, as Figure~\ref{fig:encoders}~(a). We follow
+the setting in the official baseline provided by DSTC8
+Track4~\cite{rastogi2020schema}. We first use a fixed BERT to encode
+the schema description once and cached the encoded schema
+$\CLS_{S}$. Then for sentence-level representation, we concatenate
+dialog history representation $\CLS_{D}$ and candidate schema
+representation $\CLS_{S}$ as the whole sentence-level representation
+for the pair, denoted as~${\CLS^{DE}}$.  For token-level
+representation, we concatenate the candidate schema $\CLS_{S}$ with
+each token embedding in the dialog history, denoted
 as~${\TOK^{DE}}$.\footnote{A schema-aware dialog token embedding can
   also be computed by attention or other method for span-based
-  detection tasks~\cite{humeau2019poly, noroozi2020fast}} Because
-the candidate schema embeddings are encoded independently from the
-dialog context, they can be pre-computed once and cached for fast
-inference.
+  detection tasks~\cite{humeau2019poly, noroozi2020fast}} Because the
+candidate schema embeddings are encoded independently from the dialog
+context, they can be pre-computed once and cached for fast inference.
 
-\Paragraph{Cross-Encoder} Another popular architecture as
-Figure~\ref{fig:encoders}~(b) is \CE, which concatenates the dialog
-and schema as a single input, and encodes jointly with a single
-self-attentive encoder spanning over the two segments.  When using
-BERT to encode the concatenated sentence pair, it performs
-full~(cross) self-attention in every transformer layers, thus offer
-rich interaction between the dialog and schema. BERT naturally
-produces a summarized representation with [CLS]
+\subsubsection{Cross-Encoder}
+\label{sssec:sgd:cross-encoder}
+Another popular architecture as Figure~\ref{fig:encoders}~(b) is \CE,
+which concatenates the dialog and schema as a single input, and
+encodes jointly with a single self-attentive encoder spanning over the
+two segments.  When using BERT to encode the concatenated sentence
+pair, it performs full~(cross) self-attention in every transformer
+layers, thus offer rich interaction between the dialog and
+schema. BERT naturally produces a summarized representation with [CLS]
 embedding~${\CLS^{CE}}$ and each schema-attended dialog token
 embeddings~${\TOK^{CE}}$. Since the dialog and schema encoding always
 depend on each other, it requires recomputing dialog and schema
@@ -65,20 +73,22 @@ encoding for multiple times, thus much slower in inference.
 %schema as a query, finally sum up all the weighted dialog context as
 %schema-aware dialog representation.
 
-\Paragraph{Fusion-Encoder} In Figure~\ref{fig:encoders}~(c), similar
-to \DE, \FE also encodes the schema independently with a fixed BERT
-and finetuning another BERT for dialog encoding. However, instead of
-caching a single [CLS] vector for schema representation, it caches {\bf all
-token representation} for the schema including the [CLS] token. What's
-more, to integrate the sequences dialog token representation with
-schema token representation, an extra stack of transformer layers are
-added on top to allow token-level fusion via self-attention, similar
-to \CE. The top transformer layers will produce embeddings for each
-token~${\TOK^{FE}}$ including a schema-attended
-~${\CLS^{FE}}$ of the input [CLS] from the dialog
-history. With cached schema token-level representations, it can
-efficiently produce schema-aware sentence- and token-level
-representation for each dialog-schema pairs.
+\subsubsection{Fusion-Encoder}
+\label{sssec:sgd:fusion-encoer}
+
+In~\autoref{fig:encoders}~(c), similar to \DE, \FE also encodes the
+schema independently with a fixed BERT and finetuning another BERT for
+dialog encoding. However, instead of caching a single [CLS] vector for
+schema representation, it caches {\bf all token representation} for
+the schema including the [CLS] token. What's more, to integrate the
+sequences dialog token representation with schema token
+representation, an extra stack of transformer layers are added on top
+to allow token-level fusion via self-attention, similar to \CE. The
+top transformer layers will produce embeddings for each
+token~${\TOK^{FE}}$ including a schema-attended ~${\CLS^{FE}}$ of the
+input [CLS] from the dialog history. With cached schema token-level
+representations, it can efficiently produce schema-aware sentence- and
+token-level representation for each dialog-schema pairs.
 
 \subsection{Models for Factorized Subtasks}
 \label{ssec:models-overview}
@@ -94,31 +104,37 @@ universal classification heads to make decisions for each subtask.
 %for those common dialog state tracking strategies such as two-stage,
 %overwriting memory, end2end has been widely studied in previous work.
 
-\Paragraph{Active Intent} To decide the intent for current dialog
-turn, we match current dialog history $D$ with each intent
-descriptions $I_{0}...I_{k}$. For each dialog-intent pair $(D,I_{k})$,
-we project the final sentence-level \CLS~representation to a single
-number $P_{I_{k}}^{active}$ with a linear layer follows a sigmoid
-function. We predict \textit{"NONE"} if the $P_{I_{k}}^{active}$ of
-all intents are less than a threshold 0.5, which means no intent is
-active. Otherwise, we predict the intent with largest
-$P_{I_{k}}^{active}$. We predict the intent for each turn
+\subsubsection{Active Intent}
+\label{sssec:sgd:active-intent}
+
+To decide the intent for current dialog turn, we match current dialog
+history $D$ with each intent descriptions $I_{0}...I_{k}$. For each
+dialog-intent pair $(D,I_{k})$, we project the final sentence-level
+\CLS~representation to a single number $P_{I_{k}}^{active}$ with a
+linear layer follows a sigmoid function. We predict \textit{"NONE"} if
+the $P_{I_{k}}^{active}$ of all intents are less than a threshold 0.5,
+which means no intent is active. Otherwise, we predict the intent with
+largest $P_{I_{k}}^{active}$. We predict the intent for each turn
 independently without considering the prediction on previous turns.
 
-\Paragraph{Requested Slot} As in Figure~\ref{fig:schema-dst},
-mulitple requested slots can exist in a single turn. We use the
-same strategy as in active intent prediction to predict a number
-$P_{req}^{active}$. However, to support the multiple requested slots
-prediction. We predict all the requested slots with
-$P_{req}^{active} > 0.5$.
+\subsubsection{Requested Slot}
+\label{sssec:sgd:requested-slot}
 
-\Paragraph{Categorical Slot} Categorical slots have a set of candidate
-values. We cannot predict unseen values via n-way
-classification. Instead, we do binary classification on each candidate
-value. Besides, rather than directly matching with values, we also
-need to check that whether the corresponding slot has been
-activated. For \CE and \FE, we use typical two-stage state tracking to
-incrementally build the state:
+As in~\autoref{fig:schema-dst}, mulitple requested slots can exist
+in a single turn. We use the same strategy as in active intent
+prediction to predict a number $P_{req}^{active}$. However, to support
+the multiple requested slots prediction. We predict all the requested
+slots with $P_{req}^{active} > 0.5$.
+
+\subsubsection{Categorical Slot}
+\label{sssec:sgd:categorical-slot}
+
+Categorical slots have a set of candidate values. We cannot predict
+unseen values via n-way classification. Instead, we do binary
+classification on each candidate value. Besides, rather than directly
+matching with values, we also need to check that whether the
+corresponding slot has been activated. For \CE and \FE, we use typical
+two-stage state tracking to incrementally build the state:
 \begin{inparaenum}[{\bf Step} 1.]
 \item Using ~$\mathbf{CLS}$ to predict the slot status as
   \textit{none}, \textit{dontcare} or \textit{active}. When the status is
@@ -135,7 +151,9 @@ number of candidate values in MultiWOZ dataset. Hence, during
 training, we only use a binary cross-entropy for each single value and
 postpone the ranking only to the inference time.
 
-\Paragraph{Noncategorical Slot} The slot status prediction for
+\subsubsection{Noncategorical Slot}
+\label{sssec:sgd:noncategorical-slot}
+The slot status prediction for
 noncategorical slot use the same two-stage strategy. Besides that, we
 use the token representation of dialog history ~$\mathbf{TOK}$ to
 compute two softmax scores $f^{i}_{start}$ and $f^{i}_{end}$ for each
@@ -149,13 +167,19 @@ maximum sum of the start and end scores.
 To fairly compare all three models, we follow the same schema input
 setting as in~\autoref{tbl:sgd:schema-seq}. We trained separate models
 for \sgdst~and the remixed MultiWOZ datasets for all the experiments
-in our papers\footnote{\autoref{ssec:sgd:exp-setup} shows the detailed
+in our papers~\footnote{\autoref{ssec:sgd:exp-setup} shows the detailed
   experiment setup}. Because there are very few intent and requested
 slots in \multiwoz~dataset, we ignore the intent and requested slots
 tasks for \multiwoz~in our paper.
 
 
 \begin{table}[!t]
+\caption{\label{tbl:sgd:schema-seq} Schema description input used for
+  different tasks to compare \DE, \CE, and \FE. In the
+  appendix~\ref{sec:sgd:com-desc}, we also studies other compositions of
+description input. We found that service description will not help for
+\IC, \RSI and~\CSL tasks, while the impact on \NSL~task also varies
+from \sgdst~and~\multiwoz~dataset.}
 \begin{center}{\small
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{l|c}
@@ -169,12 +193,6 @@ NonCat & service description, slot description   \\
   \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:sgd:schema-seq} Schema description input used for
-  different tasks to compare \DE, \CE, and \FE. In the
-  appendix~\ref{sec:sgd:com-desc}, we also studies other compositions of
-description input. We found that service description will not help for
-\IC, \RSI and~\CSL tasks, while the impact on \NSL~task also varies
-from \sgdst~and~\multiwoz~dataset.}
 \end{table}
 
 %Previous paper on zero-shot
@@ -193,7 +211,9 @@ from \sgdst~and~\multiwoz~dataset.}
 %evaluate the zero-shot performance on multiwoz with less effort.
 %More The main statistics as shown in Table \ref{multiwoz-resplit}
 
-\Paragraph{Results} As shown in Table~\ref{tbl:sgd-modeling-results},
+\subsubsection{Comparison on Accuracy}
+\label{sssec:sgd:enc-results}
+As shown in~\autoref{tbl:sgd:sgd-modeling-results},
 \CE~performs the best over all subtasks. Our \FE with partial
 attention outperforms the \DE by a large margin, epsecially on
 categorical and noncategorical slots predictions. Additionally, on
@@ -206,6 +226,10 @@ services as \CE. %However, their
 %performance are not comparable.
 
 \begin{table}[!t]
+\caption{\label{tbl:sgd:sgd-modeling-results} Test set results on \sgdst and \multiwoz. The
+  \DE model is a re-implementation of official DSTC8
+  baseline from~\citet{rastogi2019towards}. Other models are
+  trained with the architecture described in our paper.}
 \begin{center}{
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{l|ccccc|ccc}
@@ -227,32 +251,29 @@ services as \CE. %However, their
   \bottomrule
 \end{tabular}}
 \end{center}
-\caption{\label{tbl:sgd-modeling-results} Test set results on \sgdst and \multiwoz. The
-  \DE model is a re-implementation of official DSTC8
-  baseline from \citet{rastogi2019towards}. Other models are
-  trained with the architecture described in our paper.}
 \end{table}
 
-\Paragraph{Inference Speed} To test the inference speed, we conduct
-all the experiments with a maximum affordable batch size to fully
-exploit 2 V100 GPUs (with 16GB GPU RAM each). During training, we log
-the inference time of each evaluation on dev set. Both \DE and \FE can
-do joint inference across 4 subtasks to obtain an integral dialog
-state for a dialog turn example. \DE achieves the highest inference
-speed of {\bf 603.35} examples per GPU second, because the encoding
-for dialog and schema are fully separated. A dialog only needed to be
-encoded for once during the inference of a dialog state example while
-the schema are precomputed once. However, for \CE, to predict a dialog
-state for a single turn, it need to encode more than 300 sentence
-pairs in a batch, thus only processes {\bf 4.75} examples per GPU
-second. \FE performs one time encoding on dialog history, but it needs
-to jointly encode the same amount of dialog-schema pair ws \CE,
-instead, however, with a two-layer transformer encoder. Overall it
-achieves {\bf 10.54} examples per GPU second, which is {\bf 2.2x}
-faster than \CE. With regarding to the accuracy in
-Table~\ref{tbl:sgd-modeling-results}, \FE~performs much better than
-\DE, especially on unseen services.
-% More details of the performance on each subtasks are shown in Table \ref{tbl:encoder-speed}.
+\subsubsection{Comparison on Inference Speed}
+\label{sssec:sgd:infer-speed}
+To test the inference speed, we conduct all the experiments with a
+maximum affordable batch size to fully exploit 2 V100 GPUs (with 16GB
+GPU RAM each). During training, we log the inference time of each
+evaluation on dev set. Both \DE and \FE can do joint inference across
+4 subtasks to obtain an integral dialog state for a dialog turn
+example. \DE achieves the highest inference speed of {\bf 603.35}
+examples per GPU second, because the encoding for dialog and schema
+are fully separated. A dialog only needed to be encoded for once
+during the inference of a dialog state example while the schema are
+precomputed once. However, for \CE, to predict a dialog state for a
+single turn, it need to encode more than 300 sentence pairs in a
+batch, thus only processes {\bf 4.75} examples per GPU second. \FE
+performs one time encoding on dialog history, but it needs to jointly
+encode the same amount of dialog-schema pair ws \CE, instead, however,
+with a two-layer transformer encoder. Overall it achieves {\bf 10.54}
+examples per GPU second, which is {\bf 2.2x} faster than \CE. With
+regarding to the accuracy in~\autoref{tbl:sgd:sgd-modeling-results},
+\FE~performs much better than \DE, especially on unseen services.
+% More details of the performance on each subtasks are shown in \autoref{tbl:encoder-speed}.
 
 %%% Local Variables:
 %%% mode: latex

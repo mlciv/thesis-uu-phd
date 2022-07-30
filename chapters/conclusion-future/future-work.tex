@@ -4,7 +4,7 @@
 \subsection{For Other Factorization}
 \label{ssec:future:other-factorization}
 
-This thesis mainly focuses on independent factorization, which ignores
+This dissertation mainly focuses on independent factorization, which ignores
 the interdependence between output parts. Our experiments show that
 the contextualized representation can capture the interdependence
 within the input parts; thus, they can offer discriminative features
@@ -16,12 +16,10 @@ output or have other high order dependecies. Take the auto-regressive
 factorization as an example, we consider a more broad-coverage
 construction of output \OUT~as sequential decisions as shown
 in~\autoref{eq:auto-factor}.
-
 \begin{equation}
   \label{eq:auto-factor}
 E(x, y)=\sum_{j=0}^{M}E(y_{j}|x,y_{<j})
 \end{equation}
-
 In autoregressive factorization, as shown in
 ~\autoref{fig:autoreg-example}, for every step, a new decision $y_{j}$
 will depend on the input $x$ and previous decisions $y_{<j}$. In this
@@ -94,7 +92,7 @@ enforce the consistency between local decisions.
 \Paragraph{Input Decomposition}
 According to the above analysis on output decomposition, we need to
 decompose the inputs into candidate spans. Assuming there are $N$
-words in the input document, then there will be $\frac{T(T+1)}{2}$
+words in the input document, then there will be~$\frac{T(T+1)}{2}$
 possible spans. However, we don't need to consider the spans cross the
 sentence boundaries, and we only mainly consider the pronouns, nouns
 , and other entity-related or event-related spans. Hence, such
@@ -107,7 +105,7 @@ Hence, our proposed methods for two-stage graph-based parsing can be
 used in coreference resolution with task-specific output
 decompositions and input decompositions. The contextualized
 representation for each span can also benefit from span representation
-we studied in phrasal-anchoring parsing~\S\ref{ssec:phr:span}
+we studied in phrasal-anchoring parsing~\autoref{ssec:phr:span}
 
 For application-specific symbolic representation, besides the single
 sentence representation
@@ -123,7 +121,7 @@ organization, programmable reasoning, which are potentially helpful
 for structured social analysis such as mental health, cyberbullying,
 thus offering structural suggestions to guide human behavior.
 
-\subsection{Future Work on Contexualized Representation}
+\subsection{Future Work on Contextualized Representation}
 \label{ssec:future:contextural-rep}
 The strong power of
 contextualized representation learning make out independent
@@ -131,35 +129,39 @@ factorization works still gold under our inductive biases. However,
 there are still many challenges on contextualized representation
 learning.
 
-\Paragraph{Extreme Long Context} First, we need to resolve the extrem long
-text encoding problem. Our current models of psychotherapy dialogue
-and schema-guided dialog only consider 8 to 16 utterances as the
-dialogue history window. However, we have more than 500 utterance in a
-single therapy session. Furthermore, a psychotherapy treatment may
-last for months and years which involves multiple dialogue
-sessions. The extended context problem also exists in other domains, such
-as scientific document analysis and threaded conversations in social
-media.
+\subsubsection{Extreme Long Context}
+\label{sssec:future:extrem-long-context}
+First, we need to resolve the extrem long text encoding problem. Our
+current models of psychotherapy dialogue and schema-guided dialog only
+consider 8 to 16 utterances as the dialogue history window. However,
+we have more than 500 utterance in a single therapy
+session. Furthermore, a psychotherapy treatment may last for months
+and years which involves multiple dialogue sessions. The extended
+context problem also exists in other domains, such as scientific
+document analysis and threaded conversations in social media.
 
-\Paragraph{Contextualized Representation Beyond Text} In this thesis,
-we mainly utilize the contextualized text representation to model the
-structured prediction. However, human acquisition of information and
-communication with the world does not occur based on pure language
-input. From a cognitive perspective, processing language in isolation
-without information in other modalities seems insufficient. Recently,
-multimodal contextualized representation has also been widely used in
-the natural language processing
-task. \citet{beinborn-etal-2018-multimodal} shows that multimodal
-grouding of verbs play a crucial role for the compositional power of
-language. Jointly considering both visual and textual models has been
-widely used in many tasks, such as Multimodel Aspect-Based Sentimental
-Analysis~(MABSA)~\cite{ju2021joint}, Named Entity
+\subsubsection{Contextualized Representation Beyond Text}
+\label{sssec:future:beyond-text}
+In this dissertation, we mainly utilize the contextualized text
+representation to model the structured prediction. However, human
+acquisition of information and communication with the world does not
+occur based on pure language input. From a cognitive perspective,
+processing language in isolation without information in other
+modalities seems insufficient. Recently, multimodal contextualized
+representation has also been widely used in the natural language
+processing task. \citet{beinborn-etal-2018-multimodal} shows that
+multimodal grouding of verbs play a crucial role for the compositional
+power of language. Jointly considering both visual and textual models
+has been widely used in many tasks, such as Multimodel Aspect-Based
+Sentimental Analysis~(MABSA)~\cite{ju2021joint}, Named Entity
 Recognization~\cite{zhang2021multi} and so on. Some tasks consider
 both multimodal inputs and multimodal outputs, e.g., Question
 Answering~\cite{singh-etal-2021-mimoqa}. More recently,
-vision-language pre-training further boosts the power of contextualized
-representation~\cite{lu2019vilbert,ling-etal-2022-vision}. Recent works on multimodality above raise challenges for future
-structured prediction tasks and their independent factorization.
+vision-language pre-training further boosts the power of
+contextualized
+representation~\cite{lu2019vilbert,ling-etal-2022-vision}. Recent
+works on multimodality above raise challenges for future structured
+prediction tasks and their independent factorization.
 
 \subsection{Other Biases in Other Formalism}
 \label{ssec:future:rep-bias-ways}
@@ -247,5 +249,5 @@ areas:
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:
