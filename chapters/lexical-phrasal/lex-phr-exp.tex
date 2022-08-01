@@ -1,5 +1,15 @@
 \section{Experiments and Results}
 \label{sec:lex-phr:exp}
+This section will first introduce the dataset and the evaluation used
+in our experimental study~(\autoref{ssec:data_eval}). Then we
+summarize the implementation details when using our proposed
+frameworks for each parsing task~(\autoref{ssec:impl_summary}), with
+respect to the modeling on root, node, and edge. Then we introduce the
+model setup~(\autoref{ssec:exp_setup}), including sentence encoders,
+embedding usage, and training strategies. Finally, we demonstrate the
+experimental results with both the evaluation
+results~(\autoref{ssec:results}) and detailed error
+analysis~(\autoref{ssec:error_breakdown}).
 
 \subsection{Dataset and Evaluation}
 \label{ssec:data_eval}
@@ -12,7 +22,7 @@ training. Following the unified MRP metrics in the shared tasks, we
 train our model based on the development set and finally evaluate on
 the private test set.  For more details of the metrics, please refer
 to the summarization of the MRP~2019 task~\cite{Oep:Abe:Haj:19},
-\begin{table}[!ht]
+\begin{table}[!tbp]
 \caption{The detailed lex-anchoring classifiers in our model. The
   round bracket means the number of ouput classes of our classifiers,
   * means copy mechanism is used in our classifier. }
@@ -38,7 +48,7 @@ Test Data                        & 3269                  & 3269              & 1
 \end{table}
 
 
-\begin{table}[!ht]
+\begin{table}[!tbp]
 \caption{The detailed lex-anchoring classifiers in our model. The round bracket means the number of ouput classes of our classifiers, * means copy mechanism is
   used in our classifier.}
 \label{tbl:phr:impl_phrasal}
@@ -68,15 +78,15 @@ Test Data                        & 1131      & 9042                           \\
 We summarize our implementation for lexical-anchoring
 in~\autoref{tbl:lex:impl_lex}, and phrasal-anchoring
 in~\autoref{tbl:phr:impl_phrasal}. As we mentioned in the previous
-sections, we use latent-alignment graph-based parsing for lexical
-anchoring MRs~(DM, PSD, AMR), and use CKY-based constituent parsing
-phrasal anchoring in MRs~(UCCA, TOP). This section gives information
-about various decision for our models.
+sections, we use latent-alignment graph-based parsing for
+lexical-anchoring rerepsentations~(DM, PSD, AMR), and use CKY-based
+constituent parsing phrasal anchoring rerepsentations~(UCCA, TOP). This section
+gives information about various decision for our models.
 
 \subsubsection{Root}
 \label{sssec:lex:root}
 
-The first row ``Root" shows the numbers of root nodes in the graph.
+The first row \tquoted{Root} shows the numbers of root nodes in the graph.
 We can see that for PSD, 11.56\% of graphs with more than 1 top
 nodes. In our system, we predict one and only one root node with a
 N~(N is size of already identified nodes) way classifier, and then fix
@@ -87,8 +97,8 @@ it, we add the coordination node also as the top node.
 \subsubsection{Node}
 \label{sssec:lex:node}
 
-Except for UCCA, all other four MRs have labeled
-nodes, the row ``Node Label" shows the templates of a node label. For
+Except for UCCA, all other four representations have labeled
+nodes, the row \tquoted{Node Label} shows the templates of a node label. For
 DM and PSD, the node label is usually the lemma of its underlying
 token. But the lemma is neither the same as one in the given companion
 data nor the predicted by Stanford Lemma Annotators. One common
@@ -110,29 +120,27 @@ vallex lexicon.
 \subsubsection{Edge}
 \label{sssec:lex:edge}
 
-Edge predication is another challenge in our task
-because of its large label set (from 45 to 94) as shown in row ``Edge
-Label", the round bracket means the number of output classes of our
-classifiers. For Lexical anchoring MRs, edges are usually connected
-between two tokens, while phrasal anchoring needs extra effort to
-figure out the corresponding span with that node. For example, in UCCA
-parsing, To predict edge labels, we first predicted the node spans,
-and then node labels based that span, and finally we transform back
-the node label into edge label.
+Edge predication is another challenge in our task because of its large
+label set (from 45 to 94) as shown in row \tquoted{Edge Label}, the
+round bracket means the number of output classes of our
+classifiers. For lexical-anchoring representation, edges are usually
+connected between two tokens, while phrasal-anchoring needs extra
+effort to figure out the corresponding span with that node. For
+example, in UCCA parsing, to predict edge labels, we first predicted
+the node spans, and then predict the node label based on each span,
+and finally we transform back the node label into edge label.
 
 \subsubsection{Connectivity}
 \label{sssec:lex:connectivity}
 
-Beside the local label classification for
-nodes and edges, there are other global structure constraints for all
-five MRs: All the nodes and edges should eventually form a connected
-graph. For lexical anchoring, we use MSCG algorithm to find the
-maximum connected graph greedily; For phrasal anchoring, we use
-dynamic programming to decoding the constituent tree then
-deterministically transforming back to a connected UCCA Graph
-\footnote{Due to time
-  constraint, we ignored all the discontinuous span and remote edges
-  in UCCA}
+Beside the local label classification for nodes and edges, there are
+other global structure constraints for all five representations: All the nodes and
+edges should eventually form a connected graph. For lexical anchoring,
+we use MSCG algorithm to find the maximum connected graph greedily;
+For phrasal anchoring, we use dynamic programming to decoding the
+constituent tree then deterministically transforming back to a
+connected UCCA Graph. We ignored all the discontinuous span and remote
+edges in UCCA.
 
 \subsection{Model Setup}
 \label{ssec:exp_setup}
@@ -177,14 +185,17 @@ for it.
 \label{sssec:lex-phr:lex-results}
 Table \ref{tbl:results_rank} shows the official results for our
 lexical-anchoring models on AMR, DM, PSD.  By using our latent
-alignment based AMR parser, our system ranked top 1 in the AMR subtask,
-and outperformed the top 5 models in large margin. Our parser on PSD
-ranked 6, but only 0.02\% worse then the top 5 model. However, official
-results on DM and PSD shows that there is still around 2.5 points
-performance gap between our model and the top 1 model.
+alignment based AMR parser, our system ranked top 1 in the AMR
+subtask, and outperformed the top 5 models in large margin. However,
+the official results on DM and PSD shows that there is still around
+2.5 points performance gap between our model and the top 1 model. Our
+submitted parser ranked 6th on PSD and 7th on DM. Extensive error
+analysis shows that our parser perform worse on the root and edge
+prediction. Please refer to more details
+in~\autoref{sssec:lex-phr:error-lex}.
 
-\begin{table}[!h]
-\caption{\label{tbl:results_rank} Official results overview on unified MRP metric, we selected the performance from top 1/3/5 system(s) for comparison}
+\begin{table}[!tbp]
+\caption{\label{tbl:results_rank} Official results overview on unified MRP metric, we selected the performance from top 1/3/5 system(s) for comparison.}
 \centering
 \begin{tabular}{lll}
 \toprule
@@ -202,12 +213,17 @@ DM(7)  & 93/92/92.14   & 94.76/94.32/93.74 \\ \hline
 Table \ref{tbl:ucca_results_rank} shows that our span-based CKY model
 for UCCA can achieve 74.00 F1 score on official test set, and ranked
 5th. When adding ELMo~\cite{peters2018deep} into our model, it can
-further improve almost 3 points on it.
-\begin{table}[!h]
+further improve almost 3 points on it. However, it still performs 4
+points worse than the top 1 model from~\cite{Che:Dou:Xu:19}, which
+realize stack LSTM with more advanced contextualized word embeddings
+BERT~\cite{devlin2019bert}. We also conduct extensive error analysis
+in~\autoref{sssec:lex-phr:error-phr}.
+
+\begin{table}[!tbp]
 \caption{\label{tbl:ucca_results_rank} Official results overview on
   unified MRP metric, we selected the performance from top 1/3/5
   system(s) for comparison. It shows our UCCA model for post-evluation
-  can rank 5th}
+  can rank 5th.}
   \small
 \centering
 \begin{tabular}{lll}
@@ -230,7 +246,7 @@ plain model with glove-based transformer model can outperform all the
 previous baseline models. Contualized presentation from pretrained
 language model can boost the performance further.
 
-\begin{table}[!h]
+\begin{table}[!tbp]
 \caption{\label{tbl:top_results_rank} Results on TOP Parsing}
   \small
 \centering
@@ -264,7 +280,7 @@ meaning representations. To better understand the performance, we also
 reported the official results from two baseline models
 TUPA~\cite{Her:Arv:19} and ERG~\cite{Oep:Fli:19}.
 
-\begin{table}[!ht]
+\begin{table}[!tbp]
 \caption{\label{tbl:results_amr} Our parser on AMR ranked 1st. This table shows the error breakdown when comparing to the baseline TUPA model and top 2~\cite{Che:Dou:Xu:19} in official results}
 \small
 \centering
@@ -285,7 +301,7 @@ multi} }                  & all  & 61.30             & 39.80  & 27.70 & 27.35 & 
 \end{tabular}
 \end{table}
 
-\begin{table}[!h]
+\begin{table}[!tbp]
 \caption{\label{tbl:results_dm} Our parser on DM ranked 7th. This table shows the error breakdown when comparing to the model ranked Top 1~\citep{Li:Zha:Zha:19} in official results}
 \small
 \centering
@@ -304,7 +320,7 @@ multi} }                  & all  & 61.30             & 39.80  & 27.70 & 27.35 & 
 
 
 
-\begin{table}[!h]
+\begin{table}[!tbp]
 \caption{\label{tbl:results_psd} Our parser on PSD ranked 6th. This table shows the error breakdown when comparing to the model ranked top 1~\cite{Don:Fow:Gro:19} in official results}
 \small
 \centering
@@ -325,7 +341,7 @@ multi} }                  & all  & 61.30             & 39.80  & 27.70 & 27.35 & 
 \end{tabular}
 \end{table}
 
-\subsubsection{Error Analysis on Lexical-Anchoring}
+\subsubsection{Error Analysis on Lexical Anchoring}
 \label{sssec:lex-phr:error-lex}
 As shown in~\autoref{tbl:results_amr}, our AMR parser is good at
 predicting node properties and consistently perform better than other
@@ -345,7 +361,7 @@ that multi-task learning and pre-trained deep models such as
 BERT~\citep{devlin2018bert} may also boost the performance of our paser
 in future.
 
-\subsubsection{Error Analysis on Phrasal-Anchoring}
+\subsubsection{Error Analysis on Phrasal Anchoring}
 \label{sssec:lex-phr:error-phr}
 Our UCCA parser in post-evaluation ranked 5th according to the
 original official evaluation results. According
@@ -354,12 +370,12 @@ better than the top 1 model on anchors prediction. It means our model
 is good at predicting the nodes in UCCA and we belive that it is also
 helpful for prediction phrasal anchoring nodes in EDS.
 
-\begin{table}[!h]
+\begin{table}[!tbp]
   \caption{\label{tbl:results_ucca} The error breakdown of our UCCA
     parser. * denotes the ranking of post-evaluation results }
 \small
 \centering
-\setlength{\tabcolsep}{2.5pt}
+\setlength{\tabcolsep}{3pt}
 
 \begin{tabular}{ccccccccc}
 \toprule
@@ -370,7 +386,7 @@ single }                      & all  & 78.73 & 69.17   & 16.96 & 15.18 & 27.56 \
 \multirow{2}{*}{ TUPA
 multi }                       & all  & 84.92 & 65.74   & 12.99 &  9.07 & 23.65 \\
                               & lpps & 88.89 & 77.76   & 26.45 & 18.32 & 41.04 \\
-\multirow{2}{*}{\cite{Che:Dou:Xu:19}}       & all  & 1.00  & 95.36   & 72.66 & 61.98 & 81.67 \\
+\multirow{2}{*}{\citet{Che:Dou:Xu:19}}       & all  & 1.00  & 95.36   & 72.66 & 61.98 & 81.67 \\
                               & lpps & 1.00  & 96.99   & 73.08 & 48.37 & 82.61 \\ \hline
 \multirow{2}{*}{ Ours(*5)}    & all  & 98.85 & 94.92   & 60.17 & 0.00  & {\bf 74.00} \\
                               & lpps & 96.00 & 96.75   & 60.20 & 0.00  & 75.17 \\

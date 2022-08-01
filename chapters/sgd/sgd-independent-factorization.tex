@@ -12,15 +12,12 @@ for schema-guided dialog state tracking can be represented
 as~\autoref{eq:desc-factor}. Instead of using the label of decomposed
 part $y_{c}$ only, we also use the natural language description of
 $y_{c}$.
-
 \begin{equation}
     \label{eq:desc-factor}
     \begin{split}
     E(x, y) & =\sum_{c \in C} E(x, y_{c}) = \sum_{c \in C}E(x, a(y_{c}), desc(y_{c}))  \\
     \end{split}
 \end{equation}
-
-
 
 In this section, we will
 analyze the task structure of dialogue state tracking and the design
@@ -101,7 +98,7 @@ factorization in Table xx.
 These added schema descriptions pose the following three new
 questions. We discuss each of them in the following sections.
 \\
-\setlength{\fboxsep}{1.5pt} \fbox{\small\parbox{0.90\textwidth}{
+\setlength{\fboxsep}{1.5pt} \fbox{\small\parbox{0.99\textwidth}{
 \begin{enumerate}[label=Q\arabic*.]
 \item How should dialogue and schema be encoded?(\autoref{sec:sgd:models})
 \item How do different supplementary trainings impact each subtask?~(\autoref{sec:sgd:sup-training})

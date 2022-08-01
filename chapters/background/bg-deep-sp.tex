@@ -116,11 +116,11 @@ shaded circle $a$ means the alignment is explicitly observed after the
 decomposition. In the right figure, the alignment variable $a$ is not
 observed.
 
-\begin{figure}[!th]
+\begin{figure}[!tbp]
 \centering
 \includegraphics[width=0.90\textwidth]{graphical-models.pdf}
 \caption{\label{fig:bg:graphical-model}The factor representation for
-  the independent factorization used in our dissertation}
+  the independent factorization used in our dissertation.}
 \end{figure}
 
 As discuessed in \autoref{ssec:intro:bias-dsp}, to apply independent
@@ -132,7 +132,7 @@ $E(x, y) = \sum_{c \in C}E(x, a(y_{c}), y_{c})$, including
   $y_{c}$.
 \item \textbf{Input Decomposition and Alignments Discovery:}~Decomposing $x$ and derive the aligned input $x_{a_{y_{c}}}$ at
   the index $a_{y_{c}}$.
-\item \textbf{Factor Modelling:}~Modelling each $y_{c}$ and its
+\item \textbf{Factor Modeling:}~Modelling each $y_{c}$ and its
   relevant parts $x_{a_{y_{c}}}$ to compute the energy score
   $E(x, a(y_{c}), y_{c})$.
 \end{inparaenum}
@@ -140,7 +140,7 @@ $E(x, y) = \sum_{c \in C}E(x, a(y_{c}), y_{c})$, including
 In the following subsection, we show that rapid progress in
 contextualized representation learning can offer discriminative
 features for modelling the relative parts of $x_{a_{y_{c}}}$, thus
-make the challenge~(3) of independent factorization possible. Then we
+make the challenge~(3)~(factor modeling) of independent factorization possible. Then we
 provide the background knowledge about structures in NLP in
 \autoref{sec:bg:symbolic}, and we briefly show that such prior
 knowledge about anchoring and compositionality are the main source of

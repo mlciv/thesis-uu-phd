@@ -1,4 +1,5 @@
-\section[Anchoring Analysis on Graph-based Representations]{Anchoring Analysis on Graph-based \\Representations}
+\section[Related Work and Anchoring Analysis]{Related Work and
+  Anchoring Analysis}
 \label{sec:lex-phr:factorization-analysis}
 
 In this chapter, we mainly study the parsing of four meaning
@@ -57,27 +58,27 @@ implicit anchoring in AMR is actually lexical-anchoring, which can be
 merged into \texttt{Flavor-0} when we consider the parsing methods on
 it.
 
-\Paragraph{AMR-to-String Alignments} A straightforward solution to
-find the missing anchoring in an AMR Graph is to align it with a
-sentence; We denote it as AMR-to-String alignment. ISI
-alignments~\cite{Pourdamghani:2014aligning} first linearizes the AMR
-graph into a sequence, and then use IBM word alignment
-model~\cite{brown1993mathematics} to align the linearized sequence of
-concepts and relations with tokens in the sentence. According to the
-AMR annotation guidelines and error analysis of ISI aligner, some of
-the nodes or relations are evoked by subwords, e.g., the whole graph
-fragment \tquoted{(p/possible-01 :polarity -)} is evoked by word
-``impossible", where the subword \tquoted{im} actually
-evoked the relation polarity and concept \tquoted{-};
-On the other side, sometimes concepts are evoked by multiple words,
-e.g., named entities, \tquoted{(c/city :name (n/name :op1
-  `New' :op2 `York'))}, which also happens
-in explict anchoring of DM and PSD. Hence, aligning and parsing with
-recategorized graph fragments are a natural solution in aligners and
-parsers. JAMR aligner~\cite{Flanigan:2014vc} uses a set of rules to
-greedily align single tokens, special entities and a set of multiple
-word expression to AMR graph fragments, which is widely used in
-previous AMR
+\subsubsection{AMR-to-String Alignments}
+\label{sssec:lex-phr:amr-to-string}
+A straightforward solution to find the missing anchoring in an AMR
+Graph is to align it with a sentence; We denote it as AMR-to-String
+alignment. ISI alignments~\cite{Pourdamghani:2014aligning} first
+linearizes the AMR graph into a sequence, and then use IBM word
+alignment model~\cite{brown1993mathematics} to align the linearized
+sequence of concepts and relations with tokens in the
+sentence. According to the AMR annotation guidelines and error
+analysis of ISI aligner, some of the nodes or relations are evoked by
+subwords, e.g., the whole graph fragment \tquoted{(p/possible-01
+  :polarity -)} is evoked by word ``impossible", where the subword
+\tquoted{im} actually evoked the relation polarity and concept
+\tquoted{-}; On the other side, sometimes concepts are evoked by
+multiple words, e.g., named entities, \tquoted{(c/city :name (n/name
+  :op1 `New' :op2 `York'))}, which also happens in explict anchoring
+of DM and PSD. Hence, aligning and parsing with recategorized graph
+fragments are a natural solution in aligners and parsers. JAMR
+aligner~\cite{Flanigan:2014vc} uses a set of rules to greedily align
+single tokens, special entities and a set of multiple word expression
+to AMR graph fragments, which is widely used in previous AMR
 parsers~\cite[\eg][]{Flanigan:2014vc,Wang:2015uo,Artzi:2009tb,Pust:2015ug,Peng:2015tj,Konstas:2017uj,Wang:2017vt}. Other
 AMR-to-String Alignments exists, such as the extended HMM-based
 aligner. To consider more structure info in the linearized AMR
@@ -87,14 +88,16 @@ them report over 90\% F-score on their own hand-aligned datasets,
 which shows that AMR-to-String alignments are almost token-level
 anchoring.
 
-\Paragraph{AMR-to-Dependency Alignments} \citet{chen2017unsupervised}
-first tries to align an AMR graph with a syntactic dependency tree.
-\citet{szubert2018structured} conducted further analysis on dependency
-tree and AMR interface. It showed 97\% of AMR edges can be evoked by
-words or the syntactic dependency edges between words.  Those nodes in
-the dependency graph are anchored to each lexical token in the
-original sentence. Hence, this observation indirectly shows that AMR
-nodes can be aligned to the lexical tokens in the sentence.
+\subsubsection{AMR-to-Dependency Alignments}
+\label{sssec:lex-phr:amr-dep}
+\citet{chen2017unsupervised} first tries to align an AMR graph with a
+syntactic dependency tree.  \citet{szubert2018structured} conducted
+further analysis on dependency tree and AMR interface. It showed 97\%
+of AMR edges can be evoked by words or the syntactic dependency edges
+between words.  Those nodes in the dependency graph are anchored to
+each lexical token in the original sentence. Hence, this observation
+indirectly shows that AMR nodes can be aligned to the lexical tokens
+in the sentence.
 
 Both AMR-to-String and AMR-to-dependency alignments shows that AMR
 nodes, including recategorized AMR graph fragements, do have implicit

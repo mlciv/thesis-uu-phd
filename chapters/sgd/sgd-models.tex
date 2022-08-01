@@ -12,7 +12,9 @@ head~(\autoref{ssec:models-overview}) and the results~(\autoref{ssec:encoder-res
 \begin{figure}[!t]
 \centering
   \includegraphics[width=0.90\textwidth]{all-encoders.pdf}
-  \caption{\label{fig:encoders} Dual-Encoder, Cross-Encoder and Fusion Encoder, shaded block will be cached during training}
+  \caption{\label{fig:encoders} Three kinds encoders for schema
+    encoding: Dual-Encoder, Cross-Encoder and Fusion Encoder. Shaded
+    block will be cached during training.}
 \end{figure}
 
 \subsection{Encoder Architectures}
@@ -164,23 +166,23 @@ maximum sum of the start and end scores.
 %% YZ: please check the correctness of the noncat slot prediction head description^^
 \subsection{Experiments on Encoder Comparison}
 \label{ssec:encoder-results}
-To fairly compare all three models, we follow the same schema input
-setting as in~\autoref{tbl:sgd:schema-seq}. We trained separate models
-for \sgdst~and the remixed MultiWOZ datasets for all the experiments
-in our papers~\footnote{\autoref{ssec:sgd:exp-setup} shows the detailed
-  experiment setup}. Because there are very few intent and requested
-slots in \multiwoz~dataset, we ignore the intent and requested slots
-tasks for \multiwoz~in our paper.
+To fairly compare all three models, we follow the same settings of
+schema input as in~\autoref{tbl:sgd:schema-seq}. We trained separate
+models for \sgdst~and the remixed MultiWOZ datasets for all the
+experiments according to the detailed setup
+in~\autoref{ssec:sgd:exp-setup} Because there are very few intent and
+requested slots in \multiwoz~dataset, we ignore the intent and
+requested slots tasks for \multiwoz~in this dissertation.
 
 
 \begin{table}[!t]
 \caption{\label{tbl:sgd:schema-seq} Schema description input used for
   different tasks to compare \DE, \CE, and \FE. In the
-  appendix~\ref{sec:sgd:com-desc}, we also studies other compositions of
+  Appendix~\ref{sec:sgd:com-desc}, we also studies other compositions of
 description input. We found that service description will not help for
 \IC, \RSI and~\CSL tasks, while the impact on \NSL~task also varies
 from \sgdst~and~\multiwoz~dataset.}
-\begin{center}{\small
+\begin{center}
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{l|c}
   \toprule
@@ -191,7 +193,7 @@ Cat    & slot description, cat value             \\
 NonCat & service description, slot description   \\
 \hline
   \bottomrule
-\end{tabular}}
+\end{tabular}
 \end{center}
 \end{table}
 
@@ -225,11 +227,11 @@ services as \CE. %However, their
 %features, dev set, data augmentation, ensemble methods, thus the
 %performance are not comparable.
 
-\begin{table}[!t]
+\begin{table}[!tbp]
 \caption{\label{tbl:sgd:sgd-modeling-results} Test set results on \sgdst and \multiwoz. The
   \DE model is a re-implementation of official DSTC8
   baseline from~\citet{rastogi2019towards}. Other models are
-  trained with the architecture described in our paper.}
+  trained with the architecture described in~\autoref{ssec:models-overview}.}
 \begin{center}{
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{l|ccccc|ccc}

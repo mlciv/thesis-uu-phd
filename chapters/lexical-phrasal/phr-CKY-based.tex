@@ -26,7 +26,7 @@ the previous work on UCCA constituent tree
 parsing~\cite{jiang2019hlt}, we use a minimal span-based CKY parser
 for constituent tree parsing.  The intuition is to use dynamic
 programming to recursively split the span of a sentence recursively,
-as shown in Figure~\ref{fig:ucca-to-CT}. The entire sentence can be
+as shown in~\autoref{fig:ucca-to-CT}. The entire sentence can be
 splitted from top to bottom until each span is a single unsplittable
 tokens. For each node, we also need to assign a label. Two simplified
 assumptions are made when predicting the hole tree given a
@@ -34,12 +34,14 @@ sentence. However, different with previous work, we use 8-layers with
 8 heads transformer encoder, which shows better performance than LSTM
 in \citet{kitaev2018constituency}.
 
-\paragraph{Tree Factorization} In the graph-to-tree transformation, we
-move the edge label to its child node. By assuming the labels for each
-node are independent, we factorize the tree structure prediction as
-independent span-label prediction as Equation
-\ref{eq:tree_factorize}. However, this assumption does not hold for UCCA.
-Please see more error analysis in \S \ref{ssec:error_breakdown}
+\subsubsection{Tree Factorization}
+\label{sssec:phr:tree-factorization}
+In the graph-to-tree transformation, we move the edge label to its
+child node. By assuming the labels for each node are independent, we
+factorize the tree structure prediction as independent span-label
+prediction as Equation \ref{eq:tree_factorize}. However, this
+assumption does not hold for UCCA.  Please see more error analysis
+in~\autoref{ssec:error_breakdown}
 
 \begin{equation}
   \label{eq:tree_factorize}
@@ -48,9 +50,11 @@ Please see more error analysis in \S \ref{ssec:error_breakdown}
 \end{aligned}
 \end{equation}
 
-\paragraph{CKY Parsing} By assuming the label prediction is
-independent of the splitting point, we can further factorize the whole
-tree as the following dynamic programming in Equation \ref{eq:tree_chart}.
+\subsubsection{CKY Parsing}
+\label{sssec:phr:cky-parsing}
+By assuming the label prediction is independent of the splitting
+point, we can further factorize the whole tree as the following
+dynamic programming in Equation~\ref{eq:tree_chart}.
 
 \begin{equation}
   \label{eq:tree_chart}
@@ -67,12 +71,12 @@ tree as the following dynamic programming in Equation \ref{eq:tree_chart}.
 
 For each span $(i,j)$, we represent the span encoding vector
 $v_{(i,j)} = [\vec{y_{j}} - \vec{y_{i}}] \oplus [\cev{y_{j+1}} -
-\cev{y_{i+1}}] $. $\oplus$ denotes vector concatenation. Assuming a
+\cev{y_{i+1}}] $. Here, $\oplus$ denotes vector concatenation. Assuming a
 bidirectional sentence encoder, we use the forward and backward
 encodings $\vec{y_{i}}$ and $\cev{y_{i}}$ of $i_{th}$ word. Following
 the previous work, and we also use the loss augmented inference
 training. More details about the network
-architecture are in the Section \ref{ssec:exp_setup}
+architecture are in~\autoref{ssec:exp_setup}.
 
 %%% Local Variables:
 %%% mode: latex

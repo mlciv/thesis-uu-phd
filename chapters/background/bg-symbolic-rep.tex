@@ -54,12 +54,11 @@ semantic role labeling, named entities representations, and so
 on. Because of the reentrances, semantic representations can be a
 graph rather than a tree-like structure.
 
-This dissertation covers
-broad-coverage graph-based semantic representations in a single
-sentence, which involves \kw{lexical-anchoring} and
-\kw{phrasal-anchoring}. For lexical anchoring, we cover the DELPH-IN
-MRS Bi-lexical Dependencies~\cite[DM,][]{ivanova2012did} and Prague
-Semantic
+This dissertation covers broad-coverage graph-based semantic
+representations in a single sentence, which involves
+\kw{lexical-anchoring} and \kw{phrasal-anchoring}. For lexical
+anchoring, we cover the DELPH-IN MRS Bi-lexical
+Dependencies~\cite[DM,][]{Iva:Oep:Ovr:12} and Prague Semantic
 Dependencies~\cite[PSD,][]{hajic2012announcing,miyao2014house},
 Abstract Meaning Representation~\cite[AMR,][]{Ban:Bon:Cai:13}; While
 for phrasal-anchoring, we study Universal Conceptual Cognitive
@@ -82,7 +81,7 @@ properties for each of the representations.~\footnote{The
 \subsubsection{DELPH-IN MRS-Derived Bi-lexical Dependencies}
 \label{sssec:bg:dm}
 
-\begin{figure}[!th]
+\begin{figure}[!tbp]
 \centering
 \includegraphics[width=0.90\textwidth]{bg/dm-20001001.pdf}
 \caption{\label{fig:bg:dm}The DM representation for the sentence
@@ -120,7 +119,7 @@ quantification. In summary, DM is lexical-anchoring, and it captures
 semantic phenomena including predicate-argument structures, word-sense
 differentiation, quantification, and scope.
 
-\begin{figure}[!th]
+\begin{figure}[!tbp]
 \centering
 \includegraphics[width=0.98\textwidth]{bg/psd-20001001.pdf}
 \caption{\label{fig:bg:psd}The PSD representation for the sentence
@@ -163,7 +162,7 @@ lexicon. In a summary, PSD is also lexical-anchoring, and it
 \subsubsection{Abstract Meaning Representation}
 \label{ssec:bg:amr}
 %
-\begin{figure}[!th]
+\begin{figure}[!tbp]
 \centering
 \includegraphics[width=0.98\textwidth]{bg/amr-20001001.pdf}
 \caption{\label{fig:bg:amr} The AMR representation for the sentence
@@ -213,7 +212,7 @@ decomposion, anaphoric coreference, and entity-linking.
 \subsubsection{Universal Conceptual Cognitive Anotation}
 \label{ssec:bg:ucca}
 
-\begin{figure}[!th]
+\begin{figure}[!tbp]
 \centering
 \includegraphics[width=0.99\textwidth]{bg/ucca-20001001.pdf}
 \caption{\label{fig:bg:ucca}The UCCA representation for the sentence
@@ -264,10 +263,10 @@ the their anchoring type and captured semantic phenomena. For more
 detailed comparative studies over the state-of-art semantic
 representation, please refer to the paper~\citep{abend2017state}.
 
-\begin{table}[ht]
-\caption{The summary of broad-coverage meaning representation, with respect to their anchoring type and captured semantic contents}
+\begin{table}[!tbp]
+\caption{The summary of broad-coverage meaning representation, with respect to their anchoring type and captured semantic contents.}
   \begin{center}
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{3pt}
 {
 \begin{tabular}{c|cccc}
   \toprule
@@ -317,7 +316,7 @@ utterance in the psychotherapy dialogue. This part will mainly
 introduce the MISC Codes for psychotherapy dialogue.
 
 %% putting the table here to make it in the second page.
-\begin{table}[ht]
+\begin{table}[!tbp]
 \caption{Distribution, description and examples of MISC labels.}
   \begin{center}
 \setlength{\tabcolsep}{4pt}
@@ -375,7 +374,7 @@ session.\footnote{The original MISC description of
   therapist). Due to data scarcity and label confusion, various
   strategies are proposed to merge the labels into a coarser set.  We
   adopt the grouping proposed by~\citet{xiao2016behavioral};
-  ~\autoref{ssec:misc_clustering} gives more details.}
+  ~\autoref{chap:appendix:misc-clustering} gives more details.}
 \autoref{tbl:bg:misc} shows the distribution, description and examples
 of MISC labels for clients and therapists. Each of the MISC labels
 will be corresponding to a single utterance. Hence, MISC code
@@ -422,10 +421,10 @@ intent-slot dialog state representation has poor compositionality to
 represent complex conversational requests, such multiple intents in the
 same utterance, and nested intent slot structures.
 
-\begin{figure}[!th]
+\begin{figure}[!tbp]
 \centering
 \includegraphics[width=0.95\textwidth]{top-driving.pdf}
-\caption{\label{fig:bg:top} TOP examples for conversational
+\caption{\label{fig:bg:top} A TOP example for conversational
   semantic parsing~(borrowed from the original
   paper~\citep{gupta-etal-2018-semantic-parsing})}
 \end{figure}
@@ -474,7 +473,7 @@ mainly focused on one of the tree-structural conversational dialogue
 representation called TOP, which shares the same phrasal anchoring due
 to the similar structure with constituent tree.
 
-\begin{table}[ht]
+\begin{table}[!tbp]
 \caption{The summarization of the application-specific representations studied in this dissertation.}
 \label{tbl:bg:app-rep}
   \begin{center}

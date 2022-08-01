@@ -85,23 +85,23 @@ To test the model robustness, we also create two paraphrased
   on different target styles in both homogeneous~(\autoref{ssec:sgd:homo-eval})
   and~heterogeneous settings~(\autoref{ssec:sgd:heter-eval})
 
-\begin{table}[!]
+\begin{table}[b]
 \caption{\label{tbl:sgd:schema-desc-ext} Different extensions of schema descriptions}
-\begin{center}{\scriptsize
-\begin{tabular}{lll}
+\begin{center}
+\begin{tabular}{p{0.15\linewidth}|p{0.45\linewidth} | p{0.24\linewidth}}
 \toprule
 \hline
-style                         & Intent Description                                                                                               & Slot Description                                                                                                               \\ \hline
+Style                         & Intent Description                                                                                               & Slot Description                                                                                                               \\ \hline
 \ID                           & intent\_1                                                                                                        & slot\_4                                                                                                                        \\ \hline
-\NAMEONLY                     & CheckBalance                                                                                                     & account\_type                                                                                                                  \\
-\QANAMEONLY                   & Is the user intending to CheckBalance?                                                                           & What is the value of acctount\_type  ?                                                                                         \\
-\ORIGIN                       & Check the amount of money in a user's bank account                                                               & The account type of the user                                                                                                   \\
-\QARICH                       & Does the user want to check the amount of money in the bank account ?                                            & What is the account type of the user ?                                                                                         \\ \hline
-\NAMEPARA                     & CheckAccountBalance                                                                                              & user\_account\_type                                                                                                            \\
-\PARAPHRASE                   & Check the balance of the user's bank account                                                                     & Type of the user account                                                                                                       \\ \hline
+\NAMEONLY                     & CheckBalance                                                                                                     & account\_type                                                                                                                  \\ \hline
+\QANAMEONLY                   & Is the user intending to CheckBalance?                                                                           & What is the value of account\_type  ?                                                                                          \\ \hline
+\ORIGIN                       & Check the amount of money in a user's bank account                                                               & The account type of the user                                                                                                   \\ \hline
+\QARICH                       & Does the user want to check the amount of money in the bank account ?                                            & What is the account type of the user ?                                                                                         \\ \hline \hline
+\NAMEPARA                     & CheckAccountBalance                                                                                              & user\_account\_type                                                                                                            \\ \hline
+\PARAPHRASE                   & Check the balance of the user's bank account                                                                     & The type of the user account                                                                                                   \\ \hline
 %\multirow{2}{*}{\CONSTRAINT} & \multirow{2}{*}{\parbox{5cm}{Check the amount of money in a user's bank account, requiring the type of account}} & \multirow{2}{*}{\parbox{5cm}{The account type of the user, required by mulitple intents, checking balance and transfer money}} \\
 \bottomrule
-\end{tabular}}
+\end{tabular}
 \end{center}
 \end{table}
 
@@ -126,7 +126,7 @@ style                         & Intent Description                              
 %\ORIGIN style actually perform good on \ORIGIN, \QARICH, \PARAPHRASE
 %description style, the relative small value in standard deviation
 %means relatively stable performance on {\it rich} description group.
-\begin{table}[!ht]
+\begin{table}[b]
 \caption{\label{tbl:sgd:homo-style-results} Homogeneous evaluation results
   of different description style on \sgdst dataset and \multiwoz
   datasets. The middle horizontal line separate the two name-based
@@ -221,6 +221,9 @@ to the natural questions in the SQuAD2, we obverse that \QARICH~gains
 more than \QANAMEONLY~from pretrained model on SQuAD2.
 
 \begin{table}[!t]
+\caption{\label{tbl:sgd:squad2-results-question} Performance changes when
+  using BERT finetuned on SQuAD2 dataset to further finetuning on our
+  \NSL~task. }
 \begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|ccc|ccc}
@@ -236,9 +239,6 @@ more than \QANAMEONLY~from pretrained model on SQuAD2.
 \end{tabular}
 }
 \end{center}
-\caption{\label{tbl:sgd:squad2-results-question} Performance changes when
-  using BERT finetuned on SQuAD2 dataset to further finetuning on our
-  \NSL~task. }
 \end{table}
 
 
@@ -275,8 +275,8 @@ descriptions get paraphrased on unseen services.
 %  and qualitative analysis are availible in the
 %  appdendix~\ref{ssec:more-desc-results}.}.
 
-\begin{table}[!ht]
-\caption{\label{tbl:sgd:hete-style-results-sgd} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the appendix~\ref{sec:sgd:more-desc-results}}
+\begin{table}[p]
+\caption{\label{tbl:sgd:hete-style-results-sgd} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the Appendix~\ref{sec:sgd:more-desc-results}.}
 \begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|c|c|c|c|c|c|c|c}

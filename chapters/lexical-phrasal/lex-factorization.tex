@@ -5,8 +5,8 @@ independent factorization: \textbf{output decomposition} and
 \textbf{input decomposition} on lexical-anchoring. We leave the
 \textbf{factor modelling} into the next part.  We take a more
 complicated AMR graph in~\autoref{fig:bg:amr} as an example, for the
-sentence, \texttt{Pierre Vinken, 61 years old, will join the board as
-  a nonexecutive director Nov.29.}, we introduce the details of
+sentence, \kw{Pierre Vinken, 61 years old, will join the board as a
+  nonexecutive director Nov.29.} We introduce the details of
 independent factorization for AMR and other lexical-anchoring
 representations.
 
@@ -28,30 +28,33 @@ the target graph can be decomposed into independent nodes or
 subgraphs. For DM and PSD, each node in the target graph is strictly
 aligned to the corresponding token. Hence, we simply decompose the DM
 and PSD graph by nodes. However, when we introduce the necessary of
-structural inductive biases for independent factorization~\S
-\ref{sssec:intro:structural-biases}, the AMR parsing running examples
-shows that we need to handle those special entities in AMR graph.
-From the training data alone, we cannot easily tell how to segment the
-AMR graphs. However, according to the annotation guideline of AMR and
-previous work on subgraph templating~\cite{Werling:2015up} or abstract
-concept label~\cite{Wang:2017vt}, the main intuition of grouping is to
-ensure that concepts are rarely lexically triggered (e.g., ``person"
-and ``have-org-role-91" in~\autoref{fig:bg:amr} get grouped together
-with lexically triggered nodes~(e.g., ``Pierre Vinken", and
-``director"). Finally, we adopt the templates proposed by
-\citet{corro2019learning} including: \textbf{thing}~(e.g., (opine-01
-:ARG-01 thing) for ``opinion"), \textbf{person}~(e.g., (play-01 :ARG1
-person) for ``player"), \textbf{more, most}~(e.g., (have-degree-91
-:ARG2 good-02) :ARG3 more) for ``better"),
-\textbf{date-entity}~(e.g.,(date-entity :month 2) for ``February"),
-and all the special quantity entities, \textbf{xx-quantity}~(e.g.,
-(monetary-quantity :quant 20 :unit dollar) for
-``\$20").~\footnote{Please refer to the paper~\cite{lyu2018amr} for
-  more details.}
+structural inductive biases for independent
+factorization~(\autoref{sssec:intro:structural-biases}), the AMR
+parsing running examples shows that we need to handle those special
+entities in AMR graph.  From the training data alone, we cannot easily
+tell how to segment the AMR graphs. However, according to the
+annotation guideline of AMR and previous work on subgraph
+templating~\cite{Werling:2015up} or abstract concept
+label~\cite{Wang:2017vt}, the main intuition of grouping is to ensure
+that concepts are rarely lexically triggered (e.g., \tquoted{person}
+and \dquoted{have-org-role-91} in~\autoref{fig:bg:amr} get grouped
+together with lexically triggered nodes~(e.g., \tquoted{Pierre
+  Vinken}, and \dquoted{director}). Finally, we adopt the templates
+proposed by~\citet{corro2019learning} including:
+\tquoted{thing}~(e.g., \tquoted{(opine-01 :ARG-01 thing)} for
+\tquoted{opinion}), \tquoted{person}~(e.g., \tquoted{(play-01 :ARG1
+  person)} for \tquoted{player}), \tquoted{more},
+\tquoted{most}~(e.g., \tquoted{(have-degree-91 :ARG2 good-02) :ARG3
+  more)} for \tquoted{better}),
+\tquoted{date-entity}~(e.g.,\tquoted{(date-entity :month 2)} for
+\tquoted{February}), and all the special quantity entities,
+\tquoted{xx-quantity}~(e.g., \tquoted{(monetary-quantity :quant 20
+  :unit dollar)} for \tquoted{\$20}).~\footnote{Please refer to the
+  paper of~\citet{lyu2018amr} for more details about the recategorization.}
 
 AMR output decomposition will be the rectangled segments shown in
 \autoref{fig:lex-phr:amr-decomposition}.
-\begin{figure}[!th]
+\begin{figure}[!tbp]
   \centering
   \includegraphics[width=0.90\textwidth]{pierre-decomposition.pdf}
   \caption{\label{fig:lex-phr:amr-decomposition} AMR output
@@ -78,12 +81,12 @@ anchoring information, while the AMR training data doesn't offer the
 alignments. Hence, for AMR, we need to an extra model to resolve the
 alignments discovery problem. According to the AMR annotation
 guideline, a strong inductive bias about the alignment is that
-\textit{each token or expressive is not overlapping and is
+\emph{each token or expressive is not overlapping and is
   exclusively aligned to the output decompositions.} We will
 introduce the details of the latent alignment model in
 \autoref{ssec:lex-phr:latent-alignment}.
 
 %%% Local Variables:
 %%% mode: latex
-%%% TeX-master: "../../thesis-main.ltx"
+%%% TeX-master: "../../dissertation-main.ltx"
 %%% End:

@@ -40,43 +40,44 @@ Model~\autoref{ssec:lex-phr:latent-alignment})
 \subsection{Two-stage Graph-Based Parsing}
 \label{ssec:lex-phr:two-stage}
 
-Before formulating the graph-based model into a probabilistic model as
-Equation \ref{eq:graph_prob}, we denote some notations: $C$, $R$ are
+Before formulating the graph-based model into a probabilistic model
+as~\autoref{eq:graph_prob}, we denote some notations: $C$, $R$ are
 sets of concepts (nodes) and relations (edges) in the graph, and $w$
 is a sequence of tokens.  $a \in {\mathbb{Z}}^m$ as the alignment
 matrix, each $a_{i}$ is the index of aligned token where $i$th node
 aligned to. When modeling the negative log likelihood loss~(NLL), with
 independence assumption between each node and edge, we decompose it
 into node- and edge-identification pipelines.
-
 \begin{equation}
   \label{eq:graph_prob}
 \begin{aligned} \smaller[2]
  & NLL(P(C,R \mid w)) \\
  & = - \log(P(C,R \mid w)) \\
  & = - \log(\sum_{a}{P(a) P(C,R \mid w,a)}) \\
- & = - \log\left(\sum_{a}P(a) P(R\mid w,a,C) P(C \mid w, a)\right) \\
- & = - \log\left(\sum_{a}P(a) \prod_{i}^{m} P(c_{i} \mid h_{a_{i}}) \right. \\
- & \qquad \left.\cdot \prod_{i,j=1}^{m}P(r_{ij} \mid h_{a_{i}}, c_{i}, h_{a_{j}}, c_{j})\right)
+ & = - \log\left(\sum_{a}P(a) P(C \mid w, a) P(R\mid w,a,C)\right) \\
+ & = - \log\left(\sum_{a}P(a) \prod_{i}^{m} P(c_{i} \mid h_{a_{i}}) \cdot \prod_{i,j=1}^{m}P(r_{ij} \mid h_{a_{i}}, c_{i}, h_{a_{j}}, c_{j})\right)
 \end{aligned}
 \end{equation}
 
-In DM, PSD, and AMR, every token will only be aligned once.  Hence, we
-train a joint model to maximize the above probability for both node
-identification
+Hence, we train a joint model to maximize the above probability for
+both node identification
 $P(c_{i} \mid h_{a_{i}})$~(\autoref{sssec:lex-phr:node-ident}) and edge
 identification
 $P(r_{ij} \mid h_{{a_{i}}, c_{i},h_{a_{j}},
   c_{j}})$~(\autoref{sssec:lex-phr:edge-ident}). The alignment
 information is mainly used for training. We need to marginalize out
 the discrete alignment variable $a$ to jointly learning the parameters
-in node identification and relation identification networks. We will
-introduce the latent alignment model
-in~\autoref{ssec:lex-phr:latent-alignment}. \autoref{fig:graph-based-inference}
-summerize the unifed two-stage graph based parsing framework. In the
-following subsections, we will explain the framework in more details.
+in node identification and relation identification networks. In DM,
+PSD, and AMR, every token will only be aligned once. We know the exact
+alignment information in DM and PSD, while we don't have the alignment
+information for AMR for training. Hence, we introduce the latent
+alignment model in~\autoref{ssec:lex-phr:latent-alignment} to resolve
+the learning with discrete latent alignment
+variable. \autoref{fig:graph-based-inference} summerize the unifed
+two-stage graph based parsing framework. In the following subsections,
+we will explain the framework in more details.
 
-\begin{figure}[h] \centering
+\begin{figure}[!tbp] \centering
   \includegraphics[width=1.00\textwidth]{graph-overview3.pdf}
   \caption{\label{fig:graph-based-inference} Two-stage graph-based
     parsing for the running exmaple [wsj\#0209013]}
@@ -84,18 +85,22 @@ following subsections, we will explain the framework in more details.
 
 \subsubsection{Node Identification}
 \label{sssec:lex-phr:node-ident}
-Node Identification predicts a concept $c$ given a word. A
-concept can be either {\it NULL} (when there is no semantic node
-anchoring to that word, e.g., the word is dropped), or a node label
-(e.g., lemma, sense, POS, name value in AMR, frame value in PSD), or
-other node properties. One challenge in node identification is the
-data sparsity issue. Many of the labels are from open sets derived
-from the input token, e.g., its lemma.  Moreover, some labels are
-constrained by a deterministic label set given the word. Hence, we
-designed a copy mechanism~\citep{luong2014addressing} in our neural
-network architecture to decide whether to copying deterministic label
-given a word or estimate a classification probability from a fixed
-label set.
+The stage of \textbf{node identification} predicts a concept $c$ given
+a word. A concept can be either \tquoted{$\Phi$} (when there is no
+semantic node anchoring to that word, e.g., the word is dropped), or a
+node label (e.g., lemma, sense, POS, name value in AMR, frame value in
+PSD), or other node properties. One challenge in node identification
+is the data sparsity issue. Many of the labels are from open sets
+derived from the input token, e.g., its lemma.  Moreover, some labels
+are constrained by a deterministic label set given the word. Hence, we
+propose to use copy mechanism~\citep{luong2014addressing} in our
+neural network architecture to decide whether to copy the
+deterministic label given a word or directly estimate a classification
+probability from a fixed label set. As the first stage shown
+in~\autoref{fig:graph-based-inference}, each token will output its
+corresponding node. Here, the two article \tquoted{The}, \tquoted{the}
+and final period will produce \tquoted{$\Phi$} node. While other tokens
+will copy themself and transform to the corresponding lemma or frames.
 
 
 \subsubsection{Edge Identification}
@@ -104,89 +109,122 @@ label set.
 By assuming the independence of each edge, we model the edges
 probabilites independently.  Given two nodes and their underlying
 tokens, we predict the edge label as the semantic relation between the
-two concepts with a bi-affine classifier~\cite{dozat2016deep}.
+two concepts with a bi-affine classifier~\cite{dozat2016deep}. As
+shown in~\autoref{fig:graph-based-inference}
 
 \subsubsection{Inference}
 \label{sssec:lex-phr:inference}
 In our two-stage graph-based parsing, after nodes are identified, edge
 identification only output a probility distribution over all the
 relations between identified nodes. However, we need to an inference
-algorithm to search for the \kw{maximum spanning connected graph} from all
-the relations. We use~\citet[MSCG,][]{Flanigan:2014vc} to greedily
-select the most valuable edges from the identified nodes and their
-relations connecting them. As shown in Figure
-\ref{fig:graph-based-inference}, an input sentence goes through
-preprocessing, node identification, edge identification, root
-identification, and MCSG to generate a final connected graph as
-structured output.
+algorithm to search for the \kw{maximum spanning connected
+  graph}~(MSCG) from all the relations. We use
+MSCG~\citep{Flanigan:2014vc} to greedily select the most valuable
+edges from the identified nodes and their relations connecting
+them. As shown in Figure \ref{fig:graph-based-inference}, an input
+sentence goes through preprocessing, node identification, edge
+identification, root identification, and MSCG to generate a final
+connected graph as structured output.
 
 \subsection{Latent Alignment Model}
 \label{ssec:lex-phr:latent-alignment}
 
 As the two-stage probablistic model shown
-in~\autoref{eq:graph_prob_brief}, we need to marginalize all the
+in~\autoref{eq:graph_prob}, we need to marginalize all the
 alignment information $a$ to learn the above two-stage nerual networks
 for node and edge identification. We do the following computing for
 explicit and implicit alignments respectively.
+\begin{itemize}
+\item \textbf{Explicit Alignments:} For DM, PSD, with explicit
+  alignments $a*$, we can simply use $P(a^{*}) = 1.0$ and other
+  alignments $P(a | a \neq a^{*}) = 0.0 $. Hence, in this case, with
+  known alignment information, we don't need to worry the intractable
+  marginalization problem. Further more, after reducing the latent
+  alignment variable, we can easily learn the parameters for models of
+  node identifiaction and edge identification.
+\item \textbf{Implicit Alignments:} However, For AMR, without gold
+  alignments, one requires to compute all the valid alignments and
+  then condition the node- and edge-identification methods on the
+  alignments.  However, it is computationally intractable to enumerate
+  all combinatoral values for the discrete alignment variable. Hence,
+  we estimate the latent alignments via variational inferece, which
+  has been initialially used in~\citet{lyu2018amr}. In the following
+  section, we introduce the details of latent alignment model via
+  variational inference~(\autoref{sssec:lex-phr:vae}),
+  Perturb-and-Max~(\autoref{sssec:lex-phr:perturb-and-map}), Gumbel-Sinkhorn
+  networks~(\autoref{sssec:lex-phr:gumbel-sinkhorn}).
+\end{itemize}
 
-\Paragraph{Explicit Alignments} For DM, PSD, with explicit alignments
-$a*$, we can simply use $P(a^{*}) = 1.0$ and other alignments
-$P(a | a \neq a^{*}) = 0.0 $. In this case, with known alignment
-information, we don't need to worry the marginalization problem.
+Hence, with the alignment models for both explicit and implicit
+alignments, our unified two-stage parsing framework can support the
+parsing on DM, PSD and AMR.
 
-\Paragraph{Implicit Alignments} However, For AMR, without gold
-alignments, one requires to compute all the valid alignments and then
-condition the node- and edge-identification methods on the alignments.
-However, it is computationally intractable to enumerate all
-combinatoral values for the discrete alignment variable. Hence, we
-estimate the latent alignments via variational inferece, which has
-been initialially used in~\citet{lyu2018amr}. In the following
-section, we firstly introduce the details of latent alignment model
-via continuous relaxiation~\autoref{sssec:lex-phr:alignment-relax} and
-then we descibe the details of variational
-inference~\autoref{sssec:lex-phr:gumble-sinkhorn}, and we propose a
-error fix for computing KL-divergence with implicit Gumbel-Sinkhorn
-distribution.
-
-\begin{equation}
-  \label{eq:graph_prob_brief}
-\begin{aligned} \smaller[2]
- & NLL(P(C,R \mid w)) \\
- & = - \log\left(\sum_{a}P(a) \prod_{i}^{m} P(c_{i} \mid h_{a_{i}}) \right. \\
- & \qquad \left.\cdot \prod_{i,j=1}^{m}P(r_{ij} \mid h_{a_{i}}, c_{i}, h_{a_{j}}, c_{j})\right)
-\end{aligned}
-\end{equation}
-
-\subsubsection{Continuous Relaxation for Discrete Alignments}
-\label{sssec:lex-phr:alignment-relax}
-
+\subsubsection{Variational Inference}
+\label{sssec:lex-phr:vae}
+First, as shown in~\autoref{eq:elbo}, latent alignment prior $P(a_)$
+is unknown for the two-stage parsing. We want estimate the latent
+alignment model to ensure that it is consistent with the obversed $w$,
+$C$, and $R$. Furthermore, we also need to marginal it out and jointly
+learn the parameters $\theta$ and $\Phi$ to generate the concepts and
+relations respectively. Hence, we apply variational inferenc to reduce
+the marginal likelihood into Evidence Lower
+Bound~(ELBO)~\citep{kingma2013auto}.
 \begin{equation}
  \label{eq:elbo}
-\begin{aligned} \smaller[2]
-  & \log(P(C,R \mid w)) \geq \\
-  & E_{Q}[\log(P_{\theta}(c\mid w,a) P_{\Phi}(R\mid w,a,c))] \\
-  & - \kld{Q_{\Psi}(a\mid c, R,w)}{P(a)}
+\begin{aligned}
+  & \log(P(C,R \mid w)) \\
+  & = \log\left(\sum_{a}P(a) P(C\mid w, a) P(R\mid w,a,C)\right) \\
+  & \ge E_{Q}[\log(P_{\theta}(C\mid w,a) P_{\Phi}(R\mid w,a,C))] - \kld{Q_{\Psi}(a\mid C, R,w)}{P(a)} \\
+  & = \sum_{a}Q_{\Psi}(a\mid C, R,w)\log(P_{\theta}(C\mid w,a) P_{\Phi}(R\mid w,a,C))] \\
+  & - \kld{Q_{\Psi}(a\mid C, R,w)}{P(a)}
 \end{aligned}
 \end{equation}
+where $Q_{\Psi}(a|c,R,w)$ is the alignment model, parameterized by a
+nerual network $\Psi$ to approximate the intractable posterior alignment
+model $P_{\theta,\Phi}(a\mid C, R, w)$. The second term $D_{{KL}}$ is the
+Kullback-Leibler divergence~\citep{kl-ims}, measuring the difference
+between the approximated posterior and the true posterior. Please
+refer to the original variational auto-encoder
+paper~\citep{kingma2013auto} for more details.
 
-\subsubsection{VAE, Perturb-and-Map, Gumble Sinkhorn}
-\label{sssec:lex-phr:gumble-sinkhorn}
-\begin{itemize}
-\item Applying variational inference to reduce it into
-  Evidence Lower Bound~\cite[ELBO,][]{kingma2013auto}
-\item The denominator $Z_{\Psi}$ in Q can be estimated by Perturb-and-Max(MAP)~\cite{papandreouperturb}
+\subsubsection{Perturb-and-Map}
+\label{sssec:lex-phr:perturb-and-map}
+To jointly learn the models according the~\autoref{eq:elbo}, the
+posterior alignment model $Q$ can be computed as shown
+in~\autoref{eq:posterior_prob}.
 \begin{equation}
   \label{eq:posterior_prob}
 \begin{aligned} \smaller[2]
 Q_{\Psi}(a\mid c, R,w)= \frac{\exp(\sum_{i=1}^{n} \phi(g_{i}, h_{a_{i}}))} {Z_{\Psi}(c,w)}
 \end{aligned}
 \end{equation}
-Where $\phi(g_{i}, h_{a_{i}})$ score each alignment link between node i and the corresponding words,
-$g_{i}$ is node encoding, and $h_{a_{i}}$ is encoding for the aligned token.
+where $\phi(g_{i}, h_{a_{i}})$ score each alignment link between node i
+and the corresponding words, $g_{i}$ is node encoding, and $h_{a_{i}}$
+is encoding for the aligned token. However, the denominator $Z_{\Psi}$ is
+an intratable partition fuction for the global normalization, which
+has $n!$ combinations. Perturb-and-Max(MAP)
+techinique~\cite{papandreouperturb} can help this intratable sampling
+with two steps:
+\begin{inparaenum}[(1)]
+\item perturbing the alignment score~($\phi(g_{i}, h_{a_{i}})$) with an
+  independent noise.
+\item compute the \kw{argmax} to sample the discrete alignment
+  variable $a$.
+\end{inparaenum}
 
-\item Discrete \texttt{argmax} of a permutation can be estimated by
-  Gumbel-Softmax Sinkhorn Networks \cite{mena2018learning, lyu2018amr}
-\end{itemize}
+\subsubsection{Gumbel Sinkhorn}
+\label{sssec:lex-phr:gumbel-sinkhorn}
+Finally, the remaining challenge lies in the discrete \kw{argmax} in
+the second step of Perturb-and-Max, which is not differtiable.
+\citet{mena2018learning} resolve this issue with a simple
+differentiable operator called Gumbel-Sinkhorn operator. As the
+exlcusive alignment assumption when we introduce the input
+decomposition of lexical-anchoring
+parsing~(\autoref{sssec:lex-phr:lex-input-decomposition}), the
+\kw{argmax} over exclusive alignment can be relaxiated into a
+differentiable gumbel softmax over $n*n$ matrix scores. For further
+details of the estimating, we refer the reader to the original
+paper~\citep{mena2018learning,lyu2018amr}.
 
 %%% Local Variables:
 %%% mode: latex

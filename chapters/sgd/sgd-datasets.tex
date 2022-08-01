@@ -3,19 +3,19 @@
 
 \begin{table}[!t]
 \caption{\label{tbl:sgd:datasets} Summary of characteristics of \sgdst \multiwoz datasets, in domain diversity, function overlap, data collecting methods}
-\begin{center}{\small
+\begin{center}{
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{l|cccccc|c|c}
+\begin{tabular}{l|ccccc|c|c}
 \toprule
 \hline
-\multirow{2}{*}{Datasets}   & \multirow{2}{*}{Splits} & \multirow{2}{*}{Dialog} & \multirow{2}{*}{Domains} & \multirow{2}{*}{Services} & Zero-shot & Zero-shot&Function & Collecting             \\
-                            &                         &                         &                          &                           & Domains   & Services &Overlapp & Method                 \\ \hline
-\multirow{3}{*}{ \sgdst}    & Train                   & 16142                   & 16                       & 26                        & -         & -        &\multirow{3}{*}{\parbox[c]{2cm}{Across/Within-domain}} & \multirow{3}{*}{ M2M}  \\
-                            & Dev                     & 2482                    & 16                       & 17                        & 1         & 8        & &                        \\
-                            & Test                    & 4201                    & 18                       & 21                        & 3         & 11       & &                        \\ \hline
-\multirow{3}{*}{\parbox[c]{2cm}{\multiwoz}} & Train                   & 9617                    & 3                        & 3                         & -         & -        &\multirow{3}{*}{Across-domain} & \multirow{3}{*}{ H2H } \\
-                            & Dev                     & 2455                    & 5                        & 5                         & 2         & 2        & &                        \\
-                            & Test                    & 2969                    & 8                        & 8                         & 5         & 5        & &                        \\ \hline
+\multirow{2}{*}{Datasets}                   & \multirow{2}{*}{Splits} & \multirow{2}{*}{Dialog} & Domains  & Zero-shot & Zero-shot & Function & Collecting             \\
+                                            &                         &                         & (Services) & Domains   & Services  & Overlapp & Method                 \\ \hline
+\multirow{3}{*}{ \sgdst}                    & Train                   & 16142                   & 16(26)   & -         & -         & Across/  & \multirow{3}{*}{ M2M}  \\
+                                            & Dev                     & 2482                    & 16(17)   & 1         & 8         & Within   &                        \\
+                                            & Test                    & 4201                    & 18(21)   & 3         & 11        & Domain   &                        \\ \hline
+\multirow{3}{*}{\parbox[c]{2cm}{\multiwoz}} & Train                   & 9617                    & 3(3)     & -         & -         & Across   & \multirow{3}{*}{ H2H } \\
+                                            & Dev                     & 2455                    & 5(5)     & 2         & 2         & Domain   &                        \\
+                                            & Test                    & 2969                    & 8(8)     & 5         & 5         &          &                        \\ \hline
 \bottomrule
 \end{tabular}}
 \end{center}
@@ -60,7 +60,7 @@ unseen, including those that have minimum overlap with seen services,
 such as {\it hospital}, {\it police}, {\it bus}. The statistics are as
 shown in Table \ref{tbl:multiwoz-remix}
 
-\begin{table}[!h]
+\begin{table}[t]
 \caption{\label{tbl:multiwoz-remix} The total number of dialogs and
   turns related to each domain in train, dev and test split of MultiWOZ}
 \begin{center}{

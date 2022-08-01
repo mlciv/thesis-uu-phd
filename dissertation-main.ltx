@@ -104,7 +104,18 @@
 \usepackage {url}
 
 \usepackage {microtype}
+\usepackage {rotating}
 
+% move all the tables, figures at the end of each chapters
+% normall the figure first.
+% https://mirror.las.iastate.edu/tex-archive/macros/latex/contrib/endfloat/endfloat.pdf
+% leftmark and rightmark. https://tex.stackexchange.com/questions/119612/can-i-prevent-endfloat-from-changing-leftmark-and-rightmark
+%\usepackage[disable,nolists,noheads,nomarkers]{endfloat}
+\usepackage[nolists,noheads,nomarkers]{endfloat}
+\usepackage{etoolbox}
+\renewcommand{\efloatheading}[1]{}
+\DeclareDelayedFloatFlavor{sidewaysfigure}{figure}
+\DeclareDelayedFloatFlavor{sidewaystable}{table}
 % (inline references)
 \usepackage[sort, square, numbers]{natbib}
 \newcommand{\newblock}{}
@@ -276,10 +287,10 @@
 \dedicationpage
 \tableofcontents
 %% TODO: comments for expenditing review. for final submission, please uncomment
-%\newif\listoffiguresoff
-%\newif\listoftablesoff
-\listoffigures
-\listoftables
+\newif\listoffiguresoff
+\newif\listoftablesoff
+%\listoffigures
+%\listoftables
 
 %
 %%% Optional front matter page(s), made from source "notation.tex". If
@@ -305,20 +316,35 @@
 \pagestyle{plain} % TEMPORARY EXPERIMENT: override default page headers
 \pagestyle{headings} % TEMPORARY EXPERIMENT: override default page headers
 
-\include {chapters/intro}
-\include {chapters/background}
-\include {chapters/lexical-phrasal}
-\include {chapters/sentence}     % NEW for sample-thesis-2
-\include {chapters/sgd}     % NEW for sample-thesis-3
-\include {chapters/summary}     % summary
+% move all the tables, figures at the end of each chapters
+% not put per flaot one page
+%\renewcommand{\efloatseparator}{\mbox{}}
+\renewcommand{\efloatseparator}{\vfill}
 
+\include {chapters/intro}
+\processdelayedfloats
+\include {chapters/background}
+\processdelayedfloats
+\include {chapters/lexical-phrasal}
+\processdelayedfloats
+\include {chapters/sentence}     % NEW for sample-thesis-2
+\processdelayedfloats
+\include {chapters/sgd}     % NEW for sample-thesis-3
+\processdelayedfloats
+\include {chapters/summary}     % summary
+\processdelayedfloats
 % % \numberofappendices = 1   % Set 0 for none, else number of appendices.
 \numberofappendices = 3
 \appendix       % Chapters, sections are now appendix style A, A.1, A.2, B, C, D, ...
 
-%\include {chapters/appa}
-%\include {chapters/appc}
+\include {chapters/appa}
+\processdelayedfloats
 \include {chapters/appb}
+\processdelayedfloats
+\include {chapters/appc}
+\processdelayedfloats
+\clearpage
+
 
 %%% The choice of bibliography style is a major decision, jointly made
 %%% by you, your thesis advisor and the thesis editor. Common choices are

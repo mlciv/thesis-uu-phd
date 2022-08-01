@@ -1,0 +1,215 @@
+\efloatseparator
+ 
+\begin{sidewaystable}[!tbp]
+\caption{\label{tbl:sup-training-details} Results of different supplementary training on \sgdst~and \multiwoz~datasets.}
+\begin{center}
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{c|c|ccc|ccc|ccc|ccc|ccc|ccc}
+\toprule
+  \hline
+ &  & \multicolumn{12}{c|}{ sgd }   & \multicolumn{6}{c}{ multiwoz }                                                                                                                      \\ \cline{3-20}
+ &  & \multicolumn{3}{c|}{ intent } & \multicolumn{3}{c|}{ req } & \multicolumn{3}{c|}{ cat } & \multicolumn{3}{c|}{ noncat } & \multicolumn{3}{c|}{ cat } & \multicolumn{3}{c}{ noncat } \\ \hline
+
+\multirow{2}{*}{ snli }  & uncased              & 93.31       & 95.4  & 92.62       & 98.62 & 99.34 & 98.37 & 75.66 & 93.39 & 69.98 & 80.38      & 90.93 & 76.87      & 51.77 & 84.93 & 59.40 & 56.47      & 82.39 & 61.62       \\
+                         & snli                 & 93.82       & 95.42 & 93.3        & 98.43 & 99.72 & 97.99 & 74.03 & 90.52 & 68.75 & 75.68      & 90.83 & 70.62      & 53.82 & 85.53 & 58.70 & 60.11      & 83.44 & 66.46       \\
+                         & $\Delta_{\textbf{SNLI}}$  & {\bf +0.51} & +0.02 & {\bf +0.68} & -0.19 & +0.38 & -0.38 & -1.63 & -2.87 & -1.23 & -4.7       & -0.1  & -6.25      & +2.05 & +0.6  & --0.7  & {\bf 3.64} & +1.05 & {\bf +4.84} \\ \hline
+\multirow{2}{*}{ squad } & cased                & 93.01       & 95.51 & 92.2        & 98.59 & 99.59 & 98.26 & 74.51 & 92.1  & 71.23 & 75.76      & 93.52 & 69.84      & 52.19 & 85.74 & 56.49 & 57.2       & 83.67 & 61.39       \\
+                         & squad                & 91.2        & 95.34 & 90.88       & 98.34 & 99.58 & 97.93 & 71.64 & 89.08 & 66.06 & 77.75      & 91.73 & 73.09      & 52.23 & 85.03 & 56.90 & 59.13      & 81.46 & 65.66       \\
+                         & $\Delta_{\textbf{SQuAD}}$ & -1.81       & -0.17 & -1.32       & -0.25 & -0.01 & -0.33 & -2.87 & -3.02 & -5.17 & {\bf 1.99} & -1.79 & {\bf 3.25} & +0.04 & -0.71 & +0.41 & {\bf 1.93} & -2.21 & {\bf +4.27} \\ \hline
+\bottomrule
+\end{tabular}
+\end{center}
+\end{sidewaystable}
+\efloatseparator
+ 
+\begin{table}[!tbp]
+\caption{\label{tbl:squad2-results-question-details} Results on
+  different description style on \sgdst~and \multiwoz dataset, when
+  performing SQuAD2 supplementary training.}
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{c|ccc|ccc}
+  \toprule
+  \hline
+                         \multirow{2}{*}{Style/Dataset} & \multicolumn{3}{c|}{\sgdst} & \multicolumn{3}{c}{\multiwoz}                     \\ \cline{2-7}
+                                                        & all                         & seen  & unseen      & all   & seen  & unseen      \\ \hline
+\multirow{3}{*}{\ORIGIN}                                & 75.76                       & 93.52 & 69.84       & 57.2  & 83.67 & 61.39       \\
+                                                        & 77.75                       & 91.73 & 73.09       & 59.13 & 81.46 & 65.66       \\
+                                                        & +1.99                       & -1.79 & {\bf +3.25} & +1.93 & -2.21 & {\bf +4.27} \\ \hline
+\multirow{3}{*}{\QARICH}                                & 76.60                       & 92.86 & 71.18       & 57.80 & 82.45 & 62.45       \\
+                                                        & 82.73                       & 90.85 & 80.02       & 58.86 & 81.17 & 65.51       \\
+                                                        & +6.13                       & -2.01 & {\bf +8.84} & +1.06 & -1.28 & {\bf +3.06} \\ \hline
+\multirow{3}{*}{\NAMEONLY}                              & 75.63                       & 88.90 & 71.21       & 56.18 & 81.68 & 61.30       \\
+                                                        & 75.18                       & 87.41 & 71.10       & 57.93 & 82.26 & 63.07       \\
+                                                        & -0.45                       & -1.49 & {\bf --0.11} & +1.75 & +0.58 & {\bf +1.77} \\ \hline
+\multirow{3}{*}{\QANAMEONLY}                            & 74.86                       & 91.78 & 69.22       & 56.17 & 81.19 & 60.47       \\
+                                                        & 74.91                       & 88.8  & 70.26       & 56.13 & 80.87 & 61.72       \\
+                                                        & +0.05                       & -2.98 & {\bf +1.04} & -0.04 & -0.32 & {\bf +1.25} \\ \hline
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[!ht]
+\caption{\label{tbl:heter-intent} Accuracy of intent classification
+  subtask with different description styles on unseen services. Train
+  the model on \sgdst dataset for each description in each row, then
+  evaluating on 4 different descriptions styles. The mean are average
+  performance of the remaining 3 descriptions styles. The $\Delta$ means
+  the performance gap between the mean and the homogeneous
+  performance.}
+\begin{center}
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{c|cccc|cc}
+  \toprule
+  \hline
+  Style       & \NAMEONLY               & \QANAMEONLY & \ORIGIN     & \QARICH     & mean        & $\Delta$        \\ \hline
+  \NAMEONLY   & \underline{{\it 93.94}} & 78.27       & 93.18       & 75.95       & 82.47       & -11.47     \\
+  \QANAMEONLY & 93.18                   & {\it 92.69} & 93.26       & 93.36       & {\bf 93.27} & {\bf +0.58} \\
+  \ORIGIN     & 81.57                   & 66.42       & {\it 92.17} & 90.43       & 79.47       & -12.70     \\
+  \QARICH     & 81.48                   & 79.04       & 93.19       & {\it 92.81} & 84.57       & -8.24      \\
+  \hline
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[!ht]
+\caption{\label{tbl:heter-req} F1 Score of requested slot
+  classification subtask with different description styles on unseen
+  services. We train the model on \sgdst~dataset for the description
+  style in each row, then evaluate on 4 different descriptions
+  styles. The mean are average performance of the remaining 3
+  descriptions styles. The $\Delta$ means the performance gap between the
+  mean and the homogeneous performance.}
+\begin{center}
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{c|cccc|cc}
+ \toprule
+  \hline
+Style       & \NAMEONLY   & \QANAMEONLY             & \ORIGIN     & \QARICH     & mean        & $\Delta$         \\ \hline
+\NAMEONLY   & {\it 98.56} & 96.01                   & 97.2        & 97.54       & 96.92       & -1.64       \\
+\QANAMEONLY & 98.37       & \underline{{\it 98.64}} & 97.8        & 97.48       & {\bf 97.88} & -0.76       \\
+\ORIGIN     & 97.95       & 95.78                   & {\it 98.16} & 98.52       & 97.42       & {\bf -0.74} \\
+\QARICH     & 97.24       & 95.85                   & 97.00       & {\it 98.15} & 96.70       & -1.45       \\
+  \hline
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[!ht]
+\caption{\label{tbl:heter-cat} Joint accuracy of categorical slot
+  subtask with different description styles on unseen services. Train
+  the model on \sgdst ~and~\multiwoz~datasets respectively for each
+  description style in each row, then evaluate on all 4 descriptions
+  styles. The mean are the average performance of the remaining 3
+  descriptions styles. The $\Delta$ means the performance gap between the
+  mean and the homogeneous performance.}
+\begin{center}
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{c|cccc|cc}
+ \toprule
+  \hline
+Style       & \NAMEONLY   & \QANAMEONLY             & \ORIGIN     & \QARICH                 & mean        & $\Delta$        \\ \hline
+\multicolumn{7}{c}{\sgdst}                                                                                             \\ \hline
+\NAMEONLY   & {\it 68.09} & 58.41                   & 63.49       & 62.21                   & 61.37       & -6.72      \\
+\QANAMEONLY & 69.01       & {\it 68.29}             & 68.53       & 68.12                   & 68.55       & {\bf +0.26} \\
+\ORIGIN     & 70.19       & 65.91                   & {\it 68.88} & 69.64                   & {\bf 68.58} & -0.30      \\
+\QARICH     & 69.98       & 65.97                   & 69.26       & \underline{{\it 71.29}} & 68.40       & -2.89      \\
+  \hline
+\multicolumn{7}{c}{\multiwoz}                                                                                          \\ \hline
+\NAMEONLY   & {\it 59.24} & 59.32                   & 59.12       & 59.29                   & 59.24       & 0.00       \\
+\QANAMEONLY & 58.64       & \underline{{\it 59.74}} & 58.49       & 59.43                   & 58.85       & -0.89      \\
+\ORIGIN     & 59.26       & 59.91                   & {\it 56.49} & 58.97                   & {\bf 59.38} & {\bf +2.89} \\
+\QARICH     & 60.00       & 60.70                   & 51.18       & {\it 58.95}             & 57.29       & -1.66      \\
+  \hline
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{table}[!ht]
+\caption{\label{tbl:heter-noncat} Joint accuracy of non-categorical
+  slot subtask with different description styles on unseen
+  services. We train the model on \sgdst ~and~\multiwoz~datasets
+  respectively for the description style in each row, then evaluate
+  on all 4 different descriptions styles. The mean are the average
+  performance of the remaining 3 descriptions styles. The $\Delta$ means
+  the performance gap between the mean and the homogeneous
+  performance.}
+\begin{center}
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{c|cccc|cc}
+ \toprule
+  \hline
+Style       & \NAMEONLY               & \QANAMEONLY & \ORIGIN     & \QARICH                 & mean        & $\Delta$         \\ \hline
+\multicolumn{7}{c}{\sgdst}                                                                                              \\ \hline
+\NAMEONLY   & \underline{{\it 71.21}} & 49.85       & 59.8        & 59.95                   & 56.53       & -14.68      \\
+\QANAMEONLY & 66.32                   & {\it 69.22} & 61.67       & 60.77                   & 62.92       & -6.30       \\
+\ORIGIN     & 78.73                   & 51.57       & {\it 69.84} & 69.87                   & {\bf 66.72} & {\bf -3.12} \\
+\QARICH     & 62.6                    & 36.44       & 69.49       & \underline{{\it 71.18}} & 56.18       & -15.00      \\ \hline
+\multicolumn{7}{c}{\multiwoz}                                                                                           \\ \hline
+\NAMEONLY   & {\it 61.30}             & 57.88       & 61.51       & 64.05                   & 61.15       & -0.15       \\
+\QANAMEONLY & 60.62                   & {\it 60.47} & 60.6        & 62.58                   & 61.27       & +0.80        \\
+\ORIGIN     & 61.77                   & 65.4        & {\it 61.39} & 62.4                    & {\bf 63.19} & {\bf +1.80}  \\
+\QARICH     & 61.29                   & 60.6        & 62.46       & \underline{{\it 62.45}} & 61.45       & -1.00       \\
+  \hline
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+\efloatseparator
+ 
+\begin{sidewaystable}[!t]
+\caption{\label{tbl:heter-quali}We analyze the confusion matrix of
+  above slots before and after using the paraphrased name. We summarize
+  the extra impact for using each paraphrased name.  }
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{ccc|p{7cm}}
+  \bottomrule
+  \hline
+Service Name & Original Name        & Paraphrased Name            & Extra impact by the paraphrased name                                            \\ \hline
+Travel\_1    & location             & attraction\_location        & Confused with other \tquoted{attraction} prefixed slots, e.g. \tquoted{attraction \_name}         \\
+Movies\_1    & genre                & movie\_genre                & Confused with \tquoted{movie\_name}                                                       \\
+Movies\_1    & price                & ticket\_price, total\_price & No impact                                                                       \\ \hline
+Bueses\_3    & to\_city             & target\_city                & The synonyms \tquoted{target} is not understood well by model, confused with \tquoted{from\_city} \\
+Movies\_1    & movie\_name          & film\_name                  & The synonyms \tquoted{film} is not understood well, getting wrong with \tquoted{theather\_name}   \\
+Hotels\_2    & where\_to            & house\_loc                  & Improved by specific "house" keywords                                           \\ \hline
+Flights\_4   & origin\_airport      & orig\_city\_airport         & More frequently predicted to slot \tquoted{destination\_airport}                             \\
+Flights\_4   & destination\_airport & dest\_city\_airport         & More frequently predicted to slot  \tquoted{origin\_airport}                                  \\
+Media\_3     & subtitle\_language   & sub\_lang                   & Missing keyword \tquoted{subtitle} make the slot inactive                               \\
+Flights\_4   & number\_of\_tickets  & num\_of\_tickets            & No impact                                                                       \\ \hline
+\bottomrule
+\end{tabular}
+\end{center}
+\end{sidewaystable}
+\efloatseparator
+ 
+\begin{table}[!tbp]
+\caption{\label{tbl:hete-style-results-sgd2} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the appendix~\ref{sec:sgd:more-desc-results}}
+\begin{center}
+\setlength{\tabcolsep}{1pt}
+\begin{tabular}{c|c|c|c|c}
+  \toprule
+  \hline
+\multirow{3}{*}{Style\textbackslash{Task}} & \multicolumn{4}{c}{ \sgdst }                                                                                                                   \\ \cline{2-5}
+                                           & \multicolumn{1}{c|}{ Intent(Acc)} & \multicolumn{1}{c|}{Req(F1)} & \multicolumn{1}{c|}{Cat(Joint Acc)} & \multicolumn{1}{c}{NonCat(Joint Acc)} \\ \cline{2-5}
+                                           & $\Delta$                               & $\Delta$                          & $\Delta$                                 & $\Delta$                                   \\ \hline
+\NAMEONLY                                  & -11.47                            & -1.64                        & -5.54                               & -14.68                                \\
+\QANAMEONLY                                & +0.58                             & -0.76                        & +2.63                               & -6.30                                 \\
+\ORIGIN                                    & -12.70                            & -0.74                        & -0.3                                & -3.11                                 \\
+\QARICH                                    & -8.24                             & -1.45                        & -2.89                               & -15.00                                \\
+  \hline
+                                           & $\Delta$                               & $\Delta$                          & $\Delta$                                 & $\Delta$                                   \\ \hline
+\NAMEONLY                                  & -1.74                             & -0.87                        & -0.7                                & -4.04                                 \\
+\ORIGIN                                    & {\bf -0.63}                       & {\bf +0.26}                  & {\bf +2.86}                         & {\bf -2.16}                           \\ \hline
+  \bottomrule
+\end{tabular}
+\end{center}
+\end{table}
