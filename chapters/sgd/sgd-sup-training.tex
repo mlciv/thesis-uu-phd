@@ -6,9 +6,9 @@ phase on an intermediate task after the pretraining, but before
 finetuning on target task. It shows significant improvement on the
 target tasks. Moreover, large amount pretrained and finetuned
 transformer-based models are publicly accessible, and well-organized
-in model hubs for sharing, training and testing\footnote{e.g.,
+in model hubs for sharing, training and testing.\footnote{For example,
   Huggingface(\url{https://huggingface.co/models}) and
-  ParlAL(\url{https://parl.ai/docs/zoo.html}), etc.}.  Given the new
+  ParlAL(\url{https://parl.ai/docs/zoo.html}), etc.}~Given the new
 task of schema-guided dialog state tracking, in this section, we study
 our four subtasks with different intermediate tasks for supplementary
 training. However, how to choose those intermediate tasks is a
@@ -16,7 +16,7 @@ challenge problem. Our inductive biases on choosing intermediate tasks
 are: \textit{Intermediate tasks that sharing similar structures with
   downsteam tasks may help the supplementary training.}  Hence, for
 natural language description modelling, we will first show the
-similarity between our proposed \textbf{Natural Language inference}
+similarity between our proposed \textbf{Natural Language Inference}
 and \textbf{Question Ansering} with our four subtasks, then analyze
 the results on how they performed.
 
@@ -44,7 +44,7 @@ finetuned on the above two tasks for further finetuning.  Due to better
 peformance of \CE in~\autoref{ssec:models-overview}, we directly use the finetuned
 \CE~version of BERT models on SNLI and SQuAD2.0 dataset from
 Huggingface model hub. We add extra speaker tokens [user:] and
-[system:] into the vocabulary for encoding the multi-turn dialog
+[system:] into the vocabulary for encoding the multiturn dialog
 histories.
 %
 %\Paragraph{Response Selection} Given a dialog history and a set of

@@ -41,11 +41,11 @@ score on the development set:
 \item {\bf Categorization}: For client, the best model does not need any
   word or utterance attention. For the therapist, it uses \GMGRUH
   for word attention and \anchor for utterance attention. We refer
-  to these models as $\mathcal{C}_C$ and $\mathcal{C}_T$ respectively
+  to these models as $\mathcal{C}_C$ and $\mathcal{C}_T$, respectively.
 \item {\bf Forecasting}: For both client and  therapist, the best
   model uses no word attention, and uses \self utterance
   attention. We refer to these models as $\mathcal{F}_C$ and
-  $\mathcal{F}_T$ respectively.
+  $\mathcal{F}_T$, respectively.
 \end{enumerate}
 
 \subsubsection{Results on Categorization}
@@ -128,9 +128,9 @@ history and use only the current utterance encoded with a BiGRU. The
 work of \citet{xiao2016behavioral} falls in this category, and uses a
 100-dimensional domain-specific embedding with weighted cross-entropy
 loss. Previously, it was the best model in this class. We also
-re-implemented this model to use either ELMo or Glove vectors with
+reimplemented this model to use either ELMo or Glove vectors with
 focal loss.\footnote{Other related work in no context
-  exists~\cite[e.g.,][]{perez2017predicting, gibson2017attention}, but
+  exists~\cite[\eg,][]{perez2017predicting, gibson2017attention}, but
   they either do not outperform \cite{xiao2016behavioral} or use
   different data.}
 
@@ -181,7 +181,7 @@ For therapist codes, as the highlighted numbers in
 GMGRU-based word-level attention, $\text{GMGRU}^{H}$ has already
 outperformed many baselines, our proposed model $\mathcal{F}_{T}$
 which uses both GMGRU-based word-level attention and anchor-based
-multi-head multihop sentence-level attention can further achieve the
+multihead multihop sentence-level attention can further achieve the
 best overall performance. The set of baseline models are the same as
 in~\autoref{tbl:main_rst_c_categorizing}, but tuned for therapist
 codes. For the two grouped MISC set \MIA and \MIN, the results for
@@ -247,7 +247,7 @@ attention.\footnote{The forecasting task bears similarity to the next
 
 \autoref{tbl:main_rst_forecast:client} and
 \autoref{tbl:main_rst_forecast:therapist} show our forecasting results
-for client and therapist respectively. For client codes, we also
+for client and therapist, respectively. For client codes, we also
 report the \CHANGE and \SUSTAIN performance on the development set
 because of their importance.  For the therapist codes, we also report
 the recall@3 to show the performance of a suggestion system that

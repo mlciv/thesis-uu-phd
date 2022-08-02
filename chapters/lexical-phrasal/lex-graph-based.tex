@@ -1,5 +1,5 @@
-\section[Lexical-Anchoring: Latent Alignment Model for Graph-Based
-Parsing]{Lexical-Anchoring: Latent Alignment \\Model for Graph-Based Parsing}
+\section[Lexical Anchoring: Latent Alignment Model for Graph-Based
+Parsing]{Lexical Anchoring: Latent Alignment \\Model for Graph-Based Parsing}
 \label{sec:lex-phr:graph-based}
 
 In this section, we will first introduce the two-stage framework for parsing
@@ -80,7 +80,7 @@ we will explain the framework in more details.
 \begin{figure}[!tbp] \centering
   \includegraphics[width=1.00\textwidth]{graph-overview3.pdf}
   \caption{\label{fig:graph-based-inference} Two-stage graph-based
-    parsing for the running exmaple [wsj\#0209013]}
+    parsing for the running exmaple [wsj\#0209013].}
 \end{figure}
 
 \subsubsection{Node Identification}
@@ -98,19 +98,25 @@ neural network architecture to decide whether to copy the
 deterministic label given a word or directly estimate a classification
 probability from a fixed label set. As the first stage shown
 in~\autoref{fig:graph-based-inference}, each token will output its
-corresponding node. Here, the two article \tquoted{The}, \tquoted{the}
+corresponding node. Here, the two article \tquoted{The,} \tquoted{the}
 and final period will produce \tquoted{$\Phi$} node. While other tokens
-will copy themself and transform to the corresponding lemma or frames.
-
+will copy themself and transform to the corresponding lemma, frames,
+or other formations.
 
 \subsubsection{Edge Identification}
 \label{sssec:lex-phr:edge-ident}
-
 By assuming the independence of each edge, we model the edges
 probabilites independently.  Given two nodes and their underlying
 tokens, we predict the edge label as the semantic relation between the
-two concepts with a bi-affine classifier~\cite{dozat2016deep}. As
-shown in~\autoref{fig:graph-based-inference}
+two concepts with a biaffine classifier~\cite{dozat2016deep}. As the
+stage 2 shown in~\autoref{fig:graph-based-inference}, the model will
+predict all the edges between the $n$ nodes produced in the node
+identification stage, thus $n*n$ edges. For each edge, it will be
+classified into $r$ labels and forms a cube as $n*n*r$. The $r$ edge
+labels include \tquoted{:COREF} and \tquoted{:NULL}
+labels. \tquoted{:COREF} indicates that the two nodes belongs to the
+same entity, while \tquoted{:NULL} indicates no relation between the
+two nodes.
 
 \subsubsection{Inference}
 \label{sssec:lex-phr:inference}
@@ -124,7 +130,9 @@ edges from the identified nodes and their relations connecting
 them. As shown in Figure \ref{fig:graph-based-inference}, an input
 sentence goes through preprocessing, node identification, edge
 identification, root identification, and MSCG to generate a final
-connected graph as structured output.
+connected graph as structured output. Finally, a postprocessing stage
+will produce a valid graph according to the corresponding format of
+DM, PSD, AMR.
 
 \subsection{Latent Alignment Model}
 \label{ssec:lex-phr:latent-alignment}
@@ -133,7 +141,7 @@ As the two-stage probablistic model shown
 in~\autoref{eq:graph_prob}, we need to marginalize all the
 alignment information $a$ to learn the above two-stage nerual networks
 for node and edge identification. We do the following computing for
-explicit and implicit alignments respectively.
+explicit and implicit alignments, respectively.
 \begin{itemize}
 \item \textbf{Explicit Alignments:} For DM, PSD, with explicit
   alignments $a*$, we can simply use $P(a^{*}) = 1.0$ and other
@@ -166,7 +174,7 @@ is unknown for the two-stage parsing. We want estimate the latent
 alignment model to ensure that it is consistent with the obversed $w$,
 $C$, and $R$. Furthermore, we also need to marginal it out and jointly
 learn the parameters $\theta$ and $\Phi$ to generate the concepts and
-relations respectively. Hence, we apply variational inferenc to reduce
+relations, respectively. Hence, we apply variational inferenc to reduce
 the marginal likelihood into Evidence Lower
 Bound~(ELBO)~\citep{kingma2013auto}.
 \begin{equation}
@@ -204,13 +212,13 @@ is encoding for the aligned token. However, the denominator $Z_{\Psi}$ is
 an intratable partition fuction for the global normalization, which
 has $n!$ combinations. Perturb-and-Max(MAP)
 techinique~\cite{papandreouperturb} can help this intratable sampling
-with two steps:
-\begin{inparaenum}[(1)]
-\item perturbing the alignment score~($\phi(g_{i}, h_{a_{i}})$) with an
+with the following two steps:
+\begin{itemize}
+\item Perturbing the alignment score~($\phi(g_{i}, h_{a_{i}})$) with an
   independent noise.
-\item compute the \kw{argmax} to sample the discrete alignment
+\item Computing the \kw{argmax} to sample the discrete alignment
   variable $a$.
-\end{inparaenum}
+\end{itemize}
 
 \subsubsection{Gumbel Sinkhorn}
 \label{sssec:lex-phr:gumbel-sinkhorn}
@@ -223,8 +231,8 @@ decomposition of lexical-anchoring
 parsing~(\autoref{sssec:lex-phr:lex-input-decomposition}), the
 \kw{argmax} over exclusive alignment can be relaxiated into a
 differentiable gumbel softmax over $n*n$ matrix scores. For further
-details of the estimating, we refer the reader to the original
-paper~\citep{mena2018learning,lyu2018amr}.
+details of the estimated posterior alignment model, we refer the
+reader to the original paper~\citep{mena2018learning,lyu2018amr}.
 
 %%% Local Variables:
 %%% mode: latex

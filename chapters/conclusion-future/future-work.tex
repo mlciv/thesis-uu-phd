@@ -88,7 +88,7 @@ cluster without caring about the preceding or not. In this output
 factorization, we can model two part of contextualized representation
 from span $i$ and span $j$. Such a pair-wise factorization will offer
 more discriminative features and simplifer all the classification into
-binary classification.  We still can use a bi-affine classifier to
+binary classification.  We still can use a biaffine classifier to
 model the pair-wise binary classification. Furthermore, logic
 constraints can be added here to enforce the consistency between local
 decisions.
@@ -116,7 +116,7 @@ we studied in phrasal-anchoring parsing~\autoref{ssec:phr:span}
 
 For broad-coverage symbolic representations, our dissertation only
 covers the representation for a single sentence. While in the future,
-we also study on multi-sentence and document-level representations
+we also study on multisentence and document-level representations
 such as MS-AMR~\cite{ogorman-etal-2018-amr},
 Doc-AMR~\cite{naseem-etal-2022-docamr}, discourse
 parsing~\cite{carlson-etal-2001-building}, and soon on.
@@ -156,7 +156,7 @@ document analysis and threaded conversations in social media. The
 extreme long context modeling has already attracted a lot of
 attentions~\citep{tay2020long,gu2021efficiently}. However, how to
 joinly model the long text in interactive form~(especially in
-multi-party dialogue) is still not well studied.
+multiparty dialogue) is still not well studied.
 
 
 \subsubsection{Contextualized Representation Beyond Text}
@@ -174,9 +174,9 @@ power of language. Jointly considering both visual and textual models
 has been widely used in many tasks, such as Multimodel Aspect-Based
 Sentimental Analysis~(MABSA)~\cite{ju2021joint}, Named Entity
 Recognization~\cite{zhang2021multi} and so on. Some tasks consider
-both multimodal inputs and multimodal outputs, e.g., Question
+both multimodal inputs and multimodal outputs, \eg, Question
 Answering~\cite{singh-etal-2021-mimoqa}. More recently,
-vision-language pre-training further boosts the power of
+vision-language pretraining further boosts the power of
 contextualized
 representation~\cite{lu2019vilbert,ling-etal-2022-vision}. Recent
 works on multimodality above raise challenges for future structured
@@ -222,24 +222,21 @@ efficiently learn when interacting with the world and other human
 beings. This efficiency largely depends on many \kw{inductive biases}
 and \kw{approximate biases} from human
 intelligence~\cite{Gershman2021WhatMU}, which are potentially helpful
-for machine intelligence.
-
-Beside the compositionality-related inductive biases, casuality is
-another important inductive bias for human intelligence, which may
-also help deep learning. Especially, current factorization and Markov
-random field-based formalism only can capture the undirectional
-correlation between different variables. In the future, we will extend
-the formalism to bayesian networks and intervention-based casual
+for machine intelligence. Beside the compositionality-related
+inductive biases, casuality is another important inductive bias for
+human intelligence, which may also help deep learning. Especially,
+current factorization and Markov random field-based formalism only can
+capture the undirectional correlation between different variables. In
+the future, we will extend the formalism to bayesian networks and
+intervention-based casual
 inference~\citep{pearl2010causal,glymour2016causal}.
 
 Furthermore, we also plan to model the uncertainty and approximate
-biases for the learning and inference in deep learning.
-
-First, approximate inference algorithms can be derived by
-approximating the underlying exact inference problem. For example, in
-this dissertation, the partition function in the posterior alignment
-model is intractable, to make it tractable and differentiable, we
-leverage the
+biases for the learning and inference in deep learning. First,
+approximate inference algorithms can be derived by approximating the
+underlying exact inference problem. For example, in this dissertation,
+the partition function in the posterior alignment model is
+intractable, to make it tractable and differentiable, we leverage the
 Peturb-and-Max~(\autoref{sssec:lex-phr:perturb-and-map})~and
 Gumble-Sinkhorn network~(\autoref{sssec:lex-phr:gumbel-sinkhorn}). The
 similar ideas on esitimating the marginal inference can also be used
@@ -255,7 +252,7 @@ efficient machine learning methods, such as stochastic distributed
 optimization~\cite{assran2019stochastic}, hardware-aware efficient
 quantization~\citep{huang2022sdq}, and so on.
 
-\subsection{Learning and Transfering the Inductive Biases}
+\subsection[Learning and Transfering the Inductive Biases]{Learning and Transfering the \\Inductive Biases}
 \label{ssec:future:bias-learn-transfer}
 In this dissertation, we mainly design inductive biaes with prior knowledge
 about structured prediction tasks including the input decomposition,
@@ -279,7 +276,7 @@ represent the degree of overlap between a pair of plans.\footnote{The
 the {\em Smatch} scores $s_{ij}$ of each plan-pair $<p_{i}, p_{j}>$,
 this can easily form a large dataset with {\em Smatch} score as the
 contrastive self-supervision. In our experiments on the downstream
-applications, we show that the structure encoder pre-trained from this
+applications, we show that the structure encoder pretrained from this
 task can be easily finetuned for a new task or domain. In the future,
 such self-supervied method can also be used for other data beyond
 natural language, such web page, programming language, documents, and
@@ -290,7 +287,7 @@ so on.
 Learning to learn is an essential inductive bias in human
 intelligence~\cite{harlow1949formation}, human can generalize
 experience learned from similar tasks to learn new tasks. Nowadays
-many datasets and pre-trained models are publicly accessible, besides
+many datasets and pretrained models are publicly accessible, besides
 transferring the inductive bias from initial language models, I also
 studied how to transfer the inductive biases learned from the
 well-studied tasks to new tasks. Our previous work on schema-guided
@@ -303,7 +300,7 @@ offer efficient distributional inductive biases. More specifically, we
 found that inductive bias learned in sentence-pair matching~(via
 Natural Language Inference on SNLI) helps with intent classification
 tasks, and span-based retrieval task structure~(via Question Answering
-on SQuAD2) helps on the non-categorical slot labeling task.
+on SQuAD2) helps on the noncategorical slot labeling task.
 
 
 %%% Local Variables:

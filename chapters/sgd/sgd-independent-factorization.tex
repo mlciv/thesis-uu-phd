@@ -38,19 +38,18 @@ As shown in Figure \ref{fig:schema-dst}, the dialog state for each
 service consists of 3 parts: {\it active intent}, {\it requested
   slots}, {\it user goals~(slot values)}. Without loss of generality,
 for both \sgdst and \multiwoz datasets, we divide their slots into
-categorical and non-categorical slots by following previous study on
+categorical and noncategorical slots by following previous study on
 dual-strategies~\cite{zhang2019find}. Thus to fill the dialog state
 frame for each user turn, we solve four \kw{independent} subtasks:
 intent classification~(\IC), requested slot identification~(\RSI),
-categorical slot labeling~(\CSL), and non-categorical slot
+categorical slot labeling~(\CSL), and noncategorical slot
 labeling~(\NSL).
 
 Beyond the independent factorization of 4 subtasks, we also consider
 describing each decomposed intent/slot label with natural
 language. By using natural language description to define a dynamic
 set of service schema. As shown in Figure \ref{fig:schema-dst}, we
-hope these descriptions can offer effective knowledge sharing across
-different services, e.g., connecting semantically similar concepts
+hope these descriptions can connect semantically similar concepts
 across heterogeneous APIs, thus allowing a unified model to handle
 unseen services and APIs. Hence, in this independent factorization, we
 require matching the current dialog history with candidate schema
@@ -62,9 +61,9 @@ main schema components: service, intent, slot. For each intent, the
 schema also describes {\it optional} or {\it required} slots for
 it. For each slot, there are flags indicating whether it is
 categorical or not. {\it Categorical} means a set of
-predefined candidate values~(Boolean, numeric or text). For instance,
-{\it has\_live\_music} in Figure~\ref{fig:schema-dst} is a categorical
-slot with boolean values. {\it Non-categorical}, on the other hand,
+predefined candidate values~(\ie, boolean, numeric or text). For instance,
+\tquoted{has\_live\_music} in~\autoref{fig:schema-dst} is a categorical
+slot with boolean values. {\it Noncategorical}, on the other hand,
 means the slot values are filled from the string spans in the dialog
 history.
 
@@ -83,7 +82,7 @@ considering the current dialogue utterance and the previous dialogue
 history. Hence, due to the success of attention mechanisms in the MISC
 prediction, we also use the attention mechanism to discover the more
 detailed relevant parts for our dialogue state tracking. We ground our
-study on the pre-trained transformer model:
+study on the pretrained transformer model:
 BERT~\cite{devlin2018bert}. BERT uses the self-attention mechanism to
 dynamically learn the relevant parts from a large amount of text,
 which has been shown great success for many NLP tasks, including
@@ -91,20 +90,14 @@ dialogue state tracking~\cite{chao2019bert,noroozi2020fast}
 
 \subsection{New Questions}
 \label{ssec:sgd:new-questions}
-According the output decomposition with four independent subtasks, and
-the alignments analysis, we summerize the design for independent
-factorization in Table xx.
-
 These added schema descriptions pose the following three new
 questions. We discuss each of them in the following sections.
-\\
-\setlength{\fboxsep}{1.5pt} \fbox{\small\parbox{0.99\textwidth}{
-\begin{enumerate}[label=Q\arabic*.]
+
+\begin{itemize}
 \item How should dialogue and schema be encoded?(\autoref{sec:sgd:models})
 \item How do different supplementary trainings impact each subtask?~(\autoref{sec:sgd:sup-training})
 \item How do different description styles impact the state tracking performance?~(\autoref{sec:sgd:abl-desc})
-\end{enumerate}
-}}
+\end{itemize}
 
 
 %%% Local Variables:

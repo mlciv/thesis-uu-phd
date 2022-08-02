@@ -37,13 +37,13 @@ following different descriptions styles:
 \begin{itemize}
 \item \textbf{\ID:} This is the least informative case of name-based
 description: we only use meaningless intent/slot identifiers,
-e.g. Intent\_1, Slot\_2. It means we don't use description from any
+\eg, \kw{Intent\_1}, \kw{Slot\_2}. It means we don't use description from any
 schema component. We want to investigate how a simple identifier-based
 description performs in schema-guided dialog modeling, and the
 performance lower-bound on transferring to unseen services.
 
-\item \textbf{\NAMEONLY:} Using the original intent/slot names in \sgdst
-and \multiwoz dataset as descriptions, to show whether name is enough
+\item \textbf{\NAMEONLY:} Using the original intent/slot names in~\sgdst
+and~\multiwoz~datasets as descriptions, to show whether name is enough
 for schema-guided dialog modeling.
 
 \item \textbf{\QANAMEONLY:} This is corresponding to previous
@@ -54,7 +54,7 @@ for schema-guided dialog modeling.
   extend the intent description by following the template ``{\it Is
     the user intending to {\bf intent j} }".
 
- \item \textbf{\ORIGIN:} The original descriptions in \sgdst and \multiwoz dataset.
+ \item \textbf{\ORIGIN:} The original descriptions in~\sgdst~and~\multiwoz~datasets.
 
  \item \textbf{\QARICH:} Different from the \QANAMEONLY, firstly it is
   based on the original descriptions; secondly, rather than always use
@@ -71,7 +71,7 @@ for schema-guided dialog modeling.
 
 To test the model robustness, we also create two paraphrased
   versions \textbf{\NAMEPARA}~and \textbf{\PARAPHRASE}~for
-  \NAMEONLY~and~\ORIGIN~respectively. We first use
+  \NAMEONLY~and~\ORIGIN, respectively. We first use
   nematus~\cite{sennrich-etal-2017-nematus} to automatically
   paraphrase the description with back translation, from English to
   Chinese and then translate back, then we manually check the
@@ -86,7 +86,7 @@ To test the model robustness, we also create two paraphrased
   and~heterogeneous settings~(\autoref{ssec:sgd:heter-eval})
 
 \begin{table}[b]
-\caption{\label{tbl:sgd:schema-desc-ext} Different extensions of schema descriptions}
+\caption{\label{tbl:sgd:schema-desc-ext} Different extensions of schema descriptions.}
 \begin{center}
 \begin{tabular}{p{0.15\linewidth}|p{0.45\linewidth} | p{0.24\linewidth}}
 \toprule
@@ -160,9 +160,9 @@ In this section, Table \ref{tbl:sgd:homo-style-results} summarizes the
 performance for homogeneous evaluation, while Table
 \ref{tbl:sgd:squad2-results-question} shows how the question style
 description can benefit from SQuAD2 finetuning. Then we also conduct
-heterogeneous evaluation on the other styles\footnote{We don't
-  consider the meaningless \ID~style due to its bad performance} as
-shown in Table \ref{tbl:sgd:hete-style-results-sgd}.
+heterogeneous evaluation on the other styles as
+shown in Table \ref{tbl:sgd:hete-style-results-sgd}.~\footnote{We do not
+  consider the meaningless \ID~style due to its bad performance.}
 %
 \subsubsection{Is name-based description enough?}
 \label{sssec:sgd:question-name}
@@ -172,31 +172,31 @@ indicates name-based description can be very unstable. However, we
 found that simple meaningful name-based description actually can
 perform the best in \IC~and~\RSI task, and they perform worse on
 \CSL~and~\NSL tasks comparing to the bottom two {\it rich}
-descriptions. \footnote{Only exception happens in \CSL~on
+descriptions.~\footnote{Only exception happens in \CSL~on
   \multiwoz. When creating \multiwoz~\cite{zang-etal-2020-multiwoz},
   the slots with less than 50 different slot values are classified as
-  categorical slots, which leads to inconsistencies. We put detailed
-  discuss about \multiwoz~in the supplementary material} After careful
+  categorical slots, which leads to inconsistencies.} After careful
 analysis on the intents in \sgdst datasets, we found that most
 services only contains two kinds of intents, an information retrieval
-intent with a name prefix "Find-", "Get-", "Search-"; another
-transaction intent like "Add-", "Reserve-" or "Buy-". Interestingly,
-we found that all the intent names in the original schema-guided
-dataset strictly follows an action-object template with a composition
-of words without abbreviation, such as "FindEvents",
-"BuyEventTickets". This simple name template is good enough to
-describe the core functionality of an intent in \sgdst
-dataset.~\footnote{This action-object template has also been found
-  efficient for open domain intent induction
-  task\cite[e.g.,][OPINE]{vedula2020open}.} Additionally, \RSI is a
-relaitively simper task, requesting information are related to
-specifial attributes, such as "has\_live\_music", "has\_wifi", where
-keywords co-occured in the slot name and in the user utterance, hence
-rich explanation cannot help further. On the other side, {\it rich}
+intent with a name prefix \tquoted{Find-,}~\tquoted{Get-,} and
+\tquoted{Search-}; another transaction intent like \tquoted{Add-,}
+\tquoted{Reserve-,} or \tquoted{Buy-.} Interestingly, we found that
+all the intent names in the original schema-guided dataset strictly
+follows an action-object template with a composition of words without
+abbreviation, such as \tquoted{FindEvents,} \tquoted{BuyEventTickets.}
+This simple name template is good enough to describe the core
+functionality of an intent in \sgdst dataset.~\footnote{This
+  action-object template has also been found efficient for open domain
+  intent induction task~\citep[\eg, OPINE][]{vedula2020open}.}
+Additionally, \RSI is a relaitively simper task, requesting
+information are related to specifial attributes, such as
+\tquoted{has\_live\_music,} \tquoted{has\_wifi,} where keywords
+co-occured in the slot name and in the user utterance, hence rich
+explanation cannot help further. On the other side, {\it rich}
 descriptions are more necessary for \CSL~and~\NSL task. Because in
 many cases, slot names are too simple to represent the functionalities
-behind it, for example, slot name "passengers" cannot fully represent
-the meaning "number of passengers in the ticket booking".
+behind it, for example, slot name \tquoted{passengers} cannot fully represent
+the meaning \tquoted{number of passengers in the ticket booking.}
 
 \subsubsection{Does question format help?}
 \label{sssec:sgd:question-format}
@@ -223,7 +223,7 @@ more than \QANAMEONLY~from pretrained model on SQuAD2.
 \begin{table}[!t]
 \caption{\label{tbl:sgd:squad2-results-question} Performance changes when
   using BERT finetuned on SQuAD2 dataset to further finetuning on our
-  \NSL~task. }
+  \NSL~task.}
 \begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|ccc|ccc}
@@ -265,7 +265,7 @@ convention such as \NAMEONLY~and \ORIGIN~are suggested to developers,
 they must obey the basic style convention but still can freely use
 their own words, such as abbreviation, synonyms, adding extra
 modifiers. We train each model on \NAMEONLY~and~\ORIGIN, then evaluate
-on the corresponding paraphrased version respectively. In the last two
+on the corresponding paraphrased version, respectively. In the last two
 rows of Table \ref{tbl:sgd:hete-style-results-sgd}, the column `para'
 shows performance on paraphrased schema, while $\Delta$ shows the
 performance change compared to the homogeneous evaluation.

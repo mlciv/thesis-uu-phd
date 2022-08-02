@@ -6,7 +6,7 @@ virtual assistants~(Alexa, Siri, and Google Assistant~\etal),
 frame-based dialog state tracking has long been studied to meet
 various challenges. In particular, how to support an ever-increasing
 number of services and APIs spanning multiple domains has been a focal
-point in recent years, evidenced by multi-domain dialog
+point in recent years, evidenced by multidomain dialog
 modeling~\citep{budzianowski2018multiwoz,byrne2019taskmaster,
   shah-etal-2018-bootstrapping} and transferable dialog state tracking
 to unseen intent/slots~\cite{mrkvsic2017neural,
@@ -15,8 +15,8 @@ to unseen intent/slots~\cite{mrkvsic2017neural,
 \begin{figure}[!th]
 \centering
 \includegraphics[width=0.98\textwidth]{label-schema-example.pdf}
-\caption{\label{fig:label-schema-example} Different Flight Service
-  Ontology for Dialogue State Tracking}
+\caption{\label{fig:label-schema-example} Different flight service
+  ontologies for dialogue state tracking.}
 \end{figure}
 
 As shown in~\autoref{fig:label-schema-example}, the intent
@@ -38,7 +38,7 @@ will be new ontology for the new domain. Hence, even if it shares a
 lot of overlapping functionalities with the previous two flight
 services, we still need to annotate new data for the new service and
 retraining the new model on the newly annotated data. Such
-re-annotating and retraining on new services are costly.
+reannotating and retraining on new services are costly.
 
 \begin{figure}[!ht]
 \centering
@@ -50,9 +50,9 @@ re-annotating and retraining on new services are costly.
 Recently, \citet{rastogi2019towards} proposed a new paradigm called
 schema-guided dialog for transferable dialog state tracking by using
 natural language description to define a dynamic set of service
-schemata. As shown in Figure \ref{fig:schema-dst}, the primary
+schemata. As shown in~\autoref{fig:schema-dst}, the primary
 motivation is that these descriptions can offer effective knowledge
-sharing across different services, e.g., connecting semantically
+sharing across different services, \ie, connecting semantically
 similar concepts across heterogeneous APIs, thus allowing a unified
 model to handle unseen services and APIs. With the publicly available
 schema-guided dialog dataset~(\sgdst~henceforward) as a
@@ -67,8 +67,8 @@ Despite the novel approach and promising results, current
 schema-guided dialog state tracking task only evaluates on a single
 dataset with limited variation in schema definition. It is unknown how
 this paradigm generalizes to other datasets and other different styles
-of descriptions. In this chapter\footnote{The main content of this
-  chapter is published in our paper~\cite{cao2021schema}}, we focus
+of descriptions. In this chapter,\footnote{The main content of this
+  chapter is published in~\citet{cao2021schema}.} we focus
 our investigation on the study of three aspects in schema-guided
 dialog state tracking:
 \begin{inparaenum}[(1)]

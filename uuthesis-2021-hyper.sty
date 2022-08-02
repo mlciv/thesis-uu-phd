@@ -776,32 +776,33 @@
     {}%
 }%
 
-%%% fix the bibliography
-\def\thebibliography#1{
-\global \def \bibname {References}
-    \ifrawbibliography
-    \else
-        \newpage
-        \thispagestyle{empty}%
-        \addcontentsline{toc}{chapter}{\MakeUppercase \bibname}%
-        % Switch singlespace to after the heading gets printed.
-        \mainheading{\MakeUppercase \bibname}%
-        \par
-        \removelastskip
-        \singlespace
-        \par
-        \removelastskip% GBG Oct 1993
-        \fixmainheadingSKIP
-    \fi
-    \ifx \uuthesis@pageheaders \undefined
-    \else
-    \global \def \leftmark  {\bibname}%
-    \global \def \rightmark {\bibname}%
-    \fi
- \list
- {}{\setlength{\labelwidth}{0pt}\setlength{\leftmargin}{\parindent}
- \setlength{\itemindent}{-\parindent}}
- \def\newblock{\hskip .11em plus .33em minus -.07em}
- \sloppy\clubpenalty4000\widowpenalty4000
- \sfcode`\.=1000\relax}
-\let\endthebibliography=\endlist
+%
+%%%% fix the bibliography
+%\def\thebibliography#1{
+%\global \def \bibname {References}
+%    \ifrawbibliography
+%    \else
+%        \newpage
+%        \thispagestyle{empty}%
+%        \addcontentsline{toc}{chapter}{\MakeUppercase \bibname}%
+%        % Switch singlespace to after the heading gets printed.
+%        \mainheading{\MakeUppercase \bibname}%
+%        \par
+%        \removelastskip
+%        \singlespace
+%        \par
+%        \removelastskip% GBG Oct 1993
+%        \fixmainheadingSKIP
+%    \fi
+%    \ifx \uuthesis@pageheaders \undefined
+%    \else
+%    \global \def \leftmark  {\bibname}%
+%    \global \def \rightmark {\bibname}%
+%    \fi
+% \list{}{\setlength{\labelwidth}{0pt}\setlength{\leftmargin}{\parindent}
+% \setlength{\itemindent}{-\parindent}}
+% \def\newblock{\hskip .11em plus .33em minus -.07em}
+% \sloppy\clubpenalty4000\widowpenalty4000
+% \sfcode`\.=1000\relax
+%}
+%\let\endthebibliography=\endlist

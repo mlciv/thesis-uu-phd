@@ -61,7 +61,7 @@ of necessary assumptions is subsumed in the phrase inductive bias.
 In this dissertation, following the definition of bias
 in~\cite{mitchell1980need}, we define \kw{indutive bias} as:
 \dquoted{Any bias for choosing one generalization over another, other
-  than strict consistency with the observed training instances}.
+  than strict consistency with the observed training instances.}
 
 
 \subsubsection{The Use of Inductive Biases}
@@ -159,8 +159,8 @@ cat images~\citep{cheng2016rifd}.
   \includegraphics[width=0.98\textwidth]{compositional-dog-example.pdf}
   \caption{\label{fig:intro:compositional-dog-example}In the named entity
     recognization task, we hope the learned model can still recognize
-    \tquoted{dog}~for new word~\tquoted{Husky} in unseen context with newly composed
-    words, phases and sentences.}
+    \tquoted{ANIMAL}~for new word~\tquoted{Husky} in unseen context with newly composed
+    words, phases, and sentences.}
 \end{figure}
 
 \subsubsection{Natural Language Example: Compositionality}
@@ -171,15 +171,15 @@ For natural language processing,
 inductive biases in the named entity recognization task. Natural
 language is naturally compositional. Beyond the training data, we
 mainly make assumptions about the compositional properties for unseen
-data. Imagining the training data contains the first annotated
-sentence:~\dquoted{The Boxer can find the bone the other dogs hid from
-  it.}, the word~\dquoted{Boxer} is annotated as~\tquoted{ANIMAL}. Now
-we add unseen new words, such as~\tquoted{cannot} and~\tquoted{Husky},
+data. Imagining that the training data contains the first annotated
+sentence:~\tquoted{The Boxer can find the bone the other dogs hid from
+  it.}, here the word~\dquoted{Boxer} is annotated as~\tquoted{ANIMAL.}~Now
+we add unseen new words, such as~\tquoted{cannot} and~\tquoted{Husky,}
 and also add unseen new phrases by swapping the phrases~\tquoted{the
-  bone}~and~\tquoted{the other dogs}. Finally, it forms an unseen new
+  bone}~and~\tquoted{the other dogs.} Finally, it forms an unseen new
 sentence in the bottom of the figure. Can our model still predict the
 unseen word~\tquoted{Husky}~in the unseen sentence as
-\tquoted{ANIMAL}~? We can augment the training data by enumerating
+\tquoted{ANIMAL}~?~We can augment the training data by enumerating
 unseen combinations for the original training data. However, it is
 intractable. To achieve this inductive bias about compositionality,
 instead of augmenting all combinations, various techinique are
@@ -201,9 +201,9 @@ mechanism in the popular transformer-based
 models~\citep{NIPS2017_7181}. Finally, inspired by the distributional
 hypodissertation, where words that are used and occur in the same contexts
 tend to purport similar meanings~\cite{harris1954distributional},
-bi-directional architectures are the standard for modeling word
-embedding and language models.~(e.g., looking at both the past and
-future via Bi-directional LSTM, self-attention, and so on)
+bidirectional architectures are the standard for modeling word
+embedding and language models.~(\eg, looking at both the past and
+future via Bidirectional LSTM, self-attention, and so on)
 
 Besides the shift-invariant, rotation-invariant and compositional
 assumptions for the \kw{input} image and natural language data, there
@@ -251,7 +251,7 @@ structures.
 
 Let us denote an observation $x \in \mathcal{X}$. It can be any natural
 language text, such as the sentence~\dquoted{The dog cannot find the
-  bone it hid from the other dogs} or a dialogue segment as shown
+  bone it hid from the other dogs.} or a dialogue segment as shown
 in~\autoref{fig:intro:dialogue}. We define an output structured
 prediction for $x$ by $y \in \mathcal{Y}(x)$. Here $y$ is a structured
 symbolic representation for $x$. For example, $y$ could be a sequence
@@ -280,9 +280,9 @@ the whole energy $E(x, y)$ can be decomposed as a sum of
 \textbf{factors} $c$, denoted by $E(x, y) =\sum_{c \in C} E(x, y_{c})$.
 
 A popular choice to represent the factorization is to index both $x$
-and $y$ as a set of sub-components $x=(x_{1},..., x_{i},.... x_{N})$
+and $y$ as a set of subcomponents $x=(x_{1},..., x_{i},.... x_{N})$
 and $y=(y_{1},...y_{j},...y_{M})$. In AMR parsing as shown in
-Figure~\ref{fig:intro:dog-amr}, $x_{i}$ can be a word or multi-word
+Figure~\ref{fig:intro:dog-amr}, $x_{i}$ can be a word or multiword
 expression in a sentence, while $y_{j}$ can be a single AMR node and
 relation.  For dialogue state tracking in
 Figure~\ref{fig:intro:dialogue}, $x_{i}$ is an utterance in the
@@ -290,7 +290,7 @@ dialog, while $y_{i}$ is the value for each intent and slot in the
 predicted frames. A factor $c$ may depend on multiple subcomponents
 of $x$ and $y$.
 
-The interdependence assumptions between those sub-components in $x$
+The interdependence assumptions between those subcomponents in $x$
 and $y$ are key in a structured prediction model. In the
 \autoref{chap:background}, we show various representation formalism
 ~(such as graphical models), structured learning~(max-margin
@@ -326,9 +326,9 @@ independent factorization will first segment the output $y$ into small
 parts $y_{c} \in seg_{out}(y)$, then find the anchors $x_{c}$ in the
 input sentence for each $y_{c}$ from the candidate decomposition set
 $seg_{in}(x)$. For example, one of the segmented $y_{c}$ in
-Figure~\ref{fig:intro:dog-amr} is a pre-categorized sub-graph
-\tquoted{(possible-01 :polarity -)}, and its anchor $a(y_{c})$ is the
-anchor word \tquoted{cannot}. The words \tquoted{the}, \tquoted{from}
+Figure~\ref{fig:intro:dog-amr} is a precategorized subgraph
+\tquoted{(possible-01 :polarity -),}~and its anchor $a(y_{c})$ is the
+anchor word \tquoted{cannot.} The words \tquoted{the,} \tquoted{from}
 are mapped to empty nodes.  Thus, by leveraging the compositionality
 of the input and output, and the alignments between their
 decompositions, we can focus on the prior knowledge about the
@@ -340,8 +340,8 @@ and output structures.
 \centering
 \includegraphics[width=0.80\textwidth]{dog-independent-example.pdf}
 \caption{\label{fig:intro:independent-example}Independence
-  Factorization for parsing a new sentence \squoted{The dog found the
-    bone it hid" into an AMR graph}}
+  factorization for parsing a new sentence \tquoted{The dog found the
+    bone it hid} into an AMR graph.}
 \end{figure}
 
 During inference, when we encounter a new sentence as shown in
@@ -354,11 +354,11 @@ list of candidate anchors $seg_{in}(x)=\{${\tquoted{The},
   each independent prediction $y_{c}$ of each anchor as
   $\{\phi$,~\tquoted{dog},~\tquoted{find-01},~$\phi$,~\tquoted{bone},~\tquoted{it},~\tquoted{hide}$\}$
   because most of the decomposed inputs are seen in
-  previous~\autoref{fig:intro:dog-amr}. Then we assemble the non-empty
+  previous~\autoref{fig:intro:dog-amr}. Then we assemble the nonempty
   $y_{c}$ by predicting the relations between each other and finally
-  forms \OUT~via postprocessing\footnote{The post-processing include
-    merging coreference nodes~(as the `dog' and `it'), adding other
-    attributes}.
+  forms \OUT~via postprocessing\footnote{The postprocessing include
+    merging coreference nodes~(as the `dog' and `it'), and adding other
+    attributes.}.
 
 \subsubsection{Three Steps in Independent Factorizations}
 \label{sssec:intro:steps-inductive-bias}
@@ -394,7 +394,7 @@ generalization.
 \subsubsection{Structural Inductive Biases}
 \label{sssec:intro:structural-biases}
 To design the independent factorization for a new task, we require the
-prior knowledge about structures of input and output, e.g., proper
+prior knowledge about structures of input and output, \eg, proper
 input decomposition, or the linguistic analysis on the
 semantic-syntactic interface for the alignment information, or more
 recent structural bias for deep learning based language modeling.
@@ -416,26 +416,26 @@ bias for the independent factorization.
 \begin{figure}[!tbp]
   \centering
   \includegraphics[width=0.95\textwidth]{structural-bias.pdf}
-  \caption{\label{fig:intro:structural-bias-example} Structural Inductive
-    Biases of AMR decomposition, and AMR alignments.}
+  \caption{\label{fig:intro:structural-bias-example} Structural inductive
+    biases of AMR decomposition, and AMR alignments.}
 \end{figure}
 
 \begin{itemize}
 \item \textbf{Output Decomposition:}~To decompose an AMR graph, we
   need to know the meaning of each part of the AMR graph. The nodes in
   AMR can be categorized into five main categories~(as shown in
-  \autoref{fig:intro:structural-bias-example} and a figure in later
-  section~\autoref{fig:bg:amr}): frame~(e.g., \tquoted{find-01},
-  \tquoted{hide-01}), basic concept~(e.g., \tquoted{dog},
-  \tquoted{jury}), string~(\tquoted{Pierre Vinken}), number~(e.g.,
-  \tquoted{61}) and other constant~(e.g., \tquoted{-}), while there
+  \autoref{fig:intro:structural-bias-example} and the example in later
+  section~\autoref{ssec:bg:amr}): frame~(\eg, \tquoted{find-01,}
+  \tquoted{hide-01}), basic concept~(\eg, \tquoted{dog,}
+  \tquoted{jury}), string~(\tquoted{Pierre Vinken}), number~(\eg,
+  \tquoted{61}) and other constant~(\eg, \tquoted{-}), while there
   many templated subgraphs used to represent special entities in the
   AMR, such as quantities, named entities, special roles, and other
   entities in dates, times, percentages, phone, email, URLs. In this
   part, we mainly show an example of subgraph segmentation for AMR,
   which will simplify the independent factorization. As shown in the
   left AMR graph, we draw a rectangle for the subgraph
-  \tquoted{(possible-01 :polarity -)}, which means it forms a subgraph
+  \tquoted{(possible-01 :polarity -),}~which means it forms a subgraph
   when decomposing the output AMR graph. The whole subgraph will be
   aligned to the word \tquoted{cannot} the first
   sentence. Furthermore, when there comes the second sentence, for the
@@ -443,7 +443,7 @@ bias for the independent factorization.
   can produce the same subgraph \tquoted{(possible-01 :polarity -)}
   from it. Besides this subgraph, other segmented constituents in the
   left AMR graph will be each single node. While in other AMR graphs
-  ~(\autoref{fig:bg:amr}), we must consider the subgraphs used to
+  ~(\autoref{ssec:bg:amr}), we must consider the subgraphs used to
   represent the special entities. According to the above knowledge
   about the AMR graph, we use rule-based recategorization
   preprocessing to do the segmentation, which is inspired by the
@@ -454,13 +454,13 @@ bias for the independent factorization.
   in the first row of Lego blocks in
   \autoref{fig:intro:structural-bias-example}, it naturally forms the
   decomposition of the first sentence for the AMR parsing
-  case. However, for a more complicated case in \autoref{fig:bg:amr},
+  case. However, for a more complicated case in~\autoref{ssec:bg:amr},
   rather than each standalone token, we may still need to consider
   other multiword expressions and the special entities in the
   sentence. Furthermore, when considering the previous UCCA parsing
   example shown in~\autoref{fig:intro:dog-ucca}, we also need to
   decompose the input sentence into phrases so that it can be easily
-  aligned to the non-terminal nodes in the decomposed UCCA graph.
+  aligned to the nonterminal nodes in the decomposed UCCA graph.
   Another problem after the input decomposition is the alignment
   discovery problem. We can notice two \tquoted{dog}~lego blocks in
   the first sentence, and we also have two \tquoted{dog}~AMR nodes. We
@@ -478,8 +478,8 @@ bias for the independent factorization.
   Lego blocks as the input decomposition, the whole structured
   prediction problem is simplified to learning a set of models. For
   example, we hope the model can map the words~\tquoted{cannot} into
-  the subgraph~\tquoted{(possible-01 :polarity -)}, and \tquoted{hid}
-  into \tquoted{hide-01}. When there is explicit alignment
+  the subgraph~\tquoted{(possible-01 :polarity -),}~and map \tquoted{hid}
+  into \tquoted{hide-01.} When there is explicit alignment
   information, it will be easy to model them with aligned input and
   output pairs. However, when there are uncertainties about the
   alignments, we may need to model the alignment discovery model with
@@ -513,9 +513,9 @@ We also study natural language description as inductive biases to
 describe the function of each decomposed output part. We still take
 the AMR Parsing in \autoref{fig:intro:structural-bias-example} as a
 running example. When we don't know the meaning of ~\tquoted{find-01}
-and~\tquoted{find-02}, to make the word~\tquoted{find} in the second
+and~\tquoted{find-02,}~to make the word~\tquoted{find} in the second
 sentence can generate the~\tquoted{find-02} instead
-of~\tquoted{find-01}, it still needs a lot of aligned pairs about
+of~\tquoted{find-01,}~it still needs a lot of aligned pairs about
 the~\tquoted{find} from other training data to learn. This is true for
 both human and machines. However, if we look at the explanation
 of~\tquoted{find-01} and \tquoted{find-02} in
@@ -523,8 +523,8 @@ PropBank~\citep{Kin:Pal:02}, we may easily find that \tquoted{find-01}
 means discovery, while \tquoted{find-02} means verdict. Hence, human
 now can easily tell that the second~\tquoted{find} should
 predict~\tquoted{find-02} because it means~\tquoted{verdict} by the
-jury, without any more examples about~\tquoted{find-02}. Once we know
-the explanation of~\tquoted{find-01} and~\tquoted{find-02}, we can
+jury, without any more examples about~\tquoted{find-02.}~Once we know
+the explanation of~\tquoted{find-01} and~\tquoted{find-02,}~we can
 disambiguate them because we understand the meaning of the natural
 language that is used for the explanation. We believe that the
 knowledge in the natural language can also be used as inductive biases

@@ -239,9 +239,9 @@
 
 %%% The graduate student's committee members:
 \committeechair         {Vivek Srikumar}
-\firstreader            {Ellen M Riloff}
+\firstreader            {Ellen M. Riloff}
 \secondreader           {Qingyao Ai}
-\thirdreader            {Zachary E Imel}
+\thirdreader            {Zachary E. Imel}
 \fourthreader           {Yi Zhang}
 \chairtitle             {Associate Professor}
 
@@ -262,7 +262,7 @@
 \chairdateapproved      {07/22/2022}
 \firstdateapproved      {07/22/2022}
 \seconddateapproved     {07/22/2022}
-\thirddateapproved      {}
+\thirddateapproved      {07/29/2022}
 \fourthdateapproved     {07/22/2022}
 
 %%% ====================================================================
@@ -393,7 +393,11 @@
 %%% bibliography, so we suppress it here:
 
 %%\bibliography{\jobname}
+\begingroup
+\setlength{\bibsep}{10pt}
+\linespread{1}\selectfont
 \bibliography{bib-files/thesis-main,bib-files/proposal,bib-files/sp,bib-files/prob-logic,bib-files/psyc,bib-files/top,bib-files/semi-top,bib-files/mrp,bib-files/sdp,bib-files/ucca,bib-files/amr,bib-files/ltg,bib-files/sgd,bib-files/scalable-dialog}
+\endgroup
 
 %%% The last part of this sample thesis is two specialized indexes,
 %%% and a general topic index.  If the companion Makefile is used to

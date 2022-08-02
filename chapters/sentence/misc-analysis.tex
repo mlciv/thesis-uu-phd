@@ -1,10 +1,13 @@
 \section{Analysis and Ablations}
 \label{sec:snt:analysis}
-This section reports error analysis and an ablation study of our
-models on the development set. The appendix shows a comparison of
-pretrained domain-specific ELMo/glove with generic ones and the
-impact of the focal loss compared to simple or weighted
-cross-entropy.
+This section reports error analysis and ablation studes of our models
+on the development set. It includes the confusion matrix
+analysis~(\autoref{ssec:label_confusion}), the impact of the focal
+loss compared to simple or weighted
+cross-entropy~(\autoref{ssec:label_imb}), the comparasion between
+pretrained domain-specific ELMo/glove with generic
+ones~(\autoref{ssec:domain_elmo}), and empathetic analysis~(\autoref{ssec:sentence:good-MI}).
+
 
 \input{chapters/sentence/label_confusion}
 
@@ -13,7 +16,6 @@ cross-entropy.
 \input{chapters/sentence/label_imbalance}
 
 \input{chapters/sentence/embedding}
-
 
 \input{chapters/sentence/good_MI}
 %%% Local Variables:

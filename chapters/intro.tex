@@ -61,7 +61,7 @@ sentence, such as noun, verb, prepositional phrases, and their nesting
 in each other. \autoref{fig:intro:dog-dep} shows the \kw{dependency
   tree} structure of the sentence. Unlike the constituency structure,
 here the dependency structure of a sentence is described in terms of
-the directed bi-lexical grammatical relations between words. Each
+the directed bilexical grammatical relations between words. Each
 labeled arc represents a directed relation from headwords to their
 dependents. Besides the above lexical and syntactic structured
 information, as shown in the left part of \autoref{fig:intro:dog-amr},
@@ -71,7 +71,7 @@ representations via tasks such as \kw{ word sense diambiguation},
 on~\footnote{More details about various semantic phenomena will be
   introduced in~\autoref{ssec:bg:broad-mr}}. Such structured
 information is widely used in classical feature-engineering based NLP
-system~\citep[e.g.,][]{Joh:Nug:08,hovy2010s,punyakanok2008importance},
+system~\citep[\eg,][]{Joh:Nug:08,hovy2010s,punyakanok2008importance},
 they are still helpful in deep learning based
 systems~\citep{moosavi-strube-2018-using,strubell-etal-2018-linguistically,bowman-etal-2016-fast}.
 
@@ -92,18 +92,18 @@ shown in \autoref{fig:intro:dog-tree}, the node \tquoted{find-01} and
 Propbank~\cite{Kin:Pal:02}; The connected edges \tquoted{:ARG0} and
 \tquoted{:ARG1} captures the semantic roles that can be derived from
 the semantic role labelling tasks; While the node \tquoted{dog/d1}
-means the subject for events \tquoted{find-01}, \tquoted{hide-01} and
+means the subjects for the events \tquoted{find-01,}~\tquoted{hide-01,}~and
 \tquoted{possible-01} are the same dog, thus capturing the coreference
 information. \autoref{fig:intro:dog-ucca} shows the foundational layer
 of Universal Conceptual Cognitive
-Annotation~\citep[\kw{UCCA},][]{Abe:Rap:13b}, which is a
-multi-layered framework for semantic representation that aims to
-accommodate the semantic distinctions in the sentence and support
-open-ended extensions. Different from AMR, this UCCA foundational
-layer mainly forms a tree-like structure, which focuses on the
-argument structures of verbal, nominal, and adjectival predicates and
-the inter-relations between them. Besides the above two broad-coverage
-meaning representations, we also studied the DELPH-IN MRS Bi-lexical
+Annotation~\citep[\kw{UCCA},][]{Abe:Rap:13b}, which is a multilayered
+framework for semantic representation that aims to accommodate the
+semantic distinctions in the sentence and support open-ended
+extensions. Different from AMR, this UCCA foundational layer mainly
+forms a tree-like structure, which focuses on the argument structures
+of verbal, nominal, and adjectival predicates with also the
+interrelations between them. Besides the above two broad-coverage
+meaning representations, we also studied the DELPH-IN MRS Bilexical
 Dependencies~\citep[\kw{DM},][]{ivanova2012did} and Prague Semantic
 Dependencies~\citep[\kw{PSD},][]{hajic2012announcing,miyao2014house}. More
 details about their captured semantic content and their structure
@@ -115,7 +115,7 @@ in~\autoref{ssec:bg:broad-mr}.
 \includegraphics[width=1.0\textwidth]{broad-coverage-mr.pdf}
 \caption{\label{fig:intro:dog-amr} The broad coverage meaning
   representation AMR for the sentence \emph{\dquoted{The dog cannot find the
-    bone it hid from the other dogs.}}. It represents multiple
+    bone it hid from the other dogs.}} It represents multiple
   phenomena in a single structure, inclduing the predicate-argument
   structure and word sense disambiguiation in semantic role labelling,
   coreference resolution, and so on.}
@@ -174,7 +174,7 @@ the NLP tasks, which further boosts the performance.
 However, recent research has shown that such end-to-end NLP systems
 often fail catastrophically when given unseen inputs from different
 sources or via adversarial attacks. The end-to-end black-box models
-lack interoperability and robustness and they are fragile to maintain
+lack booth interoperability and robustness, and they are fragile to maintain
 when deployed to real users. Using those large language models without
 any careful intervention can lead to fairness
 issues~\citep{bommasani2021opportunities}.  Using interpretable
@@ -220,7 +220,7 @@ structural inductive biases and natural language as inductive biases.
 \index{Linguistic Structured Prediction}
 \index{AMR, Abstract Meaning Representations}
 \index{PSD, Prague Semantic Dependencies}
-\index{DM, DELPH-IN MRS Bi-lexical Dependencies}
+\index{DM, DELPH-IN MRS Bilexical Dependencies}
 
 
 %%% Local Variables:

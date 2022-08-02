@@ -10,7 +10,7 @@ descriptions.
 
 \section{Combinatory Settings}
 \label{sec:sgd:com-desc}
-For each subtask, the key description element must be included, e.g.,
+For each subtask, the key description element must be included, \eg,
 intent description for intent task, and value for categorical slot
 tasks. However, besides the description about intents and slots, we
 also have service description and the names for intents and
@@ -24,17 +24,17 @@ we incrementally add richer schema component one by one.
 
 \begin{itemize}
 \item \textbf{ID:}~This is the least informative case: we only use
-  meaningless intent/slot identifiers, e.g. Intent\_4, Slot\_2. It means we don't use
+  meaningless intent/slot identifiers, \eg, \kw{Intent\_4}, \kw{Slot\_2}. It means we don't use
   description from any schema component. We want to investigate how a
   simple identifier-based description performs in schema-guided dialog
   modeling, and the performance lower-bound on transferring to unseen services.
 
-\item \textbf{I/S Desc:}~Only using the original intent/slot description
+\item \textbf{I/S Desc:}~Only using the original intent/slot descriptions
   of intent/slot in \sgdst~and~\multiwoz~dataset for corresponding
   tasks.
 
 \item \textbf{Service + I/S Desc:}~Adding a service description to the above
-  original description. Service description summarize the
+  original intent/slot descriptions. Service descriptions summarize the
   functionalities of the whole service, hence may offer extra background
   information for intent and slots.
 \end{itemize}
@@ -95,7 +95,7 @@ description, it improves marginally on seen service while not
 generalizing well on unseen services, which indicates the model learns
 artifacts that are not general useful for unseen services.
 
-Finally, on non-categorical slot tasks, the impact of service
+Finally, on noncategorical slot tasks, the impact of service
 description may also varies on datasets. On \sgdst, there are 16
 domains and more than 30 services, the rich background context from
 service description contains both domain and service-specific

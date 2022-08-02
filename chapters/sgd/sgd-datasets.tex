@@ -2,7 +2,7 @@
 \label{sec:sgd:datasets}
 
 \begin{table}[!t]
-\caption{\label{tbl:sgd:datasets} Summary of characteristics of \sgdst \multiwoz datasets, in domain diversity, function overlap, data collecting methods}
+\caption{\label{tbl:sgd:datasets} Summary of characteristics of \sgdst \multiwoz datasets, in domain diversity, function overlap, data collecting methods.}
 \begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{l|ccccc|c|c}
@@ -37,8 +37,7 @@ contains well-designed heterogeneous APIs with overlapping
 functionalities between services~\cite{rastogi2019towards}. In
 DSTC8~\cite{rastogi2020schema}, \sgdst~was introduced as the standard
 benchmark dataset for schema-guided dialog research. \sgdst~covers 20
-domains, 88 intents, 365 slots.\footnote{Please refer to the original
-  paper for more details.} However, previous research are mainly
+domains, 88 intents, 365 slots.\footnote{Please refer to~\citet{rastogi2019towards} for more details.} However, previous research are mainly
 conducted based on this single dataset and the provided single
 description style. In this paper, we further extended this dataset
 with other benchmarking description styles as shown in~\autoref{sec:sgd:abl-desc}, and then we perform both homogenous and
@@ -58,11 +57,11 @@ training split.  For dev, we add two new domains {\it hotel} and {\it
   taxi} as unseen services. For test, we add all remaining domains as
 unseen, including those that have minimum overlap with seen services,
 such as {\it hospital}, {\it police}, {\it bus}. The statistics are as
-shown in Table \ref{tbl:multiwoz-remix}
+shown in Table \ref{tbl:multiwoz-remix}.
 
 \begin{table}[t]
 \caption{\label{tbl:multiwoz-remix} The total number of dialogs and
-  turns related to each domain in train, dev and test split of MultiWOZ}
+  turns related to each domain in train, dev and test split of MultiWOZ.}
 \begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{ccccccc}
@@ -96,16 +95,15 @@ rectifying the annotation errors, \multiwoz ~also introduced the
 schema-guided annotations, which covers 8 domains, 19 intents, 36
 slots.  To evaluate performance on seen/unseen services with MultiWOZ,
 we remix the \multiwoz~dataset to include as seen services dialogs
-related to \textit{restaurant}, \textit{attraction} and \textit{train}
+related to \kw{restaurant}, \kw{attraction} and \kw{train}
 during training, and eliminate slots from other domains/services from
-training split.  For dev, we add two new domains {\it hotel} and {\it
-  taxi} as unseen services. For test, we add all remaining domains as
+training split.  For dev, we add two new domains \kw{hotel} and \kw{taxi} as unseen services. For test, we add all remaining domains as
 unseen, including those that have minimum overlap with seen services,
-such as {\it hospital}, {\it police}, {\it bus}. The statistics of
+such as \kw{hospital}, \kw{police}, \kw{bus}. The statistics of
 data splits are shown in
 ~\autoref{tbl:multiwoz-remix}. Note that this data split
 is different from the previous work on zero-shot MultiWOZ DST which
-takes a leave-one-out approach in \citet{wu2019transferable}. By
+takes a leave-one-out approach in~\citet{wu2019transferable}. By
 remixing the data in the way described above, we can evaluate the
 zero-shot performance on MultiWOZ in a way largely compatible with
 \sgdst.
@@ -121,10 +119,10 @@ travelling between cities. While \sgdst~covers more domains, such as
 
 Second, they include different levels of overlapping
 functionalities. \sgdst~allows frequent function overlapping between
-multiple services, within the same domain~(e.g. BookOneWayTicket
+multiple services, within the same domain~(\eg, BookOneWayTicket
 v.s. BookRoundTripTicket), or across different domains~(BusTicket
 v.s. TrainTicket). However, the overlapping in \multiwoz~only exists
-across different domains, e.g., `destination', `leaveat' slots for
+across different domains, \eg, `destination', `leaveat' slots for
 Taxi and Bus services, `pricerange', `bookday' for Restaurant and
 Hotel services.
 

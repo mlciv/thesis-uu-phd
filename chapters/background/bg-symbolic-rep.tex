@@ -17,8 +17,8 @@ semantic representations in our dissertation.
   task~\citep{Oep:Abe:Haj:19}, we distinguish different flavors of
   semantic graphs based on the nature of the relationship they assume
   between the linguistic surface signal~(typically a written sentence,
-  i.e. a string) and the nodes of the graph. We refer to this relation
-  as ~\kw{anchoring}~(of nodes onto sub-strings); other commonly used
+  \ie, a string) and the nodes of the graph. We refer to this relation
+  as ~\kw{anchoring}~(of nodes onto substrings); other commonly used
   terms include alignment, correspondence, or lexicalization.
 
 \item \textbf{Anchor:} We define the term~\kw{anchor} as the surface
@@ -37,14 +37,14 @@ subword-level morphology~\citep{beesley2003finite}, word-level lexicon
 semantics~\citep{miller1998wordnet}, to single sentence
 syntax/semantic
 representations~\citep{baker1998berkeley,palmer2005proposition,collins2003head},
-and multi-sentences discourse
+and multisentences discourse
 analysis~\citep{carlson2003building,wolf2005representing,prasad2008penn}. A
 broad-coverage semantic representation is a general-purpose meaning
 representation language aiming to represent the multiple phenomena in
 a single structure for broad-coverage text.
 
 As shown in~\autoref{fig:intro:dog-dep}, syntactic dependency
-structures capture the directed bi-lexical grammatical relations
+structures capture the directed bilexical grammatical relations
 between words. Each labeled arc represents a directed relation from
 heads to dependents. However, different from the syntactic dependency
 tree, semantic dependency graphs aim to represent the semantic
@@ -57,7 +57,7 @@ graph rather than a tree-like structure.
 This dissertation covers broad-coverage graph-based semantic
 representations in a single sentence, which involves
 \kw{lexical-anchoring} and \kw{phrasal-anchoring}. For lexical
-anchoring, we cover the DELPH-IN MRS Bi-lexical
+anchoring, we cover the DELPH-IN MRS Bilexical
 Dependencies~\cite[DM,][]{Iva:Oep:Ovr:12} and Prague Semantic
 Dependencies~\cite[PSD,][]{hajic2012announcing,miyao2014house},
 Abstract Meaning Representation~\cite[AMR,][]{Ban:Bon:Cai:13}; While
@@ -75,17 +75,17 @@ properties for each of the representations.~\footnote{The
   introduces another example-based comparative studies for different
   meaning representations.}
 
-%\subsubsection{Bi-lexical Semantic Dependencies}
-%\label{ssec:bg:bi-leixcal}
+%\subsubsection{Bilexical Semantic Dependencies}
+%\label{ssec:bg:bileixcal}
 
-\subsubsection{DELPH-IN MRS-Derived Bi-lexical Dependencies}
+\subsubsection{DELPH-IN MRS-Derived Bilexical Dependencies}
 \label{sssec:bg:dm}
 
 \begin{figure}[!tbp]
 \centering
 \includegraphics[width=0.90\textwidth]{bg/dm-20001001.pdf}
 \caption{\label{fig:bg:dm}The DM representation for the sentence
-  \#20001001}
+  \#20001001.}
 \end{figure}
 
 It originates in a manual reannotation, dubbed
@@ -96,24 +96,24 @@ Semantics~\citep[ERS,][]{Ben:Fli:Oep:15}, and the underlying grammar
 is rooted in the general linguistic theory of Head-Driven Phrase
 Structure Grammar~\citep[HPSG,][]{Pol:Sag:94}. Then
 \citet{Iva:Oep:Ovr:12} propose a two-stage version to transform the
-ERS logical forms into bi-lexical semantic dependency graphs. ERS
+ERS logical forms into bilexical semantic dependency graphs. ERS
 logical forms are firstly transformed into Elementary Dependency
 Structures~\citep[EDS,][]{Oep:Lon:06}, then EDS are simplified into
-pure bi-lexical dependencies, dubbed DELPH-IN MRS Bi-Lexical
+pure bilexical dependencies, dubbed DELPH-IN MRS Bilexical
 Dependencies~\citep[DM,][]{Iva:Oep:Ovr:12}. As shown
 in~\autoref{fig:bg:dm}, graph nodes in DM are anchoring to the surface
 tokens. Hence, DM is lexical-anchoring. However, the underlying tokens
 are not fully covered in the graph. For example, the word
 \tquoted{will} does not produce any node in the DM graph. Edges mainly
 indicate semantic argument roles~(ARG1, ARG2, ...) into the relation
-corresponding to their source node~\footnote{The annotation of
-  predicate-argument structures is based on the semantic
-  inferface~(SEM-I) in the ERG. Please refer to this introduction for
+corresponding to their source node,~\footnote{The annotation of
+  predicate-argument structures is based on the Semantic
+  Inferface~(SEM-I)~\citep{Fli:Lon:Dyv:05} in the ERG. Please refer to this introduction for
   more
-  details.\url{https://github.com/delph-in/docs/wiki/ErgSemantics_Interface}},
+  details. \url{https://github.com/delph-in/docs/wiki/ErgSemantics_Interface}}~
 but there are some more specialized edge labels too. For example, it
 uses \kw{compound} to reflect the name~\tquoted{Pierre Vinken} as a
-whole, and it uses BV (bound variable, e.g., the word \tquoted{a}) as
+whole, and it uses BV (bound variable, \eg, the word \tquoted{a}) as
 a reflection of quantification in the underlying logic
 quantification. In summary, DM is lexical-anchoring, and it captures
 semantic phenomena including predicate-argument structures, word-sense
@@ -123,20 +123,20 @@ differentiation, quantification, and scope.
 \centering
 \includegraphics[width=0.98\textwidth]{bg/psd-20001001.pdf}
 \caption{\label{fig:bg:psd}The PSD representation for the sentence
-  \#20001001}
+  \#20001001.}
 \end{figure}
 
 \subsubsection{Prague Semantic Dependencies}
 \label{sssec:bg:psd}
 Besides DM, there is another line of research to simplify the richer
-syntactic-semantic representations into bi-lexical semantic
+syntactic-semantic representations into bilexical semantic
 dependencies. It adopts the reduction of tectogrammatical trees (or
 t-trees) from the linguistic school of Functional Generative
 Description~\citep[FGD,][]{Sga:Haj:Pan:86,hajic2012announcing} into
 PSD. The Prague Czech-English Dependency
 Treebank~\citep[PCEDT,][]{hajic2012announcing} is a set of parallel
 dependency trees over the WSJ texts from the PTB and their Czech
-translations. The PSD bi-lexical dependencies are extracted from the
+translations. The PSD bilexical dependencies are extracted from the
 tectogrammatical annotation layer. Top nodes are derived from t-tree
 roots; Especially, they mostly correspond to main verbs. In the case
 of coordinate clauses, there are multiple top nodes per
@@ -166,7 +166,7 @@ lexicon. In a summary, PSD is also lexical-anchoring, and it
 \centering
 \includegraphics[width=0.98\textwidth]{bg/amr-20001001.pdf}
 \caption{\label{fig:bg:amr} The AMR representation for the sentence
-  \#20001001}
+  \#20001001.}
 \end{figure}
 
 As shown in~\autoref{fig:bg:amr}, Abstract Meaning Representation
@@ -175,20 +175,19 @@ represents sentence meaning as directed graphs with labeled nodes
 that are easy for people to read and easy for programs to traverse.
 AMR concepts are either English words (\tquoted{board}), PropBank
 framesets (\tquoted{join-01}), or special entity
-keywords~(\tquoted{date-entity}, \tquoted{person}, \tquoted{name},
-etc.), quantities~(\tquoted{temporal-quantity},
-\tquoted{distance-quantity}, etc.), and logical
-conjunctions~(\tquoted{and}, etc).  AMR strives for a more logical,
+keywords~(\tquoted{date-entity,}~\tquoted{person,}~and~\tquoted{name,}
+etc.), quantities~(\tquoted{temporal-quantity}~and~\tquoted{distance-quantity,}~etc.), and logical
+conjunctions~(\tquoted{and,}~etc).  AMR strives for a more logical,
 less syntactic representation. For example, it represents the
-word~\tquoted{nonexecutive} with a negation~\tquoted{(:polarity 0)}
-with the concept~\tquoted{executive}. Furthermore, unlike DM and PSD
+word~\tquoted{nonexecutive} with a negation~\tquoted{(:polarity -)}
+with the concept~\tquoted{executive.} Furthermore, unlike DM and PSD
 on predicate-argument representation, AMR extensively uses PropBank
 framesets~\citep{Kin:Pal:02, palmer2005proposition}. For example, It
 represents the verb~\tquoted{join} using the
-frame~\tquoted{join-01}. At the meantime, AMR also newly designs
+frame~\tquoted{join-01.} At the meantime, AMR also newly designs
 special frames to reuse those core roles in Propbank. As shown in
 ~\autoref{fig:bg:amr}, the word~\tquoted{board} have a role
-\tquoted{ARG1-of} to a special frame~\tquoted{have-org-role-91}.
+\tquoted{ARG1-of} to a special frame~\tquoted{have-org-role-91.}
 
 The above abstraction allows for concepts and relations not explicitly
 mentioned in the text but leaves open the question of how these are
@@ -198,7 +197,7 @@ between tokens and the graph elements. Most AMR
 parsers~\cite[\eg][]{Flanigan:2014vc,Wang:2015uo,Artzi:2009tb,Pust:2015ug,Peng:2015tj,Konstas:2017uj,Wang:2017vt}
 use either the JAMR aligner~\cite{Flanigan:2014vc} or the ISI
 aligner~\cite{Pourdamghani:2014aligning} for this
-purpose\footnote{Other aligners exist, \eg
+purpose.~\footnote{Other aligners exist, \eg,
   \citet{chen2017unsupervised} uses dependencies, but raw text
   alignments are more prevalent.}  We introduced more details about
 AMR alignment in~\autoref{ssec:lex-phr:amr-anchor}, and we show that
@@ -216,7 +215,7 @@ decomposion, anaphoric coreference, and entity-linking.
 \centering
 \includegraphics[width=0.99\textwidth]{bg/ucca-20001001.pdf}
 \caption{\label{fig:bg:ucca}The UCCA representation for the sentence
-  \#20001001}
+  \#20001001.}
 \end{figure}
 
 Similar to AMR, UCCA is designed to abstract the semantic scheme away
@@ -226,7 +225,7 @@ meaning-bearing units are placed at the leaves of the DAG and are
 called terminals. The nodes of the graph are called units. A unit may
 be either~(i)~a terminal or~(ii)~several elements jointly viewed as a
 single entity according to some semantic or cognitive
-consideration. In many cases, a non-terminal unit is comprised of a
+consideration. In many cases, a nonterminal unit is comprised of a
 single relation and the units it applies to (its arguments). In some
 cases it may also contain secondary relations. Hierarchy is formed by
 using units as arguments or relations in other units.
@@ -236,17 +235,17 @@ annotated on nodes, but edges and represent the descendant unit's role
 in forming the semantics of the parent unit. The foundational layer
 covers the entire text, so each word participates in at least one
 unit. It focuses on argument structures of verbal, nominal, and
-adjectival predicates and the inter-relations between them. Argument
+adjectival predicates and the interrelations between them. Argument
 structure phenomena are considered fundamental by many approaches to
 semantic and grammatical representation and have a high applicative
 value, as demonstrated by their extensive use in NLP. The foundational
 layer views the text as a collection of Scenes. A Scene can describe
 some movement or action or a temporally persistent state. As shown
-in~\autoref{fig:bg:ucca}, for the event~\tquoted{join the board},
+in~\autoref{fig:bg:ucca}, for the event~\tquoted{join the board,}
 ~\tquoted{join} with an incoming edge~\tquoted{P} denoting the
-category~\tquoted{Process}, which is the primary relation of a scene
+category~\tquoted{Process,}~which is the primary relation of a scene
 that evolves in time. While the edge~\tquoted{A} linked to the
-non-terminal node corresponding to~\tquoted{Pierre, Vinken, 61 years
+nonterminal node corresponding to~\tquoted{Pierre, Vinken, 61 years
   old} means the unit~\tquoted{Pierre, Vinken} is the participant of
 the scene. In sum, UCCA is phrasal-anchoring, and its foundational
 layer captures predicate-argument structures, anaphoric coreference,
@@ -336,17 +335,17 @@ introduce the MISC Codes for psychotherapy dialogue.
   \midrule
   \multicolumn{4}{c}{\bf Therapist Behavioral Codes }                                                                                                                                                               \\
   \midrule
-  \FA                   & 17468                  & Facilitate conversation                                                                                      & ``Mm Hmm.'', ``OK.'',``Tell me more.''            \\
-  \GI                   & 15271                  & Give information or feedback.                                                                                & ``I'm Steve.'', ``Yes, alcohol is a depressant.'' \\
-  \multirow{2}{*}{\RES} & \multirow{2}{*}{6246}  & \multirow{2}{*}{\parbox{5.5cm}{Simple reflection about the client's most recent utterance.}}                 & C: ``I didn't smoke last week''                   \\
+  \FA                   & 17468                  & Facilitate conversation                                                                                      & ``Mm Hmm.''; ``OK.'';``Tell me more.''            \\
+  \GI                   & 15271                  & Give information or feedback.                                                                                & ``I'm Steve.''; ``Yes, alcohol is a depressant.'' \\
+  \multirow{2}{*}{\RES} & \multirow{2}{*}{6246}  & \multirow{2}{*}{\parbox{5.5cm}{Simple reflection about the client's most recent utterance.}}                 & C: ``I didn't smoke last week.''                   \\
                         &                        &                                                                                                              & T: ``Cool, you avoided smoking last week.''       \\
   \multirow{2}{*}{\REC} & \multirow{2}{*}{4651}  & \multirow{2}{*}{\parbox{5.5cm}{Complex reflection based on a client's conversation history.}} & C: ``I didn't smoke last week.''                  \\
-                        &                        &                                                                                                              & T: ``You mean things begin to change''.           \\
+                        &                        &                                                                                                              & T: ``You mean things begin to change.''           \\
   \QUC                  & 5218                   & Closed question                                                                                              & ``Did you smoke this week?''                      \\
   \QUO                  & 4509                   & Open question                                                                                                & ``Tell me more about your week.''                 \\
   \multirow{2}{*}{\MIA} & \multirow{2}{*}{3869}  & \multirow{2}{*}{\parbox{5.5cm}{MI adherent,~\eg, affirmation, advising with permission, etc.}}          & ``You've accomplished a difficult task.''         \\
                         &                        &                                                                                                              & ``Is it OK if I suggested something?''            \\
-  \multirow{2}{*}{\MIN} & \multirow{2}{*}{1019}  & \multirow{2}{*}{\parbox{5.5cm}{MI non-adherent,~\eg, confront, advising without permission, etc.}}      & ``You hurt the baby's health for cigarettes?''    \\
+  \multirow{2}{*}{\MIN} & \multirow{2}{*}{1019}  & \multirow{2}{*}{\parbox{5.5cm}{MI nonadherent,~\eg, confront, advising without permission, etc.}}      & ``You hurt the baby's health for cigarettes?''    \\
                         &                        &                                                                                                              & ``You ask them not to drink at your house.''      \\\bottomrule
 \end{tabular}}
 \end{center}
@@ -415,7 +414,7 @@ is mixed.
 \subsubsection{Conversational Semantic Representations}
 \label{ssec:bg:dialogue-rep}
 Most existing annotations for task-oriented dialog systems have fallen
-on the extremes of non-recursive intent and slot tagging, such as in
+on the extremes of nonrecursive intent and slot tagging, such as in
 the MultiWOZ~\citep{budzianowski2018multiwoz}. Hence, the previous
 intent-slot dialog state representation has poor compositionality to
 represent complex conversational requests, such multiple intents in the
@@ -426,7 +425,7 @@ same utterance, and nested intent slot structures.
 \includegraphics[width=0.95\textwidth]{top-driving.pdf}
 \caption{\label{fig:bg:top} A TOP example for conversational
   semantic parsing~(borrowed from the original
-  paper~\citep{gupta-etal-2018-semantic-parsing})}
+  paper~\citep{gupta-etal-2018-semantic-parsing}).}
 \end{figure}
 Recently, conversational parsing has attracted much attention to
 represent the dialogue state in a more compositional way, such as the
@@ -440,10 +439,10 @@ state revision and recovering.
 
 In this dissertation, we study the structures of single sentence
 representation TOP for dialogue
-representations. \autoref{fig:bg:top} shows two examples of the
+representations. \autoref{fig:bg:top}~shows two examples of the
 nested structures of TOP structures. All intents and slots are
-non-terminal nodes, and their labels are prefixed with \kw{IN:} or
-\kw{SL:} respectively.
+nonterminal nodes, prefixed with \tquoted{IN:}~or
+~\tquoted{SL:} labels, respectively.
 
 The TOP tree structure shares a lot similaries with consituent tree
 shown in~\autoref{fig:intro:dog-tree}. It has the following three structural
@@ -464,7 +463,7 @@ of dialogue act for psychotherapy dialogue called MISC. Then we
 introduced the frame-based dialog state tracking, and we showed that
 intent classification is also sentence-anchoring tasks, while
 requested slot and slot filling tasks can be considered as mixed
-anchoring. Finally, to resolve the limitations on non-recursive intent
+anchoring. Finally, to resolve the limitations on nonrecursive intent
 and slot tagging, we briefly introduced a set of conversational
 semantic parsing representations. They offer richer intent slot
 compositions and support complex conversational linguistic phenomena,

@@ -16,7 +16,7 @@ Figure~\ref{fig:ucca-to-CT} shows an example of transforming a UCCA
 graph into a constituent tree. The primary transformation assigns the
 original label of an edge to its child node. Then to make it
 compatible with parsers for standard PennTree Bank format, we add some
-auxiliary nodes such as special non-terminal nodes, \kw{TOP},
+auxiliary nodes such as special nonterminal nodes, \kw{TOP},
 \kw{HEAD}, and special terminal nodes \kw{TOKEN} and \kw{MWE}. We
 remove all the~\tquoted{remote} annotation in UCCA since the
 constituent tree structure does not support reentrance.  A fully
@@ -25,8 +25,8 @@ tree-to-graph transformation.
 
 In our case, to simplify the model, we remove those remote edges and
 reentrance edges during training. Besides that, we also noticed that
-for multi-word expressions, the children of a parent node might not be
-in a continuous span (i.e., discontinuous constituent), which is also
+for multiword expressions, the children of a parent node might not be
+in a continuous span (\eg, discontinuous constituent), which is also
 not supported by our constituent tree parser. Hence, when training the
 tree parser, by reattaching the discontinuous tokens to its nearest
 continuous parent nodes, we force every sub span are continuous in the
@@ -42,7 +42,7 @@ adding anchors to every remaining node.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.90\textwidth]{dog-ucca-to-CT.pdf}
-\caption{\label{fig:ucca-to-CT} UCCA to Constituent Tree Transformation for [wsj\#0209013]}
+\caption{\label{fig:ucca-to-CT} UCCA to constituent tree transformation for [wsj\#0209013].}
 \end{figure}
 
 \subsubsection{TOP to Consistuent Tree}
@@ -52,7 +52,7 @@ it to a constituent tree structure. \autoref{fig:TOP-to-CT} shows the
 transformation process for the utterance ``Driving directions to the
 Eagles game". In TOP tree shown in the up side of the figure, the leaf
 nodes are not single words as in consituent tree, and there are no
-other non-terminal nodes~(such as part-of-speech tags) other than the
+other nonterminal nodes~(such as part-of-speech tags) other than the
 intents and slots nodes. Hence, we decompose the original teriminal
 nodes in TOP into seperate tokens, and add a special parent node as
 \texttt{TOK} to each of the ternimal token node. Finally, it forms the
@@ -60,8 +60,8 @@ constituent tree as shown in the bottom.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.90\textwidth]{TOP-to-CT.pdf}
-\caption{\label{fig:TOP-to-CT} TOP to Constituent Tree Transformation
-  for the utterance ``Driving directions to the Eagles game"}
+\caption{\label{fig:TOP-to-CT} TOP to constituent tree transformation
+  for the utterance \tquoted{Driving directions to the Eagles game.}}
 \end{figure}
 
 %%% Local Variables:

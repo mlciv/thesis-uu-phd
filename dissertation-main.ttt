@@ -52,13 +52,13 @@
 \efloatseparator
  
 \begin{table}[!ht]
-\caption{\label{tbl:heter-intent} Accuracy of intent classification
-  subtask with different description styles on unseen services. Train
-  the model on \sgdst dataset for each description in each row, then
-  evaluating on 4 different descriptions styles. The mean are average
-  performance of the remaining 3 descriptions styles. The $\Delta$ means
-  the performance gap between the mean and the homogeneous
-  performance.}
+  \caption{\label{tbl:heter-intent} Accuracy of intent classification
+    subtask with different description styles on unseen services. We
+    train the models on \sgdst~dataset for each description in each
+    row, then evaluating on 4 different descriptions styles. The mean
+    are average performance of the remaining 3 descriptions
+    styles. The $\Delta$ means the performance gap between the mean and the
+    homogeneous performance.}
 \begin{center}
 \setlength{\tabcolsep}{2pt}
 \begin{tabular}{c|cccc|cc}
@@ -102,13 +102,14 @@ Style       & \NAMEONLY   & \QANAMEONLY             & \ORIGIN     & \QARICH     
 \efloatseparator
  
 \begin{table}[!ht]
-\caption{\label{tbl:heter-cat} Joint accuracy of categorical slot
-  subtask with different description styles on unseen services. Train
-  the model on \sgdst ~and~\multiwoz~datasets respectively for each
-  description style in each row, then evaluate on all 4 descriptions
-  styles. The mean are the average performance of the remaining 3
-  descriptions styles. The $\Delta$ means the performance gap between the
-  mean and the homogeneous performance.}
+  \caption{\label{tbl:heter-cat} Joint accuracy of categorical slot
+    subtask with different description styles on unseen services. We
+    train the different models on \sgdst ~and~\multiwoz~datasets,
+    respectively, for each description style in each row. Then we
+    evaluate on all 4 descriptions styles. The mean are the average
+    performance of the remaining 3 descriptions styles. The $\Delta$ means
+    the performance gap between the mean and the homogeneous
+    performance.}
 \begin{center}
 \setlength{\tabcolsep}{2pt}
 \begin{tabular}{c|cccc|cc}
@@ -134,14 +135,15 @@ Style       & \NAMEONLY   & \QANAMEONLY             & \ORIGIN     & \QARICH     
 \efloatseparator
  
 \begin{table}[!ht]
-\caption{\label{tbl:heter-noncat} Joint accuracy of non-categorical
-  slot subtask with different description styles on unseen
-  services. We train the model on \sgdst ~and~\multiwoz~datasets
-  respectively for the description style in each row, then evaluate
-  on all 4 different descriptions styles. The mean are the average
-  performance of the remaining 3 descriptions styles. The $\Delta$ means
-  the performance gap between the mean and the homogeneous
-  performance.}
+  \caption{\label{tbl:heternoncat} Joint accuracy of noncategorical
+    slot subtask with different description styles on unseen
+    services. For each description style in each row, we train
+    different models on \sgdst ~and~\multiwoz~datasets,
+    respectively. Then we evaluate each model trained from one style
+    on all 4 different description styles. The mean are the average
+    performance of the remaining 3 description styles. The $\Delta$ means
+    the performance gap between the mean and the homogeneous
+    performance.}
 \begin{center}
 \setlength{\tabcolsep}{2pt}
 \begin{tabular}{c|cccc|cc}
@@ -168,23 +170,23 @@ Style       & \NAMEONLY               & \QANAMEONLY & \ORIGIN     & \QARICH     
 \begin{sidewaystable}[!t]
 \caption{\label{tbl:heter-quali}We analyze the confusion matrix of
   above slots before and after using the paraphrased name. We summarize
-  the extra impact for using each paraphrased name.  }
+  the extra impact for using each paraphrased name.}
 \begin{center}
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{ccc|p{7cm}}
   \bottomrule
   \hline
-Service Name & Original Name        & Paraphrased Name            & Extra impact by the paraphrased name                                            \\ \hline
-Travel\_1    & location             & attraction\_location        & Confused with other \tquoted{attraction} prefixed slots, e.g. \tquoted{attraction \_name}         \\
-Movies\_1    & genre                & movie\_genre                & Confused with \tquoted{movie\_name}                                                       \\
-Movies\_1    & price                & ticket\_price, total\_price & No impact                                                                       \\ \hline
-Bueses\_3    & to\_city             & target\_city                & The synonyms \tquoted{target} is not understood well by model, confused with \tquoted{from\_city} \\
-Movies\_1    & movie\_name          & film\_name                  & The synonyms \tquoted{film} is not understood well, getting wrong with \tquoted{theather\_name}   \\
-Hotels\_2    & where\_to            & house\_loc                  & Improved by specific "house" keywords                                           \\ \hline
-Flights\_4   & origin\_airport      & orig\_city\_airport         & More frequently predicted to slot \tquoted{destination\_airport}                             \\
-Flights\_4   & destination\_airport & dest\_city\_airport         & More frequently predicted to slot  \tquoted{origin\_airport}                                  \\
-Media\_3     & subtitle\_language   & sub\_lang                   & Missing keyword \tquoted{subtitle} make the slot inactive                               \\
-Flights\_4   & number\_of\_tickets  & num\_of\_tickets            & No impact                                                                       \\ \hline
+Service Name    & Original Name             & Paraphrased Name                      & Extra Impact by Paraphrased Name                                                    \\ \hline
+\kw{Travel\_1}  & \kw{location}             & \kw{attraction\_location}             & Confused with other \kw{attraction} prefixed slots, \eg, \kw{attraction \_name}         \\
+\kw{Movies\_1}  & \kw{genre}                & \kw{movie\_genre}                     & Confused with \kw{movie\_name}                                                          \\
+\kw{Movies\_1}  & \kw{price}                & \kw{ticket\_price}, \kw{total\_price} & No impact                                                                               \\ \hline
+\kw{Bueses\_3}  & \kw{to\_city}             & \kw{target\_city}                     & The synonyms \kw{target} is not understood well by model, confused with \kw{from\_city} \\
+\kw{Movies\_1}  & \kw{movie\_name}          & \kw{film\_name}                       & The synonyms \kw{film} is not understood well, getting wrong with \kw{theather\_name}   \\
+\kw{Hotels\_2}  & \kw{where\_to}            & \kw{house\_loc}                       & Improved by specific "house" keywords                                                   \\ \hline
+\kw{Flights\_4} & \kw{origin\_airport}      & \kw{orig\_city\_airport}              & More frequently predicted to slot \kw{destination\_airport}                             \\
+\kw{Flights\_4} & \kw{destination\_airport} & \kw{dest\_city\_airport}              & More frequently predicted to slot  \kw{origin\_airport}                                 \\
+\kw{Media\_3}   & \kw{subtitle\_language}   & \kw{sub\_lang}                        & Missing keyword \kw{subtitle} make the slot inactive                                    \\
+\kw{Flights\_4} & \kw{number\_of\_tickets}  & \kw{num\_of\_tickets}            & No impact                                                                       \\ \hline
 \bottomrule
 \end{tabular}
 \end{center}

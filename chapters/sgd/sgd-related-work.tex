@@ -1,13 +1,13 @@
 \section{Related Work}
 \label{sec:sgd:related-work}
-Our work is related to three lines of research: multi-sentence
-encoding, multi-domain and transferable dialog state
+Our work is related to three lines of research: multisentence
+encoding, multidomain and transferable dialog state
 tracking. However, our focus is on the comparative study of different
 encoder architectures, supplementary training, and schema
 description style variation. Thus we adopt existing strategies from
-multi-domain dialog state tracking.
+multidomain dialog state tracking.
 
-\subsection{Multi-Sentence Encoder Strategies}
+\subsection{Multisentence Encoder Strategies}
 \label{ssec:sgd:multi-encoder}
 Similar to the recent study on encoders for response selection and
 article search tasks~\citet{humeau2019poly}, we also conduct our
@@ -16,9 +16,9 @@ comparative study on the two typical architectures
 \DE~\cite{wu2017sequential,yang2018response}. However, they only focus
 on sentence-level matching tasks. All subtasks in our case require
 sentence-level matching between dialog context and each schema, while
-the non-categorical slot filling task also needs to produce a sequence
+the noncategorical slot filling task also needs to produce a sequence
 of token-level representation for span detection. Hence, we study
-multi-sentence encoding for both sentence-level and token-level
+multisentence encoding for both sentence-level and token-level
 tasks. Moreover, to share the schema encoding across subtasks and
 turns, we also introduce a simple \FE by caching schema token
 embeddings in~\autoref{ssec:encoder-arch}, which improves efficiency
@@ -30,10 +30,10 @@ without sacrificing much accuracy.
 %components as candidates in~\autoref{sssec:com-desc}, e.g. compositions
 %of service, intent, slot descriptions.
 
-\subsection{Multi-Domain Dialog State Tracking}
-\label{ssec:sgd:multi-domain}
-Recent research on multi-domain dialog system have been largely driven
-by the release of large-scale multi-domain dialog datasets, such as
+\subsection{Multidomain Dialog State Tracking}
+\label{ssec:sgd:multidomain}
+Recent research on multidomain dialog system have been largely driven
+by the release of large-scale multidomain dialog datasets, such as
 MultiWOZ~\citep{budzianowski2018multiwoz},
 M2M~\citep{shah-etal-2018-bootstrapping}, accompanied by studies on key
 issues such as in/cross-domain carry-over~\citep{ kim2019efficient}. In
@@ -54,8 +54,8 @@ the further discussion for future work.
 \label{ssec:sgd:transfer-dialogue}
 Another line of research focuses on how to build a transferable dialog
 system that is easily scalable to newly added intents and slots. This
-covers diverse topics including e.g., resolving lexical/morphological
-variabilities by symbolic de-lexicalization-based
+covers diverse topics including, \eg, resolving lexical/morphological
+variabilities by symbolic delexicalization-based
 methods~\citep{henderson2014word, williams2016dialog}, neural belief
 tracking~\citep{mrkvsic2017neural}, generative dialog state
 tracking~\citep{peng2020soloist, hosseini2020simple}, modeling DST as a
@@ -65,7 +65,7 @@ class. However, we further investigate whether the DST can benefit
 from NLP tasks other than question answering. Furthermore, without
 rich description for the service/intent/slot in the schema, previous
 works mainly focus on simple format on question answering scenarios,
-such as domain-slot-type compounded names~(e.g., ``{\it
+such as domain-slot-type compounded names~(\eg, ``{\it
   restaurant-food}"), or simple question template ``{\it What is the
   value for {\bf slot i}?}". We incorporate different description
 styles into a comparative discussion in~\autoref{ssec:desc-styles}.

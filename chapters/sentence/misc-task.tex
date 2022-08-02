@@ -10,7 +10,7 @@ utterance $u_i$ is associated with its speaker $s_i$, either C
 (client) or T (therapist). We will define two classification tasks
 over a fixed dialogue history with $n$ elements ---
 \emph{categorization}~\autoref{ssec:snt:task-categorization} and
-\emph{forecasting}~\autoref{ssec:snt:task-forcasting}.  Then we make a
+\emph{forecasting}~\autoref{ssec:snt:task-forecasting}.  Then we make a
 comparative analysis on the independent factorization for the two
 tasks~\autoref{ssec:snt:comparative-tasks}.
 
@@ -20,8 +20,8 @@ tasks~\autoref{ssec:snt:comparative-tasks}.
 %codes share no overlap, we will design separate models for the two
 %speakers, giving us four settings in all.
 
-\begin{table}[!tb]
-  \caption{\label{tbl:snt:misc-example} An example of ongoing therapy session}
+\begin{table}[tbp]
+  \caption{\label{tbl:snt:misc-example} An example of ongoing therapy session.}
   \begin{center}
     \setlength{\tabcolsep}{3pt}
     {
@@ -49,7 +49,7 @@ inclination to change their behavior (\CHANGE). Alerting a therapist
 (especially a novice) can help guide the conversation in a direction
 that encourages it.
 
-In previous post-hoc dialogue analysis setting, we have the following
+In previous posthoc dialogue analysis setting, we have the following
 definition for the categorization task: \emph{Given the dialogue
   history $H_n=\{u_{1},u_{2}, ..., u_{n}\}$ which includes the speaker
   information, output a sequence of MISC label
@@ -64,7 +64,7 @@ The key difference from previous work in predicting MISC labels is
 that we are restricting the input to the real-time setting. As a
 result, models can only use the dialogue history to predict the label,
 and in particular, we can not use models such as a conditional random
-field or a bi-directional LSTM that need both past and future inputs.
+field or a bidirectional LSTM that need both past and future inputs.
 
 % \jc{I added this for comparing to
 % previous dialogue act classification}
@@ -80,7 +80,7 @@ field or a bi-directional LSTM that need both past and future inputs.
 
 
 \subsection{Task 2: Forecasting}
-\label{ssec:snt:task-forcasting}
+\label{ssec:snt:task-forecasting}
 A real-time therapy observer may be thought of as an expert
 therapist who guides a session with suggestions to the therapist.
 For example, after a client discloses their recent drug use
@@ -120,8 +120,8 @@ conversations~\citep{zhang2018conversations} whose goal is to
 provide an early warning for such events.
 
 \subsection[Independent Factorization for Categorization and
-Forcasting Task]{Independent Factorization for Categorization \\and
-  Forcasting Task}
+Forecasting Task]{Independent Factorization for Categorization \\and
+  Forecasting Task}
 \label{ssec:snt:comparative-tasks}
 
 Take the dialogue segment in~\autoref{tbl:snt:misc-example} as a
@@ -165,7 +165,7 @@ motivational skills. For example, the client MISC codes~( \SUSTAIN,
 \CHANGE, and \FN) discuss the client's intention to change or sustain
 problematic behavior or be neutral. While the therapist codes
 represent the actions the therapist takes for a motivational
-interview~(e.g., giving information~\GI, simple reflection~\RES). To
+interview~(\eg, giving information~\GI, simple reflection~\RES). To
 simplify the modeling, we also decompose the output according to the
 speakers. For example, for the categorization task, we build two
 models $C_{c}$ and $C_{t}$ for client and therapist codes
@@ -176,11 +176,11 @@ representing coherent goals for the clients or the therapist.
 
 \subsubsection{Input Decomposition and Alignments Discovery}
 \label{sssec:snt:input-decomposition}
-For the input decomposition in previous lexical-anchoring and
-phrasal-anchoring, the corresponding output label can be directly
+For the input decomposition in previous lexical anchoring and
+phrasal anchoring, the corresponding output label can be directly
 derived from each input segment. For example, in lexical anchoring,
 each concept or subgraph in an AMR graph is aligned to each token
-or special entity. In phrasal anchoring, a non-terminal intent and
+or special entity. In phrasal anchoring, a nonterminal intent and
 slot label in TOP is aligned to a phrase in the input sentence. In
 MISC code prediction, the MISC code is assigned to a
 utterance. However, the MISC code can not be derived by only a single token
@@ -210,14 +210,14 @@ context encoding as the future work.
 
 \begin{table}[!tbp]
 \caption{\label{tbl:snt:task-comparasion} The differences between the
-  categorization task and the forcasting task, when choosing a window
-  size as 3 to factorize the dialog sequential flow}
+  categorization task and the forecasting task, when choosing a window
+  size as 3 to factorize the dialog sequential flow.}
 \begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{l|c|c|c}
 \toprule
 \hline
-\multirow{2}{*}{Turn} & \multirow{2}{*}{$X=H_{n}$} & Categorization & Forcasting  \\
+\multirow{2}{*}{Turn} & \multirow{2}{*}{$X=H_{n}$} & Categorization & Forecasting  \\
                       &                            & $Y=l_{n}$      & $Y=l_{n+1}$ \\ \hline
  1                    & $\{u_1\}$                  & {\QUC}         & {\FN}       \\
  2                    & $\{u_1,u_2\}$              & {\FN}          & {\MIN}      \\

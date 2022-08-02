@@ -20,11 +20,11 @@ a shared task on Cross-Framework Meaning Representation
 Parsing~\cite[MRP 2019,][]{Oep:Abe:Haj:19}, which encourage
 participants in building a parser for five different meaning
 representations in three distinct flavors. \texttt{Flavor-0} includes
-the DELPH-IN MRS Bi-lexical Dependencies~\cite[DM,][]{ivanova2012did}
+the DELPH-IN MRS Bilexical Dependencies~\cite[DM,][]{ivanova2012did}
 and Prague Semantic
 Dependencies~\cite[PSD,][]{hajic2012announcing,miyao2014house}. Both
 frameworks under this representation have a syntactic backbone
-(natively or by proxy) based on bi-lexical dependency
+(natively or by proxy) based on bilexical dependency
 structures. As a result, the semantic concepts in these meaning
 representations can be anchored to the individual lexical units of the
 sentence. Hence, \texttt{Flavor-0} is actually explicit
@@ -35,11 +35,11 @@ lexical-anchoring in our dissertation.
 Structures~\cite[EDS,][]{oepen2006discriminant} and Universal
 Conceptual Cognitive Annotation
 framework~\cite[UCCA,][]{abend2013universal}, which shows an explicit,
-many-to-many anchoring of semantic concepts onto sub-strings of the
+many-to-many anchoring of semantic concepts onto substrings of the
 underlying sentence. In this dissertation, we consider UCCA with another
 application-specific symbolic representation TOP, where the underlying
-sub-strings mainly form a tree-like structure\footnote{We leave the
-  parsing of EDS as future work}. We grouped UCCA and TOP as
+substrings mainly form a tree-like structure.\footnote{We leave the
+  parsing of EDS as future work.}~We grouped UCCA and TOP as
 \textbf{phrasal-anchoring}.
 
 Finally, \texttt{Flavor-2} includes Abstract Meaning
@@ -68,12 +68,12 @@ alignment model~\cite{brown1993mathematics} to align the linearized
 sequence of concepts and relations with tokens in the
 sentence. According to the AMR annotation guidelines and error
 analysis of ISI aligner, some of the nodes or relations are evoked by
-subwords, e.g., the whole graph fragment \tquoted{(p/possible-01
+subwords, \eg, the whole graph fragment \tquoted{(p/possible-01
   :polarity -)} is evoked by word ``impossible", where the subword
 \tquoted{im} actually evoked the relation polarity and concept
 \tquoted{-}; On the other side, sometimes concepts are evoked by
-multiple words, e.g., named entities, \tquoted{(c/city :name (n/name
-  :op1 `New' :op2 `York'))}, which also happens in explict anchoring
+multiple words, \eg, named entities, \tquoted{(c/city :name (n/name
+  :op1 `New' :op2 `York')),}~which also happens in explict anchoring
 of DM and PSD. Hence, aligning and parsing with recategorized graph
 fragments are a natural solution in aligners and parsers. JAMR
 aligner~\cite{Flanigan:2014vc} uses a set of rules to greedily align
@@ -117,12 +117,14 @@ conversational semantic representation~(TOP) into the following three
 categories.
 
 \begin{itemize}
-\item \textbf{Explicit lexical-anchoring: DM and PSD.} As discussed
-  in~\autoref{sssec:bg:dm} and~\autoref{sssec:bg:psd}, DM and PSD aim
-  to represent all the semantic dependencies between words, fully
-  covering the sentence. For each node in the graph, there will be an
-  explicit words and multiword expressions aligning to it. Hence, we
-  call such kind of lexical anchoring explicit lexical-anchoring.
+\item \textbf{Explicit lexical-anchoring: DM and PSD.} As discussed in
+  the background section about symbolic
+  representations~(\autoref{sssec:bg:dm} and~\autoref{sssec:bg:psd}),
+  DM and PSD aim to represent all the semantic dependencies between
+  words, fully covering the sentence. For each node in the graph,
+  there will be an explicit words and multiword expressions aligning
+  to it. Hence, we call such kind of lexical anchoring explicit
+  lexical-anchoring.
 
 \item \textbf{Implicit lexical-anchoring: AMR.} AMR tries to abstract
   the meaning representation away from the surface token. The absence
@@ -132,10 +134,11 @@ categories.
   entities in a sentence. Hence, we mainly consider the lexical-level
   input decomposition for AMR.
 
-\item \textbf{Phrasal-anchoring: UCCA and TOP.} According to the
-background of UCCA~\autoref{ssec:bg:ucca}, UCCA non-terminal nodes are
-aligned to phrases in a sentence. Hence, we need to consider
-phrase-level input decomposition for UCCA.
+\item \textbf{Phrasal-anchoring: UCCA and TOP.} According to the MRP
+  shared task and the background on UCCA~(\autoref{ssec:bg:ucca}) and
+  TOP~(\autoref{ssec:bg:dialogue-rep}), nonterminal nodes in UCCA and TOP are
+  aligned to phrases in a sentence. Hence, we need to consider
+  phrase-level input decomposition for them.
 \end{itemize}
 
 %%% Local Variables:

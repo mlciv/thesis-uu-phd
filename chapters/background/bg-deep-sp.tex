@@ -48,7 +48,7 @@ A graphical model is a probabilistic model using a graph to express
 the conditional dependence structure between random
 variables. Generally, probabilistic graphical models use a graph-based
 representation as the foundation for encoding a distribution over a
-multi-dimensional space, which represents a set of independences that
+multidimensional space, which represents a set of independences that
 hold in the specific distribution. Two branches of graphical
 representations of distributions are commonly used, namely, Bayesian
 networks and Markov random fields. Both families encompass the
@@ -167,7 +167,7 @@ static word embedding based methods to attention-based dynamic
 features selection and contextualized representation. Finally, we also
 introduced the rapid progress in language encoding architectures, from
 recurrent neural networks to transformer, and the corresponding
-pre-trained language models ELMo~\citep{elmo},
+pretrained language models ELMo~\citep{elmo},
 BERT~\citep{devlin2018bert}, GPT3~\cite{brown2020language}, etc.
 
 \subsubsection{Static Word Embedding}
@@ -184,39 +184,40 @@ depending upon the strategies used to induce them:
 
 Skip-gram with negative sampling~\cite[SGNS,][]{mikolov13w2v} and
 GloVe~\cite{pennington2014glove} are among the best-known models for
-the two types respectively. However, they create a single fixed
+the two types, respectively. However, they create a single fixed
 representation for each word, a notable problem with the static word
 embeddings are that all senses of a polysemous word must share a single
 vector.
 
 \subsubsection{Contextualized Representation}
 \label{sssec:bg:contextualizing}
-To resolve the above issue of static word embedding, sequence encoders, such
-as LSTM~\citep{hochreiter97lstm}, Transformer~\citep{NIPS2017_7181},
-can be used as contextualizing models to encode the whole context and
-produce a \kw{contexualized representation} for each word, phrase or
-the whole sentence. In this way, the contextualized representation
-dynamically depends on the entire sentence. Furthermore, based on the
-neural sequence encoding architectures, pretraining language models
-with a large amount of text can create a more powerful contextualized
+To resolve the above issue of static word embedding, sequence
+encoders, such as LSTM~\citep{hochreiter97lstm},
+Transformer~\citep{NIPS2017_7181}, can be used as contextualizing
+models to encode the whole context and produce a \kw{contexualized
+  representation} for each word, phrase or the whole sentence. In this
+way, the contextualized representation dynamically depends on the
+entire sentence. Furthermore, based on the neural sequence encoding
+architectures, pretraining language models with a large amount of text
+can create a more powerful contextualized
 representations~\citep{ethayarajh2019contextual}. ELMo~\cite{elmo}
 creates contextualized representations of each token by concatenating
-the internal states of a 2-layer biLSTM trained on a bidirectional
+the internal states of a 2-layer BiLSTM trained on a bidirectional
 language modeling task. In contrast, BERT~\citep{devlin2019bert} and
-GPT-2~\citep{radford2018improving} are bi-directional and
-uni-directional transformer-based language models
+GPT-2~\citep{radford2018improving} are bidirectional and
+unidirectional transformer-based language models,
 respectively. \citet{peters2019tune} shows that ELMo contextualized
 representation is more suitable to be used as a fixed word embedding,
-as also shown in our dissertation on lexical and phrasal anchoring based
-parsing~(\autoref{chap:lexical-phrasal}) and sentenctial anchoring
-based MISC code prediction~(\autoref{chap:snt}). While for BERT and
-GPT-2, finetuning them on downstream task will lead to better
+as also shown in our dissertation on lexical and phrasal anchoring
+based parsing~(\autoref{chap:lexical-phrasal}) and sentenctial
+anchoring based MISC code prediction~(\autoref{chap:snt}). While for
+BERT and GPT-2, finetuning them on downstream task will lead to better
 performance, which also inspired us on exploiting natural language
 description to understand each output components~(such as intent, slot
 labels)~in task-oriented dialogue~(\autoref{chap:sgd}).  One
 assumption behind the independent factorization is that local models
 with rich features may perform competitively or better than global
-models also exists in pre-deep learning era. Before the rising of deep
+models also exists in pre-deep-learning era. Before the rising of deep
 learning in 2012, the well known MEMM-based Stanford pos tagger is the
 state-of-art model at that time. Instead of using a single normalized,
 global CRF model for the sequence modeling, richer features seem
@@ -224,16 +225,16 @@ diminish the label biases problems in the
 MEMM~\citep{toutanvoa2000enriching,toutanova2003feature}. However, the
 rich global features required heavy engineering in ten years ago.
 Recently, according to the NLP-Progress
-website~\footnote{\url{http://nlpprogress.com/english/named_entity_recognition.html},
+website,~\footnote{\url{http://nlpprogress.com/english/named_entity_recognition.html}
   visited on July 19, 2022}, which tracks the state-of-art models for
 each task, we found that the state-of-art models for many sequences
 tagging tasks~(such as named entity recognization, part-of-speech
 tagging) are attention-based models without any CRF layer. In this
-dissertation, the contextualized representation learned from deep learning
-is the key to our independent factorization, which helps our
+dissertation, the contextualized representation learned from deep
+learning is the key to our independent factorization, which helps our
 decomposed factor models to make local decisions with a set of
 discriminative and global features, without any heavy feature
-engineering. Furthermore, large pre-trained language model also offers
+engineering. Furthermore, large pretrained language model also offers
 great power to use natural language in our modeling, such as
 prompt-based models~\citep{shin2020autoprompt,liu2021pre}.
 
@@ -285,7 +286,7 @@ candidate targets~\citep{koller2004max}. For linguistic structured
 prediction, exact marginal inference methods include forward-backward
 algorithm for HMM~\citep{binder1997space},
 Inside-outside~\citep{baker1979trainable}, Matrix-Tree Theorem for
-non-projective dependency
+nonprojective dependency
 structures~\citep{koo-etal-2007-structured,liu2018learning}.
 
 In this dissertation, we use variational inference to marginalize out the
@@ -296,7 +297,7 @@ the inference into either greedy~(\autoref{chap:snt} and
 \autoref{chap:sgd}) or dynamic programming based exact MAP
 inference~(such as the dynamic programming parsing the dependency and
 constituency structures in~\autoref{ssec:lex-phr:two-stage} and
-~\autoref{sec:lex-phr:cky-based} respectively)
+~\autoref{sec:lex-phr:cky-based}, respectively)
 
 %%% Local Variables:
 %%% mode: latex

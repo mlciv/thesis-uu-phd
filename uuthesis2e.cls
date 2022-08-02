@@ -926,7 +926,7 @@
                         {\z@}   %indent
        {\HFsubsubsectionSKIP}   %before
                         {1sp}   %after
-  {\HFsubsubsection             %style
+  {\normalfont  %style
    \hsize=\mainheadingwidth}}
   \def\paragraph{\@Ustartsection{paragraph}{6}
                  {\parindent}   %indent

@@ -36,37 +36,35 @@ tell how to segment the AMR graphs. However, according to the
 annotation guideline of AMR and previous work on subgraph
 templating~\cite{Werling:2015up} or abstract concept
 label~\cite{Wang:2017vt}, the main intuition of grouping is to ensure
-that concepts are rarely lexically triggered (e.g., \tquoted{person}
+that concepts are rarely lexically triggered (\eg, \tquoted{person}
 and \dquoted{have-org-role-91} in~\autoref{fig:bg:amr} get grouped
-together with lexically triggered nodes~(e.g., \tquoted{Pierre
-  Vinken}, and \dquoted{director}). Finally, we adopt the templates
-proposed by~\citet{corro2019learning} including:
-\tquoted{thing}~(e.g., \tquoted{(opine-01 :ARG-01 thing)} for
-\tquoted{opinion}), \tquoted{person}~(e.g., \tquoted{(play-01 :ARG1
-  person)} for \tquoted{player}), \tquoted{more},
-\tquoted{most}~(e.g., \tquoted{(have-degree-91 :ARG2 good-02) :ARG3
-  more)} for \tquoted{better}),
-\tquoted{date-entity}~(e.g.,\tquoted{(date-entity :month 2)} for
-\tquoted{February}), and all the special quantity entities,
-\tquoted{xx-quantity}~(e.g., \tquoted{(monetary-quantity :quant 20
-  :unit dollar)} for \tquoted{\$20}).~\footnote{Please refer to the
-  paper of~\citet{lyu2018amr} for more details about the recategorization.}
-
-AMR output decomposition will be the rectangled segments shown in
+together with lexically triggered nodes~(\eg, \tquoted{Pierre
+  Vinken} and \dquoted{director}). Finally, we adopt the templates
+proposed by~\citet{lyu2018amr} including: \textbf{thing}~(\eg,
+\tquoted{(opine-01 :ARG-01 thing)} for \tquoted{opinion}),
+\textbf{person}~(\eg, \tquoted{(play-01 :ARG1 person)} for
+\tquoted{player}), \textbf{more}, \textbf{most}~(\eg,
+\tquoted{(have-degree-91 :ARG2 good-02) :ARG3 more)} for
+\tquoted{better}), \textbf{date-entity}~(\eg,~\tquoted{(date-entity
+  :month 2)} for \tquoted{February}), and all the \textbf{special quantity
+entities}, \textbf{xx-quantity}~(\eg, \tquoted{(monetary-quantity
+  :quant 20 :unit dollar)} for \tquoted{\$20}).~\footnote{Please refer
+  to the paper of~\citet{lyu2018amr} for more details about the
+  recategorization.} AMR output decomposition will be the rectangled segments shown in
 \autoref{fig:lex-phr:amr-decomposition}.
 \begin{figure}[!tbp]
   \centering
   \includegraphics[width=0.90\textwidth]{pierre-decomposition.pdf}
   \caption{\label{fig:lex-phr:amr-decomposition} AMR output
-    decomposition for the sentence \#20001001}
+    decomposition for the sentence \#20001001.}
 \end{figure}
 
 \subsubsection{Input Decomposition and Alignments Discovery}
 \label{sssec:lex-phr:lex-input-decomposition}
 
-According to the bi-lexical dependency structures of DM and PSD, and
-implicit lexical token anchoring on AMR, the nodes/categorized graph
-fragments of DM, PSD, and AMR are anchored to surface lexical units in
+According to the bilexical dependency structures of DM and PSD, and
+implicit lexical token anchoring on AMR, the nodes or categorized graph
+fragments in DM, PSD, and AMR are anchored to surface lexical units in
 an explicit or implicit way. Especially, those lexical units do not
 overlap with each other, and most of them are just single-tokens,
 multiple word expression, or named entities. In other words, when

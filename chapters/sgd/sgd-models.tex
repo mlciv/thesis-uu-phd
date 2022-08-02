@@ -2,9 +2,9 @@
 \label{sec:sgd:models}
 In this section, we focus on the model architecture for matching
 dialog history with schema descriptions using pretrained
-BERT~\cite{devlin2019bert}~\footnote{We use BERT-base-cased for all
+BERT~\cite{devlin2019bert}.~\footnote{We use BERT-base-cased for all
   main experiments. Other pretrained language models can be easily
-  adapted to our study}. We first compare different encoder
+  adapted to our study.}~We first compare different encoder
 architectures in~\autoref{ssec:encoder-arch}. Then for each of four
 subtasks, we show the classification
 head~(\autoref{ssec:models-overview}) and the results~(\autoref{ssec:encoder-results})
@@ -29,7 +29,7 @@ in~\autoref{fig:encoders}.
 \label{sssec:sgd:dual-encoder}
 
 It consists of two separate BERTs to encode dialog history and schema
-description respectively, as Figure~\ref{fig:encoders}~(a). We follow
+descriptions, respectively, as Figure~\ref{fig:encoders}~(a). We follow
 the setting in the official baseline provided by DSTC8
 Track4~\cite{rastogi2020schema}. We first use a fixed BERT to encode
 the schema description once and cached the encoded schema
@@ -41,9 +41,9 @@ representation, we concatenate the candidate schema $\CLS_{S}$ with
 each token embedding in the dialog history, denoted
 as~${\TOK^{DE}}$.\footnote{A schema-aware dialog token embedding can
   also be computed by attention or other method for span-based
-  detection tasks~\cite{humeau2019poly, noroozi2020fast}} Because the
+  detection tasks~\citep{humeau2019poly, noroozi2020fast}.} Because the
 candidate schema embeddings are encoded independently from the dialog
-context, they can be pre-computed once and cached for fast inference.
+context, they can be precomputed once and cached for fast inference.
 
 \subsubsection{Cross-Encoder}
 \label{sssec:sgd:cross-encoder}
@@ -160,7 +160,7 @@ noncategorical slot use the same two-stage strategy. Besides that, we
 use the token representation of dialog history ~$\mathbf{TOK}$ to
 compute two softmax scores $f^{i}_{start}$ and $f^{i}_{end}$ for each
 token $i$, to represent the score of predicting the token as start and
-end position respectively. Finally, we find the valid span with
+end position, respectively. Finally, we find the valid span with
 maximum sum of the start and end scores.
 
 %% YZ: please check the correctness of the noncat slot prediction head description^^
@@ -229,7 +229,7 @@ services as \CE. %However, their
 
 \begin{table}[!tbp]
 \caption{\label{tbl:sgd:sgd-modeling-results} Test set results on \sgdst and \multiwoz. The
-  \DE model is a re-implementation of official DSTC8
+  \DE model is a reimplementation of official DSTC8
   baseline from~\citet{rastogi2019towards}. Other models are
   trained with the architecture described in~\autoref{ssec:models-overview}.}
 \begin{center}{

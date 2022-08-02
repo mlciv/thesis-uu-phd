@@ -1,4 +1,4 @@
-\section[Phrasal-Anchoring: Minimal Span-based CKY Parsing]{Phrasal-Anchoring: Minimal Span-Based \\CKY Parsing}
+\section[Phrasal Anchoring: Minimal Span-Based CKY Parsing]{Phrasal Anchoring: Minimal Span-Based \\CKY Parsing}
 \label{sec:lex-phr:cky-based}
 
 Let us now see our phrasal-anchoring parser for UCCA and TOP. We
@@ -42,7 +42,6 @@ factorize the tree structure prediction as independent span-label
 prediction as Equation \ref{eq:tree_factorize}. However, this
 assumption does not hold for UCCA.  Please see more error analysis
 in~\autoref{ssec:error_breakdown}
-
 \begin{equation}
   \label{eq:tree_factorize}
  \begin{aligned} T^{*}  & = \underset{T}{\textbf{arg\,max}} s(T)     \\ s(T)
@@ -55,7 +54,6 @@ in~\autoref{ssec:error_breakdown}
 By assuming the label prediction is independent of the splitting
 point, we can further factorize the whole tree as the following
 dynamic programming in Equation~\ref{eq:tree_chart}.
-
 \begin{equation}
   \label{eq:tree_chart}
 \begin{aligned}

@@ -28,7 +28,6 @@ to the summarization of the MRP~2019 task~\cite{Oep:Abe:Haj:19},
   * means copy mechanism is used in our classifier. }
 \label{tbl:lex:impl_lex}
 \begin{center}
-\small
 \begin{tabular}{l|ccc}
 \toprule
 \hline
@@ -90,7 +89,7 @@ The first row \tquoted{Root} shows the numbers of root nodes in the graph.
 We can see that for PSD, 11.56\% of graphs with more than 1 top
 nodes. In our system, we predict one and only one root node with a
 N~(N is size of already identified nodes) way classifier, and then fix
-this with a post-processing strategy. When our model predicts one node
+this with a postprocessing strategy. When our model predicts one node
 as the root node, and if we find additional coordination nodes with
 it, we add the coordination node also as the top node.
 
@@ -113,15 +112,15 @@ For AMR, there are other components in the node labels beyond the
 lemma. Especially, the node label for AMR also contains more than 143
 fine-grained named entity types. In addition to the node label, the
 properties of the label also need to be predicted. Among them, node
-properties of DM are from the SEMI sense and arguments handler, while
-for PSD, senses are constrained the senses in the predefined the
-vallex lexicon.
+properties of DM are from the sense and argument handlers in Semantic
+Interface~\citep[SEM-I,][]{Fli:Lon:Dyv:05}), while for PSD, senses are
+constrained the senses in the predefined the vallex lexicon.
 
 \subsubsection{Edge}
 \label{sssec:lex:edge}
 
 Edge predication is another challenge in our task because of its large
-label set (from 45 to 94) as shown in row \tquoted{Edge Label}, the
+label set (from 45 to 94) as shown in row \tquoted{Edge Label,}~the
 round bracket means the number of output classes of our
 classifiers. For lexical-anchoring representation, edges are usually
 connected between two tokens, while phrasal-anchoring needs extra
@@ -147,38 +146,37 @@ edges in UCCA.
 
 For lexical-anchoring model setup, our network mainly consists of node
 and edge prediction model. For AMR, DM, and PSD, they all use one
-layer Bi-directional LSTM for input sentence encoder, and two layers
-Bi-directional LSTM for head or dependent node encoder in the
-bi-affine classifier. For every sentence encoder, it takes a sequence
+layer Bidirectional LSTM for input sentence encoder, and two layers
+Bidirectional LSTM for head or dependent node encoder in the
+biaffine classifier. For every sentence encoder, it takes a sequence
 of word embedding as input (We use 300 dimension Glove here), and then
 their output will pass a softmax layer to predicting output
 distribution. For the latent AMR model, to model the posterior
-alignment, we use another Bi-LSTM for node sequence encoding. For
+alignment, we use another BiLSTM for node sequence encoding. For
 phrasal-anchoring model setup, we follow the original model set up in
 \citet{kitaev2018constituency}, and we use 8-layers 8-headers
 transformer with position encoding to encode the input sentence.
 
 For all sentence encoders, we also use the character-level CNN model
-as character-level embedding without any pre-trained deep
+as character-level embedding without any pretrained deep
 contextualized embedding model. Equipping our model with Bert or
-multi-task learning is promising to get further improvement. We leave
+multitask learning is promising to get further improvement. We leave
 this as our future work.
 
 Our models are trained with Adam~\cite{kingma2014adam}, using a batch
 size 64 for a graph-based model, and 250 for CKY-based
 model. Hyper-parameters were tuned on the development set, based on
 labeled F1 between two graphs. We exploit early-stopping to avoid
-over-fitting.
+overfitting.
 
 \subsection{Results}
 \label{ssec:results}
 At the time of official evaluation in MRP'2019 shared task, we
 submitted the unified lexical anchoring parser for DM, PSD and AMR,
 and then we submitted another phrasal-anchoring model for UCCA parsing
-during post-evaluation stage, and we leave EDS parsing as future
+during postevaluation stage, and we leave EDS parsing as future
 work. The following sections are the official results and error
-breakdowns for lexical-anchoring and phrasal-anchoring
-respectively. For the results of TOP Parsing, we use a seperate table
+breakdowns for lexical anchoring and phrasal anchoring, respectively. For the results of TOP Parsing, we use a seperate table
 for it.
 
 \subsubsection{Official Results on Lexical Anchoring}
@@ -196,7 +194,7 @@ in~\autoref{sssec:lex-phr:error-lex}.
 
 \begin{table}[!tbp]
 \caption{\label{tbl:results_rank} Official results overview on unified MRP metric, we selected the performance from top 1/3/5 system(s) for comparison.}
-\centering
+\begin{center}
 \begin{tabular}{lll}
 \toprule
 MR     & Ours~(P/R/F1) & Top 1/3/5~(F1)  \\ \hline
@@ -206,6 +204,7 @@ DM(7)  & 93/92/92.14   & 94.76/94.32/93.74 \\ \hline
 %UCCA   & 76/68/71.65   & 81.67/77.80/73.22 \\
 %EDS    & N/A           & 94.47/90.75/89.10 \\ \bottomrule
 \end{tabular}
+\end{center}
 \end{table}
 
 \subsubsection{Official Results on Phrasal Anchoring~(UCCA)}
@@ -222,10 +221,10 @@ in~\autoref{sssec:lex-phr:error-phr}.
 \begin{table}[!tbp]
 \caption{\label{tbl:ucca_results_rank} Official results overview on
   unified MRP metric, we selected the performance from top 1/3/5
-  system(s) for comparison. It shows our UCCA model for post-evluation
+  system(s) for comparison. It shows our UCCA model for postevluation
   can rank 5th.}
   \small
-\centering
+\begin{center}
 \begin{tabular}{lll}
 \toprule
 MR     & Ours~(P/R/F1) & Top 1/3/5~(F1)  \\ \hline
@@ -233,6 +232,7 @@ UCCA(5)   & 80.83/73.42/\textbf{76.94}   & 81.67/77.80/73.22 \\
 \bottomrule
 % EDS    & N/A                 & 94.47/90.75/89.10 \\ \bottomrule
 \end{tabular}
+\end{center}
 \end{table}
 
 
@@ -247,9 +247,8 @@ previous baseline models. Contualized presentation from pretrained
 language model can boost the performance further.
 
 \begin{table}[!tbp]
-\caption{\label{tbl:top_results_rank} Results on TOP Parsing}
-  \small
-\centering
+\caption{\label{tbl:top_results_rank} Results on TOP parsing.}
+\begin{center}
 \begin{tabular}{cccccc}
   \toprule
   Model           & Exact Match & P     & R     & F1    \\ \hline
@@ -263,13 +262,14 @@ language model can boost the performance further.
   Seq2Seq-Transformer & 72.2        & 87.09 & 86.11 & 86.6  \\
   \bottomrule
 \end{tabular}
+\end{center}
 \end{table}
 
 \subsection{Error Breakdown}
 \label{ssec:error_breakdown}
-Table \ref{tbl:results_amr}, \ref{tbl:results_dm},
+Tables~\ref{tbl:results_amr}, \ref{tbl:results_dm},
 \ref{tbl:results_psd} and \ref{tbl:results_ucca} shows the detailed
-error breakdown of AMR, DM, PSD and UCCA respectively. Each column in
+error breakdown of AMR, DM, PSD and UCCA, respectively. Each column in
 the table shows the F1 score of each subcomponent in a graph: top
 nodes, node lables, node properties, node anchors, edge labels, and
 overall F1 score. No anchors for AMR, and no node label and propertis
@@ -281,9 +281,8 @@ reported the official results from two baseline models
 TUPA~\cite{Her:Arv:19} and ERG~\cite{Oep:Fli:19}.
 
 \begin{table}[!tbp]
-\caption{\label{tbl:results_amr} Our parser on AMR ranked 1st. This table shows the error breakdown when comparing to the baseline TUPA model and top 2~\cite{Che:Dou:Xu:19} in official results}
-\small
-\centering
+\caption{\label{tbl:results_amr} Our parser on AMR ranked 1st. This table shows the error breakdown when comparing to the baseline TUPA model and top 2~\cite{Che:Dou:Xu:19} in official results.}
+\begin{center}
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccccc}
 \toprule
@@ -299,13 +298,13 @@ multi} }                  & all  & 61.30             & 39.80  & 27.70 & 27.35 & 
 \multirow{2}{*}{ Top 2}  & all  & 78.15             & 82.51  & 71.33 & 63.21 & 72.94 \\
                           & lpps & 83.00             & 76.24  & 51.79 & 60.43 & 69.03 \\ \bottomrule
 \end{tabular}
+\end{center}
 \end{table}
 
 \begin{table}[!tbp]
 \caption{\label{tbl:results_dm} Our parser on DM ranked 7th. This table shows the error breakdown when comparing to the model ranked Top 1~\citep{Li:Zha:Zha:19} in official results}
-\small
-\centering
-\setlength{\tabcolsep}{2.5pt}
+\begin{center}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{cccccccc}
   \toprule
                             & data & tops              & labels & prop  & anchors & edges & all   \\ \hline
@@ -316,15 +315,15 @@ multi} }                  & all  & 61.30             & 39.80  & 27.70 & 27.35 & 
   \multirow{2}{*}{ Ours(7)} & all  & \underline{70.95} & 93.96  & 92.13 & 97.25   & 86.45 & 92.14 \\
                             & lpps & \underline{84.00} & 90.55  & 91.91 & 97.96   & 87.24 & 91.82 \\ \bottomrule
 \end{tabular}
+\end{center}
 \end{table}
 
 
 
 \begin{table}[!tbp]
-\caption{\label{tbl:results_psd} Our parser on PSD ranked 6th. This table shows the error breakdown when comparing to the model ranked top 1~\cite{Don:Fow:Gro:19} in official results}
-\small
-\centering
-\setlength{\tabcolsep}{2.5pt}
+\caption{\label{tbl:results_psd} Our parser on PSD ranked 6th. This table shows the error breakdown when comparing to the model ranked top 1~\cite{Don:Fow:Gro:19} in official results.}
+\begin{center}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{cccccccc}
 \toprule
                           & data & tops              & labels & prop  & anchors & edges & all   \\ \hline
@@ -339,6 +338,7 @@ multi} }                  & all  & 61.30             & 39.80  & 27.70 & 27.35 & 
 \multirow{2}{*}{ Ours(6)} & all  & \underline{82.01} & 94.18  & 91.28 & 96.94   & 72.40 & 88.75 \\
                           & lpps & \underline{85.85} & 90.48  & 82.63 & 95.97   & 73.60 & 85.83 \\ \bottomrule
 \end{tabular}
+\end{center}
 \end{table}
 
 \subsubsection{Error Analysis on Lexical Anchoring}
@@ -352,18 +352,18 @@ single node, which helps for both alignments and structured inference
 for those special graph fragments. We see that all our 3 models
 perform almost as good as the top 1 model of each subtask on node
 label prediction, but they perform worse on top and edge
-prediction. It indicates that our bi-affine relation classifier are
+prediction. It indicates that our biaffine relation classifier are
 main bottleneck to improve. Moreover, we found the performance gap
 between node labels and node anchors are almost consistent, it
 indicates that improving our model on predicting \texttt{NULL} nodes may
 further improve node label prediction as well.  Moreover, we believe
-that multi-task learning and pre-trained deep models such as
+that multitask learning and pretrained deep models such as
 BERT~\citep{devlin2018bert} may also boost the performance of our paser
 in future.
 
 \subsubsection{Error Analysis on Phrasal Anchoring}
 \label{sssec:lex-phr:error-phr}
-Our UCCA parser in post-evaluation ranked 5th according to the
+Our UCCA parser in postevaluation ranked 5th according to the
 original official evaluation results. According
 to~\autoref{tbl:results_ucca}, our model with ELMo works slightly
 better than the top 1 model on anchors prediction. It means our model
@@ -372,11 +372,9 @@ helpful for prediction phrasal anchoring nodes in EDS.
 
 \begin{table}[!tbp]
   \caption{\label{tbl:results_ucca} The error breakdown of our UCCA
-    parser. * denotes the ranking of post-evaluation results }
-\small
-\centering
+    parser. * denotes the ranking of postevaluation results.}
+\begin{center}
 \setlength{\tabcolsep}{3pt}
-
 \begin{tabular}{ccccccccc}
 \toprule
                               & data & tops  & anchors & edge  & attr  & all   \\ \hline
@@ -393,6 +391,7 @@ multi }                       & all  & 84.92 & 65.74   & 12.99 &  9.07 & 23.65 \
 \multirow{2}{*}{ Ours + ELMo} & all  & 99.38 & 95.70   & 64.88 & 0.00  & {\bf 76.94} \\
                               & lpps & 98.00 & 96.84   & 66.63 & 0.00  & 78.77 \\ \bottomrule
 \end{tabular}
+\end{center}
 \end{table}
 
 However, when predicting the edge and edge attributes, our model
@@ -403,7 +402,7 @@ child and then predict with only child span encoding. Thus it actually
 misses important information from the parent node. Hence, in future,
 more improvement can be done to use both child and parent span
 encoding for label prediction, or even using another span-based
-bi-affine classifier for edge prediction, or remote edge recovering.
+biaffine classifier for edge prediction, or remote edge recovering.
 
 %%% Local Variables:
 %%% mode: latex
