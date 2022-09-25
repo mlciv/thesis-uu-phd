@@ -923,8 +923,8 @@
    {\center                     %style
     \HFsubsection\bfseries}}
   \def\subsubsection{\@Ustartsection{subsubsection}{5}% Fix Nov 1992
-                        {\z@}   %indent
-       {\HFsubsubsectionSKIP}   %before
+                        {\z@}   %indent \z@ == 0pt
+       {\HFsubsubsectionSKIP\vspace{-9pt}}   %before 20-11
                         {1sp}   %after
   {\normalfont  %style
    \hsize=\mainheadingwidth}}

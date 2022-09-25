@@ -1,28 +1,21 @@
-@article{cao2021naacl,
-	title={A comparative study on Schema-guided dialog state tracking},
-	author={Cao, Jie and Zhang, Yi},
-	journal={Submitted to NAACL},
-	year={2021}
-}
-
-@article{rastogi2019towards,
+@inproceedings{rastogi2019towards,
 	title={Towards scalable multi-domain conversational agents: The schema-guided dialogue dataset},
 	author={Rastogi, Abhinav and Zang, Xiaoxue and Sunkara, Srinivas and Gupta, Raghav and Khaitan, Pranav},
-	journal={AAAI 2019},
+        booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
 	year={2019}
 }
 
 @article{rastogi2020schema,
-  title={Schema-Guided Dialogue State Tracking Task at DSTC8},
-  author={Rastogi, Abhinav and Zang, Xiaoxue and Sunkara, Srinivas and Gupta, Raghav and Khaitan, Pranav},
-  journal={Workshop on DSTC8, AAAI 2020},
+  title={Schema-guided dialogue state tracking task at dstc8},
+  author={Rastogi, Abhinav and Zang, Xiaoxue and Sunkara, Srinivas and Gupta, Raghav},
+  journal={arXiv preprint arXiv:2002.01359},
   year={2020}
 }
 
 @article{ma2019end,
   title={An end-to-end dialogue state tracking system with machine reading comprehension and wide \& deep classification},
   author={Ma, Yue and Zeng, Zengfeng and Zhu, Dawei and Li, Xuan and Yang, Yiying and Yao, Xiaoyuan and Zhou, Kaijie and Shen, Jianping},
-  journal={Workshop on DSTC8, AAAI 2020},
+  journal={Workshop on The 8th Dialog System Technology Challenge (DSTC7), AAAI 2020},
   year={2019}
 }
 
@@ -44,7 +37,7 @@
 @inproceedings{bordes2014open,
   title={Open question answering with weakly supervised embedding models},
   author={Bordes, Antoine and Weston, Jason and Usunier, Nicolas},
-  booktitle={Joint European conference on machine learning and knowledge discovery in databases},
+  booktitle={Joint European Conference on Machine Learning and Knowledge Discovery in Databases},
   pages={165--180},
   year={2014},
   organization={Springer}
@@ -61,7 +54,7 @@
 @inproceedings{humeau2019poly,
   title={Poly-encoders: Architectures and Pre-training Strategies for Fast and Accurate Multi-sentence Scoring},
   author={Humeau, Samuel and Shuster, Kurt and Lachaux, Marie-Anne and Weston, Jason},
-  booktitle={ICLR},
+  booktitle={International Conference on Learning Representations},
   year=2019
 }
 
@@ -115,11 +108,11 @@
   year={2019}
 }
 
-
-@article{gao2020machine,
+@inproceedings{gao2020machine,
   title={From Machine Reading Comprehension to Dialogue State Tracking: Bridging the Gap},
-  author={Gao, Shuyang and Agarwal, Sanchit and Chung, Tagyoung and Jin, Di and Hakkani-Tur, Dilek},
-  journal={arXiv preprint arXiv:2004.05827},
+  author={Gao, Shuyang and Agarwal, Sanchit and Jin, Di and Chung, Tagyoung and Hakkani-Tur, Dilek},
+  booktitle={Proceedings of the 2nd Workshop on Natural Language Processing for Conversational AI},
+  pages={79--89},
   year={2020}
 }
 
@@ -131,12 +124,23 @@
   year={2019}
 }
 
-@article{zhang2019find,
-  title={Find or Classify? Dual Strategy for Slot-Value Predictions on Multi-Domain Dialog State Tracking},
-  author={Zhang, Jian-Guo and Hashimoto, Kazuma and Wu, Chien-Sheng and Wan, Yao and Yu, Philip S and Socher, Richard and Xiong, Caiming},
-  journal={arXiv},
-  pages={arXiv--1910},
-  year={2019}
+@inproceedings{zhang2019find,
+    title = "Find or Classify? Dual Strategy for Slot-Value Predictions on Multi-Domain Dialog State Tracking",
+    author = "Zhang, Jianguo  and
+      Hashimoto, Kazuma  and
+      Wu, Chien-Sheng  and
+      Wang, Yao  and
+      Yu, Philip  and
+      Socher, Richard  and
+      Xiong, Caiming",
+    booktitle = "Proceedings of the Ninth Joint Conference on Lexical and Computational Semantics",
+    month = dec,
+    year = "2020",
+    address = "Barcelona, Spain (Online)",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.starsem-1.17",
+    pages = "154--167",
+    abstract = "Dialog state tracking (DST) is a core component in task-oriented dialog systems. Existing approaches for DST mainly fall into one of two categories, namely, ontology-based and ontology-free methods. An ontology-based method selects a value from a candidate-value list for each target slot, while an ontology-free method extracts spans from dialog contexts. Recent work introduced a BERT-based model to strike a balance between the two methods by pre-defining categorical and non-categorical slots. However, it is not clear enough which slots are better handled by either of the two slot types, and the way to use the pre-trained model has not been well investigated. In this paper, we propose a simple yet effective dual-strategy model for DST, by adapting a single BERT-style reading comprehension model to jointly handle both the categorical and non-categorical slots. Our experiments on the MultiWOZ datasets show that our method significantly outperforms the BERT-based counterpart, finding that the key is a deep interaction between the domain-slot and context information. When evaluated on noisy (MultiWOZ 2.0) and cleaner (MultiWOZ 2.1) settings, our method performs competitively and robustly across the two different settings. Our method sets the new state of the art in the noisy setting, while performing more robustly than the best model in the cleaner setting. We also conduct a comprehensive error analysis on the dataset, including the effects of the dual strategy for each slot, to facilitate future research.",
 }
 
 @inproceedings{lee2019sumbt,
@@ -147,25 +151,35 @@
   year={2019}
 }
 
-@article{naik2018contextual,
+@inproceedings{naik2018contextual,
   title={Contextual Slot Carryover for Disparate Schemas},
   author={Naik, Chetan and Gupta, Arpit and Ge, Hancheng and Lambert, Mathias and Sarikaya, Ruhi},
-  journal={Proc. Interspeech 2018},
+  booktitle={Proceedings of the 2018 Conference of the International Speech Communication Association INTERSPEECH},
   pages={596--600},
   year={2018}
 }
 
-@article{kim2019efficient,
-  title={Efficient dialogue state tracking by selectively overwriting memory},
-  author={Kim, Sungdong and Yang, Sohee and Kim, Gyuwan and Lee, Sang-Woo},
-  journal={arXiv preprint arXiv:1911.03906},
-  year={2019}
+@inproceedings{kim2019efficient,
+    title = "Efficient Dialogue State Tracking by Selectively Overwriting Memory",
+    author = "Kim, Sungdong  and
+      Yang, Sohee  and
+      Kim, Gyuwan  and
+      Lee, Sang-Woo",
+    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2020",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.acl-main.53",
+    doi = "10.18653/v1/2020.acl-main.53",
+    pages = "567--582",
+    abstract = "Recent works in dialogue state tracking (DST) focus on an open vocabulary-based setting to resolve scalability and generalization issues of the predefined ontology-based approaches. However, they are inefficient in that they predict the dialogue state at every turn from scratch. Here, we consider dialogue state as an explicit fixed-sized memory and propose a selectively overwriting mechanism for more efficient DST. This mechanism consists of two steps: (1) predicting state operation on each of the memory slots, and (2) overwriting the memory with new values, of which only a few are generated according to the predicted state operations. Our method decomposes DST into two sub-tasks and guides the decoder to focus only on one of the tasks, thus reducing the burden of the decoder. This enhances the effectiveness of training and DST performance. Our SOM-DST (Selectively Overwriting Memory for Dialogue State Tracking) model achieves state-of-the-art joint goal accuracy with 51.72{\%} in MultiWOZ 2.0 and 53.01{\%} in MultiWOZ 2.1 in an open vocabulary-based DST setting. In addition, we analyze the accuracy gaps between the current and the ground truth-given situations and suggest that it is a promising direction to improve state operation prediction to boost the DST performance.",
 }
 
 @article{bobrow1977gus,
   title={GUS, a frame-driven dialog system},
   author={Bobrow, Daniel G and Kaplan, Ronald M and Kay, Martin and Norman, Donald A and Thompson, Henry and Winograd, Terry},
-  journal={Artificial intelligence},
+  journal={Artificial {I}ntelligence},
   volume={8},
   number={2},
   pages={155--173},

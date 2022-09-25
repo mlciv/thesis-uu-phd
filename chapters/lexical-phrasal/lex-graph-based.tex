@@ -8,7 +8,7 @@ resolve the alignment problem with a latent alignment model~(\autoref{ssec:lex-p
 
 
 According to the linguistic analysis on anchoring, we have shown that
-DM, PSD and AMR belong to the lexical-anchoring, which indicates that
+DM, PSD and AMR belong to the lexical-anchoring representations, which indicates that
 their nodes in the output graph are explicitly or implicitly anchored
 to the lexical units of the corresponding input sentence.  Before
 showing the unified design of independent factorization, let us
@@ -26,18 +26,18 @@ the directional relation from the node $i$ to the node $j$.  We use
 $r_{ij}=\Phi$ to indicate no edge from the node $i$ to the node $j$.
 
 In this part, based on the above notations, we introduce how to do
-independent factorization on lexical-anchoring by addressing the three
-main chellenges in \textbf{Output
-  Decomposition}~(\autoref{sssec:lex-phr:lex-output-decomposition}),
-\textbf{Input Decomposition and Alignments
+independent factorization on lexical-anchoring representations by addressing the three
+main chellenges in \textbf{output
+  decomposition}~(\autoref{sssec:lex-phr:lex-output-decomposition}),
+\textbf{input decomposition and alignments
   Discovery}~(\autoref{sssec:lex-phr:lex-input-decomposition}), and
-\textbf{Factor Modelling}~(Two-stage
-Parsing~(\autoref{ssec:lex-phr:two-stage} and Latent Alignment
-Model~\autoref{ssec:lex-phr:latent-alignment})
+\textbf{factor modelling}~(two-stage
+parsing~(\autoref{ssec:lex-phr:two-stage} and latent alignment
+model~\autoref{ssec:lex-phr:latent-alignment}).
 
 \input{chapters/lexical-phrasal/lex-factorization.tex}
 
-\subsection{Two-stage Graph-Based Parsing}
+\subsection{Two-Stage Graph-Based Parsing}
 \label{ssec:lex-phr:two-stage}
 
 Before formulating the graph-based model into a probabilistic model
@@ -77,8 +77,10 @@ variable. \autoref{fig:graph-based-inference} summerize the unifed
 two-stage graph based parsing framework. In the following subsections,
 we will explain the framework in more details.
 
-\begin{figure}[!tbp] \centering
+\begin{figure}[!tbp]
+\begin{center}
   \includegraphics[width=1.00\textwidth]{graph-overview3.pdf}
+\end{center}
   \caption{\label{fig:graph-based-inference} Two-stage graph-based
     parsing for the running exmaple [wsj\#0209013].}
 \end{figure}

@@ -32,8 +32,9 @@ representation of the output structures $y_{<j}$, and leverage them to
 guide constrained structured prediction.
 
 \begin{figure}[h]
-\centering
+\begin{center}
 \includegraphics[width=0.92\textwidth]{seq2graph.pdf}
+\end{center}
 \caption{\label{fig:autoreg-example}The autoregressive factorization
   of AMR Parsing in different decoding time step.}
 \end{figure}
@@ -146,7 +147,7 @@ learning.
 \subsubsection{Extreme Long Context}
 \label{sssec:future:extrem-long-context}
 First, we need to resolve the extrem long text encoding problem. Our
-current models of psychotherapy dialogue and schema-guided dialog only
+current models of psychotherapy dialogue and schema-guided dialogue only
 consider 8 to 16 utterances as the dialogue history window. However,
 we have more than 500 utterance in a single therapy
 session. Furthermore, a psychotherapy treatment may last for months
@@ -214,7 +215,7 @@ variables, we plan to study more ways to relax structural inductive
 biases as continuous and differentiable latent variables in the
 end2end deep learning~\citep{yin2018structvae, corro2019learning}.
 
-\subsubsection{Other Biases: Casuality and Approximate Bias}
+\subsubsection{Other Biases: Casuality and Approximate Biases}
 \label{sssec:future:approx-biases}
 With limited observations and resources~(time, memory, energy), our
 human intelligence of generalizing to new environments makes us
@@ -222,14 +223,22 @@ efficiently learn when interacting with the world and other human
 beings. This efficiency largely depends on many \kw{inductive biases}
 and \kw{approximate biases} from human
 intelligence~\cite{Gershman2021WhatMU}, which are potentially helpful
-for machine intelligence. Beside the compositionality-related
-inductive biases, casuality is another important inductive bias for
-human intelligence, which may also help deep learning. Especially,
-current factorization and Markov random field-based formalism only can
-capture the undirectional correlation between different variables. In
-the future, we will extend the formalism to bayesian networks and
+for machine intelligence.
+
+Beside the compositionality-related inductive biases in our
+dissertation, casuality is another important inductive bias for human
+intelligence, which may also help on design deep learning based
+models. Especially, in our dissertation, independent factorization and
+markov random field-based formalism only can capture the undirectional
+correlation between different variables. In the future, we will extend
+the formalisms to bayesian
+networks~\citep{wilson2020bayesian,wang2020survey} and
 intervention-based casual
-inference~\citep{pearl2010causal,glymour2016causal}.
+inference~\citep{pearl2010causal,glymour2016causal}. The key of
+casuality for deep learning is to replace~\tquoted{reasoning by
+  association} with~\tquoted{causal reasoning}. With the ability to
+infer causes from the observed phenomena, deep learning will be more
+robust on broader pracitical usages.
 
 Furthermore, we also plan to model the uncertainty and approximate
 biases for the learning and inference in deep learning. First,
@@ -243,7 +252,7 @@ similar ideas on esitimating the marginal inference can also be used
 in other latent structured predictin models mentioned
 in~\autoref{sssec:future:constraints}.
 
-Furthermore, to handle the uncertainty issues in practical machine
+Finally, to handle the uncertainty issues in practical machine
 learning, beyond the point estimation of learning a single set of best
 weights, bayesian deep learning seeks to equip deep learning with
 uncertainty estimation~\citep{wang2020survey}. Finally, the error
@@ -269,7 +278,7 @@ paper~\cite{paul2021database} extend a contrastive-learning method to
 learn the representation for tree-structured database query
 plans. With a large amount of raw database query plans, we calculate
 the graph similarity metric~{\em Smatch}~\cite{Cai:2013wn} to
-represent the degree of overlap between a pair of plans.\footnote{The
+represent the degree of overlap between a pair of plans.~\footnote{The
   Smatch score~([0,1]) between two tree-structure plans can be
   computed by graph matching optimization algorithm, such as Integer
   Linear Programming~(ILP) or Hill-climbing methods.}  After we get

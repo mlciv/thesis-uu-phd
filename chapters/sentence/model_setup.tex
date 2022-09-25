@@ -1,6 +1,6 @@
 
 We use 300-dimensional Glove embeddings pre-trained on 840B tokens
-from Common Crawl~\cite{pennington2014glove}. We do not update the
+from Common Crawl~\citep{pennington2014glove}. We do not update the
 embedding during training. Tokens not covered by Glove are using a
 randomly initialized UNK embedding. We also use character-level deep
 contextualized embedding ELMo 5.5B model by concatenating the
@@ -10,7 +10,7 @@ dimensional vectors and update them during training. We used a
 dropout rate of 0.3 for the embedding layers.
 
 
-We trained all models using Adam~\cite{kingma2014adam} with learning
+We trained all models using Adam~\citep{kingma2014adam} with learning
 rate chosen by cross validation between $[1e^{-4}, 5*1e^{-4}]$,
 gradient norms clipping from at $[1.0, 5.0]$, and minibatch sizes of
 32 or 64. We use the same hidden size for both utterance encoder,

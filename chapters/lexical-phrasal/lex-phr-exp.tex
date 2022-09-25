@@ -28,6 +28,7 @@ to the summarization of the MRP~2019 task~\cite{Oep:Abe:Haj:19},
   * means copy mechanism is used in our classifier. }
 \label{tbl:lex:impl_lex}
 \begin{center}
+{\small
 \begin{tabular}{l|ccc}
 \toprule
 \hline
@@ -43,6 +44,7 @@ Connectivity                     & True                  & True              & T
 Training Data                    & 35656                 & 35656             & 57885                   \\ \hline
 Test Data                        & 3269                  & 3269              & 1998                    \\ \hline \bottomrule
 \end{tabular}
+}
 \end{center}
 \end{table}
 
@@ -74,8 +76,8 @@ Test Data                        & 1131      & 9042                           \\
 \subsection{Summary of Implementation}
 \label{ssec:impl_summary}
 
-We summarize our implementation for lexical-anchoring
-in~\autoref{tbl:lex:impl_lex}, and phrasal-anchoring
+We summarize our implementation for lexical-anchoring parsing
+in~\autoref{tbl:lex:impl_lex}, and phrasal-anchoring parsing
 in~\autoref{tbl:phr:impl_phrasal}. As we mentioned in the previous
 sections, we use latent-alignment graph-based parsing for
 lexical-anchoring rerepsentations~(DM, PSD, AMR), and use CKY-based
@@ -122,7 +124,7 @@ constrained the senses in the predefined the vallex lexicon.
 Edge predication is another challenge in our task because of its large
 label set (from 45 to 94) as shown in row \tquoted{Edge Label,}~the
 round bracket means the number of output classes of our
-classifiers. For lexical-anchoring representation, edges are usually
+classifiers. For lexical-anchoring representations, edges are usually
 connected between two tokens, while phrasal-anchoring needs extra
 effort to figure out the corresponding span with that node. For
 example, in UCCA parsing, to predict edge labels, we first predicted
@@ -193,16 +195,18 @@ prediction. Please refer to more details
 in~\autoref{sssec:lex-phr:error-lex}.
 
 \begin{table}[!tbp]
-\caption{\label{tbl:results_rank} Official results overview on unified MRP metric, we selected the performance from top 1/3/5 system(s) for comparison.}
+\caption{\label{tbl:results_rank} Official results overview on unified MRP metric. We selected the performance from top 1/3/5 system(s) for comparison.}
 \begin{center}
 \begin{tabular}{lll}
 \toprule
+\hline
 MR     & Ours~(P/R/F1) & Top 1/3/5~(F1)  \\ \hline
 AMR(1) & {\bf 75/71/73.38}   & {\bf 73.38/71.97/71.72} \\
 PSD(6) & 89/89/{\bf 88.75}   & 90.76/89.91/{\bf 88.77} \\
 DM(7)  & 93/92/92.14   & 94.76/94.32/93.74 \\ \hline
 %UCCA   & 76/68/71.65   & 81.67/77.80/73.22 \\
 %EDS    & N/A           & 94.47/90.75/89.10 \\ \bottomrule
+\bottomrule
 \end{tabular}
 \end{center}
 \end{table}
@@ -211,7 +215,7 @@ DM(7)  & 93/92/92.14   & 94.76/94.32/93.74 \\ \hline
 \label{sssec:lex-phr:ucca-results}
 Table \ref{tbl:ucca_results_rank} shows that our span-based CKY model
 for UCCA can achieve 74.00 F1 score on official test set, and ranked
-5th. When adding ELMo~\cite{peters2018deep} into our model, it can
+5th. When adding ELMo~\cite{Peters:2018} into our model, it can
 further improve almost 3 points on it. However, it still performs 4
 points worse than the top 1 model from~\cite{Che:Dou:Xu:19}, which
 realize stack LSTM with more advanced contextualized word embeddings
@@ -220,15 +224,16 @@ in~\autoref{sssec:lex-phr:error-phr}.
 
 \begin{table}[!tbp]
 \caption{\label{tbl:ucca_results_rank} Official results overview on
-  unified MRP metric, we selected the performance from top 1/3/5
+  unified MRP metric. We selected the performance from top 1/3/5
   system(s) for comparison. It shows our UCCA model for postevluation
   can rank 5th.}
   \small
 \begin{center}
 \begin{tabular}{lll}
 \toprule
+\hline
 MR     & Ours~(P/R/F1) & Top 1/3/5~(F1)  \\ \hline
-UCCA(5)   & 80.83/73.42/\textbf{76.94}   & 81.67/77.80/73.22 \\
+UCCA(5)   & 80.83/73.42/\textbf{76.94}   & 81.67/77.80/73.22 \\ \hline
 \bottomrule
 % EDS    & N/A                 & 94.47/90.75/89.10 \\ \bottomrule
 \end{tabular}
@@ -251,6 +256,7 @@ language model can boost the performance further.
 \begin{center}
 \begin{tabular}{cccccc}
   \toprule
+  \hline
   Model           & Exact Match & P     & R     & F1    \\ \hline
   Ours            & 80.85       & 92.77 & 91.05 & 91.9  \\
   Ours + ELMo     & 83.04       & 93.57 & 92.37 & 92.97 \\
@@ -259,7 +265,7 @@ language model can boost the performance further.
   RNNG                & 78.51       & 90.62 & 89.84 & 90.23 \\
   Seq2Seq-CNN         & 75.87       & 89.25 & 87.88 & 88.56 \\
   Seq2Seq-LSTM        & 75.31       & 88.35 & 87.03 & 87.69 \\
-  Seq2Seq-Transformer & 72.2        & 87.09 & 86.11 & 86.6  \\
+  Seq2Seq-Transformer & 72.2        & 87.09 & 86.11 & 86.6  \\ \hline
   \bottomrule
 \end{tabular}
 \end{center}
@@ -286,6 +292,7 @@ TUPA~\cite{Her:Arv:19} and ERG~\cite{Oep:Fli:19}.
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccccc}
 \toprule
+\hline
                           & data & tops              & labels & prop  & edges & all   \\ \hline
 \multirow{2}{*}{ \parbox{1cm}{TUPA
 single} }                 & all  & 63.95             & 57.20  & 22.31 & 36.41 & 44.73 \\
@@ -296,24 +303,27 @@ multi} }                  & all  & 61.30             & 39.80  & 27.70 & 27.35 & 
 \multirow{2}{*}{ Ours(1)} & all  & \underline{65.92} & 82.86  & {\bf 77.26} & 63.57 & {\bf 73.38} \\
                           & lpps & \underline{72.00} & 78.71  & 58.93 & 63.96 & 71.11 \\ \hline
 \multirow{2}{*}{ Top 2}  & all  & 78.15             & 82.51  & 71.33 & 63.21 & 72.94 \\
-                          & lpps & 83.00             & 76.24  & 51.79 & 60.43 & 69.03 \\ \bottomrule
+                          & lpps & 83.00             & 76.24  & 51.79 & 60.43 & 69.03 \\ \hline
+\bottomrule
 \end{tabular}
 \end{center}
 \end{table}
 
 \begin{table}[!tbp]
-\caption{\label{tbl:results_dm} Our parser on DM ranked 7th. This table shows the error breakdown when comparing to the model ranked Top 1~\citep{Li:Zha:Zha:19} in official results}
+\caption{\label{tbl:results_dm} Our parser on DM ranked 7th. This table shows the error breakdown when comparing to the model ranked Top 1~\citep{Li:Zha:Zha:19} in official results.}
 \begin{center}
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{cccccccc}
   \toprule
+ \hline
                             & data & tops              & labels & prop  & anchors & edges & all   \\ \hline
   \multirow{2}{*}{ ERG }    & all  & 91.83             & 98.22  & 95.25 & 98.82   & 90.76 & 95.65 \\
                             & lpps & 95.00             & 97.32  & 97.75 & 99.46   & 92.71 & 97.03 \\
   \multirow{2}{*}{Top 1}    & all  & 93.23             & 94.14  & 94.83 & 98.40   & 91.55 & 94.76 \\
                             & lpps & 96.48             & 91.85  & 94.36 & 99.04   & 93.28 & 94.64 \\
   \multirow{2}{*}{ Ours(7)} & all  & \underline{70.95} & 93.96  & 92.13 & 97.25   & 86.45 & 92.14 \\
-                            & lpps & \underline{84.00} & 90.55  & 91.91 & 97.96   & 87.24 & 91.82 \\ \bottomrule
+                            & lpps & \underline{84.00} & 90.55  & 91.91 & 97.96   & 87.24 & 91.82 \\ \hline
+\bottomrule
 \end{tabular}
 \end{center}
 \end{table}
@@ -326,6 +336,7 @@ multi} }                  & all  & 61.30             & 39.80  & 27.70 & 27.35 & 
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{cccccccc}
 \toprule
+\hline
                           & data & tops              & labels & prop  & anchors & edges & all   \\ \hline
 %\multirow{2}{*}{ TUPA
 %single }                 & all  & 53.07             & 64.58  & 43.30 & 79.50   & 32.96 & 52.97 \\
@@ -336,7 +347,8 @@ multi} }                  & all  & 61.30             & 39.80  & 27.70 & 27.35 & 
 \multirow{2}{*}{Top 1}   & all  & 93.45             & 94.68  & 91.78 & 98.35   & 77.79 & 90.76 \\
                           & lpps & 93.33             & 91.73  & 84.37 & 98.40   & 77.63 & 88.34 \\
 \multirow{2}{*}{ Ours(6)} & all  & \underline{82.01} & 94.18  & 91.28 & 96.94   & 72.40 & 88.75 \\
-                          & lpps & \underline{85.85} & 90.48  & 82.63 & 95.97   & 73.60 & 85.83 \\ \bottomrule
+                          & lpps & \underline{85.85} & 90.48  & 82.63 & 95.97   & 73.60 & 85.83 \\ \hline
+\bottomrule
 \end{tabular}
 \end{center}
 \end{table}
@@ -358,7 +370,7 @@ between node labels and node anchors are almost consistent, it
 indicates that improving our model on predicting \texttt{NULL} nodes may
 further improve node label prediction as well.  Moreover, we believe
 that multitask learning and pretrained deep models such as
-BERT~\citep{devlin2018bert} may also boost the performance of our paser
+BERT~\citep{devlin2019bert} may also boost the performance of our paser
 in future.
 
 \subsubsection{Error Analysis on Phrasal Anchoring}
@@ -377,6 +389,7 @@ helpful for prediction phrasal anchoring nodes in EDS.
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{ccccccccc}
 \toprule
+\hline
                               & data & tops  & anchors & edge  & attr  & all   \\ \hline
 \multirow{2}{*}{ TUPA
 single }                      & all  & 78.73 & 69.17   & 16.96 & 15.18 & 27.56 \\
@@ -389,7 +402,8 @@ multi }                       & all  & 84.92 & 65.74   & 12.99 &  9.07 & 23.65 \
 \multirow{2}{*}{ Ours(*5)}    & all  & 98.85 & 94.92   & 60.17 & 0.00  & {\bf 74.00} \\
                               & lpps & 96.00 & 96.75   & 60.20 & 0.00  & 75.17 \\
 \multirow{2}{*}{ Ours + ELMo} & all  & 99.38 & 95.70   & 64.88 & 0.00  & {\bf 76.94} \\
-                              & lpps & 98.00 & 96.84   & 66.63 & 0.00  & 78.77 \\ \bottomrule
+                              & lpps & 98.00 & 96.84   & 66.63 & 0.00  & 78.77 \\ \hline
+\bottomrule
 \end{tabular}
 \end{center}
 \end{table}

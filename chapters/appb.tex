@@ -1,5 +1,5 @@
 \chapter[Combinations of Schema Descriptions]{Combinations of
-  Schema Descriptions}
+  Schema \\Descriptions}
 \label{chap:appendix:schema}
 In schema-guided dialogue modeling, as shown
 in~\autoref{fig:schema-dst} and ~\autoref{sec:sgd:decompose-y}, it
@@ -13,20 +13,20 @@ descriptions.
 For each subtask, the key description element must be included, \eg,
 intent description for intent task, and value for categorical slot
 tasks. However, besides the description about intents and slots, we
-also have service description and the names for intents and
-slots. What other information will help? and what kind of composition
-will offer better performance. In this section, we will mainly answer
+also have the service descriptions and the names for intents and
+slots. Will the service descriptions help and what kind of composition
+will offer better performance? In this section, we will mainly answer
 the questions with the following experiments on compostion of
 descriptions.
 
-To show how each component helps schema-guided dialog state tracking,
+To show how each component helps schema-guided dialogue state tracking,
 we incrementally add richer schema component one by one.
 
 \begin{itemize}
 \item \textbf{ID:}~This is the least informative case: we only use
   meaningless intent/slot identifiers, \eg, \kw{Intent\_4}, \kw{Slot\_2}. It means we don't use
   description from any schema component. We want to investigate how a
-  simple identifier-based description performs in schema-guided dialog
+  simple identifier-based description performs in schema-guided dialogue
   modeling, and the performance lower-bound on transferring to unseen services.
 
 \item \textbf{I/S Desc:}~Only using the original intent/slot descriptions
@@ -48,7 +48,7 @@ value after each of the above composition.
     remixed \multiwoz. For zero-shot performance on MultiWOZ, we
     simply merge the zero-shot performance on each domain.}
 \begin{center}
-\setlength{\tabcolsep}{2pt}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{l|cccc|cc}
 \toprule
 \hline

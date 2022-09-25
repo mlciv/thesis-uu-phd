@@ -22,8 +22,9 @@ look at some examples.
 
 % with pipelined toolkits~\citep{manning2014stanford,bird2004nltk},
 \begin{figure}[!tbp]
-\centering
+\begin{center}
 \includegraphics[width=0.95\textwidth]{dog-pos.pdf}
+\end{center}
 \caption{\label{fig:intro:dog-pos}The structure of POS tags for the
   sentence \emph{\dquoted{The dog cannot find the bone it hid from the
       other dogs.}}~This image shows the tag set used in Penn
@@ -31,16 +32,18 @@ look at some examples.
 \end{figure}
 
 \begin{figure}[!tbp]
-\centering
+\begin{center}
 \includegraphics[width=0.95\textwidth]{dog-tree.pdf}
+\end{center}
 \caption{\label{fig:intro:dog-tree}The structure of constituent tree
   for the sentence~\emph{\dquoted{The dog cannot find the bone it hid
       from the other dogs.}}}
 \end{figure}
 
 \begin{figure}[!tbp]
-\centering
+\begin{center}
 \includegraphics[width=0.98\textwidth]{dog-dep.pdf}
+\end{center}
 \caption{\label{fig:intro:dog-dep}The structure of dependency tree for
   the sentence \emph{\dquoted{The dog cannot find the bone it hid from the
     other dogs.}}}
@@ -66,10 +69,10 @@ labeled arc represents a directed relation from headwords to their
 dependents. Besides the above lexical and syntactic structured
 information, as shown in the left part of \autoref{fig:intro:dog-amr},
 natural language semantics is also widely studied as structured
-representations via tasks such as \kw{ word sense diambiguation},
-\kw{semantic role labeling} and~\kw{co-reference resolution} and so
-on~\footnote{More details about various semantic phenomena will be
-  introduced in~\autoref{ssec:bg:broad-mr}}. Such structured
+representations via tasks such as \kw{word sense diambiguation},
+\kw{semantic role labeling} and~\kw{coreference resolution} and so
+on.~\footnote{More details about various semantic phenomena will be
+  introduced in~\autoref{ssec:bg:broad-mr}} Such structured
 information is widely used in classical feature-engineering based NLP
 system~\citep[\eg,][]{Joh:Nug:08,hovy2010s,punyakanok2008importance},
 they are still helpful in deep learning based
@@ -83,9 +86,9 @@ aiming to represent the multiple phenomena in a single structure for
 broad-coverage text. \autoref{fig:intro:dog-amr} shows the Abstract
 Meaning Representation~\citep[\kw{AMR},][]{Ban:Bon:Cai:13} of the
 example sentence. The node in the graph represents abstract
-concepts~\footnote{AMR concepts include PropBank framesets, and other
+concepts,~\footnote{AMR concepts include PropBank framesets, and other
   special dates, spatial entities, etc. More details about AMR will be
-  introduced in~\autoref{ssec:bg:broad-mr}}, and the labeled edges
+  introduced in~\autoref{ssec:bg:broad-mr}}~and the labeled edges
 between the nodes represent the relations between those concepts. As
 shown in \autoref{fig:intro:dog-tree}, the node \tquoted{find-01} and
 \tquoted{hide-01} represents the word sense predefined in the
@@ -104,15 +107,16 @@ forms a tree-like structure, which focuses on the argument structures
 of verbal, nominal, and adjectival predicates with also the
 interrelations between them. Besides the above two broad-coverage
 meaning representations, we also studied the DELPH-IN MRS Bilexical
-Dependencies~\citep[\kw{DM},][]{ivanova2012did} and Prague Semantic
+Dependencies~\citep[\kw{DM},][]{Iva:Oep:Ovr:12} and Prague Semantic
 Dependencies~\citep[\kw{PSD},][]{hajic2012announcing,miyao2014house}. More
 details about their captured semantic content and their structure
 properties will be introduced comparatively
 in~\autoref{ssec:bg:broad-mr}.
 
 \begin{figure}[!tbp]
-\centering
+\begin{center}
 \includegraphics[width=1.0\textwidth]{broad-coverage-mr.pdf}
+\end{center}
 \caption{\label{fig:intro:dog-amr} The broad coverage meaning
   representation AMR for the sentence \emph{\dquoted{The dog cannot find the
     bone it hid from the other dogs.}} It represents multiple
@@ -123,8 +127,9 @@ in~\autoref{ssec:bg:broad-mr}.
 
 
 \begin{figure}[!tbp]
-\centering
+\begin{center}
 \includegraphics[width=0.90\textwidth]{dog-ucca.pdf}
+\end{center}
 \caption{\label{fig:intro:dog-ucca} The broad coverage meaning
   representation UCCA for the sentence \emph{\dquoted{The dog cannot
     find the bone it hid from the other dogs.}}}
@@ -145,8 +150,9 @@ state tracking, where each table is filled with intent, slot, and slot
 values, representing a dialogue state for a user turn.
 
 \begin{figure}[!tbp]
-\centering
+\begin{center}
 \includegraphics[width=0.98\textwidth]{dialogue-example.pdf}
+\end{center}
 \caption{\label{fig:intro:dialogue} An example for dialogue state
   tracking.}
 \end{figure}

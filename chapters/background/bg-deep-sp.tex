@@ -117,8 +117,9 @@ decomposition. In the right figure, the alignment variable $a$ is not
 observed.
 
 \begin{figure}[!tbp]
-\centering
+\begin{center}
 \includegraphics[width=0.90\textwidth]{graphical-models.pdf}
+\end{center}
 \caption{\label{fig:bg:graphical-model}The factor representation for
   the independent factorization used in our dissertation.}
 \end{figure}
@@ -167,8 +168,8 @@ static word embedding based methods to attention-based dynamic
 features selection and contextualized representation. Finally, we also
 introduced the rapid progress in language encoding architectures, from
 recurrent neural networks to transformer, and the corresponding
-pretrained language models ELMo~\citep{elmo},
-BERT~\citep{devlin2018bert}, GPT3~\cite{brown2020language}, etc.
+pretrained language models ELMo~\citep{Peters:2018},
+BERT~\citep{devlin2019bert}, GPT3~\cite{brown2020language}, etc.
 
 \subsubsection{Static Word Embedding}
 \label{sssec:bg:static-embedding}
@@ -200,7 +201,7 @@ way, the contextualized representation dynamically depends on the
 entire sentence. Furthermore, based on the neural sequence encoding
 architectures, pretraining language models with a large amount of text
 can create a more powerful contextualized
-representations~\citep{ethayarajh2019contextual}. ELMo~\cite{elmo}
+representations~\citep{ethayarajh2019contextual}. ELMo~\cite{Peters:2018}
 creates contextualized representations of each token by concatenating
 the internal states of a 2-layer BiLSTM trained on a bidirectional
 language modeling task. In contrast, BERT~\citep{devlin2019bert} and
@@ -217,7 +218,7 @@ description to understand each output components~(such as intent, slot
 labels)~in task-oriented dialogue~(\autoref{chap:sgd}).  One
 assumption behind the independent factorization is that local models
 with rich features may perform competitively or better than global
-models also exists in pre-deep-learning era. Before the rising of deep
+models also exists in the pre deep-learning era. Before the rising of deep
 learning in 2012, the well known MEMM-based Stanford pos tagger is the
 state-of-art model at that time. Instead of using a single normalized,
 global CRF model for the sequence modeling, richer features seem
@@ -226,7 +227,7 @@ MEMM~\citep{toutanvoa2000enriching,toutanova2003feature}. However, the
 rich global features required heavy engineering in ten years ago.
 Recently, according to the NLP-Progress
 website,~\footnote{\url{http://nlpprogress.com/english/named_entity_recognition.html}
-  visited on July 19, 2022}, which tracks the state-of-art models for
+  visited on July 19, 2022}~which tracks the state-of-art models for
 each task, we found that the state-of-art models for many sequences
 tagging tasks~(such as named entity recognization, part-of-speech
 tagging) are attention-based models without any CRF layer. In this

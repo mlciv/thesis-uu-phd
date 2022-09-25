@@ -22,7 +22,7 @@ natural mechanism for discovering such patterns.
 % capture the above patterns.
 
 We can unify a broad collection of attention mechanisms in NLP under
-a single high level architecture~\cite{galassi2019attention}. We
+a single high level architecture~\citep{galassi2019attention}. We
 seek to define attention over the word encodings $\bv_{ij}$ in the
 history (called queries), guided by the word encodings in the anchor
 $\bv_{nk}$ (called keys). The output is a sequence of
@@ -81,7 +81,7 @@ treated as word encodings.
 
 To complete this discussion, we need to instantiate the two
 functions. We use two commonly used attention mechanisms:
-BiDAF~\cite{bidaf} and gated matchLSTM~\cite{wang2017gated}. For
+BiDAF~\citep{bidaf} and gated matchLSTM~\citep{wang2017gated}. For
 simplicity, we replace the sequence encoder in the latter with a BiGRU
 and refer to it as GMGRU. Table~\ref{tbl:word_att} shows the
 corresponding definitions of $f_{c}$ and $f_{m}$. We simplify BiDAF

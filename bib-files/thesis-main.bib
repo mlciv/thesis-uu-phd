@@ -1096,7 +1096,7 @@
 @article{baxter2000model,
   title={A model of inductive bias learning},
   author={Baxter, Jonathan},
-  journal={Journal of artificial intelligence research},
+  journal={Journal of {A}rtificial {I}ntelligence {R}esearch},
   volume={12},
   pages={149--198},
   year={2000}
@@ -1120,22 +1120,23 @@
   volume={40}
 }
 
-@inproceedings{Bienenstock1996CompositionalityMP,
-  title={Compositionality, MDL Priors, and Object Recognition},
-  author={Elie Bienenstock and Stuart Geman and Daniel Potter},
-  booktitle={NIPS},
+@article{Bienenstock1996CompositionalityMP,
+  title={Compositionality, MDL priors, and object recognition},
+  author={Bienenstock, Elie and Geman, Stuart and Potter, Daniel},
+  journal={Advances in {N}eural {I}nformation {P}rocessing {S}ystems},
+  volume={9},
   year={1996}
 }
 
 @article{Rehder2003ACT,
-  title={A causal-model theory of conceptual representation and categorization.},
-  author={Bob Rehder},
-  journal={Journal of experimental psychology. Learning, memory, and cognition},
+  title={A Causal-Model Theory of Conceptual Representation and Categorization},
+  author={Rehder, Bob},
+  journal={{L}earning, {M}emory},
+  volume={29},
+  number={6},
+  pages={1141--1159},
   year={2003},
-  volume={29 6},
-  pages={
-          1141-59
-        }
+  publisher={Citeseer}
 }
 
 @article{Lake2016BuildingMT,
@@ -1156,7 +1157,7 @@
 @article{harlow1949formation,
   title={The formation of learning sets.},
   author={Harlow, Harry F},
-  journal={Psychological review},
+  journal={Psychological {R}eview},
   volume={56},
   number={1},
   pages={51},
@@ -1164,12 +1165,18 @@
   publisher={American Psychological Association}
 }
 
-@article{dernoncourt2017pubmed,
-  title={PubMed 200k RCT: a Dataset for Sequential Sentence Classification in Medical Abstracts},
-  author={Dernoncourt, Franck and Lee, Ji Young},
-  journal={IJCNLP 2017},
-  pages={308},
-  year={2017}
+@inproceedings{dernoncourt2017pubmed,
+    title = "{P}ub{M}ed 200k {RCT}: a Dataset for Sequential Sentence Classification in Medical Abstracts",
+    author = "Dernoncourt, Franck  and
+      Lee, Ji Young",
+    booktitle = "Proceedings of the Eighth International Joint Conference on Natural Language Processing (Volume 2: Short Papers)",
+    month = nov,
+    year = "2017",
+    address = "Taipei, Taiwan",
+    publisher = "Asian Federation of Natural Language Processing",
+    url = "https://aclanthology.org/I17-2052",
+    pages = "308--313",
+    abstract = "We present PubMed 200k RCT, a new dataset based on PubMed for sequential sentence classification. The dataset consists of approximately 200,000 abstracts of randomized controlled trials, totaling 2.3 million sentences. Each sentence of each abstract is labeled with their role in the abstract using one of the following classes: background, objective, method, result, or conclusion. The purpose of releasing this dataset is twofold. First, the majority of datasets for sequential short-text classification (i.e., classification of short texts that appear in sequences) are small: we hope that releasing a new large dataset will help develop more accurate algorithms for this task. Second, from an application perspective, researchers need better tools to efficiently skim through the literature. Automatically classifying each sentence in an abstract would help researchers read abstracts more efficiently, especially in fields where abstracts may be long, such as the medical field.",
 }
 
 @article{bommasani2021opportunities,
@@ -1180,38 +1187,71 @@
 }
 
 @inproceedings{cao2021schema,
-  title = {A Comparative Study on Schema-Guided Dialogue State Tracking},
-  author = {Cao, Jie and Zhang, Yi},
-  booktitle = {Proceedings of NAACL 2021},
-  year = {2021}
+    title = "A Comparative Study on Schema-Guided Dialogue State Tracking",
+    author = "Cao, Jie  and
+      Zhang, Yi",
+    booktitle = "Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jun,
+    year = "2021",
+    address = "Online",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2021.naacl-main.62",
+    doi = "10.18653/v1/2021.naacl-main.62",
+    pages = "782--796",
+    abstract = "Frame-based state representation is widely used in modern task-oriented dialog systems to model user intentions and slot values. However, a fixed design of domain ontology makes it difficult to extend to new services and APIs. Recent work proposed to use natural language descriptions to define the domain ontology instead of tag names for each intent or slot, thus offering a dynamic set of schema. In this paper, we conduct in-depth comparative studies to understand the use of natural language description for schema in dialog state tracking. Our discussion mainly covers three aspects: encoder architectures, impact of supplementary training, and effective schema description styles. We introduce a set of newly designed bench-marking descriptions and reveal the model robustness on both homogeneous and heterogeneous description styles in training and evaluation.",
 }
 
 @inproceedings{cao2019amazon,
-  title={Amazon at MRP 2019: Parsing Meaning Representations with Lexical and Phrasal Anchoring},
-  author={Cao, Jie and Zhang, Yi and Youssef, Adel and Srikumar, Vivek},
-  booktitle={Proceedings of the Shared Task on MRP at the CoNLL 2019},
-  year=2019
+    title = "{A}mazon at {MRP} 2019: Parsing Meaning Representations with Lexical and Phrasal Anchoring",
+    author = "Cao, Jie  and
+      Zhang, Yi  and
+      Youssef, Adel  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the Shared Task on Cross-Framework Meaning Representation Parsing at the 2019 Conference on Natural Language Learning",
+    month = nov,
+    year = "2019",
+    address = "Hong Kong",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/K19-2013",
+    doi = "10.18653/v1/K19-2013",
+    pages = "138--148",
+    abstract = "This paper describes the system submission of our team Amazon to the shared task on Cross Framework Meaning Representation Parsing (MRP) at the 2019 Conference for Computational Language Learning (CoNLL). Via extensive analysis of implicit alignments in AMR, we recategorize five meaning representations (MRs) into two classes: Lexical- Anchoring and Phrasal-Anchoring. Then we propose a unified graph-based parsing framework for the lexical-anchoring MRs, and a phrase-structure parsing for one of the phrasal- anchoring MRs, UCCA. Our system submission ranked 1st in the AMR subtask, and later improvements show promising results on other frameworks as well.",
 }
 
 @inproceedings{jie2019psycdialacl,
-  title={Observing Dialogue in Therapy: Categorizing and Forecasting Behavioral Codes},
-  author={Cao, Jie and Tanana, Michael and Imel, Zac and Poitras, Eric and Atkins, David and Srikumar, Vivek},
-  booktitle={Proceedings of ACL 2019},
-  year={2019},
-  location={Florence, Italy}
+    title = "Observing Dialogue in Therapy: Categorizing and Forecasting Behavioral Codes",
+    author = "Cao, Jie  and
+      Tanana, Michael  and
+      Imel, Zac  and
+      Poitras, Eric  and
+      Atkins, David  and
+      Srikumar, Vivek",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = "2019",
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P19-1563",
+    doi = "10.18653/v1/P19-1563",
+    pages = "5599--5611",
+    abstract = "Automatically analyzing dialogue can help understand and guide behavior in domains such as counseling, where interactions are largely mediated by conversation. In this paper, we study modeling behavioral codes used to asses a psychotherapy treatment style called Motivational Interviewing (MI), which is effective for addressing substance abuse and related problems. Specifically, we address the problem of providing real-time guidance to therapists with a dialogue observer that (1) categorizes therapist and client MI behavioral codes and, (2) forecasts codes for upcoming utterances to help guide the conversation and potentially alert the therapist. For both tasks, we define neural network models that build upon recent successes in dialogue modeling. Our experiments demonstrate that our models can outperform several baselines for both tasks. We also report the results of a careful analysis that reveals the impact of the various network design tradeoffs for modeling therapy dialogue.",
 }
 
 @article{paul2021database,
-  title={Database Workload Characterization with Query Plan Encoders},
-  author={Paul*, Debjyoti and Cao*, Jie and Li, Feifei and Srikumar, Vivek},
-  journal={VLDB'22},
-  year={2021}
+  title={Database workload characterization with query plan encoders},
+  author={Paul, Debjyoti and Cao, Jie and Li, Feifei and Srikumar, Vivek},
+  journal={Proceedings of Very Large Databases Endowment},
+  volume={15},
+  number={4},
+  pages={923--935},
+  year={2021},
+  publisher={VLDB Endowment}
 }
 
 @article{hornik1989multilayer,
   title={Multilayer feedforward networks are universal approximators},
   author={Hornik, Kurt and Stinchcombe, Maxwell and White, Halbert},
-  journal={Neural networks},
+  journal={Neural {N}etworks},
   volume={2},
   number={5},
   pages={359--366},
@@ -1220,11 +1260,18 @@
 }
 
 @inproceedings{li2015generative,
-  title={A Generative Word Embedding Model and its Low Rank Positive Semidefinite Solution},
-  author={Li, Shaohua and Zhu, Jun and Miao, Chunyan},
-  booktitle={Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing},
-  pages={1599--1609},
-  year={2015}
+    title = "A Generative Word Embedding Model and its Low Rank Positive Semidefinite Solution",
+    author = "Li, Shaohua  and
+      Zhu, Jun  and
+      Miao, Chunyan",
+    booktitle = "Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing",
+    month = sep,
+    year = "2015",
+    address = "Lisbon, Portugal",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/D15-1183",
+    doi = "10.18653/v1/D15-1183",
+    pages = "1599--1609",
 }
 
 @inproceedings{peters2019tune,
@@ -1234,7 +1281,8 @@
   pages={7--14},
   year={2019}
 }
-@misc{murphy2022probabilistic,
+
+@book{murphy2022probabilistic,
   title={Probabilistic machine learning: Advanced topics},
   author={Murphy, K},
   year={2022},
@@ -1244,7 +1292,7 @@
 @article{wilson2020bayesian,
   title={Bayesian deep learning and a probabilistic perspective of generalization},
   author={Wilson, Andrew G and Izmailov, Pavel},
-  journal={Advances in neural information processing systems},
+  journal={Advances in Neural Information Processing Systems},
   volume={33},
   pages={4697--4708},
   year={2020}
@@ -1253,7 +1301,7 @@
 @article{viterbi1967error,
   title={Error bounds for convolutional codes and an asymptotically optimum decoding algorithm},
   author={Viterbi, Andrew},
-  journal={IEEE transactions on Information Theory},
+  journal={IEEE Transactions on Information Theory},
   volume={13},
   number={2},
   pages={260--269},
@@ -1272,7 +1320,7 @@
 @article{younger1967recognition,
   title={Recognition and parsing of context-free languages in time n3},
   author={Younger, Daniel H},
-  journal={Information and control},
+  journal={Information and Control},
   volume={10},
   number={2},
   pages={189--208},
@@ -1299,14 +1347,12 @@
   year={1967}
 }
 
-@article{binder1997space,
+@inproceedings{binder1997space,
   title={Space-efficient inference in dynamic probabilistic networks},
   author={Binder, John and Murphy, Kevin and Russell, Stuart},
-  journal={Bclr},
-  volume={1},
-  pages={t1},
-  year={1997},
-  publisher={Citeseer}
+  booktitle={Proceedings of the Fifteenth International Joint Conference on Artifical Intelligence-Volume 2},
+  pages={1292--1296},
+  year={1997}
 }
 
 @article{baker1979trainable,
@@ -1338,7 +1384,7 @@
 @inproceedings{zhang2019making,
   title={Making convolutional networks shift-invariant again},
   author={Zhang, Richard},
-  booktitle={International conference on machine learning},
+  booktitle={International Conference on Machine Learning},
   pages={7324--7334},
   year={2019},
  }
@@ -1346,7 +1392,7 @@
 @inproceedings{cheng2016rifd,
   title={Rifd-cnn: Rotation-invariant and fisher discriminative convolutional neural networks for object detection},
   author={Cheng, Gong and Zhou, Peicheng and Han, Junwei},
-  booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
   pages={2884--2893},
   year={2016}
 }
@@ -1355,7 +1401,7 @@
 @inproceedings{schuster2012japanese,
   title={Japanese and korean voice search},
   author={Schuster, Mike and Nakajima, Kaisuke},
-  booktitle={2012 IEEE international conference on acoustics, speech and signal processing (ICASSP)},
+  booktitle={2012 IEEE International Conference on Acoustics, Speech and Signal processing (ICASSP)},
   pages={5149--5152},
   year={2012},
   organization={IEEE}
@@ -1372,7 +1418,7 @@
 @article{brown2020language,
   title={Language models are few-shot learners},
   author={Brown, Tom and Mann, Benjamin and Ryder, Nick and Subbiah, Melanie and Kaplan, Jared D and Dhariwal, Prafulla and Neelakantan, Arvind and Shyam, Pranav and Sastry, Girish and Askell, Amanda and others},
-  journal={Advances in neural information processing systems},
+  journal={Advances in Neural Information Processing Systems},
   volume={33},
   pages={1877--1901},
   year={2020}

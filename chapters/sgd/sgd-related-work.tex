@@ -1,21 +1,21 @@
 \section{Related Work}
 \label{sec:sgd:related-work}
 Our work is related to three lines of research: multisentence
-encoding, multidomain and transferable dialog state
+encoding, multidomain and transferable dialogue state
 tracking. However, our focus is on the comparative study of different
 encoder architectures, supplementary training, and schema
 description style variation. Thus we adopt existing strategies from
-multidomain dialog state tracking.
+multidomain dialogue state tracking.
 
 \subsection{Multisentence Encoder Strategies}
 \label{ssec:sgd:multi-encoder}
 Similar to the recent study on encoders for response selection and
 article search tasks~\citet{humeau2019poly}, we also conduct our
 comparative study on the two typical architectures
-\CE~\cite{bordes2014open, lowe2015ubuntu} and
-\DE~\cite{wu2017sequential,yang2018response}. However, they only focus
+\CE~\citep{bordes2014open, lowe2015ubuntu} and
+\DE~\citep{wu2017sequential,yang2018response}. However, they only focus
 on sentence-level matching tasks. All subtasks in our case require
-sentence-level matching between dialog context and each schema, while
+sentence-level matching between dialogue context and each schema, while
 the noncategorical slot filling task also needs to produce a sequence
 of token-level representation for span detection. Hence, we study
 multisentence encoding for both sentence-level and token-level
@@ -30,34 +30,34 @@ without sacrificing much accuracy.
 %components as candidates in~\autoref{sssec:com-desc}, e.g. compositions
 %of service, intent, slot descriptions.
 
-\subsection{Multidomain Dialog State Tracking}
+\subsection{Multidomain Dialogue State Tracking}
 \label{ssec:sgd:multidomain}
-Recent research on multidomain dialog system have been largely driven
-by the release of large-scale multidomain dialog datasets, such as
+Recent research on multidomain dialogue system have been largely driven
+by the release of large-scale multidomain dialogue datasets, such as
 MultiWOZ~\citep{budzianowski2018multiwoz},
 M2M~\citep{shah-etal-2018-bootstrapping}, accompanied by studies on key
 issues such as in/cross-domain carry-over~\citep{ kim2019efficient}. In
 this paper, our goal is to understanding the design choice for schema
-descriptions in dialog state tracking.  Thus we simply follow the
+descriptions in dialogue state tracking.  Thus we simply follow the
 in-domain cross-over strategies used in {\bf
   TRADE}~\citep{wu2019transferable}. Additionally, explicit
 cross-domain carryover~\citep{naik2018contextual} is difficult to
 generalize to new services and unknown carryover links. We use longer
-dialog history to inform the model on the dialog in the previous
+dialogue history to inform the model on the dialogue in the previous
 service. This simplified strategy does impact our model performance
-negatively in comparison to a well-designed dialog state tracking
+negatively in comparison to a well-designed dialogue state tracking
 model on seen domains. However, it helps reduce the complexity of
 matching extra slot descriptions for cross-service carryover. We leave
 the further discussion for future work.
 
-\subsection{Transferable Dialog State Tracking}
+\subsection{Transferable Dialogue State Tracking}
 \label{ssec:sgd:transfer-dialogue}
-Another line of research focuses on how to build a transferable dialog
+Another line of research focuses on how to build a transferable dialogue
 system that is easily scalable to newly added intents and slots. This
 covers diverse topics including, \eg, resolving lexical/morphological
 variabilities by symbolic delexicalization-based
 methods~\citep{henderson2014word, williams2016dialog}, neural belief
-tracking~\citep{mrkvsic2017neural}, generative dialog state
+tracking~\citep{mrkvsic2017neural}, generative dialogue state
 tracking~\citep{peng2020soloist, hosseini2020simple}, modeling DST as a
 question answering task~\citep{zhang2019find, lee2019sumbt,
   gao2020machine, gao2019dialog}. Our work is similar with the last

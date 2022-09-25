@@ -8,7 +8,7 @@ training~\autoref{sec:sgd:appendices-results-sup-training},
 homogeneous and heterogeneous evaluation on different description
 styles~\autoref{sec:sgd:more-desc-results}.
 
-\section{More Results of Supplementary Training}
+\section[More Results on Supplementary Training]{More Results on Supplementary \\Training}
 \label{sec:sgd:appendices-results-sup-training}
 Table \ref{tbl:sup-training-details} shows the detailed performance
 when using different intermediate tasks as supplementary training.  For
@@ -18,7 +18,7 @@ BERT-base-uncased, then compare the performance with SNLI pretrained
 model. For SQuAD2, we use deepset/bert-base-cased-SQuAD2 model, hence,
 we compare it all cased model. To fairly compare with our original
 \CE, we add extra speaker tokens \emph{[user:]} and \emph{[system:]} for encoding
-the multiturn dialog histories.
+the multiturn dialogue histories.
 
 To evaluate show supplementary training impact on different styles, we
 also show the detailed results when we apply supplementary training of
@@ -27,7 +27,7 @@ SQuAD2 on the \NSL~tasks~(\autoref{ssec:sgd:squad2_homo}).
 \begin{sidewaystable}[!tbp]
 \caption{\label{tbl:sup-training-details} Results of different supplementary training on \sgdst~and \multiwoz~datasets.}
 \begin{center}
-\setlength{\tabcolsep}{2pt}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|c|ccc|ccc|ccc|ccc|ccc|ccc}
 \toprule
   \hline
@@ -95,12 +95,12 @@ detailed evaluation results on both homogeneous and heterogeneous
 setting.
 
 
-\subsection[More Results On Homogeneous and Heterogeneous Evalution]{More Results On Homogeneous and \\Heterogeneous Evalution}
+\subsection[More Results on Homogeneous and Heterogeneous Evalution]{More Results on Homogeneous and \\Heterogeneous Evalution}
 \label{ssec:sgd:more-hete-results}
 We list the detailed results for our evaluation across different
 styles. We use {\it italic} to show the homogeneous evaluation, where
 the results are shown in the diagonal of each table, and we
-\underline{underline} the best homogeneous results in the diagonal. We
+underline the best homogeneous results in the diagonal. We
 use {\bf bold} to show the best heterogeneous performance and the best
 performance gap in the last two columns.
 
@@ -113,7 +113,7 @@ The results on \sgdst dataset are shown in Table
 heterogeneous descriptions styles. For both heterogeneous and
 homogeneous evaluation, adding rich description on intent
 classification tasks seems not bring much benefits than simply using
-the named-based description. As the discussion
+the name-based description. As the discussion
 in~\autoref{ssec:sgd:homo-eval}, we believe the name template is good
 enough to describe the core functionality of an intent in \sgdst
 dataset.
@@ -127,7 +127,7 @@ dataset.
     styles. The $\Delta$ means the performance gap between the mean and the
     homogeneous performance.}
 \begin{center}
-\setlength{\tabcolsep}{2pt}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|cccc|cc}
   \toprule
   \hline
@@ -186,7 +186,7 @@ that this leads inconsistent results with \sgdst~dataset. It is hard
 to draw a consistent conclusion on the two datasets. According to the
 definition, we believe \sgdst~are more suitable for categorical slot
 subtasks, we can further verify our guess when more datasets are
-created for the research of schema-guided dialog in the future.
+created for the research of schema-guided dialogue in the future.
 \begin{table}[!ht]
   \caption{\label{tbl:heter-cat} Joint accuracy of categorical slot
     subtask with different description styles on unseen services. We
@@ -197,7 +197,7 @@ created for the research of schema-guided dialog in the future.
     the performance gap between the mean and the homogeneous
     performance.}
 \begin{center}
-\setlength{\tabcolsep}{2pt}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|cccc|cc}
  \toprule
   \hline
@@ -293,52 +293,52 @@ noncategorical slot prediction tasks.
 
 The first three rows at the top are showing the cases of adding modifiers
 to the name. When the added extra modifiers are keywords in other
-slots, \eg,~\kw{attraction} are the keywords also used
-in~\kw{attraction\_name.}~The first
-shows~\kw{attraction\_location} may wrongly predicted
-as~\kw{attraction\_name.}~It seems the model does not understand
+slots, \eg,~\tquoted{attraction} are the keywords also used
+in~\tquoted{attraction\_name.}~The first
+shows~\tquoted{attraction\_location} may wrongly predicted
+as~\tquoted{attraction\_name.}~It seems the model does not understand
 the compound nouns well, and they seems just pay attention to each key
-words~\kw{attraction} and \kw{movie} here.
+words~\tquoted{attraction} and \tquoted{movie} here.
 
 The three rows in the middle are showing the cases of using
-synonyms. Changing \kw{to} to \kw{target,}~and changing \kw{movie} to \kw{film} will
+synonyms. Changing \tquoted{to} to \tquoted{target,}~and changing \tquoted{movie} to \tquoted{film} will
 cause extra confusion, which shows the model may fail to the synonyms.
 
 The last four rows at the bottom is showing using abbreviations. Changing
-\kw{number} to \kw{num} will not impact the model, while
-changing \kw{subtitle} to \kw{sub} may let the model miss
+\tquoted{number} to \tquoted{num} will not impact the model, while
+changing \tquoted{subtitle} to \tquoted{sub} may let the model miss
 the key meaning of subtitle.  The performance drop in the later case
-may be due to the misuse of the \kw{sub} prefix, in English, it
-usually means \kw{secondary, less important, parts.}~We also
-found the \kw{orig} and \kw{dest} abbreviations may also understand well by
+may be due to the misuse of the \tquoted{sub} prefix, in English, it
+usually means \tquoted{secondary, less important, parts.}~We also
+found the~\tquoted{orig} and~\tquoted{dest} abbreviations may also understand well by
 the model. The above abbreviations seems reasonable paraphrases people
 will use for naming, while the are not understood well in the given
-context. Hence, in the design of schema-guided dialog, if using
-named-based description, we should be careful for about abbreviations
+context. Hence, in the design of schema-guided dialogue, if using
+name-based descriptions, we should be careful for about abbreviations
 used in the naming.
 
-\begin{table}[!tbp]
-\caption{\label{tbl:hete-style-results-sgd2} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the appendix~\ref{sec:sgd:more-desc-results}}
-\begin{center}
-\setlength{\tabcolsep}{1pt}
-\begin{tabular}{c|c|c|c|c}
-  \toprule
-  \hline
-\multirow{3}{*}{Style\textbackslash{Task}} & \multicolumn{4}{c}{ \sgdst }                                                                                                                   \\ \cline{2-5}
-                                           & \multicolumn{1}{c|}{ Intent(Acc)} & \multicolumn{1}{c|}{Req(F1)} & \multicolumn{1}{c|}{Cat(Joint Acc)} & \multicolumn{1}{c}{NonCat(Joint Acc)} \\ \cline{2-5}
-                                           & $\Delta$                               & $\Delta$                          & $\Delta$                                 & $\Delta$                                   \\ \hline
-\NAMEONLY                                  & -11.47                            & -1.64                        & -5.54                               & -14.68                                \\
-\QANAMEONLY                                & +0.58                             & -0.76                        & +2.63                               & -6.30                                 \\
-\ORIGIN                                    & -12.70                            & -0.74                        & -0.3                                & -3.11                                 \\
-\QARICH                                    & -8.24                             & -1.45                        & -2.89                               & -15.00                                \\
-  \hline
-                                           & $\Delta$                               & $\Delta$                          & $\Delta$                                 & $\Delta$                                   \\ \hline
-\NAMEONLY                                  & -1.74                             & -0.87                        & -0.7                                & -4.04                                 \\
-\ORIGIN                                    & {\bf -0.63}                       & {\bf +0.26}                  & {\bf +2.86}                         & {\bf -2.16}                           \\ \hline
-  \bottomrule
-\end{tabular}
-\end{center}
-\end{table}
+%\begin{table}[!tbp]
+%\caption{\label{tbl:hete-style-results-sgd2} Results on unseen service with heterogeneous description styles on \sgdst dataset.}
+%\begin{center}
+%\setlength{\tabcolsep}{1pt}
+%\begin{tabular}{c|c|c|c|c}
+%  \toprule
+%  \hline
+%\multirow{3}{*}{Style\textbackslash{Task}} & \multicolumn{4}{c}{ \sgdst }                                                                                                                   \\ \cline{2-5}
+%                                           & \multicolumn{1}{c|}{ Intent(Acc)} & \multicolumn{1}{c|}{Req(F1)} & \multicolumn{1}{c|}{Cat(Joint Acc)} & \multicolumn{1}{c}{NonCat(Joint Acc)} \\ \cline{2-5}
+%                                           & $\Delta$                               & $\Delta$                          & $\Delta$                                 & $\Delta$                                   \\ \hline
+%\NAMEONLY                                  & -11.47                            & -1.64                        & -5.54                               & -14.68                                \\
+%\QANAMEONLY                                & +0.58                             & -0.76                        & +2.63                               & -6.30                                 \\
+%\ORIGIN                                    & -12.70                            & -0.74                        & -0.3                                & -3.11                                 \\
+%\QARICH                                    & -8.24                             & -1.45                        & -2.89                               & -15.00                                \\
+%  \hline
+%                                           & $\Delta$                               & $\Delta$                          & $\Delta$                                 & $\Delta$                                   \\ \hline
+%\NAMEONLY                                  & -1.74                             & -0.87                        & -0.7                                & -4.04                                 \\
+%\ORIGIN                                    & {\bf -0.63}                       & {\bf +0.26}                  & {\bf +2.86}                         & {\bf -2.16}                           \\ \hline
+%  \bottomrule
+%\end{tabular}
+%\end{center}
+%\end{table}
 
 
 %%% Local Variables:

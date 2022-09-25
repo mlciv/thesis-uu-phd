@@ -11,13 +11,13 @@ MEMM and CRF with handcrafted features are firstly proposed by
 . Then \citet{tanana2015recursive} improved the model by incorporating
 richer dependency relation features, which even outperformed a
 proposed recursive neural network baseline model. Recently,
-\cite{xiao2016behavioral} proposed to use GRU with domain-specific word
+\citet{xiao2016behavioral} proposed to use GRU with domain-specific word
 embedding and weighted cross-entropy loss to resolve the label
 imbalance problem. This paper studies the solutions drawn from
 recent work in dialogue representation, memory attention, and
 imbalanced classification. Besides that, other improvements exist,
-such as topic models based domain adaptio~\cite{atkins2014scaling,
-  huang2018modeling}, and prosodic features \cite{weber2002using} have
+such as topic models based domain adaption~\citep{atkins2014scaling,
+  huang2018modeling}, and prosodic features~\citep{weber2002using} have
 been proposed to improve the prediction tasks.
 
 \subsection{Dialogue Representation and Hierarchical Encoder }
@@ -27,11 +27,11 @@ End-to-End neural networks and attention mechanisms have been widely
 used in many natural language tasks, such as text classification,
 question answering, dialogue systems, etc.  RNN, CNN, and
 Transformer has been quite effective for modeling the sequence of
-words~\cite{ kim14cnn,zhang2015character}. Combinations of them have
+words~\citep{ kim14cnn,zhang2015character}. Combinations of them have
 also been used to model the hierarchical structure of document and
 dialogue context. They first use CNN or LSTM to get a sentence vector,
 and then a BiGRU to compose a sentence vector to get a document
-vector \citep{tang2015document, li2015hierarchical,
+vector~\citep{tang2015document, li2015hierarchical,
   yang2016hierarchical,sordoni2015hierarchical, serban2016building,
   serban2017multiresolution}. In our paper, we use hierarchical GRU as
 skeletons. Other hierarchical combinations may also help, we leave it
@@ -40,22 +40,22 @@ for future studies.
 \subsection{Attention Mechanism}
 \label{ssec:sentential:attention}
 
-Attention mechanism was first proposed by \citet{bahdanau2014neural}
+Attention mechanism was first proposed by~\citet{bahdanau2014neural}
 in machine translation, then various of extensions has been invented
 and widely used in other tasks, especially for question answering and
 dialogue
-system\cite{matchlstm,bidaf,sukhbaatar15mnet,fei17gmnet,P18-1157}.
+system~\citep{matchlstm,bidaf,sukhbaatar15mnet,fei17gmnet,P18-1157}.
 Attention on sentence-level representation also helps in many recent
-works such as abstractive summarization~\cite{P18-1013}, dialogue
-state tracking~\cite{zhou2018multi,zhou2016multi}, document
-classification~\cite{yang2016hierarchical}.
+works such as abstractive summarization~\citep{P18-1013}, dialogue
+state tracking~\citep{zhou2018multi,zhou2016multi}, document
+classification~\citep{yang2016hierarchical}.
 
-Previous work on hierarchical attention\cite{yang2016hierarchical}
+Previous work on hierarchical attention~\citep{yang2016hierarchical}
 tries always to use both word-level and sentence-level attention in a
 model, In this chapter, we argue that, for different tasks, we need
 different levels attentions. Always adding two-level attention may be
 not necessary. Recently, multiheads multihop attention used in
-Transformer \cite{NIPS2017_7181} became a more attractive attention
+Transformer~\citep{NIPS2017_7181} became a more attractive attention
 mechanism. All the above advances in NLP inspired us to systematically
 analyze whether or how they impact our tasks.
 

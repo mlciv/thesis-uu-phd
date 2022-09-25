@@ -5,20 +5,20 @@ Let us now see our phrasal-anchoring parser for UCCA and TOP. We
 introduce the transformation~(\autoref{ssec:phr:graph-ct}) used to
 reduce UCCA and TOP parsing into a unified constituent tree parsing
 task. Then based on the above transformation, we introduce how to do
-independent factorization on phrasal-anchoring by addressing the three
-main challenges in \textbf{Output
-  Decomposition}~(\autoref{sssec:lex-phr:phr-output-decomposition}),
-\textbf{Input Decomposition and Alignments
-  Discovery}~(\autoref{sssec:lex-phr:phr-input-decomposition}), and
-\textbf{Factor Modelling}, including CKY
+independent factorization on phrasal-anchoring representations by addressing the three
+main challenges in \textbf{output
+  decomposition}~(\autoref{sssec:lex-phr:phr-output-decomposition}),
+\textbf{input decomposition and alignments
+  discovery}~(\autoref{sssec:lex-phr:phr-input-decomposition}), and
+\textbf{factor modelling}, including CKY
 parsing~(\autoref{ssec:phr:cky}) and span representation
-~(\autoref{ssec:phr:span})
+~(\autoref{ssec:phr:span}).
 
 \input{chapters/lexical-phrasal/phr-transformation.tex}
 
 \input{chapters/lexical-phrasal/phr-factorization.tex}
 
-\subsection{A Unified Span-based Model for CKY Parsing}
+\subsection{A Unified Span-Based Model for CKY Parsing}
 \label{ssec:phr:cky}
 After transforming the UCCA graph into a constituent tree, we reduce
 the UCCA parsing into a constituent tree parsing problem. Similar to

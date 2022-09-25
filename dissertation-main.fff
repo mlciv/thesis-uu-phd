@@ -1,8 +1,9 @@
 \efloatseparator
  
 \begin{figure}[h]
-\centering
+\begin{center}
 \includegraphics[width=0.92\textwidth]{seq2graph.pdf}
+\end{center}
 \caption{\label{fig:autoreg-example}The autoregressive factorization
   of AMR Parsing in different decoding time step.}
 \end{figure}

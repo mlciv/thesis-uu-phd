@@ -6,10 +6,10 @@ phase on an intermediate task after the pretraining, but before
 finetuning on target task. It shows significant improvement on the
 target tasks. Moreover, large amount pretrained and finetuned
 transformer-based models are publicly accessible, and well-organized
-in model hubs for sharing, training and testing.\footnote{For example,
+in model hubs for sharing, training and testing.~\footnote{For example,
   Huggingface(\url{https://huggingface.co/models}) and
   ParlAL(\url{https://parl.ai/docs/zoo.html}), etc.}~Given the new
-task of schema-guided dialog state tracking, in this section, we study
+task of schema-guided dialogue state tracking, in this section, we study
 our four subtasks with different intermediate tasks for supplementary
 training. However, how to choose those intermediate tasks is a
 challenge problem. Our inductive biases on choosing intermediate tasks
@@ -23,7 +23,7 @@ the results on how they performed.
 \subsection{Intermediate Tasks}
 \label{ssec:intermediate-tasks}
 As described in \S~\ref{ssec:models-overview}, all our 4
-subtasks take a pair of dialog and schema description as input, and
+subtasks take a pair of dialogue and schema description as input, and
 predict with the summerized sentence-pair~\CLS~representation. While
 \NSL~also requires span-based detection such as question
 answering. Hence, they share the similar problem structure with the
@@ -44,12 +44,12 @@ finetuned on the above two tasks for further finetuning.  Due to better
 peformance of \CE in~\autoref{ssec:models-overview}, we directly use the finetuned
 \CE~version of BERT models on SNLI and SQuAD2.0 dataset from
 Huggingface model hub. We add extra speaker tokens [user:] and
-[system:] into the vocabulary for encoding the multiturn dialog
+[system:] into the vocabulary for encoding the multiturn dialogue
 histories.
 %
-%\Paragraph{Response Selection} Given a dialog history and a set of
+%\Paragraph{Response Selection} Given a dialogue history and a set of
 %candidate response, the task is to select the best response follow the
-%dialog hisotry. We didn't find any public BERT Cross-encoder model
+%dialogue hisotry. We didn't find any public BERT Cross-encoder model
 %finetuned on this task. Hence, we finetuned a cross-encoder model on
 %ConvAI2 dataset with code provided in ParlAI.
 
@@ -57,7 +57,7 @@ histories.
 \label{ssec:sgd:results-secondary}
 
 \begin{table}[!t]
-\caption{\label{tbl:sup-training-sgd} Relative performance improvement of different supplementary training on \sgdst dataset}
+\caption{\label{tbl:sup-training-sgd} Relative performance improvement of different supplementary training on \sgdst dataset.}
 \begin{center}{
 \setlength{\tabcolsep}{2pt}
 \begin{tabular}{c|ccc|ccc|ccc|ccc}
@@ -75,7 +75,7 @@ histories.
 \end{table}
 
 \begin{table}[p]
-\caption{\label{tbl:sup-training-multiwoz} Relative performance improvement of different supplementary training on \multiwoz~dataset}
+\caption{\label{tbl:sup-training-multiwoz} Relative performance improvement of different supplementary training on \multiwoz~dataset.}
 \begin{center}{
 \setlength{\tabcolsep}{2pt}
 \begin{tabular}{c|ccc|ccc}
@@ -98,7 +98,7 @@ with the above SNLI and SQuAD2.0 supplementary training.
 
 We mainly find that SNLI helps on \IC~task, SQuAD2 mainly helps on
 \NSL~task, while neither of them helps much on \CSL~task. Recently,
-\citet{namazifar2020language} also found that when modeling dialog
+\citet{namazifar2020language} also found that when modeling dialogue
 understanding as question answering task, it can benefit from a
 supplementary training on SQuAD2 dataset, especially on few-shot
 scenarios, which is a similar findings as our \NSL~task. Result
@@ -106,7 +106,7 @@ difference on \RSI~task is minor, because it is a relatively easy
 task, adding any supplementary training did n't help much. Moreover,
 for \CSL~task, the sequence 2 of the input pair is the slot
 description with a categorical slot value, thus the meaning overlapping between the
-full dialog history and the slot/value is much smaller than SNLI
+full dialogue history and the slot/value is much smaller than SNLI
 tasks. On the other side, \CLS~token in SQuAD BERT is finetuned for
 null predictions via start and end token classifers, which is
 different from the the single CLS classifer in \CSL~task.

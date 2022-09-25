@@ -10,7 +10,7 @@ of these models against various baselines.
 \begin{table}[h]
 \caption{Performance of our proposed
   models with respect to precision, recall and $\text{F}_{1}$ on categorizing and forecasting
-  tasks for client and therapist codes}
+  tasks for client and therapist codes.}
 \begin{center}
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{l|ccc|ccc}
@@ -70,10 +70,11 @@ we define below.
 \caption{\label{tbl:main_rst_c_categorizing} Main results on categorizing
   client codes, in terms of macro $\text{F}_{1}$, and $\text{F}_{1}$ for
   each client code.}
-\begin{center}{\small
+\begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccc}
 \toprule
+\hline
 Method                                         & macro                & \FN                    & \CHANGE              & \SUSTAIN             \\ \midrule
 % BiGRU(Xiao reported)                         & 48.5                 & 87.0                   & 30.0                 & 28.6                 \\
 Majority                                       & 30.6                 & {\bf \underline{91.7}} & 0.0                  & 0.0                  \\
@@ -91,7 +92,7 @@ $\text{GMGRU}^{H}$                             & 52.6                 & 89.5    
 $\text{BiDAF}^{H}$                             & 50.4                 & 87.6                   & 36.5                 & 27.1                 \\ \midrule
 %\citet{huang2018modeling}                     & -                    & -                      & -                    & -                    \\ \midrule
   $\mathcal{C}_{C}$                            & {\bf 53.9}           & 89.6                   & 39.1                 & {\bf 33.1}           \\
-$\Delta=\mathcal{C}_{C} - \text{\underline{score}}$ & {\footnotesize +3.5} & {\footnotesize -2.1}   & {\footnotesize +3.9} & {\footnotesize +3.8} \\
+$\Delta=\mathcal{C}_{C} - \text{\underline{score}}$ & {\bf +3.5} & {\bf -2.1}   & {\bf +3.9} & {\bf +3.8} \\ \hline
   \bottomrule
 \end{tabular}}
 \end{center}
@@ -101,9 +102,10 @@ $\Delta=\mathcal{C}_{C} - \text{\underline{score}}$ & {\footnotesize +3.5} & {\f
 \caption{\label{tbl:main_rst_t_categorizing} Main results on
   categorizing therapist codes, in terms of macro $\text{F}_{1}$, and
   $\text{F}_{1}$ for each therapist code.}
-\begin{center}{\small
+\begin{center}{
 \begin{tabular}{lccccccccc}
 \toprule
+\hline
 Method                                         & macro                & \FA                  & \RES                 & \REC             & \GI              & \QUC             & \QUO             & \MIA             & \MIN             \\ \midrule
 Majority                                       & 5.87                 & 47.0                 & 0.0                  & 0.0              & 0.0              & 0.0              & 0.0              & 0.0              & 0.0              \\
 \citet{xiao2016behavioral}                     & 59.3                 & \underline{94.7}     & 50.2                 & 48.3             & 71.9             & 68.7             & 80.1             & 54.0             & 6.5              \\
@@ -118,7 +120,8 @@ $\text{GMGRU}^{H}$                             & 64.9                 & 94.9    
 $\text{BiDAF}^{H}$                             & 63.8                 & 94.7                 & 55.9                 & 49.7             & 75.4             & 73.8             & 80.7             & 56.2             & 24.0             \\ \midrule
 %\citet{huang2018modeling}                     & -                    & -                    & -                    & -                & -                & -                & -                & -                &                  \\ \midrule
 $\mathcal{C}_{T}$                              & {\bf 65.4}           & {\bf 95.0}           & 55.7                 & {\bf 54.9}       & 74.2             & 74.8             & 82.6             & 56.6             & {\bf 29.7}       \\
-$\Delta=\mathcal{C}_{T} - \text{\underline{score}}$ & {\footnotesize +5.2} & {\footnotesize +0.3} & {\footnotesize +3.9} & {\footnotesize +3.8} & {\footnotesize +0.2} & {\footnotesize +2.8} & {\footnotesize +1.6} & {\footnotesize +2.6} & {\footnotesize +18.9}                                                                                                \\ \bottomrule
+$\Delta=\mathcal{C}_{T} - \text{\underline{score}}$ & {\bf +5.2} & {\bf +0.3} & {\bf +3.9} & {\bf +3.8} & {\bf +0.2} & {\bf +2.8} & {\bf +1.6} & {\bf +2.6} & {\bf +18.9}                                                                                                \\ \hline
+\bottomrule
 \end{tabular}}
 \end{center}
 \end{table}
@@ -129,9 +132,9 @@ work of \citet{xiao2016behavioral} falls in this category, and uses a
 100-dimensional domain-specific embedding with weighted cross-entropy
 loss. Previously, it was the best model in this class. We also
 reimplemented this model to use either ELMo or Glove vectors with
-focal loss.\footnote{Other related work in no context
-  exists~\cite[\eg,][]{perez2017predicting, gibson2017attention}, but
-  they either do not outperform \cite{xiao2016behavioral} or use
+focal loss.~\footnote{Other related work in no context
+  exists~\citep[\eg,][]{perez2017predicting, gibson2017attention}, but
+  they either do not outperform \citet{xiao2016behavioral} or use
   different data.}
 
 The second set of baselines (below the line) are models that use
@@ -196,9 +199,10 @@ method and even the simpler $\text{BiGRU}_{\text{ELMo}}$.
 
 \begin{table}[!h]
 \caption{\label{tbl:main_rst_forecast:client} Main results on forecasting client codes, in terms of $\text{F}_{1}$ for \SUSTAIN, \CHANGE on dev set, and macro $\text{F}_{1}$, and $\text{F}_{1}$ for each client code on the test set.}
-\centering
+\begin{center}
 \begin{tabular}{lcccccc}
   \toprule
+  \hline
   \multirow{2}{*}{Method} & \multicolumn{2}{c}{Dev} & \multicolumn{4}{c}{Test}                                       \\ \cmidrule(lr){2-3} \cmidrule(lr){4-7}
                           & \CHANGE                 & \SUSTAIN   & macro      & \FN        & \CHANGE    & \SUSTAIN   \\ \midrule \midrule
 %  BiGRU                  &                         &            &            &            &            &            \\
@@ -207,16 +211,18 @@ $\text{CONCAT}^{F}$       & 20.4                    & 30.2       & 43.6       & 
   HGRU                    & 19.9                    & 31.2       & {\bf 44.4} & 85.7       & {\bf 24.9} & 22.5       \\
   $\text{GMGRU}^{H}$      & 19.4                    & 30.5       & 44.3       & 87.1       & 23.3       & 22.4       \\ \midrule
 %  $\text{GMGRU}^{C}$     & 8.7                     & 28.5       & 40.4       & 87.0       & 11.7       & 22.6       \\
-  $\mathcal{F}_{C}$       & {\bf 21.1}              & {\bf 31.3} & 44.3       & 85.2       & 24.7       & 22.7       \\
+  $\mathcal{F}_{C}$       & {\bf 21.1}              & {\bf 31.3} & 44.3       & 85.2       & 24.7       & 22.7       \\ \hline
 \bottomrule
 \end{tabular}
+\end{center}
 \end{table}
 
 \begin{table}[!h]
-\caption{\label{tbl:main_rst_forecast:therapist} Main results on forecasting therapist codes, in terms of Recall@3, macro $\text{F}_{1}$, and $\text{F}_{1}$ for each label on test set}
-\centering
+\caption{\label{tbl:main_rst_forecast:therapist} Main results on forecasting therapist codes, in terms of Recall@3, macro $\text{F}_{1}$, and $\text{F}_{1}$ for each label on test set.}
+\begin{center}
 \begin{tabular}{ccccccccccc}
 \toprule
+\hline
 \multirow{2}{*}{Method} & \multicolumn{1}{c}{Recall} & \multicolumn{9}{c}{$\text{F}_{1}$}                                                                                             \\ \cmidrule(lr){2-2} \cmidrule(lr){3-11}
                         & R@3                        & macro      & \FA        & \RES       & \REC       & \GI        & \QUC       & \QUO       & \MIA       & \MIN       \\ \midrule \midrule
 % BiGRU                 &                            &            &            &            &            &            &            &            &            &            \\
@@ -227,8 +233,10 @@ HGRU                    & 76.0                       & 28.6       & 71.4       &
 $\text{GMGRU}^{H}$      & 76.6                       & 26.6       & {\bf 72.6} & 10.2       & 20.6       & 58.8       & 27.4       & 6.0        & 8.9        & 7.9        \\ \midrule
 %$\text{GMGRU}^{C}$     & 67.6                       & 19.6       & 62.0       & 11.8       & 19.7       & 51.6       & 10.0       & 1.9        & 0.1        & 0.0        \\ \midrule
 $\mathcal{F}_{T}$       & {\bf 77.0}                 & {\bf 31.1} & 71.9       & {\bf 19.5} & 24.7       & {\bf 59.2} & {\bf 29.1} & {\bf 16.4} & 15.2       & {\bf 12.8} \\
+\hline
 \bottomrule
 \end{tabular}
+\end{center}
 \end{table}
 
 \subsubsection{Results on Forecasting}
@@ -239,14 +247,14 @@ representation of dialogue history. The model $\text{CONCAT}^{F}$ uses
 the same architecture as the model $\text{CONCAT}^{C}$ from the
 categorizing task. We also show comparisons to the simple \HGRU model
 and the \GMGRUH model that uses a gated matchGRU for word
-attention.\footnote{The forecasting task bears similarity to the next
+attention.~\footnote{The forecasting task bears similarity to the next
   utterance selection task in dialogue state tracking
-  work~\cite{DSTC7}. In preliminary experiments, we found that the
+  work~\citep{DSTC7}. In preliminary experiments, we found that the
   Dual-Encoder approach used for that task consistently underperformed
   the other baselines described here.}
 
-\autoref{tbl:main_rst_forecast:client} and
-\autoref{tbl:main_rst_forecast:therapist} show our forecasting results
+Tables \ref{tbl:main_rst_forecast:client} and
+\ref{tbl:main_rst_forecast:therapist} show our forecasting results
 for client and therapist, respectively. For client codes, we also
 report the \CHANGE and \SUSTAIN performance on the development set
 because of their importance.  For the therapist codes, we also report

@@ -68,18 +68,36 @@
   year={2016}
 }
 
-@article{corro2019learning,
-  title={Learning latent trees with stochastic perturbations and differentiable dynamic programming},
-  author={Corro, Caio and Titov, Ivan},
-  journal={ACL},
-  year={2019}
+@inproceedings{corro2019learning,
+    title = "Learning Latent Trees with Stochastic Perturbations and Differentiable Dynamic Programming",
+    author = "Corro, Caio  and
+      Titov, Ivan",
+    booktitle = "Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics",
+    month = jul,
+    year = 2019,
+    address = "Florence, Italy",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P19-1551",
+    doi = "10.18653/v1/P19-1551",
+    pages = "5508--5521",
+    abstract = "We treat projective dependency trees as latent variables in our probabilistic model and induce them in such a way as to be beneficial for a downstream task, without relying on any direct tree supervision. Our approach relies on Gumbel perturbations and differentiable dynamic programming. Unlike previous approaches to latent tree learning, we stochastically sample global structures and our parser is fully differentiable. We illustrate its effectiveness on sentiment analysis and natural language inference tasks. We also study its properties on a synthetic structure induction task. Ablation studies emphasize the importance of both stochasticity and constraining latent structures to be projective trees.",
 }
 
-@article{yin2018structvae,
-  title={StructVAE: Tree-structured latent variable models for semi-supervised semantic parsing},
-  author={Yin, Pengcheng and Zhou, Chunting and He, Junxian and Neubig, Graham},
-  journal={ACL},
-  year={2018}
+@inproceedings{yin2018structvae,
+    title = "{S}truct{VAE}: Tree-structured Latent Variable Models for Semi-supervised Semantic Parsing",
+    author = "Yin, Pengcheng  and
+      Zhou, Chunting  and
+      He, Junxian  and
+      Neubig, Graham",
+    booktitle = "Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = 2018,
+    address = "Melbourne, Australia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P18-1070",
+    doi = "10.18653/v1/P18-1070",
+    pages = "754--765",
+    abstract = "Semantic parsing is the task of transducing natural language (NL) utterances into formal meaning representations (MRs), commonly represented as tree structures. Annotating NL utterances with their corresponding MRs is expensive and time-consuming, and thus the limited availability of labeled data often becomes the bottleneck of data-driven, supervised models. We introduce StructVAE, a variational auto-encoding model for semi-supervised semantic parsing, which learns both from limited amounts of parallel data, and readily-available unlabeled NL utterances. StructVAE models latent MRs not observed in the unlabeled data as tree-structured latent variables. Experiments on semantic parsing on the ATIS domain and Python code generation show that with extra unlabeled data, StructVAE outperforms strong supervised models.",
 }
 
 @article{chen2019variational,

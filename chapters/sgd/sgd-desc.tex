@@ -3,19 +3,19 @@
 %As shown in Figure \ref{fig:schema-dst} and the predefined notations
 %in~\autoref{sec:chanllenges-in-sgd}, there are three components in the
 %schema definitions: services $V$, intents $I$, slots $S$. Based on the
-%given description, participators in DSTC8 schema-guided dialog state
+%given description, participators in DSTC8 schema-guided dialogue state
 %tracking task use different compositions of service/intent/slots
 %descriptions. For example, service description was used by the
 %official baseline model for intent/slot matching, but not by the
 %winning team~\cite{ma2019end}. The diverse design choices also exists
 %in slot value matching.  The difference in architecture choice and
-%state tracking strategy confounds different dialog state tracking
+%state tracking strategy confounds different dialogue state tracking
 %models, thus not comparable to discover which composition is the best
 %for each tasks. On the other hand,
-Previous work on schema-guided dialog~\cite{rastogi2020schema} are
+Previous work on schema-guided dialogue~\citep{rastogi2020schema} are
 only based on the provided descriptions in \sgdst~dataset. Recent work
-on modeling dialog state tracking as reading
-comprehension~\cite{gao2019dialog}~only formulate the descriptions as
+on modeling dialogue state tracking as reading
+comprehension~\citep{gao2019dialog}~only formulate the descriptions as
 simple question format with existing intent/slot names, it is unknown
 how it performs when compared to other description styles. Moreover,
 they only conduct homogeneous evaluation where training and test data
@@ -39,17 +39,17 @@ following different descriptions styles:
 description: we only use meaningless intent/slot identifiers,
 \eg, \kw{Intent\_1}, \kw{Slot\_2}. It means we don't use description from any
 schema component. We want to investigate how a simple identifier-based
-description performs in schema-guided dialog modeling, and the
+description performs in schema-guided dialogue modeling, and the
 performance lower-bound on transferring to unseen services.
 
 \item \textbf{\NAMEONLY:} Using the original intent/slot names in~\sgdst
 and~\multiwoz~datasets as descriptions, to show whether name is enough
-for schema-guided dialog modeling.
+for schema-guided dialogue modeling.
 
 \item \textbf{\QANAMEONLY:} This is corresponding to previous
   work by~\citet{gao2019dialog}. For each intent/slot, it generate a
   question to inquiry about the intent and slot value of the
-  dialog. For each slot, it simply follows the template '{\it What
+  dialogue. For each slot, it simply follows the template '{\it What
     is the value for {\bf slot i}?}'. Besides that, our work also
   extend the intent description by following the template ``{\it Is
     the user intending to {\bf intent j} }".
@@ -65,14 +65,14 @@ for schema-guided dialog modeling.
   description. In a sum, this description is just adding question
   format to original description. The motivation of this description is
   to see whether the question format is helpful or not for
-  schema-guided dialog modeling.
+  schema-guided dialogue modeling.
 
 \end{itemize}
 
 To test the model robustness, we also create two paraphrased
   versions \textbf{\NAMEPARA}~and \textbf{\PARAPHRASE}~for
   \NAMEONLY~and~\ORIGIN, respectively. We first use
-  nematus~\cite{sennrich-etal-2017-nematus} to automatically
+  nematus~\citep{sennrich-etal-2017-nematus} to automatically
   paraphrase the description with back translation, from English to
   Chinese and then translate back, then we manually check the
   paraphrase to retain the main meaning. Table
@@ -164,19 +164,19 @@ heterogeneous evaluation on the other styles as
 shown in Table \ref{tbl:sgd:hete-style-results-sgd}.~\footnote{We do not
   consider the meaningless \ID~style due to its bad performance.}
 %
-\subsubsection{Is name-based description enough?}
+\subsubsection{Is Name-Based Description Enough?}
 \label{sssec:sgd:question-name}
 As shown in Table \ref{tbl:sgd:homo-style-results}, \ID~is the worst
 case of using name description, its extremely bad performance
 indicates name-based description can be very unstable. However, we
 found that simple meaningful name-based description actually can
-perform the best in \IC~and~\RSI task, and they perform worse on
-\CSL~and~\NSL tasks comparing to the bottom two {\it rich}
+perform the best in \IC~and~\RSI~task, and they perform worse on
+\CSL~and~\NSL~tasks comparing to the bottom two {\it rich}
 descriptions.~\footnote{Only exception happens in \CSL~on
-  \multiwoz. When creating \multiwoz~\cite{zang-etal-2020-multiwoz},
+  \multiwoz. When creating \multiwoz~\citep{zang-etal-2020-multiwoz},
   the slots with less than 50 different slot values are classified as
   categorical slots, which leads to inconsistencies.} After careful
-analysis on the intents in \sgdst datasets, we found that most
+analysis on the intents in \sgdst~datasets, we found that most
 services only contains two kinds of intents, an information retrieval
 intent with a name prefix \tquoted{Find-,}~\tquoted{Get-,} and
 \tquoted{Search-}; another transaction intent like \tquoted{Add-,}
@@ -185,7 +185,7 @@ all the intent names in the original schema-guided dataset strictly
 follows an action-object template with a composition of words without
 abbreviation, such as \tquoted{FindEvents,} \tquoted{BuyEventTickets.}
 This simple name template is good enough to describe the core
-functionality of an intent in \sgdst dataset.~\footnote{This
+functionality of an intent in \sgdst~dataset.~\footnote{This
   action-object template has also been found efficient for open domain
   intent induction task~\citep[\eg, OPINE][]{vedula2020open}.}
 Additionally, \RSI is a relaitively simper task, requesting
@@ -193,20 +193,20 @@ information are related to specifial attributes, such as
 \tquoted{has\_live\_music,} \tquoted{has\_wifi,} where keywords
 co-occured in the slot name and in the user utterance, hence rich
 explanation cannot help further. On the other side, {\it rich}
-descriptions are more necessary for \CSL~and~\NSL task. Because in
+descriptions are more necessary for \CSL~and~\NSL~task. Because in
 many cases, slot names are too simple to represent the functionalities
 behind it, for example, slot name \tquoted{passengers} cannot fully represent
 the meaning \tquoted{number of passengers in the ticket booking.}
 
-\subsubsection{Does question format help?}
+\subsubsection{Does Question Format Help?}
 \label{sssec:sgd:question-format}
 
 As shown in~\autoref{tbl:sgd:homo-style-results}, when comparing row
 \QARICH~v.s.~\ORIGIN, we found extra question format can improve the
-performance on \CSL~and \NSL task on both \sgdst and
-\multiwoz~datasets, but not for \IC~and \RSI tasks. We believe that
+performance on \CSL~and \NSL~task on both \sgdst~and
+\multiwoz~datasets, but not for \IC~and \RSI~tasks. We believe that
 question format helps the model to focus more on specific entities in
-the dialog history. However, when adding a simple question pattern to
+the dialogue history. However, when adding a simple question pattern to
 \NAMEONLY, comparing row \QANAMEONLY~and \NAMEONLY, there is no
 consistent improvement on both of the two datasets. Further more, we
 are curious about whether BERT finetuned on SQuAD2~(SQuAD2-BERT) can
@@ -271,12 +271,12 @@ shows performance on paraphrased schema, while $\Delta$ shows the
 performance change compared to the homogeneous evaluation.
 \ORIGIN~still performs more robust than \NAMEONLY~when schema
 descriptions get paraphrased on unseen services.
-%\footnote{More results
-%  and qualitative analysis are availible in the
-%  appdendix~\ref{ssec:more-desc-results}.}.
 
 \begin{table}[p]
-\caption{\label{tbl:sgd:hete-style-results-sgd} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the Appendix~\ref{sec:sgd:more-desc-results}.}
+  \caption{\label{tbl:sgd:hete-style-results-sgd} Results on unseen
+    service with heterogeneous description styles on~\sgdst
+    dataset. More results and qualitative analysis are
+    in~\autoref{chap:appendix:schema-analysis}.}
 \begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|c|c|c|c|c|c|c|c}

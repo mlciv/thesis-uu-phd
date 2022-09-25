@@ -26,7 +26,7 @@ each word as inputs to the attention components in~\autoref{ssec:word_att}. We w
 encoding of the $j^{th}$ word as $\bm{v}_{ij}$. The dialogue encoder
 is a unidirectional GRU that operates on a concatenation of
 utterance vectors $\bm{v}_i$ and a trainable vector representing the
-speaker $s_i$.\footnote{For the dialogue encoder, we use a
+speaker $s_i$.~\footnote{For the dialogue encoder, we use a
   unidirectional GRU because the dialogue is incomplete. For words,
   since the utterances are completed, we can use a BiGRU.} The final
 state of the GRU aggregates the entire dialogue history into a

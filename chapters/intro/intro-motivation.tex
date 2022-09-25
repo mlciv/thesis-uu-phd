@@ -125,10 +125,10 @@ learning can learn any target function. Then, what kind of inductive
 biases do we need in the deep learning era? In the following, we show two
 examples of inductive biases used in computer vision and natural
 language processing in the deep learning era.
-
 \begin{figure}[!tbp]
-  \centering
+  \begin{center}
   \includegraphics[width=0.95\textwidth]{shift-cat-example.pdf}
+  \end{center}
   \caption{\label{fig:intro:shift-cat-example}In the image classication
     task, we hope the learned model can still recognize \tquoted{cat} for the
     unseen image with shifted or rotated cat.}
@@ -155,8 +155,9 @@ should be rotation-invariant to predict correctly on unseen rotated
 cat images~\citep{cheng2016rifd}.
 
 \begin{figure}[!tbp]
-  \centering
+  \begin{center}
   \includegraphics[width=0.98\textwidth]{compositional-dog-example.pdf}
+  \end{center}
   \caption{\label{fig:intro:compositional-dog-example}In the named entity
     recognization task, we hope the learned model can still recognize
     \tquoted{ANIMAL}~for new word~\tquoted{Husky} in unseen context with newly composed
@@ -286,7 +287,7 @@ Figure~\ref{fig:intro:dog-amr}, $x_{i}$ can be a word or multiword
 expression in a sentence, while $y_{j}$ can be a single AMR node and
 relation.  For dialogue state tracking in
 Figure~\ref{fig:intro:dialogue}, $x_{i}$ is an utterance in the
-dialog, while $y_{i}$ is the value for each intent and slot in the
+dialogue, while $y_{i}$ is the value for each intent and slot in the
 predicted frames. A factor $c$ may depend on multiple subcomponents
 of $x$ and $y$.
 
@@ -337,8 +338,9 @@ that compositionality to help the model to generalize to unseen inputs
 and output structures.
 
 \begin{figure}[!tbp]
-\centering
+\begin{center}
 \includegraphics[width=0.80\textwidth]{dog-independent-example.pdf}
+\end{center}
 \caption{\label{fig:intro:independent-example}Independence
   factorization for parsing a new sentence \tquoted{The dog found the
     bone it hid} into an AMR graph.}
@@ -356,9 +358,9 @@ list of candidate anchors $seg_{in}(x)=\{${\tquoted{The},
   because most of the decomposed inputs are seen in
   previous~\autoref{fig:intro:dog-amr}. Then we assemble the nonempty
   $y_{c}$ by predicting the relations between each other and finally
-  forms \OUT~via postprocessing\footnote{The postprocessing include
-    merging coreference nodes~(as the `dog' and `it'), and adding other
-    attributes.}.
+  forms \OUT~via postprocessing.~\footnote{The postprocessing include
+    merging coreference nodes~(as the \tquoted{dog} and \tquoted{it}), and adding other
+    attributes.}
 
 \subsubsection{Three Steps in Independent Factorizations}
 \label{sssec:intro:steps-inductive-bias}
@@ -414,8 +416,9 @@ mainly show the intuitive understanding of the structural inductive
 bias for the independent factorization.
 
 \begin{figure}[!tbp]
-  \centering
+  \begin{center}
   \includegraphics[width=0.95\textwidth]{structural-bias.pdf}
+  \end{center}
   \caption{\label{fig:intro:structural-bias-example} Structural inductive
     biases of AMR decomposition, and AMR alignments.}
 \end{figure}
@@ -502,10 +505,10 @@ inductive biases to make the right design choices. Besides the above
 AMR parsing running example, we also design different models with
 independent factorization for a set of tasks, e.g., parsing
 graph-based representations with
-lexical-anchoring~(\autoref{ssec:lex-phr:lex-factorization-analysis})
+lexical anchoring~(\autoref{ssec:lex-phr:lex-factorization-analysis})
 and
-phrasal-anchoring~(\autoref{ssec:lex-phr:phr-factorization-analysis}),
-observing dialog in therapy~(\autoref{sec:snt:task}).
+phrasal anchoring~(\autoref{ssec:lex-phr:phr-factorization-analysis}),
+observing dialogue in therapy~(\autoref{sec:snt:task}).
 
 \subsubsection{Natural Language as Inductive Biases}
 \label{sssec:intro:language-biases}

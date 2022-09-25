@@ -23,8 +23,10 @@ meaning representations~(DM~\citep{Iva:Oep:Ovr:12},
 PSD~\citep{hajic2012announcing,miyao2014house},
 AMR~\citet{Ban:Bon:Cai:13}, UCCA~\cite{Abe:Rap:13b}) and an
 application-specific representation
-TOP~\citep{gupta-etal-2018-semantic-parsing}.\footnote{The main
-  content of this chapter is published in~\citet{cao2019amazon}.}
+TOP~\citep{gupta-etal-2018-semantic-parsing}.~\footnote{Adapted with
+  permission from~\citet{cao2019amazon} published under
+  a~\href{https://creativecommons.org/licenses/by/4.0/}{Creative
+    Commons Attribution 4.0 International License}.}
 
 Anchoring is crucial in graph-based representation parsing. Training a
 statistical parser typically starts with a conjectured alignment
@@ -42,8 +44,8 @@ where the semantic concepts are anchored to phrases as well.
 
 
 To support the simplified taxonomy, we named our parser as
-LAPA~({\textbf{L}exical-\textbf{A}nchoring and
-  \textbf{P}hrasal-\textbf{A}nchoring).~\footnote{The code is available
+LAPA~({\textbf{L}exical \textbf{A}nchoring and
+  \textbf{P}hrasal \textbf{A}nchoring).~\footnote{The code is available
     online at \url{https://github.com/utahnlp/lapa-mrp}} By
   leveraging the linguistic knowledge about the anchoring analysis, we
   proposed two separate models for each anchoring type based on
@@ -52,7 +54,7 @@ LAPA~({\textbf{L}exical-\textbf{A}nchoring and
   support both explicit and implicit lexicon anchoring. According to
   official evaluation results, our submission ranked 1st in the AMR
   subtask, 6th on PSD, and 7th on DM, respectively, among 16
-  participating teams. For phrasal-anchoring, we proposed a CKY-based
+  participating teams. For phrasal anchoring, we proposed a CKY-based
   constituent tree parsing algorithm to resolve the anchor in UCCA and
   TOP. Our postevaluation submission for MRP 2019 task ranked 5th on
   UCCA. Furthermore, we show that the same unified CKY-based model can

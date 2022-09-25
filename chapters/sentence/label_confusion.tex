@@ -13,9 +13,10 @@ selected 100 of each for manual analysis. We found four broad
 categories of confusion, shown in Table
 \ref{tbl:c_client_errors}.
 
-\begin{figure}[!h]
-\centering
+\begin{figure}[!tbp]
+\begin{center}
   \includegraphics[width=0.50\textwidth]{large_font_categorizing_plabel_confusion_matrix_dev.pdf}
+\end{center}
   \caption{\label{fig:categorizing_confusion_client} Confusion matrix for categorizing client codes, normalized by row.}
 \end{figure}
 
@@ -25,6 +26,7 @@ categories of confusion, shown in Table
   \begin{center}
 \begin{tabular}{ll}
   \toprule
+  \hline
   {\bf Category and Explaination}                                                                                                                                                                                                                            & {\bf Client Examples (Gold MISC)}                                                                                                                                         \\\midrule
   \multirow{4}{*}{\parbox{7cm}{Reasoning is required to understand
   whether a client wants to change behavior, even with full context~(50,42) }}                               & \multirow{4}{*}{\parbox{7cm}{T: On a scale of zero to ten how confident are you that you can implement this change? \\C: I don't know, seven maybe (\CHANGE);\\ I have to wind down after work (\SUSTAIN) }} \\
@@ -38,7 +40,8 @@ categories of confusion, shown in Table
   \multirow{3}{*}{\parbox{7cm}{Extremely short ($ \leq5 $) or long sentence ($\ge40 $), caused by incorrect turn segementation. ~(21,23)}} & It is a good thing (\SUSTAIN)                                   \\
                                                                                                                                       & Frankly, I hate it (\CHANGE)                                                               \\ & Painful (\CHANGE)                                                                                                                                                    \\ \midrule
   \multirow{2}{*}{\parbox{7cm}{Ambivalent speech, very hard to understand even for human.~(7,4)}}                                     & \multirow{3}{*}{\parbox{7cm}{What if it does n't work I mean what if I can't do it (\SUSTAIN)\\But I can stop whenever I want(\SUSTAIN)}}                                                                                                                            \\
-& \\                                                                                                                                                                                                                                                             &                                                                                                                             \\\bottomrule
+& \\                                                                                                                                                                                                                                                             &                                                                                                                             \\ \hline
+\bottomrule
 \end{tabular}
 \end{center}
 \label{tbl:c_client_errors}
@@ -80,18 +83,10 @@ such utterances could be difficult, even for an expert therapist.
 %\end{center}
 %\caption{\label{tbl:confusion_guide} Confusing label set for each label from the MISC Annotation guidelines}
 %\end{table}
-\begin{figure}[!th]
-\centering
-% \subfloat[Categorizing client codes\label{subfig:c_client}]{
-%   \includegraphics[width=0.24\textwidth]{large_font_categorizing_plabel_confusion_matrix_dev.pdf}
-% }
-% \subfloat[Forecasting client codes\label{subfig:f_client}]{
-%   \includegraphics[width=0.24\textwidth, height=3cm]{large_font_forecasting_plabel_confusion_matrix.pdf}
-% }
-
-% \subfloat[Categorizing therapist codes\label{subfig:c_therapist}]{
+\begin{figure}[!tbp]
+\begin{center}
   \includegraphics[width=0.90\textwidth]{pred_tlabel_model2_confusion_dev.pdf}
-% }
+\end{center}
   \caption{\label{fig:categorizing_confusion_therapist} Confusion matrix for categorizing therapist codes, normalized by row.}
 \end{figure}
 

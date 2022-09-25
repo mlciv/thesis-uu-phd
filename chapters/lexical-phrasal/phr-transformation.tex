@@ -3,7 +3,7 @@
 \label{ssec:phr:graph-ct}
 Nodes in UCCA do not have node labels or node properties, but all the
 nodes are anchored to the spans of the underlying sentence. However,
-to have a unifed representation with previous lexical-anchoring, we do
+to have a unifed representation with previous lexical anchoring, we do
 the following transformation to form a constituent tree for UCCA,
 where every node has a label, which is suitable for the independent
 facrtorization to map each input decompositions into the output nodes.
@@ -40,14 +40,15 @@ label as its child's node label, and deleting those auxiliary labels,
 adding anchors to every remaining node.
 
 \begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.90\textwidth]{dog-ucca-to-CT.pdf}
+\end{center}
 \caption{\label{fig:ucca-to-CT} UCCA to constituent tree transformation for [wsj\#0209013].}
 \end{figure}
 
 \subsubsection{TOP to Consistuent Tree}
 \label{sssec:phr:top-to-ct}
-For the hierarchical dialog representation TOP, we also can tranform
+For the hierarchical dialogue representation TOP, we also can tranform
 it to a constituent tree structure. \autoref{fig:TOP-to-CT} shows the
 transformation process for the utterance ``Driving directions to the
 Eagles game". In TOP tree shown in the up side of the figure, the leaf
@@ -58,8 +59,9 @@ nodes in TOP into seperate tokens, and add a special parent node as
 \texttt{TOK} to each of the ternimal token node. Finally, it forms the
 constituent tree as shown in the bottom.
 \begin{figure}[!h]
-\centering
+\begin{center}
 \includegraphics[width=0.90\textwidth]{TOP-to-CT.pdf}
+\end{center}
 \caption{\label{fig:TOP-to-CT} TOP to constituent tree transformation
   for the utterance \tquoted{Driving directions to the Eagles game.}}
 \end{figure}

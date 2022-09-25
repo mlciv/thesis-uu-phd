@@ -1,20 +1,21 @@
 \chapter[Natural Language as Inductive Biases for Tracking \\Dialogue State]{Natural Language as Inductive \\Biases for Tracking \\Dialogue State}
 \label{chap:sgd}
 
-From early frame-driven dialog system GUS~\citep{bobrow1977gus} to
+From early frame-driven dialogue system GUS~\citep{bobrow1977gus} to
 virtual assistants~(Alexa, Siri, and Google Assistant~\etal),
-frame-based dialog state tracking has long been studied to meet
+frame-based dialogue state tracking has long been studied to meet
 various challenges. In particular, how to support an ever-increasing
 number of services and APIs spanning multiple domains has been a focal
-point in recent years, evidenced by multidomain dialog
+point in recent years, evidenced by multidomain dialogue
 modeling~\citep{budzianowski2018multiwoz,byrne2019taskmaster,
-  shah-etal-2018-bootstrapping} and transferable dialog state tracking
+  shah-etal-2018-bootstrapping} and transferable dialogue state tracking
 to unseen intent/slots~\cite{mrkvsic2017neural,
   wu2019transferable, hosseini2020simple}.
 
 \begin{figure}[!th]
-\centering
+\begin{center}
 \includegraphics[width=0.98\textwidth]{label-schema-example.pdf}
+\end{center}
 \caption{\label{fig:label-schema-example} Different flight service
   ontologies for dialogue state tracking.}
 \end{figure}
@@ -40,44 +41,47 @@ services, we still need to annotate new data for the new service and
 retraining the new model on the newly annotated data. Such
 reannotating and retraining on new services are costly.
 
-\begin{figure}[!ht]
-\centering
+\begin{figure}[!tbp]
+\begin{center}
   \includegraphics[width=0.90\textwidth]{schema-dst.pdf}
-  \caption{\label{fig:schema-dst} An example dialog from Restaurant\_1 service, along with its service/intent/slot descriptions and dialog state representation.}
+\end{center}
+  \caption{\label{fig:schema-dst} An example dialogue from \kw{Restaurant\_1} service, along with its service/intent/slot descriptions and dialogue state representation.}
 \end{figure}
 
 
 Recently, \citet{rastogi2019towards} proposed a new paradigm called
-schema-guided dialog for transferable dialog state tracking by using
+schema-guided dialogue for transferable dialogue state tracking by using
 natural language description to define a dynamic set of service
 schemata. As shown in~\autoref{fig:schema-dst}, the primary
 motivation is that these descriptions can offer effective knowledge
 sharing across different services, \ie, connecting semantically
 similar concepts across heterogeneous APIs, thus allowing a unified
 model to handle unseen services and APIs. With the publicly available
-schema-guided dialog dataset~(\sgdst~henceforward) as a
+schema-guided dialogue dataset~(\sgdst~henceforward) as a
 testbed, they organized a state tracking shared task composed of four subtasks:
 intent classfication~(\IC), requested slot identification~(\RSI),
 categorical slot labeling~(\CSL), and noncategorical slot
 labeling~(\NSL)~\cite{rastogi2020schema}. Many participants achieved
-promising performance by exploiting the schema description for dialog
+promising performance by exploiting the schema description for dialogue
 modeling, especially on unseen services.
 
 Despite the novel approach and promising results, current
-schema-guided dialog state tracking task only evaluates on a single
+schema-guided dialogue state tracking task only evaluates on a single
 dataset with limited variation in schema definition. It is unknown how
 this paradigm generalizes to other datasets and other different styles
-of descriptions. In this chapter,\footnote{The main content of this
-  chapter is published in~\citet{cao2021schema}.} we focus
-our investigation on the study of three aspects in schema-guided
-dialog state tracking:
+of descriptions. In this chapter, we focus our investigation on the
+study of three aspects in schema-guided dialogue state
+tracking:~\footnote{Adapted with permission from~\citet{cao2021schema}
+  published under
+  a~\href{https://creativecommons.org/licenses/by/4.0/}{Creative
+    Commons Attribution 4.0 International License}.}
 \begin{inparaenum}[(1)]
 \item schema encoding model architectures
 \item supplementary training on intermediate tasks
 \item various styles for schema description.
 \end{inparaenum}
 To make a more general discussion on
-the schema-guided dialog state tracking, we perform extensive
+the schema-guided dialogue state tracking, we perform extensive
 empirical studies on both \sgdst~and~\multiwoz~datasets.
 
 In summary, besides the independent factorization and the attention
@@ -92,7 +96,7 @@ contributions include:
   on schema encoding architectures, suggesting a partial-attention
   encoder for good balance between inference speed and accuracy.
 \item An experimental study of supplementary training on
-  schema-guided dialog state tracking, via intermediate tasks
+  schema-guided dialogue state tracking, via intermediate tasks
   including natural language inference and question answering.
 \item An in-depth analysis of different schema description styles on a new
   suite of benchmarking datasets with

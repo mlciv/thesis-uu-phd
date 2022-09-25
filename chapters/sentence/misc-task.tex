@@ -27,12 +27,14 @@ tasks~\autoref{ssec:snt:comparative-tasks}.
     {
       \begin{tabular}{crll}
         \toprule
+        \hline
         $i$        & $s_{i}$ & $u_{i}$                             & $l_{i}$  \\ \hline
         1        & T:      & Have you used drugs recently?       & \QUC     \\
         2        & C:      & I stopped for a year, but relapsed. & \FN      \\
         3        & T:      & You will suffer if you keep using. & \MIN     \\
         4        & C:      & Sorry, I just want to quit.         & \CHANGE  \\
-        $\cdots$ &         & $\cdots$                            & $\cdots$ \\ \bottomrule
+        $\cdots$ &         & $\cdots$                            & $\cdots$ \\  \hline
+        \bottomrule
       \end{tabular}
     }
   \end{center}
@@ -107,7 +109,7 @@ therapist: \emph{Given a dialogue history $H_n$ and the next speaker's
 
 We argue that forecasting the type of the next utterance, rather than
 selecting or generating its text as has been the focus of several
-recent lines of work~\citep[\eg,][]{schatzmann2005quantitative,ubuntu,DSTC7},
+recent lines of work~\citep[\eg,][]{schatzmann2005quantitative,lowe2015ubuntu,DSTC7},
 allows the human in the loop~(the therapist) the freedom to
 creatively participate in the conversation within the parameters
 defined by the seasoned observer, and perhaps even rejecting
@@ -151,7 +153,7 @@ previously. In such a way, each MISC prediction in the categorization
 or forecasting task is independent of the MISC prediction in the
 previous dialogue turn. However, they have different goals for each
 dialogue turn. When the dialogue goes to turn 3, both the
-categorization and forecasting task will observe the current dialog
+categorization and forecasting task will observe the current dialogue
 history window as input $X=H_{n}$. However, the key difference is as
 follows: the categorization task is to predict the MISC code $l_{n}$
 for the last seen utterance $u_{n}$, while the forecasting task is to
@@ -176,29 +178,30 @@ representing coherent goals for the clients or the therapist.
 
 \subsubsection{Input Decomposition and Alignments Discovery}
 \label{sssec:snt:input-decomposition}
-For the input decomposition in previous lexical anchoring and
-phrasal anchoring, the corresponding output label can be directly
-derived from each input segment. For example, in lexical anchoring,
-each concept or subgraph in an AMR graph is aligned to each token
-or special entity. In phrasal anchoring, a nonterminal intent and
-slot label in TOP is aligned to a phrase in the input sentence. In
-MISC code prediction, the MISC code is assigned to a
-utterance. However, the MISC code can not be derived by only a single token
-, phrase or the aligned utterance. According to the MISC annotation
-guidedline, the identification of relevant words or utterances may
-depend on the whole dialogue history. For example, reflection related
-MISC~(\RES, \REC) may need to discover which utterance in the dialogue
-history the therapist are reflecting to. Hence, more than the previous
-hard-aligned lexical or phrasal-anchoring, it requires to discovering
-the relevant details in the meaning of the sentence \textbf{within the
-  context of dialogue history}. In ~\autoref{sec:snt:devices}, we
-proposed a hierarchical dialogue encoder to model the nest structures
-of dialogue, and we also offered word-level and utterance-level
-attention to help discover the relevant parts in it.
+For the input decomposition in previous lexical anchoring and phrasal
+anchoring, the corresponding output label can be directly derived from
+each input segment. For example, in lexical anchoring, each concept or
+subgraph in an AMR graph is aligned to each token or special
+entity. In phrasal anchoring, a nonterminal intent and slot label in
+TOP is aligned to a phrase in the input sentence. In MISC code
+prediction, the MISC code is assigned to a utterance. However, the
+MISC code can not be derived by only a single token , phrase or the
+aligned utterance. According to the MISC annotation guidedline, the
+identification of relevant words or utterances may depend on the whole
+dialogue history. For example, reflection related MISC~(\RES, \REC)
+may need to discover which utterance in the dialogue history the
+therapist are reflecting to. Hence, more than the previous
+hard-aligned lexical-anchoring or phrasal-anchoring parsing, it
+requires to discovering the relevant details in the meaning of the
+sentence \textbf{within the context of dialogue history}. In
+~\autoref{sec:snt:devices}, we proposed a hierarchical dialogue
+encoder to model the nest structures of dialogue, and we also offered
+word-level and utterance-level attention to help discover the relevant
+parts in it.
 
 Due to the realtime setting, the input dialogue is naturally
 decomposed by time steps, and forms a sequence of incremental dialogue
-history $\{u_1\}$, $\{u_1,u_2\}$, and $\{u_1,u_2,u_3\}$.  When the dialogue goes to the turn 4, the dialog history will
+history $\{u_1\}$, $\{u_1,u_2\}$, and $\{u_1,u_2,u_3\}$.  When the dialogue goes to the turn 4, the dialogue history will
 slide to the next window of size 3, as $H_{n}=\{u_2,u_3,u_4\}$. The
 $u_{1}$ will be truncated due the sliding window. We limit the
 dialogue window because the whole therapy dialogue session may last
@@ -211,7 +214,7 @@ context encoding as the future work.
 \begin{table}[!tbp]
 \caption{\label{tbl:snt:task-comparasion} The differences between the
   categorization task and the forecasting task, when choosing a window
-  size as 3 to factorize the dialog sequential flow.}
+  size as 3 to factorize the dialogue sequential flow.}
 \begin{center}{
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{l|c|c|c}

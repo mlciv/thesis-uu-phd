@@ -3,7 +3,7 @@
 \begin{sidewaystable}[!tbp]
 \caption{\label{tbl:sup-training-details} Results of different supplementary training on \sgdst~and \multiwoz~datasets.}
 \begin{center}
-\setlength{\tabcolsep}{2pt}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|c|ccc|ccc|ccc|ccc|ccc|ccc}
 \toprule
   \hline
@@ -60,7 +60,7 @@
     styles. The $\Delta$ means the performance gap between the mean and the
     homogeneous performance.}
 \begin{center}
-\setlength{\tabcolsep}{2pt}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|cccc|cc}
   \toprule
   \hline
@@ -111,7 +111,7 @@ Style       & \NAMEONLY   & \QANAMEONLY             & \ORIGIN     & \QARICH     
     the performance gap between the mean and the homogeneous
     performance.}
 \begin{center}
-\setlength{\tabcolsep}{2pt}
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{c|cccc|cc}
  \toprule
   \hline
@@ -191,27 +191,3 @@ Service Name    & Original Name             & Paraphrased Name                  
 \end{tabular}
 \end{center}
 \end{sidewaystable}
-\efloatseparator
- 
-\begin{table}[!tbp]
-\caption{\label{tbl:hete-style-results-sgd2} Results on unseen service with heterogeneous description styles on \sgdst dataset. More results and qualitative analysis are in the appendix~\ref{sec:sgd:more-desc-results}}
-\begin{center}
-\setlength{\tabcolsep}{1pt}
-\begin{tabular}{c|c|c|c|c}
-  \toprule
-  \hline
-\multirow{3}{*}{Style\textbackslash{Task}} & \multicolumn{4}{c}{ \sgdst }                                                                                                                   \\ \cline{2-5}
-                                           & \multicolumn{1}{c|}{ Intent(Acc)} & \multicolumn{1}{c|}{Req(F1)} & \multicolumn{1}{c|}{Cat(Joint Acc)} & \multicolumn{1}{c}{NonCat(Joint Acc)} \\ \cline{2-5}
-                                           & $\Delta$                               & $\Delta$                          & $\Delta$                                 & $\Delta$                                   \\ \hline
-\NAMEONLY                                  & -11.47                            & -1.64                        & -5.54                               & -14.68                                \\
-\QANAMEONLY                                & +0.58                             & -0.76                        & +2.63                               & -6.30                                 \\
-\ORIGIN                                    & -12.70                            & -0.74                        & -0.3                                & -3.11                                 \\
-\QARICH                                    & -8.24                             & -1.45                        & -2.89                               & -15.00                                \\
-  \hline
-                                           & $\Delta$                               & $\Delta$                          & $\Delta$                                 & $\Delta$                                   \\ \hline
-\NAMEONLY                                  & -1.74                             & -0.87                        & -0.7                                & -4.04                                 \\
-\ORIGIN                                    & {\bf -0.63}                       & {\bf +0.26}                  & {\bf +2.86}                         & {\bf -2.16}                           \\ \hline
-  \bottomrule
-\end{tabular}
-\end{center}
-\end{table}

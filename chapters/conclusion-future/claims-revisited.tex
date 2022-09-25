@@ -1,8 +1,8 @@
 \section[Research Summary and Contributions]{Research Summary and Contributions}
 \label{sec:conclustions:claims}
 
-In this dissertation, we claim that by designing ~\kw{Structural
-  Inductive Bias} and \kw{Natural Language as Inductive Biases},
+In this dissertation, we claim that by designing ~\kw{structural
+  inductive biases} and \kw{natural language as inductive biases},
 models with naive independent factorization can achieve strong
 performance on predicting the natural language structures across
 multiple broad-coverage and application-specific representations.
@@ -14,13 +14,13 @@ The main contributions of this dissertation are as follows:
   structural inductive biases about different anchoring-types, we
   proposed a unified parsing framework to support
   both~\textbf{explicit lexical anchoring} (including DELPH-IN MRS
-  Bilexical Dependencies~\citep[DM,][]{ivanova2012did} and Prague
+  Bilexical Dependencies~\citep[DM,][]{Iva:Oep:Ovr:12} and Prague
   Semantic
   Dependencies~\citep[PSD,][]{hajic2012announcing,miyao2014house}),
   and \textbf{implicit lexical anchoring}~(AMR). For the
   \textbf{phrasal-anchoring} Universal Conceptual Cognitive
-  Annotation~\citep[UCCA,][]{abend2013universal} and Task-oriented
-  Dialog Parsing~\citep[TOP,][]{gupta-etal-2018-semantic-parsing},
+  Annotation~\citep[UCCA,][]{Abe:Rap:13b} and Task-oriented
+  Dialogue Parsing~\citep[TOP,][]{gupta-etal-2018-semantic-parsing},
   according to their similarity to constituency tree structure, we
   extrapolate the existed algorithmic inductive bias on tree structure
   prediction and Cost-augmented CKY inferece to the new UCCA and TOP
@@ -30,7 +30,7 @@ The main contributions of this dissertation are as follows:
     outperform serveral baseline models on TOP parsing.}
 
 \item We address the problem of providing real-time guidance to
-  therapists with a dialogue observer. It decompose the dialog
+  therapists with a dialogue observer. It decompose the dialogue
   structure analysis with two independent factorization tasks and
   modeling for two speaker seperately: (1) categorizes therapist and
   client MI behavioral codes and, (2) forecasts codes for upcoming
@@ -48,7 +48,7 @@ The main contributions of this dissertation are as follows:
 \item Natural language can be leveraged as inductive biases to
   describe the functions of the intent/slot labels in task-oriented
   dialogue. We are among the first to use large pretrained language
-  models on description-based dialog state tracking, we offer detailed
+  models on description-based dialogue state tracking, we offer detailed
   comparative studies how to transfer inductive biases to new domains
   and APIs with overlapping functions and task structures, including
   encoding strategies, supplementary pretraining, homogenuous and

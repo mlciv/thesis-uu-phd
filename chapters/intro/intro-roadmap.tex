@@ -29,12 +29,12 @@ with two sections:
 lexical and phrasal anchoring analysis to decompose the output
 structures for independent factorization, where each part can be
 derived from its anchoring words or phrases in the input sentence. For
-lexical-anchoring, we propose a unified model to support both explicit
+lexical anchoring, we propose a unified model to support both explicit
 and implicit alignment information between each input and output. For
-phrasal-anchoring, we compared different ways to learn the
+phrasal anchoring, we compared different ways to learn the
 contextualized representation for the spans and how they can bring
 discriminative features to our locally-dependent model. We show that
-with the above lexical and phrasal-anchoring based structural
+with the above lexical-anchoring and phrasal-anchoring based structural
 inductive biases for energy factorization and contextualized
 representation learning, our model can learn efficient discriminative
 features for the anchor and achieve high performance in the
@@ -43,15 +43,15 @@ locally-independent model.
 \textbf{Chapter 4} presents structural inductive biases for
 sentenctial anchoring. Besides the above lexical and phrasal anchoring
 in a single sentence, we extend our study to structures beyond a
-single sentence. In this chapter, we study the sequential dialog flow
+single sentence. In this chapter, we study the sequential dialogue flow
 structure in a style of therapy called Motivational
 Interviewing~\cite[MI,][]{miller2003motivational,miller2012motivational},
 which is widely used for treating addiction-related problems.
 Sentence-level tags called Motivational Interview Skill Codes are
 designed to represent the intention of each utterance and the dialogue
-the flow of the whole therapy session. We decompose the dialog
+the flow of the whole therapy session. We decompose the dialogue
 structure analysis with two independent prediction tasks: categorizing
-and forecasting the dialog flow in the form of MISC codes. By
+and forecasting the dialogue flow in the form of MISC codes. By
 developing a modular family of neural networks for two independent
 tasks, we show that the above mechanisms on dialogue representation
 can efficiently model the sequential structure of dialogue flow, and
@@ -59,7 +59,7 @@ offer realtime guidance to a therapist.
 
 \textbf{Chapter 5} introduces natural language as inductive biases. We
 studies how to use natural language descriptions to represent the
-meaning of output symbols~(intents and slots) in task-oriented dialog
+meaning of output symbols~(intents and slots) in task-oriented dialogue
 state tracking, which helps to reduce the poor scalability to transfer
 to unseen domains and services. We study three main challenges of
 using natural language for label representation: schema encoding,
