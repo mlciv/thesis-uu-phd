@@ -29,7 +29,7 @@ may inspire us to design machine intelligence.
 
 On the machine intelligence side, the no-free-lunch theorem for
 machine learning~\citep{baxter2000model,wolpert1995no} tells us that
-inductive biases that influence hypodissertation selection is necessary to
+inductive biases that influence hypothesis selection is necessary to
 obtain generalization. \citet{mitchell1980need} argues that inductive
 biases constitute the heart of generalization and, indeed a key basis
 for learning itself.
@@ -52,8 +52,8 @@ of necessary assumptions is subsumed in the phrase inductive bias.
 
 %\begin{figure}[!th]
 %\centering
-%\includegraphics[width=0.80\textwidth]{supervised-learning-hypodissertation.pdf}
-%\caption{\label{fig:intro-hypodissertation}Hypodissertation, Generatioalization in
+%\includegraphics[width=0.80\textwidth]{supervised-learning-hypothesis.pdf}
+%\caption{\label{fig:intro-hypothesis}Hypothesis, Generatioalization in
 %  Supervised Learning Setting\todo{Current fig is directly copied from
 %    Ben Taskar's dissertation, redraw it}}
 %\end{figure}
@@ -76,35 +76,35 @@ machine learning.
 
 For the popular supervised learning setting, let $\mathcal{H}$ refer
 to machine learning model families, including deep learning
-models. Finding a target hypodissertation $h$ is reduced to estimating the
+models. Finding a target hypothesis $h$ is reduced to estimating the
 model parameters by fitting the training data. Hence, preferences
 beyond training data can naturally be organized into two goals:
-choosing the hypodissertation class $\mathcal{H}$ and finding the $h$ is
+choosing the hypothesis class $\mathcal{H}$ and finding the $h$ is
 necessary to generalize to new data. For example, different \kw{model
-  families} can represent different hypodissertation classes. For example,
+  families} can represent different hypothesis classes. For example,
 generalized linear models, such as logistic regression and support
 vector machines, can only support linear decision
 boundaries. Secondly, inductive biases are also used in \kw{feature
   engineering}. For data that are not linear separable, the choices of
 \kw{kernels design} also introduce inductive bias in kernel-based
 SVM models. There are also many assumptions about optimization for
-finding the specific hypodissertation $h$. For example, smoothness
+finding the specific hypothesis $h$. For example, smoothness
 assumptions in the \kw{optimization} method, such as Stochastic
 gradient descent, were shown to have better
 generalization. \kw{Inference Algorithms}, such as combinatorial
 optimization approaches, such as graph cuts, partitions, bipartie
 mactching, and dynamic programming can also be involved during the
-hypodissertation learning, which will also constrain the learning. In this
+hypothesis learning, which will also constrain the learning. In this
 dissertation, we mainly focus on representation learning. For
 inference, we use methods, such as greedy search, maximum spanning
 connected graph, and dynamic programming for CKY parsing. Finally, the
-biases in the \kw{Training Data} will also influence the hypodissertation
+biases in the \kw{Training Data} will also influence the hypothesis
 finding. It is often the case that available datasets do not exactly
 represent the data distribution of interest. One particularly
 problematic case is when the dataset is biased against a particular
 demographic group, which often leads to model predictions that
 unfairly disadvantage members of that group. Hence, \kw{Data
-  manipulation} can also help find the desired hypodissertation by
+  manipulation} can also help find the desired hypothesis by
 augmenting the original training data with inductive biases.
 
 In this dissertation, we mainly use \kw{neural architectures} and \kw{data
@@ -200,7 +200,7 @@ the strong recurrent assumption, a weaker word-order assumption also
 works quite well by using a positional encoding with self-attention
 mechanism in the popular transformer-based
 models~\citep{NIPS2017_7181}. Finally, inspired by the distributional
-hypodissertation, where words that are used and occur in the same contexts
+hypothesis, where words that are used and occur in the same contexts
 tend to purport similar meanings~\cite{harris1954distributional},
 bidirectional architectures are the standard for modeling word
 embedding and language models.~(\eg, looking at both the past and
@@ -231,7 +231,7 @@ tasks.%\todo{SGD generalization,smoothness}
 %\todo{Realistic distribution shift}
 
 \subsection[Independent Factorization for Deep Linguistic Structured
-  Prediction]{Independent Factorization for Deep Linguistic \\Structured
+  Prediction]{Independent Factorization for Deep \\Linguistic Structured
   Prediction}
 \label{ssec:intro:bias-dsp}
 
